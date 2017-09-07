@@ -6,10 +6,22 @@
 /config/application.yml
 /config/database.yml
 
-# Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
-
 /public/app.js
 /public/app.js.map
 /public/app.css
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+
+.idea/.generators
+
+.idea/.rakeTasks
+
+*.xml
+
+*.iml
+
+*.keep
+app/assets/images/.keep
