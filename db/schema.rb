@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170908210458) do
+ActiveRecord::Schema.define(version: 20170910134918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,11 +70,37 @@ ActiveRecord::Schema.define(version: 20170908210458) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "headers", force: :cascade do |t|
+    t.string   "name",             default: "",   null: false
+    t.string   "location",         default: "",   null: false
+    t.string   "description",      default: "",   null: false
+    t.string   "phone",            default: "",   null: false
+    t.string   "email",            default: "",   null: false
+    t.boolean  "show_name",        default: true
+    t.boolean  "show_location",    default: true
+    t.boolean  "show_description", default: true
+    t.boolean  "show_phone",       default: true
+    t.boolean  "show_email",       default: true
+    t.boolean  "show_photo",       default: true
+    t.integer  "resume_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
   create_table "languages", force: :cascade do |t|
     t.string   "name",       default: "", null: false
     t.string   "level",      default: "", null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "layouts", force: :cascade do |t|
+    t.integer  "layout_type",  default: 1
+    t.string   "section_name", default: "", null: false
+    t.text     "section_data"
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "passions", force: :cascade do |t|
@@ -113,13 +139,22 @@ ActiveRecord::Schema.define(version: 20170908210458) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "resume_styles", force: :cascade do |t|
+    t.string   "background"
+    t.string   "fontbody"
+    t.string   "fontheading"
+    t.string   "color"
+    t.integer  "resume_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "resumes", force: :cascade do |t|
-    t.string   "name",        default: "", null: false
-    t.string   "title",       default: "", null: false
+    t.string   "name"
+    t.integer  "layout_id"
     t.integer  "user_id"
-    t.string   "description", default: "", null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skills", force: :cascade do |t|
@@ -132,6 +167,15 @@ ActiveRecord::Schema.define(version: 20170908210458) do
   create_table "strengths", force: :cascade do |t|
     t.string   "title",       default: "", null: false
     t.string   "item_icon"
+    t.integer  "resume_id"
+    t.string   "description", default: "", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "summaries", force: :cascade do |t|
+    t.string   "name",        default: "", null: false
+    t.string   "title",       default: "", null: false
     t.integer  "resume_id"
     t.string   "description", default: "", null: false
     t.datetime "created_at",               null: false
@@ -156,11 +200,6 @@ ActiveRecord::Schema.define(version: 20170908210458) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "name",                   default: "", null: false
-    t.string   "location",               default: "", null: false
-    t.string   "description",            default: "", null: false
-    t.string   "phone",                  default: "", null: false
-    t.string   "contact_email",          default: "", null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

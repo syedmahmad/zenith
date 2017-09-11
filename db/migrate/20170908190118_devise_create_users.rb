@@ -19,14 +19,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.inet     :current_sign_in_ip
       t.inet     :last_sign_in_ip
 
-      #additional fields.....
-      t.string :name,        null: false, default: ""
-      t.string :location,        null: false, default: ""
-      t.string :description,        null: false, default: ""
-      t.string :phone,        null: false, default: ""
-      t.string :contact_email,        null: false, default: ""
-      t.string :contact_email,        null: false, default: ""
-
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at
