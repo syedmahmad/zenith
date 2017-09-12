@@ -9,7 +9,7 @@ var Achievements = React.createClass({
     });
     
     return (
-     <div className="section-items col-md-12" data-section-name="Achievements">
+     <div className="section-items col-md-12" data-section-name="Achievements" >
         {data}
       </div>
     )
