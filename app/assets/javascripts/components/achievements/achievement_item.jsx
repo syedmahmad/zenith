@@ -5,17 +5,14 @@ var AchievementItem = React.createClass({
     return {title: achievement.title, description: achievement.description};
   },
 
-  handleTitleChange: function(e){
-    this.setState({title: e.target.value});
-  },
-
-  handleDescriptionChange: function(e){
-    this.setState({email: e.target.value});
-  },
-
-  handleAchievementSubmit: function(e){
+   handleChange: function(e){
     e.preventDefault();
-    this.props.parentUpdateResume(
+    this.setState({[e.target.name]: e.target.value});
+  },
+
+  submitAchievment: function(e){
+    e.preventDefault();
+    this.props.updateResume(
       {achievement: {title: this.state.title, description: this.state.description}}
     );
   },
@@ -23,22 +20,22 @@ var AchievementItem = React.createClass({
   render: function() {
     return (
       <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.handleAchievementSubmit}>
+        <form style={{marginTop: "30px"}} onSubmit={this.submitAchievment}>
           <div><input
             type="string"
-            name="achievement[title]"
+            name="title"
             className="name"
-            placeholder="Job Title"
+            placeholder="What are you most proud of?"
             value={this.state.title}
-            onChange={ this.handleTitleChange }
+            onChange={ this.handleChange }
           /></div>
           <div><input
             type="string"
-            name="achievement[description]"
+            name="description"
             className="name"
-            placeholder="A bit about your achievements"
+            placeholder="A bit about your achievement"
             value={this.state.description}
-            onChange={ this.handleDescriptionChange }
+            onChange={ this.handleChange }
           /></div>
           
           <div className='row'>

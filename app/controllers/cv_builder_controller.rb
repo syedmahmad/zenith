@@ -6,7 +6,7 @@ class CvBuilderController < ApplicationController
     # flash[:warn ] = "Israel don't quite like warnings"
     #flash[:danger ] = "Naomi let the dog out!"
     @resume = get_json
-    @sections = ["Achievements", "Courses", "Education"]
+    @sections = ["Summary", "Achievements", "Courses", "Education"]
   end
 
   def get_json
@@ -150,6 +150,10 @@ class CvBuilderController < ApplicationController
          }
       ]
     },
+    "summary":{
+     "title":"",
+     "description":"", 
+    },
     "header":{  
      "name":"Syed Muhammad Ahmad",
      "title":"Senior Software Engineer",
@@ -179,3 +183,4 @@ class CvBuilderController < ApplicationController
   end
 
 end
+

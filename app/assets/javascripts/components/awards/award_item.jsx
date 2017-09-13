@@ -1,8 +1,8 @@
-var PassionItem = React.createClass({
+var AwardItem = React.createClass({
 
   getInitialState: function(){
-    var passion = this.props.passion;
-    return {name: passion.name};
+    var award = this.props.award;
+    return {name: award.name};
   },
 
    handleChange: function(e){
@@ -10,22 +10,22 @@ var PassionItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitPassion: function(e){
+  submitAward: function(e){
     e.preventDefault();
     this.props.updateResume(
-      {passion: {name: this.state.name}}
+      {award: {name: this.state.name}}
     );
   },
 
   render: function() {
     return (
       <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitPassion}>
+        <form style={{marginTop: "30px"}} onSubmit={this.submitAward}>
           <div><input
             type="string"
             name="name"
             className="name"
-            placeholder="Your Passion"
+            placeholder="Award Name"
             value={this.state.name}
             onChange={ this.handleChange }
           /></div>

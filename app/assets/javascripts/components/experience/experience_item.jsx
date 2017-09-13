@@ -1,8 +1,8 @@
-var ProjectItem = React.createClass({
+var ExperienceItem = React.createClass({
 
   getInitialState: function(){
-    var project = this.props.project;
-    return {name: project.name, location: project.location, duration: project.duration, description: project.description};
+    var experience = this.props.experience;
+    return {title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description};
   },
 
    handleChange: function(e){
@@ -10,23 +10,31 @@ var ProjectItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitproject: function(e){
+  submitExperience: function(e){
     e.preventDefault();
     this.props.updateResume(
-      {project: {name: this.state.name, location: this.state.location, duration: this.state.duration, description: this.state.description}}
+      {experience: {title: this.state.title, company_name: this.state.company_name, location: this.state.location, duration: this.state.duration, description: this.state.description}}
     );
   },
 
   render: function() {
     return (
       <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitProject}>
+        <form style={{marginTop: "30px"}} onSubmit={this.submitExperience}>
           <div><input
             type="string"
-            name="name"
+            name="title"
             className="name"
-            placeholder="Project/Activity name"
-            value={this.state.name}
+            placeholder="Title/Position"
+            value={this.state.title}
+            onChange={ this.handleChange }
+          /></div>
+          <div><input
+            type="string"
+            name="company_name"
+            className="name"
+            placeholder="Company"
+            value={this.state.company_name}
             onChange={ this.handleChange }
           /></div>
           <div><input
@@ -49,7 +57,7 @@ var ProjectItem = React.createClass({
             type="string"
             name="description"
             className="name"
-            placeholder="Short summary of your work"
+            placeholder="Company Description"
             value={this.state.description}
             onChange={ this.handleChange }
           /></div>

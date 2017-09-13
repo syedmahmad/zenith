@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
 
-  parentUpdateResume: function(formData, onSuccess, onError){
+  updateResume: function(formData, onSuccess, onError){
     debugger;
     $.ajax({
       url: ("/header/" + formData["header"]["id"]),
@@ -31,12 +31,11 @@ var CvBuilder = React.createClass({
     var props = this.props;
     var key = "";
     var header = this.props.resume["header"];
-    
+    var _this = this
     props.sections.forEach(function(section) {
       MyComponent = window[section];
       key = section + "holder";
-      // ToDO sending all data in props.resume.. we can also do like props;resume. + MyComponent
-      data.push(<MyComponent resume={props.resume} key={key} parentUpdateResume={this.parentUpdateResume}/>);
+      data.push(<MyComponent resume={props.resume} key={key} updateResume={_this.updateResume}/>);
     });
 
     return (
@@ -46,7 +45,7 @@ var CvBuilder = React.createClass({
         </div>
         <div className="col-md-9">
           <div className="cv-builder col-md-12">
-            <ResumeHeader header={header} parentUpdateResume={this.parentUpdateResume}/>
+            <ResumeHeader header={header} updateResume={this.updateResume}/>
             {data}
           </div>
         </div>

@@ -1,8 +1,8 @@
-var CourseItem = React.createClass({
+var StrengthItem = React.createClass({
 
   getInitialState: function(){
-    var course = this.props.course;
-    return {title: course.title, description: course.description};
+    var strength = this.props.strength;
+    return {title: strength.title, description: strength.description};
   },
 
    handleChange: function(e){
@@ -10,30 +10,31 @@ var CourseItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitCourse: function(e){
+  submitStrength: function(e){
     e.preventDefault();
     this.props.updateResume(
-      {course: {title: this.state.title, description: this.state.description}}
+      {strength: {title: this.state.title, description: this.state.description}}
     );
   },
 
   render: function() {
     return (
       <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitCourse}>
+        <form style={{marginTop: "30px"}} onSubmit={this.submitStrength}>
           <div><input
             type="string"
             name="title"
             className="name"
-            placeholder="Course Title"
+            placeholder="Your Unique Talent"
             value={this.state.title}
             onChange={ this.handleChange }
           /></div>
+
           <div><input
             type="string"
             name="description"
             className="name"
-            placeholder="Course Description"
+            placeholder="As result of it / how did you acquire it"
             value={this.state.description}
             onChange={ this.handleChange }
           /></div>

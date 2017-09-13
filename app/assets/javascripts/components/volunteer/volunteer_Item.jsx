@@ -1,8 +1,8 @@
-var ProjectItem = React.createClass({
+var VolunteerItem = React.createClass({
 
   getInitialState: function(){
-    var project = this.props.project;
-    return {name: project.name, location: project.location, duration: project.duration, description: project.description};
+    var volunteer = this.props.volunteer;
+    return {title: volunteer.title, organization_name: volunteer.organization_name, duration: volunteer.duration, description: volunteer.description};
   },
 
    handleChange: function(e){
@@ -10,23 +10,31 @@ var ProjectItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitproject: function(e){
+  submitVolunteer: function(e){
     e.preventDefault();
     this.props.updateResume(
-      {project: {name: this.state.name, location: this.state.location, duration: this.state.duration, description: this.state.description}}
+      {volunteer: {title: this.state.title, organization_name: this.state.organization_name, duration: this.state.duration, description: this.state.description}}
     );
   },
 
   render: function() {
     return (
       <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitProject}>
+        <form style={{marginTop: "30px"}} onSubmit={this.submitVolunteer}>
           <div><input
             type="string"
-            name="name"
+            name="title"
             className="name"
-            placeholder="Project/Activity name"
-            value={this.state.name}
+            placeholder="Title/Role"
+            value={this.state.title}
+            onChange={ this.handleChange }
+          /></div>
+          <div><input
+            type="string"
+            name="organization_name"
+            className="name"
+            placeholder="Organization Name"
+            value={this.state.organization_name}
             onChange={ this.handleChange }
           /></div>
           <div><input
@@ -35,14 +43,6 @@ var ProjectItem = React.createClass({
             className="name"
             placeholder="Date period"
             value={this.state.duration}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="location"
-            className="name"
-            placeholder="Location"
-            value={this.state.location}
             onChange={ this.handleChange }
           /></div>
           <div><input

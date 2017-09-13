@@ -1,8 +1,8 @@
-var CourseItem = React.createClass({
+var SkillItem = React.createClass({
 
   getInitialState: function(){
-    var course = this.props.course;
-    return {title: course.title, description: course.description};
+    var skill = this.props.skill;
+    return {name: skill.name, level: skill.level};
   },
 
    handleChange: function(e){
@@ -10,31 +10,31 @@ var CourseItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitCourse: function(e){
+  submitSkill: function(e){
     e.preventDefault();
     this.props.updateResume(
-      {course: {title: this.state.title, description: this.state.description}}
+      {skill: {name: this.state.name, level: this.state.level}}
     );
   },
 
   render: function() {
     return (
       <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitCourse}>
+        <form style={{marginTop: "30px"}} onSubmit={this.submitSkill}>
           <div><input
             type="string"
-            name="title"
+            name="name"
             className="name"
-            placeholder="Course Title"
-            value={this.state.title}
+            placeholder="Skill"
+            value={this.state.name}
             onChange={ this.handleChange }
           /></div>
           <div><input
             type="string"
-            name="description"
+            name="level"
             className="name"
-            placeholder="Course Description"
-            value={this.state.description}
+            placeholder="Introductory"
+            value={this.state.level}
             onChange={ this.handleChange }
           /></div>
           

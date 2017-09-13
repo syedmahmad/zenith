@@ -3,9 +3,10 @@ var Achievements = React.createClass({
     var achievements = this.props.resume["achievements"]["items"]
     var data = []
     var key = "";
+    var _this = this;
     achievements.forEach(function(achievement) {
       key = "achievement-" + achievement.id;
-      data.push(<AchievementItem achievement={achievement} key={key}/>);
+      data.push(<AchievementItem achievement={achievement} key={key} updateResume={_this.props.updateResume}/>);
     });
     
     return (

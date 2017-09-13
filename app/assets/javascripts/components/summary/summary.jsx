@@ -1,43 +1,44 @@
-var CourseItem = React.createClass({
+var Summary = React.createClass({
 
   getInitialState: function(){
-    var course = this.props.course;
-    return {title: course.title, description: course.description};
+    var summary = this.props.resume["summary"];
+    return {title: summary.title, description: summary.description};
   },
 
-   handleChange: function(e){
+  handleChange: function(e){
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitCourse: function(e){
+  submitSummaryData: function(e){
     e.preventDefault();
     this.props.updateResume(
-      {course: {title: this.state.title, description: this.state.description}}
+      {summary: {title: this.state.title, description: this.state.description}}
     );
   },
 
   render: function() {
     return (
-      <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitCourse}>
+      <div className="col-md-12">
+        <form style={{marginTop: "30px"}} onSubmit={this.submitSummaryData}>
+
           <div><input
             type="string"
             name="title"
             className="name"
-            placeholder="Course Title"
+            placeholder="SUMMARY"
             value={this.state.title}
-            onChange={ this.handleChange }
+            onChange={ this.handleChange}
           /></div>
+
           <div><input
             type="string"
             name="description"
             className="name"
-            placeholder="Course Description"
+            placeholder="What critical problems are you well positioned to solve? A bit about yourself"
             value={this.state.description}
-            onChange={ this.handleChange }
+            onChange={ this.handleChange}
           /></div>
-          
           <div className='row'>
             <div className='col-sm-4'>
               <input hidden type="submit" value="Save" className='btn btn-primary' />

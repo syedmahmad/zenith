@@ -1,8 +1,8 @@
-var CourseItem = React.createClass({
+var TechnologyItem = React.createClass({
 
   getInitialState: function(){
-    var course = this.props.course;
-    return {title: course.title, description: course.description};
+    var technology = this.props.technology;
+    return {name: technology.name, tec_names: technology.tec_names};
   },
 
    handleChange: function(e){
@@ -10,31 +10,31 @@ var CourseItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitCourse: function(e){
+  submitTechnology: function(e){
     e.preventDefault();
     this.props.updateResume(
-      {course: {title: this.state.title, description: this.state.description}}
+      {technology: {name: this.state.name, tec_names: this.state.tec_names}}
     );
   },
 
   render: function() {
     return (
       <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitCourse}>
+        <form style={{marginTop: "30px"}} onSubmit={this.submitTechnology}>
           <div><input
             type="string"
-            name="title"
-            className="name"
-            placeholder="Course Title"
-            value={this.state.title}
+            name="name"
+            className="technology"
+            placeholder="Group Title"
+            value={this.state.name}
             onChange={ this.handleChange }
           /></div>
           <div><input
             type="string"
-            name="description"
+            name="tec_names"
             className="name"
-            placeholder="Course Description"
-            value={this.state.description}
+            placeholder="Tech"
+            value={this.state.tec_names}
             onChange={ this.handleChange }
           /></div>
           

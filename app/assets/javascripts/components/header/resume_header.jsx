@@ -2,68 +2,65 @@ var ResumeHeader = React.createClass({
 
   getInitialState: function(){
     var header = this.props.header;
-    return {name: header.name, title: header.title, email: header.email, location: header.location};
+    return {name: header.name, title: header.title, email: header.email, location: header.location, website_link: header.website_link};
   },
 
-  handleNameChange: function(e){
-    this.setState({name: e.target.value});
-  },
-
-  handleTitleChange: function(e){
-    this.setState({title: e.target.value});
-  },
-
-  handleEmailChange: function(e){
-    this.setState({email: e.target.value});
-  },
-
-  handleLocationChange: function(e){
-    this.setState({location: e.target.value});
-  },
-
-  newHeaderSubmit: function(e){
+  handleChange: function(e){
     e.preventDefault();
-    this.props.parentUpdateResume(
-      {header: {name: this.state.name, title: this.state.title, email: this.state.email, location: this.state.location}}
+    this.setState({[e.target.name]: e.target.value});
+  },
+
+  submitHeaderData: function(e){
+    e.preventDefault();
+    this.props.updateResume(
+      {header: {name: this.state.name, title: this.state.title, email: this.state.email, website_link: this.state.website_link, location: this.state.location}}
     );
   },
 
   render: function() {
     return (
       <div className="col-md-12">
-        <form style={{marginTop: "30px"}} onSubmit={this.newHeaderSubmit}>
+        <form style={{marginTop: "30px"}} onSubmit={this.submitHeaderData}>
           <div><input
             type="string"
-            name="header[name]"
+            name="name"
             className="name"
             placeholder="Full Name"
             value={this.state.name}
-            onChange={ this.handleNameChange }
+            onChange={ this.handleChange}
           /></div>
 
           <div><input
             type="string"
-            name="header[title]"
+            name="title"
             className="name"
             placeholder="Job Title"
             value={this.state.title}
-            onChange={ this.handleTitleChange }
+            onChange={ this.handleChange}
           /></div>
           <div><input
             type="string"
-            name="header[email]"
+            name="email"
             className="name"
             placeholder="guest_150523877422@example.com"
             value={this.state.email}
-            onChange={ this.handleEmailChange }
+            onChange={ this.handleChange}
           /></div>
           <div><input
             type="string"
-            name="header[location]"
+            name="website_link"
+            className="name"
+            placeholder="Website/Link"
+            value={this.state.website_link}
+            onChange={ this.handleChange}
+          /></div>
+          <div><input
+            type="string"
+            name="location"
             className="name"
             placeholder="location"
             value={this.state.location}
-            onChange={ this.handleLocationChange }
+            onChange={ this.handleChange}
           /></div>
           <div className='row'>
             <div className='col-sm-4'>
