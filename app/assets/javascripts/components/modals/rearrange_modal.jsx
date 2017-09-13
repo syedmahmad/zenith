@@ -10,22 +10,26 @@ var RearrangeModal = React.createClass({
     closeModal: function() {
       this.setState({ isModalOpen: false });
     },
+    handleRearrange: function(){
+      this.props.handleRearrage();
+    },
 
     render: function() {
-        return (
-          <div className="modal fade" id="rearrangeModal" role="dialog">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <button type="button" className="close" data-dismiss="modal">&times;</button>
-                  <h4 className="modal-title">Rearrange</h4>
-                </div>
-                <div className="modal-body">
-                </div>
+      var sections = <RearrangeSections handleRearrange={this.handleRearrange} sections={this.props.sections}/>;
+      return (
+        <div className="modal fade" id="rearrangeModal" role="dialog">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button type="button" className="close" data-dismiss="modal">&times;</button>
+                <h4 className="modal-title">Rearrange</h4>
               </div>
-              
+              <div className="modal-body">
+                {sections}
+              </div>
             </div>
           </div>
-        );
+        </div>
+      );
     }
 });

@@ -1,7 +1,9 @@
 var CvBuilder = React.createClass({
+  getInitialState: function() {
+    return {layoutSections: ["Achievements", "Courses"]};
+  },
 
   updateResume: function(formData, onSuccess, onError){
-    debugger;
     $.ajax({
       url: ("/header/" + formData["header"]["id"]),
       dataType: 'json',
@@ -22,7 +24,20 @@ var CvBuilder = React.createClass({
       }
 
     });
+  },
 
+  handleRearrage: function(){
+    var arr = $('.rearrange-section-item').map(function() {
+      return $(this).data('sectionName');
+    }).get();
+
+    this.setState({layoutSections: arr});
+  },
+
+  handleAddSection: function(e){
+    var newSection = $(e.target).data("sectionName");
+    this.state.layoutSections.push(newSection);
+    this.setState({layoutSections: this.state.layoutSections});
   },
 
   render: function() {
@@ -32,7 +47,8 @@ var CvBuilder = React.createClass({
     var key = "";
     var header = this.props.resume["header"];
     var _this = this
-    props.sections.forEach(function(section) {
+
+    this.state.layoutSections.forEach(function(section) {
       MyComponent = window[section];
       key = section + "holder";
       data.push(<MyComponent resume={props.resume} key={key} updateResume={_this.updateResume}/>);
@@ -49,8 +65,8 @@ var CvBuilder = React.createClass({
             {data}
           </div>
         </div>
-        <RearrangeModal/>
-        <AddSectionModal/>
+        <RearrangeModal handleRearrage={this.handleRearrage} sections={this.state.layoutSections}/>
+        <AddSectionModal handleAddSection={this.handleAddSection} sections={this.state.layoutSections}/>
       </div>
     )
   }

@@ -10,9 +10,12 @@ var AddSectionModal = React.createClass({
     closeModal: function() {
       this.setState({ isModalOpen: false });
     },
+    handleAddSection: function(e){
+      this.props.handleAddSection(e);
+    },
 
     render: function() {
-      var sections = <AddSections/>;
+      var sections = <AddSections handleAddSection={this.handleAddSection} sections={this.props.sections}/>;
       return (
         <div className="modal fade" id="addSectionModal" role="dialog">
           <div className="modal-dialog">

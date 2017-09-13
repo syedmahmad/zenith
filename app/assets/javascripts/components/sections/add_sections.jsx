@@ -1,15 +1,19 @@
 var AddSections = React.createClass({
-  handleOnClick: function(e) {
-    alert($(e.target).data("sectionName"));
+  handleAddSection: function(e) {
+    this.props.handleAddSection(e);
   },
   render: function() {
-    var sections = ["Summary", "Achievements", "Awards", "Passions", "Strengths", "Experience", "Projects", "Volunteer", "Education", "Publications", "Cources", "Certificates", "Quotes", "Languages", "Skills", "Technologies", "Books"];
+    var sections = ["Summary", "Achievements", "Awards", "Passions", "Strengths", "Experience", "Projects", "Volunteer", "Education", "Courses", "Certificates", "Quotes", "Languages", "Skills", "Technologies"];
     var data = [];
     var key = "";
     var _this = this;
     sections.forEach(function(section){
       key = "add-"+section;
-      data.push(<div className="section" key={key} onClick={_this.handleOnClick} data-section-name={section}>{section}</div>);
+      if($.inArray(section, _this.props.sections) > -1){
+        data.push(<div className="section" key={key} data-section-name={section}>{section}</div>);
+      }else{
+        data.push(<div className="section" key={key} onClick={_this.handleAddSection} data-section-name={section}>{section}</div>);  
+      }
     });
     return (
       <div className="add-section-modal">
