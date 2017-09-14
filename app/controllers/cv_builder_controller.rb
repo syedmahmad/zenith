@@ -89,6 +89,28 @@ class CvBuilderController < ApplicationController
          }
       ]
     },
+    "awards": {  
+      "enabled":true,
+      "name":"",
+      "column":0,
+      "height":48,
+      "items":[  
+         {  
+            "id":0,
+            "name":"First award",
+            "description":"this is my first award",
+            "height":53,
+            "showDescription":false
+         },
+         {  
+            "id":1,
+            "name":"2nd award",
+            "description":"this is my 2nd award",
+            "height":53,
+            "showDescription":false
+         }
+      ]
+    },
     "passion": {  
         "enabled":true,
         "showIcons":true,
