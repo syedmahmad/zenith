@@ -1,6 +1,6 @@
 var Passions = React.createClass({
   render: function() {
-    var passions = this.props.resume["passion"]["items"]
+    var passions = this.props.resume.passions
     var data = []
     var key = "";
     var _this = this;

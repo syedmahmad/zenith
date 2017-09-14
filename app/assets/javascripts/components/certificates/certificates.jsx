@@ -1,6 +1,6 @@
 var Certificate = React.createClass({
   render: function() {
-    var certificates = this.props.resume["certificates"]["items"]
+    var certificates = this.props.resume.certificates
     var data = []
     var key = "";
     var _this = this;

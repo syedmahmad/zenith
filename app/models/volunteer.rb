@@ -1,3 +1,3 @@
 class Volunteer < ActiveRecord::Base
-	t.integer :resume
+	belongs_to :resume
 end

@@ -1,7 +1,7 @@
 var EducationItem = React.createClass({
 
   getInitialState: function(){
-    var education = this.props.education;
+    var education = this.props.education_item;
     return {degree_name: education.degree_name, university_name: education.university_name, duration: education.duration, cgpa: education.cgpa};
   },
 
@@ -18,6 +18,14 @@ var EducationItem = React.createClass({
   },
 
   render: function() {
+              // <div><input
+          //   type="string"
+          //   name="cgpa"
+          //   className="name"
+          //   placeholder="6.00/6.00"
+          //   value={this.state.cgpa}
+          //   onChange={ this.handleChange }
+          // /></div>
     return (
       <div className="section-item">
         <form style={{marginTop: "30px"}} onSubmit={this.submitEducation}>
@@ -43,14 +51,6 @@ var EducationItem = React.createClass({
             className="name"
             placeholder="Date period"
             value={this.state.duration}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="cgpa"
-            className="name"
-            placeholder="6.00/6.00"
-            value={this.state.cgpa}
             onChange={ this.handleChange }
           /></div>
           <div className='row'>

@@ -1,6 +1,6 @@
 var Achievements = React.createClass({
   render: function() {
-    var achievements = this.props.resume["achievements"]["items"]
+    var achievements = this.props.resume.achievements
     var data = []
     var key = "";
     var _this = this;

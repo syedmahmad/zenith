@@ -1,7 +1,7 @@
 var Summary = React.createClass({
 
   getInitialState: function(){
-    var summary = this.props.resume["summary"];
+    var summary = this.props.resume.summary;
     return {title: summary.title, description: summary.description};
   },
 

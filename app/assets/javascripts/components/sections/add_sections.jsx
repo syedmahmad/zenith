@@ -3,7 +3,7 @@ var AddSections = React.createClass({
     this.props.handleAddSection(e);
   },
   render: function() {
-    var sections = ["Summary", "Achievements", "Awards", "Passions", "Strengths", "Experience", "Projects", "Volunteer", "Education", "Courses", "Certificates", "Quotes", "Languages", "Skills", "Technologies"];
+    var sections = ["Summary", "Achievements", "Awards", "Passions", "Strengths", "Experience", "Projects", "Volunteers", "Education", "Courses", "Certificate", "Quotes", "Languages", "Skills", "Technologies"];
     var data = [];
     var key = "";
     var _this = this;

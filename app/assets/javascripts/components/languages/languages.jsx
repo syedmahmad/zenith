@@ -1,6 +1,6 @@
 var Languages = React.createClass({
   render: function() {
-    var languages = this.props.resume["languages"]["items"]
+    var languages = this.props.resume.languages
     var data = []
     var key = "";
     var _this = this;

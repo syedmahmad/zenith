@@ -1,7 +1,7 @@
 var Technology = React.createClass({
   render: function() {
-    var technologies = this.props.resume["technologies"]["items"]
-    var data = []
+    var technologies = this.props.resume.technologies;
+    var data = [];
     var key = "";
     var _this = this;
     technologies.forEach(function(technology) {

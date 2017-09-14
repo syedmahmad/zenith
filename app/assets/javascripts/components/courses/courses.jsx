@@ -1,6 +1,6 @@
 var Courses = React.createClass({
   render: function() {
-    var courses = this.props.resume["courses"]["items"]
+    var courses = this.props.resume.courses
     var data = []
     var key = "";
     var _this = this;
@@ -10,7 +10,7 @@ var Courses = React.createClass({
     });
     
     return (
-     <div className="section-items col-md-12">
+     <div className="section-items col-md-12" data-section-name="Courses">
         {data}
       </div>
     )

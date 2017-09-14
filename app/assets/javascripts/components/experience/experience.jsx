@@ -1,6 +1,6 @@
 var Experience = React.createClass({
   render: function() {
-    var experiences = this.props.resume["experiences"]["items"]
+    var experiences = this.props.resume.experiences
     var data = []
     var key = "";
     var _this = this;

@@ -1,6 +1,6 @@
 var Awards = React.createClass({
   render: function() {
-    var awards = this.props.resume["awards"]["items"]
+    var awards = this.props.resume.awards
     var data = []
     var key = "";
     var _this = this;

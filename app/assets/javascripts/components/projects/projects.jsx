@@ -1,6 +1,6 @@
 var Projects = React.createClass({
   render: function() {
-    var projects = this.props.resume["projects"]["items"]
+    var projects = this.props.resume.projects
     var data = []
     var key = "";
     var _this = this;

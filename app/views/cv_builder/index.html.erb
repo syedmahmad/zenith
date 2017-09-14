@@ -1,5 +1,5 @@
 <!-- page content -->
 <div class="col-md-12" role="main">
-  <%= react_component('CvBuilder', sections: @sections, resume: @resume)%>
+  <%= react_component('CvBuilder', current_user: current_user, resume: @resume)%>
 </div>
 

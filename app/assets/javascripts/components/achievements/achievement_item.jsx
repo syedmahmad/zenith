@@ -1,26 +1,27 @@
 var AchievementItem = React.createClass({
-
   getInitialState: function(){
     var achievement = this.props.achievement;
     return {title: achievement.title, description: achievement.description};
   },
-
-   handleChange: function(e){
+  componentDidMount: function(){
+    $(".section-items").on('focusout', (function (e) {
+      this.submitAchievment({[e.target.name]: e.target.value});
+    }));
+  },
+  handleChange: function(e){
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   },
-
-  submitAchievment: function(e){
-    e.preventDefault();
+  submitAchievment: function(params){
     this.props.updateResume(
-      {achievement: {title: this.state.title, description: this.state.description}}
+      {achievement: params}
     );
   },
 
   render: function() {
     return (
       <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitAchievment}>
+        <form style={{marginTop: "30px"}}>
           <div><input
             type="string"
             name="title"

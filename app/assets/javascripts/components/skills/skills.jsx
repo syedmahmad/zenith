@@ -1,6 +1,6 @@
 var Skills = React.createClass({
   render: function() {
-    var skills = this.props.resume["skills"]["items"]
+    var skills = this.props.resume.skills
     var data = []
     var key = "";
     var _this = this;
