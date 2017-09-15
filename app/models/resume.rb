@@ -17,4 +17,22 @@ class Resume < ActiveRecord::Base
 	has_many :publications, dependent: :destroy
 	has_many :quotes, dependent: :destroy
 	has_many :volunteers, dependent: :destroy
+
+
+	accepts_nested_attributes_for :resume_style
+	accepts_nested_attributes_for :header
+	accepts_nested_attributes_for :summary
+	accepts_nested_attributes_for :layouts
+	accepts_nested_attributes_for :achievements
+	accepts_nested_attributes_for :awards
+	accepts_nested_attributes_for :certificates
+	accepts_nested_attributes_for :courses
+	accepts_nested_attributes_for :educations
+	accepts_nested_attributes_for :experiences
+	accepts_nested_attributes_for :languages
+	accepts_nested_attributes_for :passions
+	accepts_nested_attributes_for :projects
+	accepts_nested_attributes_for :publications
+	accepts_nested_attributes_for :quotes
+	accepts_nested_attributes_for :volunteers
 end

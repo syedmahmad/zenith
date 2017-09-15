@@ -2,9 +2,10 @@ var CvBuilder = React.createClass({
   getInitialState: function() {
     return {layoutSections: ["Achievements", "Courses"], resume: this.props.resume};
   },
-  updateResume: function(formData, onSuccess, onError){
+  updateResume: function(formData){
+    var _this = this;
     $.ajax({
-      url: ("/header/" + formData["header"]["id"]),
+      url: ("http://localhost:3000/resumes/1"),
       dataType: 'json',
       type: 'PATCH',
       data: formData,
@@ -13,7 +14,7 @@ var CvBuilder = React.createClass({
         // onSuccess();
       }.bind(this),
       error: function(response, status, err) {
-        onError(response.responseJSON)
+        // onError(response.responseJSON)
       }
     });
   },

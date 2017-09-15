@@ -4,8 +4,9 @@ var AchievementItem = React.createClass({
     return {title: achievement.title, description: achievement.description};
   },
   componentDidMount: function(){
+    var _this = this;
     $(".section-items").on('focusout', (function (e) {
-      this.submitAchievment({[e.target.name]: e.target.value});
+      _this.submitAchievment({[e.target.name]: e.target.value});
     }));
   },
   handleChange: function(e){
@@ -14,7 +15,7 @@ var AchievementItem = React.createClass({
   },
   submitAchievment: function(params){
     this.props.updateResume(
-      {achievement: params}
+      {resume: {achievements_attributes: params}}
     );
   },
 

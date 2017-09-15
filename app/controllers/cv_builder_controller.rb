@@ -9,6 +9,13 @@ class CvBuilderController < ApplicationController
     @sections = ["Summary", "Achievements", "Courses", "Education"]
   end
   
+  def update
+    puts "params---------------"
+    puts params
+    
+    render json: true  
+  end
+
   def get_user_resume
     @resume = Resume.where(id: current_user.resume.id).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :publications, :quotes, :volunteers)
     @resume = @resume.take
@@ -223,6 +230,10 @@ class CvBuilderController < ApplicationController
         "height":121
       }
     }
+  end
+
+  def permitted_params
+    params.require(:resume).permit(:Achievements_attributes => [])
   end
 
 end
