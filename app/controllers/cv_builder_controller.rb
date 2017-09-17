@@ -5,9 +5,31 @@ class CvBuilderController < ApplicationController
     #other alternatives are
     # flash[:warn ] = "Israel don't quite like warnings"
     #flash[:danger ] = "Naomi let the dog out!"
+    if current_user
+      @resumes = current_user.resumes
+      @resume_ids = @resumes.pluck("id")
+      @resume = @resumes.last
+      if @resume
+        @resume_data = Resume.where(id: @resume.id).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :publications, :quotes, :volunteers)
+        @resume_data = @resume_data.take
+      end
+      @latest_resume = get_user_resume
+    end
+  end
+
+  def new
+    @resume_data = nil
     @resume = get_user_resume
   end
   
+  def create
+    
+  end
+  
+  def show
+    @resume = get_user_resume
+  end
+    
   def update
     puts "params---------------"
     puts params
@@ -16,11 +38,6 @@ class CvBuilderController < ApplicationController
   end
 
   def get_user_resume
-    @resume_data = nil
-    if current_user
-      @resume_data = Resume.where(id: current_user.resume.id).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers, :skills, :technologies, :languages)
-      @resume_data = @resume_data.take
-    end
     return{
       # "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new.attributes),
       "header": (@resume_data.present? ? @resume_data.header.attributes : Header.new.attributes),
