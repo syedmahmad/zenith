@@ -1,4 +1,4 @@
-var Experience = React.createClass({
+var experiences = React.createClass({
   render: function() {
     var experiences = this.props.resume.experiences
     var data = []

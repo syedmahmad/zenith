@@ -21,7 +21,7 @@ var RearrangeSections = React.createClass({
     sections.forEach(function(section) {
       key = "rearrange-"+section;
       var v = sectionsHash[section]
-      data.push(<div style={v} className="rearrange-section-item" key={key} data-section-name={section}>{section}</div>);
+      data.push(<div style={v} className="rearrange-section-item" data-toggle="tooltip" title={section} key={key} data-section-name={section}>{section}</div>);
     });
 
     return (

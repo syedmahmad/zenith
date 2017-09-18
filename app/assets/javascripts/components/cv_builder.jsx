@@ -1,6 +1,9 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layoutSections: ["Achievements", "Courses"], resume: this.props.resume};
+    return {layoutSections: this.removeArrayItem(Object.keys(this.props.resume), "header"), resume: this.props.resume};
+  },
+  removeArrayItem: function(arr, itemToRemove) {
+    return arr.filter(item => item !== itemToRemove)
   },
   updateResume: function(formData){
     var _this = this;
@@ -30,6 +33,12 @@ var CvBuilder = React.createClass({
     this.state.layoutSections.push(newSection);
     this.setState({layoutSections: this.state.layoutSections});
   },
+  handleRemoveSection: function(e){
+    var removeSection = $(e.target).data("sectionName");
+    var positionInSections = this.state.layoutSections.indexOf(removeSection);
+    this.state.layoutSections.splice(positionInSections, 1);
+    this.setState({layoutSections: this.state.layoutSections});
+  },
 
   render: function() {
     var data = [];
@@ -42,18 +51,23 @@ var CvBuilder = React.createClass({
     this.state.layoutSections.forEach(function(section) {
       MyComponent = window[section];
       key = section + "holder";
-      data.push(<MyComponent resume={state.resume} key={key} updateResume={_this.updateResume}/>);
+      data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume}/>);
     });
 
     return (
       <div className="cv-builder-container">
-        <div className="col-md-3"> 
-          <SideBar handleRearrage={this.handleRearrage}/>
-        </div>
-        <div className="col-md-9">
-          <div className="cv-builder col-md-12">
-            <ResumeHeader header={header} updateResume={this.updateResume}/>
-            {data}
+       
+        <div className="right_col" role="main">
+          <div className="clearfix"></div>
+          <div className="row">
+            <div className="col-xs-12">
+              <div className="page-holder bg-color">
+                <div className="cv-builder full-layout">
+                  <ResumeHeader header={header} updateResume={this.updateResume}/>
+                  {data}
+                </div>
+              </div>
+            </div>  
           </div>
         </div>
         <RearrangeModal handleRearrage={this.handleRearrage} sections={this.state.layoutSections}/>

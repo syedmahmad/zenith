@@ -1,4 +1,4 @@
-var Education = React.createClass({
+var education = React.createClass({
   render: function() {
     var education = this.props.resume.education
     var data = []
@@ -11,8 +11,19 @@ var Education = React.createClass({
     
     return (
      <div className="section-items col-md-12" data-section-name="Education">
-        {data}
-      </div>
+        <section className="education-holder">
+           <div className="heading-area">
+              <h3>
+                 <div className="form-group">
+                    <textarea type="text" rows="1" className="form-control" id="" placeholder="EDUCATION"></textarea>
+                 </div>
+              </h3>
+           </div>
+           <div className="row">
+            {data}
+           </div>
+       </section>
+     </div>
     )
   }
 });

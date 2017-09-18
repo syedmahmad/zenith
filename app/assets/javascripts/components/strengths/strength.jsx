@@ -1,4 +1,4 @@
-var Strengths = React.createClass({
+var strengths = React.createClass({
   render: function() {
     var strengths = this.props.resume.strengths
     var data = []

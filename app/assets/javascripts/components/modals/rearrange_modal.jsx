@@ -25,7 +25,9 @@ var RearrangeModal = React.createClass({
                 <h4 className="modal-title">Rearrange</h4>
               </div>
               <div className="modal-body">
-                {sections}
+                <div className="reorder-page">
+                  {sections}
+                </div>
               </div>
             </div>
           </div>

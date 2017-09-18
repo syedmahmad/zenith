@@ -21,32 +21,35 @@ var AchievementItem = React.createClass({
 
   render: function() {
     return (
-      <div className="section-item">
-        <form style={{marginTop: "30px"}}>
-          <div><input
-            type="string"
-            name="title"
-            className="name"
-            placeholder="What are you most proud of?"
-            value={this.state.title}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="description"
-            className="name"
-            placeholder="A bit about your achievement"
-            value={this.state.description}
-            onChange={ this.handleChange }
-          /></div>
-          
-          <div className='row'>
-            <div className='col-sm-4'>
-              <input hidden type="submit" value="Save" className='btn btn-primary' />
-            </div>
+       <li className="section-item">
+          <div className="icon-holder pull-left">
+             <i className="fa fa-bolt" aria-hidden="true"></i>
           </div>
-        </form>
-      </div>
+          <h5>
+             <div className="form-group">
+                <input
+                  type="string"
+                  name="title"
+                  className="form-control"
+                  placeholder="What are you most proud of?"
+                  value={this.state.title}
+                  onChange={ this.handleChange }
+                />
+             </div>
+          </h5>
+          <h6>
+             <div className="form-group">
+                <input
+                  type="string"
+                  name="description"
+                  className="form-control"
+                  placeholder="A bit about your achievement"
+                  value={this.state.description}
+                  onChange={ this.handleChange }
+                />
+             </div>
+          </h6>
+       </li>
     )
   }
 });

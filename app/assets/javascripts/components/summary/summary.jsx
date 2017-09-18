@@ -1,4 +1,4 @@
-var Summary = React.createClass({
+var summary = React.createClass({
 
   getInitialState: function(){
     var summary = this.props.resume.summary;
@@ -17,35 +17,51 @@ var Summary = React.createClass({
     );
   },
 
+  handleRemoveSection: function(e){
+    this.props.handleRemoveSection(e);
+  },
+
   render: function() {
     return (
-      <div className="col-md-12">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitSummaryData}>
-
-          <div><input
-            type="string"
-            name="title"
-            className="name"
-            placeholder="SUMMARY"
-            value={this.state.title}
-            onChange={ this.handleChange}
-          /></div>
-
-          <div><input
-            type="string"
-            name="description"
-            className="name"
-            placeholder="What critical problems are you well positioned to solve? A bit about yourself"
-            value={this.state.description}
-            onChange={ this.handleChange}
-          /></div>
-          <div className='row'>
-            <div className='col-sm-4'>
-              <input hidden type="submit" value="Save" className='btn btn-primary' />
-            </div>
-          </div>
-        </form>
-      </div>
+      <section className="summary-holder">
+         <div id="edit_able" className="ember-view section-menu">  <a href="javaScript:void(0);" title="Add a new item">
+            <i aria-hidden="true" className="fa fa-plus-circle"></i>
+            </a>
+            <a href="javaScript:void(0);" title="Remove section">
+            <i aria-hidden="true" className="fa fa-trash" onClick={this.handleRemoveSection} data-section-name="summary"></i>
+            </a>
+            <a className="move-section" href="javaScript:void(0);" title="Move section">
+            <i aria-hidden="true" className="fa fa-arrows"></i>
+            </a>
+         </div>
+         <div className="heading-area">
+            <h3>
+               <div className="form-group">
+                  <input
+                    type="string"
+                    name="title"
+                    className="form-control"
+                    placeholder="SUMMARY"
+                    value={this.state.title}
+                    onChange={ this.handleChange}
+                  />
+               </div>
+            </h3>
+         </div>
+         <p>
+           <div className="form-group">
+              <input
+                type="string"
+                name="description"
+                className="form-control"
+                placeholder="What critical problems are you well positioned to solve? A bit about yourself"
+                value={this.state.description}
+                onChange={ this.handleChange}
+              />
+           </div>
+         </p>
+         <div className="divider"></div>
+      </section>
     )
   }
 });

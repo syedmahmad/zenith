@@ -28,37 +28,41 @@ var EducationItem = React.createClass({
           // /></div>
     return (
       <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitEducation}>
-          <div><input
-            type="string"
-            name="degree_name"
-            className="name"
-            placeholder="Degree and Field of Study"
-            value={this.state.degree_name}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="university_name"
-            className="name"
-            placeholder="School or University"
-            value={this.state.university_name}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="duration"
-            className="name"
-            placeholder="Date period"
-            value={this.state.duration}
-            onChange={ this.handleChange }
-          /></div>
-          <div className='row'>
-            <div className='col-sm-4'>
-              <input hidden type="submit" value="Save" className='btn btn-primary' />
-            </div>
-          </div>
-        </form>
+        <div className="col-xs-6">
+           <h3 className="title-position">
+              <div className="form-group">
+                 <textarea type="text" rows="1" className="form-control" id="" placeholder="Degree and Field of Study"></textarea>
+              </div>
+           </h3>
+           <h3 className="company">
+              <div className="form-group">
+                 <textarea type="text" rows="1" className="form-control" id="" placeholder="School or University"></textarea>
+              </div>
+           </h3>
+           <div className="column">
+              <i className="fa fa-calendar" aria-hidden="true"></i>
+              <span>
+                 <div className="form-group">
+                    <textarea type="text" rows="1" className="form-control" id="" placeholder="Sep 2017"></textarea>
+                 </div>
+              </span>
+           </div>
+        </div>
+        <div className="col-xs-6">
+           <div className="gpa-holder">
+              <p>GPA</p>
+              <span>
+                 <div className="form-group">
+                    <textarea type="text" rows="1" className="form-control" id="" placeholder="6.00 /"></textarea>
+                 </div>
+              </span>
+              <span>
+                 <div className="form-group">
+                    <textarea type="text" rows="1" className="form-control" id="" placeholder="6.00"></textarea>
+                 </div>
+              </span>
+           </div>
+        </div>
       </div>
     )
   }

@@ -13,7 +13,6 @@ var AddSectionModal = React.createClass({
     handleAddSection: function(e){
       this.props.handleAddSection(e);
     },
-
     render: function() {
       var sections = <AddSections handleAddSection={this.handleAddSection} sections={this.props.sections}/>;
       return (

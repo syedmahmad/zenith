@@ -1,4 +1,4 @@
-var Certificate = React.createClass({
+var certificates = React.createClass({
   render: function() {
     var certificates = this.props.resume.certificates
     var data = []

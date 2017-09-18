@@ -14,10 +14,11 @@ class Resume < ActiveRecord::Base
 	has_many :languages, dependent: :destroy
 	has_many :passions, dependent: :destroy
 	has_many :projects, dependent: :destroy
-	has_many :publications, dependent: :destroy
 	has_many :quotes, dependent: :destroy
 	has_many :volunteers, dependent: :destroy
 	has_many :strengths, dependent: :destroy
+	has_many :technologies, dependent: :destroy
+	has_many :skills, dependent: :destroy
 
 
 	accepts_nested_attributes_for :resume_style
@@ -33,7 +34,8 @@ class Resume < ActiveRecord::Base
 	accepts_nested_attributes_for :languages
 	accepts_nested_attributes_for :passions
 	accepts_nested_attributes_for :projects
-	accepts_nested_attributes_for :publications
 	accepts_nested_attributes_for :quotes
 	accepts_nested_attributes_for :volunteers
+	accepts_nested_attributes_for :technologies
+	accepts_nested_attributes_for :skills
 end

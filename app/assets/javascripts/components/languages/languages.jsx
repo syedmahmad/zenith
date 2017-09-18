@@ -1,4 +1,4 @@
-var Languages = React.createClass({
+var languages = React.createClass({
   render: function() {
     var languages = this.props.resume.languages
     var data = []
