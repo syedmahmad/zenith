@@ -23,6 +23,13 @@ class CvBuilderController < ApplicationController
     @resume_data = @resume_data.take
     @resume = get_user_resume
   end
+
+  def clone
+    resume = Resume.find(params[:id])
+    @resume = resume.amoeba_dup
+    @resume.save
+    redirect_to resume_path(@resume.id)
+  end
   
   def create
     
@@ -46,7 +53,7 @@ class CvBuilderController < ApplicationController
       "id": @resume_data.present? ? @resume_data.id : "",
       "header": (@resume_data.present? && @resume_data.header.present? ? @resume_data.header.attributes : Header.new.attributes),
       "summary": (@resume_data.present? && @resume_data.summary.present? ? @resume_data.summary.attributes : Summary.new.attributes),
-      "achievements": (@resume_data.present? &&  @resume_data.achievements.present? ? @resume_data.achievements.map {|rec| rec.attributes} : [Achievement.new.attributes]),
+      "achievements": (@resume_data.present? && @resume_data.achievements.present? ? @resume_data.achievements.map {|rec| rec.attributes} : [Achievement.new.attributes]),
       "awards": (@resume_data.present? && @resume_data.awards.present? ? @resume_data.awards.map {|rec| rec.attributes} : [Award.new.attributes]),
       "certificates": (@resume_data.present? && @resume_data.certificates.present? ? @resume_data.certificates.map {|rec| rec.attributes} : [Certificate.new.attributes]),
       "courses": (@resume_data.present? && @resume_data.courses.present? ? @resume_data.courses.map {|rec| rec.attributes} : [Course.new.attributes]),
@@ -54,7 +61,7 @@ class CvBuilderController < ApplicationController
       "experiences": (@resume_data.present? && @resume_data.experiences.present? ? @resume_data.experiences.map {|rec| rec.attributes} : [Experience.new.attributes]),
       "passions": (@resume_data.present? && @resume_data.passions.present? ? @resume_data.passions.map {|rec| rec.attributes} : [Passion.new.attributes]),
       "projects": (@resume_data.present? && @resume_data.projects.present? ? @resume_data.projects.map {|rec| rec.attributes} : [Project.new.attributes]),
-      "quotes": (@resume_data.present? &&  @resume_data.quotes.present? ? @resume_data.quotes.map {|rec| rec.attributes} : [Quote.new.attributes]),
+      "quotes": (@resume_data.present? && @resume_data.quotes.present? ? @resume_data.quotes.map {|rec| rec.attributes} : [Quote.new.attributes]),
       "volunteers": (@resume_data.present? && @resume_data.volunteers.present? ? @resume_data.volunteers.map {|rec| rec.attributes} : [Volunteer.new.attributes]),
       "strengths": (@resume_data.present? && @resume_data.strengths.present? ? @resume_data.strengths.map {|rec| rec.attributes} : [Strength.new.attributes]),
       "languages": (@resume_data.present? && @resume_data.languages.present? ? @resume_data.languages.map {|rec| rec.attributes} : [Language.new.attributes]),

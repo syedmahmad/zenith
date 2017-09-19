@@ -8,7 +8,7 @@ var CvBuilder = React.createClass({
   updateResume: function(formData){
     var _this = this;
     $.ajax({
-      url: ("http://localhost:3000/resumes/"+this.props.resume.id),
+      url: ("http://localhost:3000/resumes/"+_this.state.resume.id),
       dataType: 'json',
       type: 'PATCH',
       data: formData,

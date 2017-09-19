@@ -1,6 +1,7 @@
 class Resume < ActiveRecord::Base
+	include Hashid::Rails
+	
 	belongs_to :user
-
 	has_one :resume_style
 	has_one :header
 	has_one :summary
@@ -20,6 +21,9 @@ class Resume < ActiveRecord::Base
 	has_many :technologies, dependent: :destroy
 	has_many :skills, dependent: :destroy
 
+	amoeba do
+    enable
+  end
 
 	accepts_nested_attributes_for :resume_style
 	accepts_nested_attributes_for :header
@@ -39,4 +43,27 @@ class Resume < ActiveRecord::Base
 	accepts_nested_attributes_for :volunteers
 	accepts_nested_attributes_for :technologies
 	accepts_nested_attributes_for :skills
+
+	after_create :setup_sections
+
+	def setup_sections
+		self.create_resume_style
+		self.create_header
+		self.create_summary
+		# layouts.create
+		achievements.create
+		awards.create
+		certificates.create
+		courses.create
+		educations.create
+		experiences.create
+		languages.create
+		passions.create
+		projects.create
+		quotes.create
+		volunteers.create
+		strengths.create
+		technologies.create
+		skills.create
+	end
 end

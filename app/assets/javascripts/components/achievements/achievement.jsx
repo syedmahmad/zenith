@@ -18,7 +18,7 @@ var Achievements = React.createClass({
     $(document).on('focusout', ".section-item", (function (e) {
       this.previousElementSibling.classList.add('hide-section');
       // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitAchievment({[e.target.name]: e.target.value, id: $(this).data("achievementId")});
+      _this.submitAchievment({[e.target.name]: e.target.value, "id": $(this).data("achievementId")});
         // _this.props.achievement[e.target.name] = e.target.value;
       // }
     }));

@@ -10,7 +10,6 @@ var AchievementItem = React.createClass({
  
   render: function() {
     return (
-
       <div className="">
         <div id="edit_able" className="hide-section">  
            <a href="javaScript:void(0);">

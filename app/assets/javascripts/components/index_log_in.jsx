@@ -7,6 +7,9 @@ var IndexLogIn = React.createClass({
     $(".top_nav").css({marginLeft: '0px'});
     $("footer").css({marginLeft: '0px'})
   },
+  cloneResume: function(e){
+    resume = this.state.resume
+  },
 
   handleOnclick: function(){
     if(this.state.resume_ids.length > 2){
@@ -21,6 +24,7 @@ var IndexLogIn = React.createClass({
     var _this = this;
     var state = this.state;
     var header = state.resume["header"];
+    var cloneLink = "/resumes/"+this.state.resume.id+"/clone"
     state.layoutSections.forEach(function(section) {
       MyComponent = window[section];
       key = section + "holder";
@@ -35,6 +39,7 @@ var IndexLogIn = React.createClass({
         </div>
         <h2>
           <a href="javascript:void(0)" onClick={this.handleOnclick}>New Resume</a>
+          <a data-method="post" href={cloneLink}>Clone</a>
         </h2>
       </div>
     )

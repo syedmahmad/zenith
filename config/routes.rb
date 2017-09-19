@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'cv_builder#index'
-   resources :resumes, :controller => 'cv_builder'
+   resources :resumes, :controller => 'cv_builder' do
+    member do
+      post :clone
+    end
+   end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
