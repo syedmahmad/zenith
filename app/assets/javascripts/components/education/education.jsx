@@ -1,4 +1,4 @@
-var education = React.createClass({
+var Education = React.createClass({
   render: function() {
     var education = this.props.resume.education
     var data = []

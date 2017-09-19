@@ -1,4 +1,4 @@
-var awards = React.createClass({
+var Awards = React.createClass({
   render: function() {
     var awards = this.props.resume.awards
     var data = []

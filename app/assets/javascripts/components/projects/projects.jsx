@@ -1,4 +1,4 @@
-var projects = React.createClass({
+var Projects = React.createClass({
   render: function() {
     var projects = this.props.resume.projects
     var data = []

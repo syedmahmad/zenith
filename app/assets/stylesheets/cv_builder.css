@@ -335,3 +335,8 @@ ul {
 .cv-builder-container .modal-content{
   border-radius: 0;
 }
+.added{
+  background-color: #fff !important;
+  color: #000 !important;
+  border: solid 1px black !important;
+}

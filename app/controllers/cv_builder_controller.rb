@@ -27,14 +27,15 @@ class CvBuilderController < ApplicationController
   end
   
   def show
+    @resume_data = Resume.where(id: params[:id]).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
+    @resume_data = @resume_data.take
     @resume = get_user_resume
   end
     
   def update
-    puts "params---------------"
-    puts params
-    
-    render json: true  
+    resume = Resume.find(params[:id])
+    resume.update!(permitted_params)
+    render json: resume
   end
 
   def get_user_resume
@@ -60,7 +61,8 @@ class CvBuilderController < ApplicationController
   end
 
   def permitted_params
-    params.require(:resume).permit(:Achievements_attributes => [])
+    # params = {"resume"=>{"achievements_attributes"=>{"description"=>"sdfsdfsdfsd111111111111111111111111111", "id"=>"1"}}, "id"=>"1"}
+    params.require(:resume).permit(achievements_attributes: [:description, :id])
   end
 
 end

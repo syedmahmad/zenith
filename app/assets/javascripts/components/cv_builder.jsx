@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layoutSections: this.removeArrayItem(Object.keys(this.props.resume), "header"), resume: this.props.resume};
+    return {layoutSections: ["Achievements", "Courses"], resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -49,6 +49,7 @@ var CvBuilder = React.createClass({
     var _this = this
 
     this.state.layoutSections.forEach(function(section) {
+      section = section.substr(0,1).toUpperCase()+section.substr(1);
       MyComponent = window[section];
       key = section + "holder";
       data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume}/>);

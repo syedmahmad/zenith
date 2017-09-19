@@ -2,6 +2,11 @@ var IndexLogIn = React.createClass({
   getInitialState: function() {
     return {layoutSections: ["Achievements", "Courses"], resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
+  componentDidMount: function(){
+    $(".left_col").remove();
+    $(".top_nav").css({marginLeft: '0px'});
+    $("footer").css({marginLeft: '0px'})
+  },
 
   render: function() {
     var data = [];

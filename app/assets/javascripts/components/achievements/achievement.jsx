@@ -1,10 +1,20 @@
-var achievements = React.createClass({
+var Achievements = React.createClass({
   handleRemoveSection: function(e){
     this.props.handleRemoveSection(e);
   },
-  componentDidMount: function(e) {   
-    // debugger; 
-    // $(".ember-view section-menu").hide();
+  componentDidMount: function(){
+    var _this = this;
+    $(document).on('focusout', ".section-item", (function (e) {
+      // if(_this.props.achievement[e.target.name] != e.target.value){
+      _this.submitAchievment({[e.target.name]: e.target.value, id: $(this).data("achievementId")});
+        // _this.props.achievement[e.target.name] = e.target.value;
+      // }
+    }));
+  },
+  submitAchievment: function(params){
+    this.props.updateResume(
+      {resume: {achievements_attributes: {"1": params}}}
+    );
   },    
   render: function() {
     var achievements = this.props.resume.achievements
@@ -13,7 +23,6 @@ var achievements = React.createClass({
     var _this = this;
     achievements.forEach(function(achievement) {
       key = "achievement-" + achievement.id;
-
       data.push(<AchievementItem achievement={achievement} key={key} updateResume={_this.props.updateResume} />);
     });
     

@@ -1,4 +1,4 @@
-var quotes = React.createClass({
+var Quotes = React.createClass({
   render: function() {
     var quotes = this.props.resume.quotes
     var data = []

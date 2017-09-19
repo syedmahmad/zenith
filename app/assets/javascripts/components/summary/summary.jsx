@@ -1,4 +1,4 @@
-var summary = React.createClass({
+var Summary = React.createClass({
 
   getInitialState: function(){
     var summary = this.props.resume.summary;
@@ -48,18 +48,16 @@ var summary = React.createClass({
                </div>
             </h3>
          </div>
-         <p>
-           <div className="form-group">
-              <input
-                type="string"
-                name="description"
-                className="form-control"
-                placeholder="What critical problems are you well positioned to solve? A bit about yourself"
-                value={this.state.description}
-                onChange={ this.handleChange}
-              />
-           </div>
-         </p>
+         <div className="form-group">
+            <input
+              type="string"
+              name="description"
+              className="form-control"
+              placeholder="What critical problems are you well positioned to solve? A bit about yourself"
+              value={this.state.description}
+              onChange={ this.handleChange}
+            />
+         </div>
          <div className="divider"></div>
       </section>
     )

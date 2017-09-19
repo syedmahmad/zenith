@@ -1,10 +1,10 @@
 <!-- page content -->
 <% if current_user %>
-	<div class="col-md-12" role="main">
+	<div role="main">
 	  <%= react_component('IndexLogIn', current_user: current_user, resume: @latest_resume, resume_ids: @resume_ids)%>
 	</div>
 <% else %>
-	<div class="col-md-12" role="main">
+	<div role="main">
 	  <%= react_component('IndexLogOut')%>
 	</div>
 <% end %>

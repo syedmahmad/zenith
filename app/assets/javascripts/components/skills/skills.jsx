@@ -1,4 +1,4 @@
-var skills = React.createClass({
+var Skills = React.createClass({
   render: function() {
     var skills = this.props.resume.skills
     var data = []

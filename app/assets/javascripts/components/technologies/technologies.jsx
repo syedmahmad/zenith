@@ -1,4 +1,4 @@
-var technologies = React.createClass({
+var Technologies = React.createClass({
   render: function() {
     var technologies = this.props.resume.technologies;
     var data = [];
