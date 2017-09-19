@@ -8,6 +8,14 @@ var IndexLogIn = React.createClass({
     $("footer").css({marginLeft: '0px'})
   },
 
+  handleOnclick: function(){
+    if(this.state.resume_ids.length > 2){
+      alert("you have reached the max numbers of resumes.")
+    }else{
+      window.location = "/resumes/new"
+    }
+  },
+
   render: function() {
     var data = [];
     var _this = this;
@@ -26,7 +34,7 @@ var IndexLogIn = React.createClass({
           {data}
         </div>
         <h2>
-          <a href="/resumes/new">New Resume</a>
+          <a href="javascript:void(0)" onClick={this.handleOnclick}>New Resume</a>
         </h2>
       </div>
     )

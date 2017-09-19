@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layoutSections: ["Achievements", "Courses"], resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {layoutSections: ["Achievements", "Courses", "Certificates"], resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -8,7 +8,7 @@ var CvBuilder = React.createClass({
   updateResume: function(formData){
     var _this = this;
     $.ajax({
-      url: ("http://localhost:3000/resumes/1"),
+      url: ("http://localhost:3000/resumes/"+this.props.resume.id),
       dataType: 'json',
       type: 'PATCH',
       data: formData,

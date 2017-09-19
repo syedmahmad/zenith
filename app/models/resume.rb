@@ -4,7 +4,7 @@ class Resume < ActiveRecord::Base
 	has_one :resume_style
 	has_one :header
 	has_one :summary
-	has_many :layouts, dependent: :destroy
+	# has_many :layouts, dependent: :destroy
 	has_many :achievements, dependent: :destroy
 	has_many :awards, dependent: :destroy
 	has_many :certificates, dependent: :destroy
@@ -24,7 +24,7 @@ class Resume < ActiveRecord::Base
 	accepts_nested_attributes_for :resume_style
 	accepts_nested_attributes_for :header
 	accepts_nested_attributes_for :summary
-	accepts_nested_attributes_for :layouts
+	# accepts_nested_attributes_for :layouts
 	accepts_nested_attributes_for :achievements
 	accepts_nested_attributes_for :awards
 	accepts_nested_attributes_for :certificates

@@ -19,23 +19,18 @@ var AwardItem = React.createClass({
 
   render: function() {
     return (
-      <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitAward}>
-          <div><input
+      <div className="heading-area">
+        <i className="fa fa-bolt" aria-hidden="true"></i>
+        <div className="form-group">
+          <input
             type="string"
             name="name"
-            className="name"
+            className="form-control"
             placeholder="Award Name"
             value={this.state.name}
             onChange={ this.handleChange }
-          /></div>
-          
-          <div className='row'>
-            <div className='col-sm-4'>
-              <input hidden type="submit" value="Save" className='btn btn-primary' />
-            </div>
-          </div>
-        </form>
+          />
+        </div>          
       </div>
     )
   }

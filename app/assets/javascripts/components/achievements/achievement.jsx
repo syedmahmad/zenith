@@ -1,4 +1,11 @@
 var Achievements = React.createClass({
+  getInitialState: function(){
+    return {achievement_header: "ACHIEVEMENTS"};
+  },
+  handleChange: function(e){
+    e.preventDefault();
+    this.setState({[e.target.name]: e.target.value});
+  },
   handleRemoveSection: function(e){
     this.props.handleRemoveSection(e);
   },
@@ -16,6 +23,14 @@ var Achievements = React.createClass({
       {resume: {achievements_attributes: {"1": params}}}
     );
   },    
+  showButtons: function(e) {
+    var buttons_section = $(e.target).closest(".heading-area").prev();
+    buttons_section.removeClass("hidden");
+  },
+  hideButtons: function(e) {
+    var buttons_section = $(e.target).closest(".heading-area").prev();
+    buttons_section.addClass("hidden");
+  },
   render: function() {
     var achievements = this.props.resume.achievements
     var data = []
@@ -29,7 +44,7 @@ var Achievements = React.createClass({
     return (
      <div className="section-items col-md-12" data-section-name="Achievements">
         <section className="achievement-holder">
-           <div id="edit_able" className="ember-view section-menu">  <a href="javaScript:void(0);" title="Add a new item">
+           <div id="edit_able" className="hidden ember-view section-menu">  <a href="javaScript:void(0);" title="Add a new item">
               <i aria-hidden="true" className="fa fa-plus-circle"></i>
               </a>
               <a href="javaScript:void(0);" title="Remove section">
@@ -39,10 +54,17 @@ var Achievements = React.createClass({
               <i aria-hidden="true" className="fa fa-arrows"></i>
               </a>
            </div>
-           <div className="heading-area">
+           <div className="heading-area" onFocus={this.showButtons} onBlur={this.hideButtons}>
               <h3>
                  <div className="form-group">
-                    <textarea type="text" rows="1" className="form-control" id="" placeholder="ACHIEVEMENTS"></textarea>
+                    <input
+                      type="string"
+                      name="achievement_header"
+                      className="form-control"
+                      placeholder="ACHIEVEMENTS"
+                      value={this.state.achievement_header}
+                      onChange={ this.handleChange }
+                    />
                  </div>
               </h3>
            </div>
