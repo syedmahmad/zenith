@@ -1,11 +1,10 @@
 class Resume < ActiveRecord::Base
-	include Hashid::Rails
 	
 	belongs_to :user
 	has_one :resume_style
 	has_one :header
 	has_one :summary
-	# has_many :layouts, dependent: :destroy
+	has_one :layout
 	has_many :achievements, dependent: :destroy
 	has_many :awards, dependent: :destroy
 	has_many :certificates, dependent: :destroy
@@ -28,7 +27,7 @@ class Resume < ActiveRecord::Base
 	accepts_nested_attributes_for :resume_style
 	accepts_nested_attributes_for :header
 	accepts_nested_attributes_for :summary
-	# accepts_nested_attributes_for :layouts
+	accepts_nested_attributes_for :layout
 	accepts_nested_attributes_for :achievements
 	accepts_nested_attributes_for :awards
 	accepts_nested_attributes_for :certificates
@@ -50,7 +49,7 @@ class Resume < ActiveRecord::Base
 		self.create_resume_style
 		self.create_header
 		self.create_summary
-		# layouts.create
+		Layout.create_default(self.id)
 		achievements.create
 		awards.create
 		certificates.create

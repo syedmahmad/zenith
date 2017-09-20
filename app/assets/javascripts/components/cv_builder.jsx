@@ -1,6 +1,7 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layoutSections: ["Certificates", "Volunteers"], resume_ids: this.props.resume_ids, resume: this.props.resume};
+    debugger; 
+    return {layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -22,21 +23,34 @@ var CvBuilder = React.createClass({
     });
   },
   handleRearrage: function(){
-    var arr = $('.rearrange-section-item').map(function() {
+    var section_names = $('.rearrange-section-item').map(function() {
       return $(this).data('sectionName');
     }).get();
 
-    this.setState({layoutSections: arr});
+    params = {id: this.props.resume.layout.id, "section_names": section_names};
+    if (this.props.current_user) {
+      this.updateResume({resume: {layout_attributes: params}});
+    }
+
+    this.setState({layoutSections: section_names});
   },
   handleAddSection: function(e){
     var newSection = $(e.target).data("sectionName");
     this.state.layoutSections.push(newSection);
+    if (this.props.current_user) {
+      params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections};
+      this.updateResume({resume: {layout_attributes: params}});
+    }
     this.setState({layoutSections: this.state.layoutSections});
   },
   handleRemoveSection: function(e){
     var removeSection = $(e.target).data("sectionName");
     var positionInSections = this.state.layoutSections.indexOf(removeSection);
     this.state.layoutSections.splice(positionInSections, 1);
+    if (this.props.current_user) {
+      params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections};
+      this.updateResume({resume: {layout_attributes: params}});
+    }
     this.setState({layoutSections: this.state.layoutSections});
   },
 

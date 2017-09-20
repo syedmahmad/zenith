@@ -10,7 +10,7 @@ class CvBuilderController < ApplicationController
       @resume_ids = @resumes.pluck("id")
       @resume = @resumes.last
       if @resume
-        @resume_data = Resume.where(id: @resume.id).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
+        @resume_data = Resume.where(id: @resume.id).includes(:layout, :resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
         @resume_data = @resume_data.take
       end
       @latest_resume = get_user_resume
@@ -52,6 +52,7 @@ class CvBuilderController < ApplicationController
       # "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new.attributes),
       "id": @resume_data.present? ? @resume_data.id : "",
       "header": (@resume_data.present? && @resume_data.header.present? ? @resume_data.header.attributes : Header.new.attributes),
+      "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.attributes : Layout.new.attributes),
       "summary": (@resume_data.present? && @resume_data.summary.present? ? @resume_data.summary.attributes : Summary.new.attributes),
       "achievements": (@resume_data.present? && @resume_data.achievements.present? ? @resume_data.achievements.map {|rec| rec.attributes} : [Achievement.new.attributes]),
       "awards": (@resume_data.present? && @resume_data.awards.present? ? @resume_data.awards.map {|rec| rec.attributes} : [Award.new.attributes]),
@@ -72,8 +73,8 @@ class CvBuilderController < ApplicationController
 
   def permitted_params
     # params = {"resume"=>{"achievements_attributes"=>{"description"=>"sdfsdfsdfsd111111111111111111111111111", "id"=>"1"}}, "id"=>"1"}
-    params.require(:resume).permit(achievements_attributes: [:title, :description, :id], awards_attributes: [:title, :description, :id], certificates_attributes: [:name, :institutiion_name, :id], courses_attributes: [:title, :description, :id], strengths_attributes: [:title, :description, :id], educations_attributes: [:degree_name, :university_name, :id, :duration, :cgpa], experiences_attributes: [:id, :title, :company_name, :location, :duration, :description], languages_attributes: [:id, :name, :level], passions_attributes: [:id, :name],
-      projects_attributes: [:id, :name, :location, :duration, :description], quotes_attributes: [:id, :name], skills_attributes: [:id, :name, :level], technologies_attributes: [:id, :name, :tec_names], volunteers_attributes: [:id, :title, :organization_name, :duration, :description])
+    params.require(:resume).permit(:section_names, achievements_attributes: [:title, :description, :id], awards_attributes: [:title, :description, :id], certificates_attributes: [:name, :institutiion_name, :id], courses_attributes: [:title, :description, :id], strengths_attributes: [:title, :description, :id], educations_attributes: [:degree_name, :university_name, :id, :duration, :cgpa], experiences_attributes: [:id, :title, :company_name, :location, :duration, :description], languages_attributes: [:id, :name, :level], passions_attributes: [:id, :name],
+      projects_attributes: [:id, :name, :location, :duration, :description], quotes_attributes: [:id, :name], skills_attributes: [:id, :name, :level], technologies_attributes: [:id, :name, :tec_names], volunteers_attributes: [:id, :title, :organization_name, :duration, :description], layout_attributes: [:id, :section_names => [], :section_data => []])
   end
 
 end
