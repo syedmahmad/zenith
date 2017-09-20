@@ -55,7 +55,7 @@ var Strengths = React.createClass({
     }
   },
   render: function() {
-    var strengths = this.props.resume.strengths
+    var strengths = this.state.strengths
     var data = []
     var key = "";
     var _this = this;

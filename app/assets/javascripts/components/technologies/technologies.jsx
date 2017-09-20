@@ -55,7 +55,7 @@ var Technologies = React.createClass({
     }
   },
   render: function() {
-    var technologies = this.props.resume.technologies;
+    var technologies = this.state.technologies;
     var data = [];
     var key = "";
     var _this = this;

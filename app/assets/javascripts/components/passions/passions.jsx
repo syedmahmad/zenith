@@ -56,7 +56,7 @@ var Passions = React.createClass({
     }
   },
   render: function() {
-    var passions = this.props.resume.passions
+    var passions = this.state.passions
     var data = []
     var key = "";
     var _this = this;

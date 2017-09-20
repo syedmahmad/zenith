@@ -55,7 +55,7 @@ var Quotes = React.createClass({
     }
   },
   render: function() {
-    var quotes = this.props.resume.quotes
+    var quotes = this.state.quotes
     var data = []
     var key = "";
     var _this = this;

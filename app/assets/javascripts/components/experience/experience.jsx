@@ -56,7 +56,7 @@ var Experiences = React.createClass({
     }
   },
   render: function() {
-    var experiences = this.props.resume.experiences
+    var experiences = this.state.experiences
     var data = []
     var key = "";
     var _this = this;

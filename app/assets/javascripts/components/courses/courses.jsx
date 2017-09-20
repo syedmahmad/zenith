@@ -56,7 +56,7 @@ var Courses = React.createClass({
     }
   },
   render: function() {
-    var courses = this.props.resume.courses
+    var courses = this.state.courses
     var data = []
     var key = "";
     var _this = this;

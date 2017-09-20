@@ -38,7 +38,6 @@ var Volunteers = React.createClass({
     );
   },    
   addSubSection: function(e){
-    e.preventDefault();
     var id=1;
     if (this.state.volunteers.length>0) {
       id = this.state.volunteers[this.state.volunteers.length-1].id + 1;
@@ -48,14 +47,14 @@ var Volunteers = React.createClass({
     this.setState({volunteers: this.state.volunteers});
   },
   removeSubSection: function(e){  
-    e.preventDefault();
-    var obj_to_remove = this.state.volunteers.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({volunteers: this.state.volunteers.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    volunteers = $.grep(this.state.volunteers, function(item){ 
+     return item.id != $(e.target).data("sectionId"); 
+    });
+    this.setState({volunteers: volunteers});
   },
+
   render: function() {
-    var volunteers = this.props.resume.volunteers
+    var volunteers = this.state.volunteers
     var data = []
     var key = "";
     var _this = this;

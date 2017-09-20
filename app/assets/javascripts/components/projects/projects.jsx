@@ -55,7 +55,7 @@ var Projects = React.createClass({
     }
   },
   render: function() {
-    var projects = this.props.resume.projects
+    var projects = this.state.projects
     var data = []
     var key = "";
     var _this = this;
