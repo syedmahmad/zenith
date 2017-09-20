@@ -34,6 +34,7 @@ class Resume < ActiveRecord::Base
 	accepts_nested_attributes_for :languages
 	accepts_nested_attributes_for :passions
 	accepts_nested_attributes_for :projects
+	accepts_nested_attributes_for :strengths
 	accepts_nested_attributes_for :quotes
 	accepts_nested_attributes_for :volunteers
 	accepts_nested_attributes_for :technologies

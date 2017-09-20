@@ -65,7 +65,8 @@ class CvBuilderController < ApplicationController
 
   def permitted_params
     # params = {"resume"=>{"achievements_attributes"=>{"description"=>"sdfsdfsdfsd111111111111111111111111111", "id"=>"1"}}, "id"=>"1"}
-    params.require(:resume).permit(achievements_attributes: [:title, :description, :id], awards_attributes: [:title, :description])
+    params.require(:resume).permit(achievements_attributes: [:title, :description, :id], awards_attributes: [:title, :description, :id], certificates_attributes: [:name, :institutiion_name, :id], courses_attributes: [:title, :description, :id], strengths_attributes: [:title, :description, :id], educations_attributes: [:degree_name, :university_name, :id, :duration, :cgpa], experiences_attributes: [:id, :title, :company_name, :location, :duration, :description], languages_attributes: [:id, :name, :level], passions_attributes: [:id, :name],
+      projects_attributes: [:id, :name, :location, :duration, :description], quotes_attributes: [:id, :name], skills_attributes: [:id, :name, :level], technologies_attributes: [:id, :name, :tec_names], volunteers_attributes: [:id, :title, :organization_name, :duration, :description])
   end
 
 end

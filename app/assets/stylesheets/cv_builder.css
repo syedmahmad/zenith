@@ -340,3 +340,6 @@ ul {
   color: #000 !important;
   border: solid 1px black !important;
 }
+.hide-section {
+  display: none !important;
+}

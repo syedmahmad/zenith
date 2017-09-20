@@ -10,63 +10,90 @@ var ExperienceItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitExperience: function(e){
-    e.preventDefault();
-    this.props.updateResume(
-      {experience: {title: this.state.title, company_name: this.state.company_name, location: this.state.location, duration: this.state.duration, description: this.state.description}}
-    );
-  },
-
   render: function() {
     return (
-      <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitExperience}>
-          <div><input
-            type="string"
-            name="title"
-            className="name"
-            placeholder="Title/Position"
-            value={this.state.title}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="company_name"
-            className="name"
-            placeholder="Company"
-            value={this.state.company_name}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="duration"
-            className="name"
-            placeholder="Date period"
-            value={this.state.duration}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="location"
-            className="name"
-            placeholder="Location"
-            value={this.state.location}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="description"
-            className="name"
-            placeholder="Company Description"
-            value={this.state.description}
-            onChange={ this.handleChange }
-          /></div>
-          <div className='row'>
-            <div className='col-sm-4'>
-              <input hidden type="submit" value="Save" className='btn btn-primary' />
-            </div>
+      <div className="">
+        <div id="edit_able" className="hide-section">  
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
+           </a>
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.experience.id}></i>
+           </a>
+        </div>
+        <div className="section-item" data-experience-id={this.props.experience.id}>
+          <div className="col-xs-6">
+             <h3 className="title-position">
+                <div className="form-group">
+                  <input
+                    type="string"
+                    name="title"
+                    className="form-control"
+                    placeholder="Title/Position"
+                    value={this.state.title}
+                    onChange={ this.handleChange }
+                  />
+                </div>
+             </h3>
+             <h3 className="company">
+                <div className="form-group">
+                  <input
+                    type="string"
+                    name="company_name"
+                    className="form-control"
+                    placeholder="Company"
+                    value={this.state.company_name}
+                    onChange={ this.handleChange }
+                  />
+                </div>
+             </h3>
+             <div className="column">
+                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <span>
+                   <div className="form-group">
+                    <input
+                      type="string"
+                      name="duration"
+                      className="form-control"
+                      placeholder="Date period"
+                      value={this.state.duration}
+                      onChange={ this.handleChange }
+                    />
+                   </div>
+                </span>
+             </div>
+             <div className="column">
+                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <span>
+                   <div className="form-group">
+                    <input
+                      type="string"
+                      name="location"
+                      className="form-control"
+                      placeholder="Location"
+                      value={this.state.location}
+                      onChange={ this.handleChange }
+                    />
+                   </div>
+                </span>
+             </div>
+             <div className="column">
+                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <span>
+                   <div className="form-group">
+                    <input
+                      type="string"
+                      name="description"
+                      className="form-control"
+                      placeholder="Company Description"
+                      value={this.state.description}
+                      onChange={ this.handleChange }
+                    />
+                   </div>
+                </span>
+             </div>
           </div>
-        </form>
+        </div>
       </div>
     )
   }

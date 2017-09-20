@@ -10,32 +10,34 @@ var PassionItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitPassion: function(e){
-    e.preventDefault();
-    this.props.updateResume(
-      {passion: {name: this.state.name}}
-    );
-  },
-
   render: function() {
     return (
-      <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitPassion}>
-          <div><input
-            type="string"
-            name="name"
-            className="name"
-            placeholder="Your Passion"
-            value={this.state.name}
-            onChange={ this.handleChange }
-          /></div>
-          
-          <div className='row'>
-            <div className='col-sm-4'>
-              <input hidden type="submit" value="Save" className='btn btn-primary' />
+      <div className="">
+        <div id="edit_able" className="hide-section">  
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
+           </a>
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.passion.id}></i>
+           </a>
+        </div>
+         <li className="section-item" data-passion-id={this.props.passion.id}>
+            <div className="icon-holder pull-left">
+               <i className="fa fa-bolt" aria-hidden="true"></i>
             </div>
-          </div>
-        </form>
+            <h5>
+               <div className="form-group">
+                  <input
+                    type="string"
+                    name="name"
+                    className="form-control"
+                    placeholder="Your Passion"
+                    value={this.state.name}
+                    onChange={ this.handleChange }
+                  />
+               </div>
+            </h5>
+         </li>
       </div>
     )
   }

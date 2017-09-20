@@ -10,55 +10,75 @@ var ProjectItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitproject: function(e){
-    e.preventDefault();
-    this.props.updateResume(
-      {project: {name: this.state.name, location: this.state.location, duration: this.state.duration, description: this.state.description}}
-    );
-  },
-
   render: function() {
     return (
-      <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitProject}>
-          <div><input
-            type="string"
-            name="name"
-            className="name"
-            placeholder="Project/Activity name"
-            value={this.state.name}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="duration"
-            className="name"
-            placeholder="Date period"
-            value={this.state.duration}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="location"
-            className="name"
-            placeholder="Location"
-            value={this.state.location}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="description"
-            className="name"
-            placeholder="Short summary of your work"
-            value={this.state.description}
-            onChange={ this.handleChange }
-          /></div>
-          <div className='row'>
-            <div className='col-sm-4'>
-              <input hidden type="submit" value="Save" className='btn btn-primary' />
-            </div>
+      <div className="">
+        <div id="edit_able" className="hide-section">  
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
+           </a>
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.project.id}></i>
+           </a>
+        </div>
+        <div className="section-item" data-project-id={this.props.project.id}>
+          <div className="col-xs-6">
+             <h3 className="title-position">
+                <div className="form-group">
+                  <input
+                    type="string"
+                    name="name"
+                    className="form-control"
+                    placeholder="Project/Activity name"
+                    value={this.state.name}
+                    onChange={ this.handleChange }
+                  />
+                </div>
+             </h3>
+             <h3 className="company">
+                <div className="form-group">
+                  <input
+                    type="string"
+                    name="duration"
+                    className="form-control"
+                    placeholder="Date period"
+                    value={this.state.duration}
+                    onChange={ this.handleChange }
+                  />
+                </div>
+             </h3>
+             <div className="column">
+                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <span>
+                   <div className="form-group">
+                    <input
+                      type="string"
+                      name="location"
+                      className="form-control"
+                      placeholder="Location"
+                      value={this.state.location}
+                      onChange={ this.handleChange }
+                    />
+                   </div>
+                </span>
+             </div>
+             <div className="column">
+                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <span>
+                   <div className="form-group">
+                    <input
+                      type="string"
+                      name="description"
+                      className="form-control"
+                      placeholder="Company Description"
+                      value={this.state.description}
+                      onChange={ this.handleChange }
+                    />
+                   </div>
+                </span>
+             </div>
           </div>
-        </form>
+        </div>
       </div>
     )
   }

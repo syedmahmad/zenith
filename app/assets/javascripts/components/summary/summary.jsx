@@ -10,56 +10,58 @@ var Summary = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitSummaryData: function(e){
-    e.preventDefault();
-    this.props.updateResume(
-      {summary: {title: this.state.title, description: this.state.description}}
-    );
-  },
-
   handleRemoveSection: function(e){
     this.props.handleRemoveSection(e);
   },
 
+  componentDidMount: function(){
+    // show setting and camera buttons
+    $(document).on('focusin', ".summary-holder", (function (e) {
+      this.previousElementSibling.classList.remove('hide-section');
+    }));
+    // hide setting and camera buttons
+    $(document).on('focusout', ".summary-holder", (function (e) {
+      this.previousElementSibling.classList.add('hide-section');
+    }));
+  },
+
   render: function() {
     return (
-      <section className="summary-holder">
-         <div id="edit_able" className="ember-view section-menu">  <a href="javaScript:void(0);" title="Add a new item">
-            <i aria-hidden="true" className="fa fa-plus-circle"></i>
-            </a>
-            <a href="javaScript:void(0);" title="Remove section">
-            <i aria-hidden="true" className="fa fa-trash" onClick={this.handleRemoveSection} data-section-name="summary"></i>
-            </a>
-            <a className="move-section" href="javaScript:void(0);" title="Move section">
-            <i aria-hidden="true" className="fa fa-arrows"></i>
-            </a>
-         </div>
-         <div className="heading-area">
-            <h3>
-               <div className="form-group">
-                  <input
-                    type="string"
-                    name="title"
-                    className="form-control"
-                    placeholder="SUMMARY"
-                    value={this.state.title}
-                    onChange={ this.handleChange}
-                  />
-               </div>
-            </h3>
-         </div>
-         <div className="form-group">
-            <input
-              type="string"
-              name="description"
-              className="form-control"
-              placeholder="What critical problems are you well positioned to solve? A bit about yourself"
-              value={this.state.description}
-              onChange={ this.handleChange}
-            />
-         </div>
-         <div className="divider"></div>
-      </section>
+      <div className="">
+       <div id="edit_able" className="hide-section">
+          <a href="javaScript:void(0);" title="Remove section">
+          <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="summary"></i>
+          </a>
+       </div>
+        <section className="summary-holder">
+           <div className="heading-area">
+              <h3>
+                 <div className="form-group">
+                    <input
+                      type="string"
+                      name="title"
+                      className="form-control"
+                      placeholder="SUMMARY"
+                      value={this.state.title}
+                      onChange={ this.handleChange}
+                    />
+                 </div>
+              </h3>
+           </div>
+           <div className="form-group">
+              <input
+                type="string"
+                name="description"
+                className="form-control"
+                placeholder="What critical problems are you well positioned to solve? A bit about yourself"
+                value={this.state.description}
+                onChange={ this.handleChange}
+              />
+           </div>
+           <div className="divider"></div>
+        </section>
+
+      </div>
     )
   }
 });

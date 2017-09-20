@@ -5,32 +5,37 @@ var AwardItem = React.createClass({
     return {name: award.name};
   },
 
-   handleChange: function(e){
+  handleChange: function(e){
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitAward: function(e){
-    e.preventDefault();
-    this.props.updateResume(
-      {award: {name: this.state.name}}
-    );
-  },
-
   render: function() {
     return (
-      <div className="heading-area">
-        <i className="fa fa-bolt" aria-hidden="true"></i>
-        <div className="form-group">
-          <input
-            type="string"
-            name="name"
-            className="form-control"
-            placeholder="Award Name"
-            value={this.state.name}
-            onChange={ this.handleChange }
-          />
-        </div>          
+      <div className="">
+        <div id="edit_able" className="hide-section">  
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
+           </a>
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.award.id}></i>
+           </a>
+        </div>
+        <div className="section-item" data-award-id={this.props.award.id}>
+          <div className="icon-holder pull-left">
+             <i className="fa fa-bolt" aria-hidden="true"></i>
+          </div>
+          <div className="form-group">
+            <input
+              type="string"
+              name="name"
+              className="form-control"
+              placeholder="Award Name"
+              value={this.state.name}
+              onChange={ this.handleChange }
+            />
+          </div>          
+        </div>
       </div>
     )
   }

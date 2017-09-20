@@ -5,45 +5,51 @@ var CertificateItem = React.createClass({
     return {name: certificate.name, institutiion_name: certificate.institutiion_name};
   },
 
-   handleChange: function(e){
+  handleChange: function(e){
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   },
 
-  submitCertificate: function(e){
-    e.preventDefault();
-    this.props.updateResume(
-      {certificate: {name: this.state.name, institutiion_name: this.state.institutiion_name}}
-    );
-  },
-
   render: function() {
     return (
-      <div className="section-item">
-        <form style={{marginTop: "30px"}} onSubmit={this.submitCertificate}>
-          <div><input
-            type="string"
-            name="name"
-            className="name"
-            placeholder="Certificate Name"
-            value={this.state.name}
-            onChange={ this.handleChange }
-          /></div>
-          <div><input
-            type="string"
-            name="institutiion_name"
-            className="name"
-            placeholder="Certificate Institution"
-            value={this.state.institutiion_name}
-            onChange={ this.handleChange }
-          /></div>
-          
-          <div className='row'>
-            <div className='col-sm-4'>
-              <input hidden type="submit" value="Save" className='btn btn-primary' />
+      <div className="">
+        <div id="edit_able" className="hide-section">  
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
+           </a>
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.certificate.id}></i>
+           </a>
+        </div>
+         <li className="section-item" data-certificate-id={this.props.certificate.id}>
+            <div className="icon-holder pull-left">
+               <i className="fa fa-bolt" aria-hidden="true"></i>
             </div>
-          </div>
-        </form>
+            <h5>
+               <div className="form-group">
+                  <input
+                    type="string"
+                    name="name"
+                    className="form-control"
+                    placeholder="Certificate Name"
+                    value={this.state.name}
+                    onChange={ this.handleChange }
+                  />
+               </div>
+            </h5>
+            <h6>
+               <div className="form-group">
+                  <input
+                    type="string"
+                    name="institutiion_name"
+                    className="form-control"
+                    placeholder="Certificate Institution"
+                    value={this.state.institutiion_name}
+                    onChange={ this.handleChange }
+                  />
+               </div>
+            </h6>
+         </li>
       </div>
     )
   }
