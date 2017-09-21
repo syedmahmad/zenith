@@ -1,15 +1,30 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {pages: 2, sectionData: [{name:"Certificates", page: 0}, {name:"Volunteers", page: 1}], layoutSections: ["Certificates", "Volunteers"], resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {pages: 1, sectionData: [{name:"Certificates", page: 0}, {name:"Volunteers", page: 0}], layoutSections: ["Certificates", "Volunteers"], resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
   },
   componentDidUpdate: function(prevProps, prevState){
-    elem = $(".page").last()
-    if(elem[0].scrollHeight > elem[0].offsetHeight){
-      
-    }
+    elements = $(".page")
+    _this = this;
+    $.each(elements, function( index, elem ) {
+      if(elem.scrollHeight > elem.offsetHeight){
+        var lastElm = _this.state.layoutSections[_this.state.layoutSections.length - 1];
+        pages = _this.state.pages;
+        if(index+1 == pages){
+          pages = pages + 1;
+        }
+        sectionData = array = $.grep(_this.state.sectionData, function (a) {
+                        if (a.name == lastElm) {
+                            a.page = index + 1;
+                        }
+                        return a;
+                    });
+        // sectionData.push({name: lastElm, page: index + 1});
+        _this.setState({pages: pages, sectionData: sectionData});
+      }
+    });
   },
   updateResume: function(formData){
     var _this = this;
@@ -37,7 +52,8 @@ var CvBuilder = React.createClass({
   handleAddSection: function(e){
     var newSection = $(e.target).data("sectionName");
     this.state.layoutSections.push(newSection);
-    this.setState({layoutSections: this.state.layoutSections});
+    this.state.sectionData.push({name: newSection, page: 0});
+    this.setState({layoutSections: this.state.layoutSections, sectionData: this.state.sectionData});
   },
   handleRemoveSection: function(e){
     var removeSection = $(e.target).data("sectionName");
@@ -56,13 +72,6 @@ var CvBuilder = React.createClass({
     var header = this.state.resume["header"];
     var _this = this;
 
-    // this.state.layoutSections.forEach(function(section) {
-    //   section = section.substr(0,1).toUpperCase()+section.substr(1);
-    //   MyComponent = window[section];
-    //   key = section + "holder";
-    //   data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume}/>);
-    // });
-
     for(i=0;i<_this.state.pages;i++){
       data = [];
       selectedSections = [];
@@ -73,7 +82,6 @@ var CvBuilder = React.createClass({
       });
 
       _this.state.layoutSections.forEach(function(section) {
-        debugger;
         if($.inArray(section, selectedSections) > -1){
           section = section.substr(0,1).toUpperCase()+section.substr(1);
           MyComponent = window[section];
@@ -82,7 +90,7 @@ var CvBuilder = React.createClass({
         }
       });
       key = "page-"+i;  
-      data_1.push(<Page key={key} header={header} updateResume={_this.updateResume} page_data={data} />);
+      data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} />);
     };
 
     return (
