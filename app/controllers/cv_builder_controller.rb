@@ -14,19 +14,35 @@ class CvBuilderController < ApplicationController
         @resume_data = @resume_data.take
       end
       @latest_resume = get_user_resume
+    else
+      @latest_resume = get_user_resume      
     end
   end
 
-  def new
-    resume = current_user.resumes.create
+  def new_resume
+    resume = Resume.create
     @resume_data = Resume.where(id: resume.id).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
     @resume_data = @resume_data.take
+    if @resume_data
+      render :json => {:path_to_go => "resumes/#{@resume_data.id}"}, :status => 200
+    else
+      render :json => @resume_data.errors, :status => 422
+    end
+    return
+  end
+
+  def new
+    @resume_data = nil
     @resume = get_user_resume
   end
 
-  # def new
-  #   @resume_data = nil
-  #   @resume = get_user_resume
+  # def create
+  #   @resume_data = current_user.create_resume.includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
+  #   if @resume_data
+  #     render :json => {:path_to_go => ["resumes/#{@resume_data.id}"]}, :status => 200
+  #   else
+  #     render :json => @resume_data.errors, :status => 422
+  #   return
   # end
 
   def clone
@@ -53,10 +69,15 @@ class CvBuilderController < ApplicationController
   end
 
   def get_user_resume
+    header_data = nil
+    if @resume_data.present? && @resume_data.header.present?
+      header_data = @resume_data.header.attributes
+      header_data.merge!('img_url' => @resume_data.header.avatar.url)
+    end
     return{
       # "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new.attributes),
       "id": @resume_data.present? ? @resume_data.id : "",
-      "header": (@resume_data.present? && @resume_data.header.present? ? @resume_data.header.attributes : Header.new.attributes),
+      "header": (@resume_data.present? && @resume_data.header.present? ? header_data : Header.new.attributes),
       "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.attributes : Layout.new.attributes),
       "summary": (@resume_data.present? && @resume_data.summary.present? ? @resume_data.summary.attributes : Summary.new.attributes),
       "achievements": (@resume_data.present? && @resume_data.achievements.present? ? @resume_data.achievements.map {|rec| rec.attributes} : [Achievement.new.attributes]),

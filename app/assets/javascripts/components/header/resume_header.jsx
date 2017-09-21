@@ -2,7 +2,7 @@ var ResumeHeader = React.createClass({
 
   getInitialState: function(){
     var header = this.props.header;
-    return {file: [], imgSrc: header.avatar, name: header.name, phone: header.phone, title: header.title, email: header.email, location: header.location, website_link: header.website_link};
+    return {file: [], imgSrc: header.img_url, name: header.name, phone: header.phone, title: header.title, email: header.email, location: header.location, website_link: header.website_link};
   },
 
   handleChange: function(e){
@@ -40,7 +40,6 @@ var ResumeHeader = React.createClass({
   },
 
   render: function() {
-    debugger;
     return (
       <div>
         <div id="edit_able" className="">  

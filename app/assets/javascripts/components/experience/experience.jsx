@@ -48,7 +48,6 @@ var Experiences = React.createClass({
     this.setState({experiences: this.state.experiences});
   },
   removeSubSection: function(e){  
-    debugger;
     e.preventDefault();
     var obj_to_remove = this.state.experiences.find(item => item.id === $(e.target).data("sectionId"));
     if (obj_to_remove) {

@@ -1,10 +1,10 @@
 class Resume < ActiveRecord::Base
 	
 	belongs_to :user
-	has_one :resume_style
-	has_one :header
-	has_one :summary
-	has_one :layout
+	has_one :resume_style, dependent: :destroy
+	has_one :header, dependent: :destroy
+	has_one :summary, dependent: :destroy
+	has_one :layout, dependent: :destroy
 	has_many :achievements, dependent: :destroy
 	has_many :awards, dependent: :destroy
 	has_many :certificates, dependent: :destroy

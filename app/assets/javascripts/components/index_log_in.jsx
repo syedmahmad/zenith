@@ -1,6 +1,6 @@
 var IndexLogIn = React.createClass({
   getInitialState: function() {
-    return {layoutSections: ["Achievements", "Courses"], resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   componentDidMount: function(){
     $(".left_col").remove();
@@ -12,10 +12,19 @@ var IndexLogIn = React.createClass({
   },
 
   handleOnclick: function(){
-    if(this.state.resume_ids.length > 2){
-      alert("you have reached the max numbers of resumes.")
+    if(this.state.resume_ids && (this.state.resume_ids.length > 2)){
+      alert("you have reached the max numbers of resumes.");
     }else{
-      window.location = "/resumes/new"
+      $.ajax({
+        url: "http://localhost:3000/resumes/new_resume",
+        type: 'POST',
+        success: function(projects) {
+          window.location = projects.path_to_go;
+        }.bind(this),
+        error: function(response, status, err) {
+          alert("Sorry! something went wrong. Please try again")
+        }
+      });
     }
   },
 

@@ -48,7 +48,6 @@ var Courses = React.createClass({
     this.setState({courses: this.state.courses});
   },
   removeSubSection: function(e){  
-    debugger;
     e.preventDefault();
     var obj_to_remove = this.state.courses.find(item => item.id === $(e.target).data("sectionId"));
     if (obj_to_remove) {

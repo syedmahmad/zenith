@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     member do
       post :clone
     end
+    collection do
+      post :new_resume
+    end
    end
 
   # Example of regular route:
