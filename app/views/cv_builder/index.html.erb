@@ -5,6 +5,6 @@
 	</div>
 <% else %>
 	<div role="main">
-	  <%= react_component('IndexLogIn', resume: @latest_resume)%>
+    <%= react_component('CvBuilder', current_user: nil, resume: @latest_resume)%>
 	</div>
 <% end %>

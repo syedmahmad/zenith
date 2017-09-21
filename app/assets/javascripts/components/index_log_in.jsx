@@ -1,6 +1,6 @@
 var IndexLogIn = React.createClass({
   getInitialState: function() {
-    return {layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {layoutSections: this.props.resume.layout.section_names.slice(0,1), resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   componentDidMount: function(){
     $(".left_col").remove();
@@ -33,7 +33,10 @@ var IndexLogIn = React.createClass({
     var _this = this;
     var state = this.state;
     var header = state.resume["header"];
-    var cloneLink = "/resumes/"+this.state.resume.id+"/clone"
+    var cloneLink = "/resumes/0/clone";
+    if (this.state.resume.id != "") {
+      cloneLink = "/resumes/"+this.state.resume.id+"/clone";
+    } 
     state.layoutSections.forEach(function(section) {
       MyComponent = window[section];
       key = section + "holder";

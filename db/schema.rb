@@ -72,16 +72,18 @@ ActiveRecord::Schema.define(version: 20170921052543) do
 
   create_table "headers", force: :cascade do |t|
     t.string   "name",                default: "",   null: false
-    t.string   "location",            default: "",   null: false
-    t.string   "description",         default: "",   null: false
+    t.string   "job_title",           default: "",   null: false
     t.string   "phone",               default: "",   null: false
     t.string   "email",               default: "",   null: false
+    t.string   "location",            default: "",   null: false
+    t.string   "website_link",        default: "",   null: false
     t.boolean  "show_name",           default: true
     t.boolean  "show_location",       default: true
-    t.boolean  "show_description",    default: true
+    t.boolean  "show_job_title",      default: true
     t.boolean  "show_phone",          default: true
     t.boolean  "show_email",          default: true
-    t.boolean  "show_photo",          default: true
+    t.boolean  "shwo_website_link",   default: true
+    t.boolean  "show_avatar",         default: true
     t.integer  "resume_id"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false

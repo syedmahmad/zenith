@@ -2,7 +2,8 @@ var ResumeHeader = React.createClass({
 
   getInitialState: function(){
     var header = this.props.header;
-    return {file: [], imgSrc: header.img_url, name: header.name, phone: header.phone, title: header.title, email: header.email, location: header.location, website_link: header.website_link};
+    console.log(header);
+    return {file: [], imgSrc: header.img_url, name: header.name, job_title: header.job_title, phone: header.phone, website_link: header.website_link, email: header.email, location: header.location};
   },
 
   handleChange: function(e){
@@ -29,6 +30,16 @@ var ResumeHeader = React.createClass({
   },
 
   componentDidMount: function(){
+    
+    var _this = this;
+
+    $(document).on('focusout', ".personal-info", (function (e) {
+      if (e.target.value != _this.props.header[e.target.name]) {
+        _this.submitHeader({[e.target.name]: e.target.value, "id": $(this).data("headerId")});
+      }
+    }));
+
+
     // show setting and camera buttons
     $(document).on('focusin', ".personal-info", (function (e) {
       this.previousElementSibling.classList.remove('hide-section');
@@ -38,6 +49,12 @@ var ResumeHeader = React.createClass({
       this.previousElementSibling.classList.add('hide-section');
     }));
   },
+
+  submitHeader: function(params){
+    this.props.updateResume(
+      {resume: {header_attributes: params}}
+    );
+  },    
 
   render: function() {
     return (
@@ -58,7 +75,7 @@ var ResumeHeader = React.createClass({
            <i aria-hidden="true" className="fa fa-cog"></i>
            </a>
         </div>
-        <section className="personal-info">
+        <section className="personal-info" data-header-id={this.props.header.id}>
            <div className="row">
               <div className="col-sm-8">
                  <div className="info-details">
@@ -78,10 +95,10 @@ var ResumeHeader = React.createClass({
                        <div className="form-group">
                           <input
                             type="string"
-                            name="title"
+                            name="job_title"
                             className="form-control"
                             placeholder="Job Title"
-                            value={this.state.title}
+                            value={this.state.job_title}
                             onChange={ this.handleChange}
                           />
                        </div>
@@ -97,7 +114,7 @@ var ResumeHeader = React.createClass({
                                     type="string"
                                     name="phone"
                                     className="form-control"
-                                    placeholder="Full Name"
+                                    placeholder="Phone"
                                     value={this.state.phone}
                                     onChange={ this.handleChange}
                                   />

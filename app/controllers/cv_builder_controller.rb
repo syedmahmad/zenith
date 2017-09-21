@@ -1,10 +1,7 @@
 class CvBuilderController < ApplicationController
 
   def index
-    flash[:success ] = "Success Flash Message: Welcome to GentellelaOnRails"
-    #other alternatives are
-    # flash[:warn ] = "Israel don't quite like warnings"
-    #flash[:danger ] = "Naomi let the dog out!"
+    # flash[:success ] = "Success Flash Message: Welcome to GentellelaOnRails"
     if current_user
       @resumes = current_user.resumes
       @resume_ids = @resumes.pluck("id")
@@ -20,14 +17,19 @@ class CvBuilderController < ApplicationController
   end
 
   def new_resume
-    resume = Resume.create
-    @resume_data = Resume.where(id: resume.id).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
-    @resume_data = @resume_data.take
-    if @resume_data
-      render :json => {:path_to_go => "resumes/#{@resume_data.id}"}, :status => 200
+    
+    if current_user.present?
+      resume = current_user.resumes.create
+      @resume_data = Resume.where(id: resume.id).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
+      @resume_data = @resume_data.take
+      if @resume_data
+        render :json => {:path_to_go => "resumes/#{@resume_data.id}"}, :status => 200
+      else
+        render file: "#{Rails.root}/public/422.html", layout: false, status: 422
+      end
     else
-      render :json => @resume_data.errors, :status => 422
-    end
+      render file: "#{Rails.root}/public/500.html", layout: false, status: 500
+    end  
     return
   end
 
@@ -36,49 +38,55 @@ class CvBuilderController < ApplicationController
     @resume = get_user_resume
   end
 
-  # def create
-  #   @resume_data = current_user.create_resume.includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
-  #   if @resume_data
-  #     render :json => {:path_to_go => ["resumes/#{@resume_data.id}"]}, :status => 200
-  #   else
-  #     render :json => @resume_data.errors, :status => 422
-  #   return
-  # end
-
   def clone
-    resume = Resume.find(params[:id])
-    @resume = resume.amoeba_dup
-    @resume.save
-    redirect_to resume_path(@resume.id)
-  end
-  
-  def create
-    
+    if current_user.present?
+      resume = current_user.resumes.find_by_id(params[:id])
+      if resume.present?
+        @resume = resume.amoeba_dup
+        @resume.save
+        redirect_to resume_path(@resume.id)
+      else
+        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      end
+    else
+      render file: "#{Rails.root}/public/422.html", layout: false, status: 422
+    end
   end
   
   def show
     @resume_data = Resume.where(id: params[:id]).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
     @resume_data = @resume_data.take
-    @resume = get_user_resume
+    
+    if @resume_data.present?
+      @resume = get_user_resume
+    else
+      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+    end
   end
     
   def update
-    resume = Resume.find(params[:id])
+    return unless current_user.present?
+    resume = current_user.resumes.find_by_id(params[:id])
     resume.update!(permitted_params)
     render json: resume
   end
 
   def get_user_resume
     header_data = nil
+    new_header_data = nil
     if @resume_data.present? && @resume_data.header.present?
       header_data = @resume_data.header.attributes
       header_data.merge!('img_url' => @resume_data.header.avatar.url)
+    else
+      new_header_data = Header.new.attributes
+      new_header_data.merge!('img_url' => Header.new.avatar.url)
     end
+
     return{
       # "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new.attributes),
       "id": @resume_data.present? ? @resume_data.id : "",
-      "header": (@resume_data.present? && @resume_data.header.present? ? header_data : Header.new.attributes),
-      "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.attributes : Layout.new.attributes),
+      "header": (@resume_data.present? && @resume_data.header.present? ? header_data : new_header_data),
+      "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.attributes : Layout.new(:section_names => ["Experiences", "Education", "Strengths", "Achievements", "Languages", "Projects"]).attributes),
       "summary": (@resume_data.present? && @resume_data.summary.present? ? @resume_data.summary.attributes : Summary.new.attributes),
       "achievements": (@resume_data.present? && @resume_data.achievements.present? ? @resume_data.achievements.map {|rec| rec.attributes} : [Achievement.new.attributes]),
       "awards": (@resume_data.present? && @resume_data.awards.present? ? @resume_data.awards.map {|rec| rec.attributes} : [Award.new.attributes]),
@@ -101,7 +109,7 @@ class CvBuilderController < ApplicationController
     # params = {"resume"=>{"achievements_attributes"=>{"description"=>"sdfsdfsdfsd111111111111111111111111111", "id"=>"1"}}, "id"=>"1"}
     params.require(:resume).permit(:section_names, achievements_attributes: [:title, :description, :id], awards_attributes: [:title, :description, :id], certificates_attributes: [:name, :institutiion_name, :id], courses_attributes: [:title, :description, :id], strengths_attributes: [:title, :description, :id], educations_attributes: [:degree_name, :university_name, :id, :duration, :cgpa], experiences_attributes: [:id, :title, :company_name, :location, :duration, :description], languages_attributes: [:id, :name, :level], passions_attributes: [:id, :name],
       projects_attributes: [:id, :name, :location, :duration, :description], quotes_attributes: [:id, :name], skills_attributes: [:id, :name, :level], technologies_attributes: [:id, :name, :tec_names], volunteers_attributes: [:id, :title, :organization_name, :duration, :description], layout_attributes: [:id, :section_names => [], :section_data => []],
-      header_attributes: [:id,:avatar,:name,:location,:description,:phone,:email])
+      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link])
   end
 
 end
