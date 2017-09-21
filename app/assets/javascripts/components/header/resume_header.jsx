@@ -2,12 +2,30 @@ var ResumeHeader = React.createClass({
 
   getInitialState: function(){
     var header = this.props.header;
-    return {name: header.name, phone: header.phone, title: header.title, email: header.email, location: header.location, website_link: header.website_link};
+    return {file: [], imgSrc: header.avatar, name: header.name, phone: header.phone, title: header.title, email: header.email, location: header.location, website_link: header.website_link};
   },
 
   handleChange: function(e){
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
+  },
+
+  _onChange: function(){
+    // Assuming only image
+    _this =  this;
+    var file = this.refs.file.files[0];
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(file);
+
+     reader.onloadend = function (e) {
+        this.setState({
+            imgSrc: [reader.result]
+        })
+    
+        params = {id: this.props.header.id, avatar: reader.result};
+        
+        this.props.updateResume({resume: {header_attributes: params}});
+      }.bind(this);
   },
 
   componentDidMount: function(){
@@ -22,9 +40,18 @@ var ResumeHeader = React.createClass({
   },
 
   render: function() {
+    debugger;
     return (
       <div>
-        <div id="edit_able" className="hide-section">  
+        <div id="edit_able" className="">  
+           <form>
+             <input 
+               ref="file" 
+               type="file" 
+               name="user[image]" 
+               multiple="true"
+               onChange={this._onChange}/>
+            </form>
            <a className="" href="javaScript:void(0);" title="">
            <i aria-hidden="true" className="fa fa-camera"></i>
            </a>
@@ -134,7 +161,7 @@ var ResumeHeader = React.createClass({
               </div>
               <div className="col-sm-4">
                  <div className="profile-image">
-                    <img src="/images/default_avatar.png" className="img-responsive"/>
+                    <img src={this.state.imgSrc} className="img-responsive"/>
                  </div>
               </div>
            </div>

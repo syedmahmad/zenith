@@ -1,6 +1,5 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    debugger; 
     return {layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   removeArrayItem: function(arr, itemToRemove) {
@@ -8,10 +7,12 @@ var CvBuilder = React.createClass({
   },
   updateResume: function(formData){
     var _this = this;
+    console.log(formData);
     $.ajax({
       url: ("http://localhost:3000/resumes/"+_this.state.resume.id),
       dataType: 'json',
       type: 'PATCH',
+      contentType: 'multipart/form-data',
       data: formData,
       success: function(projects) {
         // this.setState({projects: projects, showNewForm: false});

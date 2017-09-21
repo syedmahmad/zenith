@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918204459) do
+ActiveRecord::Schema.define(version: 20170921052543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,20 +71,24 @@ ActiveRecord::Schema.define(version: 20170918204459) do
   end
 
   create_table "headers", force: :cascade do |t|
-    t.string   "name",             default: "",   null: false
-    t.string   "location",         default: "",   null: false
-    t.string   "description",      default: "",   null: false
-    t.string   "phone",            default: "",   null: false
-    t.string   "email",            default: "",   null: false
-    t.boolean  "show_name",        default: true
-    t.boolean  "show_location",    default: true
-    t.boolean  "show_description", default: true
-    t.boolean  "show_phone",       default: true
-    t.boolean  "show_email",       default: true
-    t.boolean  "show_photo",       default: true
+    t.string   "name",                default: "",   null: false
+    t.string   "location",            default: "",   null: false
+    t.string   "description",         default: "",   null: false
+    t.string   "phone",               default: "",   null: false
+    t.string   "email",               default: "",   null: false
+    t.boolean  "show_name",           default: true
+    t.boolean  "show_location",       default: true
+    t.boolean  "show_description",    default: true
+    t.boolean  "show_phone",          default: true
+    t.boolean  "show_email",          default: true
+    t.boolean  "show_photo",          default: true
     t.integer  "resume_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "languages", force: :cascade do |t|
