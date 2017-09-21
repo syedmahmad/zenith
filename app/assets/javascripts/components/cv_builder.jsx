@@ -1,9 +1,15 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layoutSections: ["Certificates", "Volunteers"], resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {pages: 2, sectionData: [{name:"Certificates", page: 0}, {name:"Volunteers", page: 1}], layoutSections: ["Certificates", "Volunteers"], resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
+  },
+  componentDidUpdate: function(prevProps, prevState){
+    elem = $(".page").last()
+    if(elem[0].scrollHeight > elem[0].offsetHeight){
+      
+    }
   },
   updateResume: function(formData){
     var _this = this;
@@ -42,33 +48,49 @@ var CvBuilder = React.createClass({
 
   render: function() {
     var data = [];
+    var data_1 = [];
+    var selectedSections = [];
     var MyComponent = null;
     var state = this.state;
     var key = "";
     var header = this.state.resume["header"];
-    var _this = this
+    var _this = this;
 
-    this.state.layoutSections.forEach(function(section) {
-      section = section.substr(0,1).toUpperCase()+section.substr(1);
-      MyComponent = window[section];
-      key = section + "holder";
-      data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume}/>);
-    });
+    // this.state.layoutSections.forEach(function(section) {
+    //   section = section.substr(0,1).toUpperCase()+section.substr(1);
+    //   MyComponent = window[section];
+    //   key = section + "holder";
+    //   data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume}/>);
+    // });
+
+    for(i=0;i<_this.state.pages;i++){
+      data = [];
+      selectedSections = [];
+      $.grep(_this.state.sectionData, function(item){
+        if(item.page == i){
+          selectedSections.push(item.name);
+        }
+      });
+
+      _this.state.layoutSections.forEach(function(section) {
+        debugger;
+        if($.inArray(section, selectedSections) > -1){
+          section = section.substr(0,1).toUpperCase()+section.substr(1);
+          MyComponent = window[section];
+          key = section + "holder"+i;
+          data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume}/>);
+        }
+      });
+      key = "page-"+i;  
+      data_1.push(<Page key={key} header={header} updateResume={_this.updateResume} page_data={data} />);
+    };
 
     return (
       <div className="cv-builder-container">
-       
         <div className="right_col" role="main">
           <div className="clearfix"></div>
           <div className="row">
-            <div className="col-xs-12">
-              <div className="page-holder bg-color">
-                <div className="cv-builder full-layout">
-                  <ResumeHeader header={header} updateResume={this.updateResume}/>
-                  {data}
-                </div>
-              </div>
-            </div>  
+            {data_1}  
           </div>
         </div>
         <RearrangeModal handleRearrage={this.handleRearrage} sections={this.state.layoutSections}/>
