@@ -1,12 +1,11 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {pages: 1, sectionData: [{name: "Achievements", page: 0}], layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {pages: 1, sectionData: [{name: "Volunteers", page: 0}], layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
   },
   componentDidUpdate: function(prevProps, prevState){
-    debugger;
     elements = $(".page")
     _this = this;
     $.each(elements, function( index, elem ) {
@@ -85,7 +84,6 @@ var CvBuilder = React.createClass({
   },
 
   render: function() {
-    debugger;
     var data = [];
     var data_1 = [];
     var selectedSections = [];

@@ -9,5 +9,4 @@ class Layout < ActiveRecord::Base
   def self.create_default(resume_id)
     Layout.create(resume_id: resume_id,section_names:["Experiences", "Education", "Strengths", "Achievements", "Languages", "Projects"])
   end
-
 end

@@ -20,15 +20,15 @@ var VolunteerItem = React.createClass({
   render: function() {
     return (
       <div className="">
-        <div id="edit_able" className="hide-section">  
-           <a href="javaScript:void(0);">
-           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
-           </a>
-           <a href="javaScript:void(0);">
-           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.volunteer.id}></i>
-           </a>
-        </div>
         <div className="section-item" data-volunteer-id={this.props.volunteer.id}>
+          <div id="edit_able" className="hide-section">  
+             <a href="javaScript:void(0);">
+             <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
+             </a>
+             <a href="javaScript:void(0);">
+             <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.volunteer.id}></i>
+             </a>
+          </div>
           <div className="col-xs-6">
              <h3 className="title-position">
                 <div className="form-group">

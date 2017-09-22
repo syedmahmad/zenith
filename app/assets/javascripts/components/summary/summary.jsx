@@ -17,23 +17,23 @@ var Summary = React.createClass({
   componentDidMount: function(){
     // show setting and camera buttons
     $(document).on('focusin', ".summary-holder", (function (e) {
-      this.previousElementSibling.classList.remove('hide-section');
+      this.firstChild.classList.remove('hide-section');
     }));
     // hide setting and camera buttons
     $(document).on('focusout', ".summary-holder", (function (e) {
-      this.previousElementSibling.classList.add('hide-section');
+      this.firstChild.classList.add('hide-section');
     }));
   },
 
   render: function() {
     return (
       <div className="">
-       <div id="edit_able" className="hide-section">
-          <a href="javaScript:void(0);" title="Remove section">
-          <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="summary"></i>
-          </a>
-       </div>
         <section className="summary-holder">
+           <div id="edit_able" className="hide-section">
+              <a href="javaScript:void(0);" title="Remove section">
+              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="summary"></i>
+              </a>
+           </div>
            <div className="heading-area">
               <h3>
                  <div className="form-group">

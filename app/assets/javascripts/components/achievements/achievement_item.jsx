@@ -12,12 +12,11 @@ var AchievementItem = React.createClass({
     return (
       <div className="">
          <li className="section-item" data-achievement-id={this.props.achievement.id}>
-            <div id="edit_able" className="">  
+            <div id="edit_able" className="hide-section">  
                <a href="javaScript:void(0);">
                <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
                </a>
                <a href="javaScript:void(0);">
-               <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.achievement.id}></i>
                <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.achievement.id}></i>
                </a>
             </div>

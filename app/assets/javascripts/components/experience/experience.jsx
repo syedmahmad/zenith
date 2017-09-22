@@ -13,10 +13,10 @@ var Experiences = React.createClass({
   componentDidMount: function(){
     var _this = this;
     $(document).on('focusin', ".section-item", (function (e) {
-      this.previousElementSibling.classList.remove('hide-section');
+      this.firstChild.classList.remove('hide-section');
     }));
     $(document).on('focusout', ".section-item", (function (e) {
-      this.previousElementSibling.classList.add('hide-section');
+      this.firstChild.classList.add('hide-section');
       // if(_this.props.achievement[e.target.name] != e.target.value){
       _this.submitExperience({[e.target.name]: e.target.value, id: $(this).data("experienceId")});
         // _this.props.achievement[e.target.name] = e.target.value;
