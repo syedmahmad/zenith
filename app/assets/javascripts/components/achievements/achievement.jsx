@@ -8,7 +8,7 @@ var Achievements = React.createClass({
   },
   handleRemoveSection: function(e){
     e.preventDefault();
-    this.props.handleRemoveSection(e);
+    this.props.handleRemoveSection({neme: "Achievements", id: $(this).data("achievementId")});
   },
   componentDidMount: function(){
     var _this = this;
