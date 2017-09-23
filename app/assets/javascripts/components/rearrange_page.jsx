@@ -12,7 +12,7 @@ var RearrangePage = React.createClass({
   render: function() {
     data = this.props.page_data
     return (
-      <div className="reorder-page">
+      <div className="reorder-page" data-page={this.props.page}>
         <div className="rearrange-section-modal connectedSortable">
           {data}
         </div>

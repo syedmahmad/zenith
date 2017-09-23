@@ -98,7 +98,7 @@ class CvBuilderController < ApplicationController
       # "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new.attributes),
       "id": @resume_data.present? ? @resume_data.id : "",
       "header": (@resume_data.present? && @resume_data.header.present? ? header_data : new_header_data),
-      "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.attributes : Layout.new(:section_names => ["Experiences", "Education", "Strengths", "Achievements", "Languages", "Projects"], :section_data => [{name: "Experiences", page: 0}, {name: "Education", page: 0}, {name: "Strengths", page: 0}, {name: "Achievements", page: 0}, {name: "Languages", page: 0}, {name: "Projects", page: 0}]).attributes),
+      "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.attributes : Layout.new(:section_name => ["Experiences", "Education", "Strengths", "Achievements", "Languages", "Projects"], :section_data => [{name: "Experiences", page: 0}, {name: "Education", page: 0}, {name: "Strengths", page: 0}, {name: "Achievements", page: 0}, {name: "Languages", page: 0}, {name: "Projects", page: 0}]).attributes),
       "summary": (@resume_data.present? && @resume_data.summary.present? ? @resume_data.summary.attributes : Summary.new.attributes),
       "achievements": (@resume_data.present? && @resume_data.achievements.present? ? @resume_data.achievements.map {|rec| rec.attributes} : [Achievement.new.attributes]),
       "awards": (@resume_data.present? && @resume_data.awards.present? ? @resume_data.awards.map {|rec| rec.attributes} : [Award.new.attributes]),

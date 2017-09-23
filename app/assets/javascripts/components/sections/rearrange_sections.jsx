@@ -34,7 +34,7 @@ var RearrangeSections = React.createClass({
         }
       });
       key = "rearrange-page-"+i;  
-      data_1.push(<RearrangePage key={key} handleRearrange={this.props.handleRearrange} page_index={i+1} page_data={data} />);
+      data_1.push(<RearrangePage key={key} page={i} handleRearrange={this.props.handleRearrange} page_index={i+1} page_data={data} />);
     };
 
     // sections.forEach(function(section) {
