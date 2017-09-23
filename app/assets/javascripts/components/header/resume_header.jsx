@@ -2,7 +2,6 @@ var ResumeHeader = React.createClass({
 
   getInitialState: function(){
     var header = this.props.header;
-    console.log(header);
     return {file: [], imgSrc: header.img_url, name: header.name, job_title: header.job_title, phone: header.phone, website_link: header.website_link, email: header.email, location: header.location};
   },
 
@@ -30,16 +29,8 @@ var ResumeHeader = React.createClass({
   },
 
   componentDidMount: function(){
-    
     var _this = this;
-
-    $(document).on('focusout', ".personal-info", (function (e) {
-      if (e.target.value != _this.props.header[e.target.name]) {
-        _this.submitHeader({[e.target.name]: e.target.value, "id": $(this).data("headerId")});
-      }
-    }));
-
-
+    
     // show setting and camera buttons
     $(document).on('focusin', ".personal-info", (function (e) {
       this.previousElementSibling.classList.remove('hide-section');
@@ -47,6 +38,9 @@ var ResumeHeader = React.createClass({
     // hide setting and camera buttons
     $(document).on('focusout', ".personal-info", (function (e) {
       this.previousElementSibling.classList.add('hide-section');
+      if (e.target.value != _this.props.header[e.target.name]) {
+        _this.submitHeader({[e.target.name]: e.target.value, "id": $(this).data("headerId")});
+      }
     }));
   },
 

@@ -17,10 +17,15 @@ var Education = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitEducation({[e.target.name]: e.target.value, id: $(this).data("educationId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+
+      var state_res = _this.state.education.find(item => item.id == $(this).data("educationId"));
+      if (state_res) {
+        var props_res = _this.props.resume.education.find(item => item.id == $(this).data("educationId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitEducation({[e.target.name]: e.target.value, "id": $(this).data("educationId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +44,15 @@ var Education = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.education.length>0) {
-      id = this.state.education[this.state.education.length-1].id + 1;
-    }
-    var education = {id:id, degree_name:'', university_name:'', duration:'', cgpa:''};
-    this.state.education.push(education);
-    this.setState({education: this.state.education});
+    var formData = {sub_section_name:"Education"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "education");
   },
   removeSubSection: function(e){  
     e.preventDefault();
-    var obj_to_remove = this.state.education.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({education: this.state.education.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Education"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "education");  
   },
   render: function() {
     var education = this.state.education

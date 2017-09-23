@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {pages: 1, sectionData: [{name: "Volunteers", page: 0}], layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {pages: 1, sectionData: [{name: "Summary", page: 0}], layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -33,7 +33,6 @@ var CvBuilder = React.createClass({
   },
   updateResume: function(formData){
     var _this = this;
-    console.log(formData);
     $.ajax({
       url: ("http://localhost:3000/resumes/"+_this.state.resume.id),
       dataType: 'json',
@@ -46,6 +45,37 @@ var CvBuilder = React.createClass({
       }.bind(this),
       error: function(response, status, err) {
         // onError(response.responseJSON)
+      }
+    });
+  },
+  createSubSection: function(formData,sectionName){
+    var _this = this;
+    $.ajax({
+      url: ("http://localhost:3000/resumes/"+_this.props.resume.id+"/create_sub_record"),
+      dataType: 'json',
+      type: 'POST',
+      contentType: 'multipart/form-data',
+      data: formData,
+      success: function(item) {
+        this.state.resume[sectionName].push(item);
+        this.setState({resume: this.state.resume});
+      }.bind(this),
+      error: function(response, status, err) {
+      }
+    });
+  },
+  removeSubSection: function(formData,sectionName){
+    var _this = this;
+    $.ajax({
+      url: ("http://localhost:3000/resumes/"+formData.section_id+"/delete_sub_record"),
+      type: 'DELETE',
+      contentType: 'multipart/form-data',
+      data: formData,
+      success: function(item) {
+        this.state.resume[sectionName].splice(item, 1);
+        this.setState({resume: this.state.resume});
+      }.bind(this),
+      error: function(response, status, err) {
       }
     });
   },
@@ -107,11 +137,11 @@ var CvBuilder = React.createClass({
           section = section.substr(0,1).toUpperCase()+section.substr(1);
           MyComponent = window[section];
           key = section + "holder"+i;
-          data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume}/>);
+          data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
         }
       });
       key = "page-"+i;  
-      data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} />);
+      data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection}/>);
     };
 
     return (

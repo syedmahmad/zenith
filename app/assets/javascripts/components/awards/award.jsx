@@ -17,10 +17,14 @@ var Awards = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitAward({[e.target.name]: e.target.value, id: $(this).data("awardId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+      var state_res = _this.state.awards.find(item => item.id == $(this).data("awardId"));
+      if (state_res) {
+        var props_res = _this.props.resume.awards.find(item => item.id == $(this).data("awardId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitAward({[e.target.name]: e.target.value, "id": $(this).data("awardId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +43,15 @@ var Awards = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.awards.length>0) {
-      id = this.state.awards[this.state.awards.length-1].id + 1;
-    }
-    var award = {id:id, name:''};
-    this.state.awards.push(award);
-    this.setState({awards: this.state.awards});
+    var formData = {sub_section_name:"Award"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "awards");
   },
   removeSubSection: function(e){  
     e.preventDefault();
-    var obj_to_remove = this.state.awards.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({awards: this.state.awards.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Award"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "awards");  
   },
   render: function() {
     var awards = this.state.awards

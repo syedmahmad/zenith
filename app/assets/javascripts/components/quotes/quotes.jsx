@@ -17,10 +17,15 @@ var Quotes = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitQuote({[e.target.name]: e.target.value, id: $(this).data("quoteId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+
+      var state_res = _this.state.quotes.find(item => item.id == $(this).data("quoteId"));
+      if (state_res) {
+        var props_res = _this.props.resume.quotes.find(item => item.id == $(this).data("quoteId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitQuote({[e.target.name]: e.target.value, "id": $(this).data("quoteId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +44,15 @@ var Quotes = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.quotes.length>0) {
-      id = this.state.quotes[this.state.quotes.length-1].id + 1;
-    }
-    var quote = {id:id, name:''};
-    this.state.quotes.push(quote);
-    this.setState({quotes: this.state.quotes});
+    var formData = {sub_section_name:"Quote"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "quotes");
   },
   removeSubSection: function(e){  
     e.preventDefault();
-    var obj_to_remove = this.state.quotes.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({quotes: this.state.quotes.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Quote"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "quotes");
   },
   render: function() {
     var quotes = this.state.quotes

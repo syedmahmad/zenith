@@ -17,10 +17,15 @@ var Skills = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitSkills({[e.target.name]: e.target.value, id: $(this).data("skillId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+
+      var state_res = _this.state.skills.find(item => item.id == $(this).data("skillId"));
+      if (state_res) {
+        var props_res = _this.props.resume.skills.find(item => item.id == $(this).data("skillId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitSkills({[e.target.name]: e.target.value, "id": $(this).data("skillId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +44,15 @@ var Skills = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.skills.length>0) {
-      id = this.state.skills[this.state.skills.length-1].id + 1;
-    }
-    var course = {id:id, name:'', level:''};
-    this.state.skills.push(course);
-    this.setState({skills: this.state.skills});
+    var formData = {sub_section_name:"Skill"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "skills");
   },
   removeSubSection: function(e){  
     e.preventDefault();
-    var obj_to_remove = this.state.skills.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({skills: this.state.skills.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Skill"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "skills");
   },
   render: function() {
     var skills = this.state.skills

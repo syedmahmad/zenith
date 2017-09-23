@@ -17,10 +17,15 @@ var Passions = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitPassion({[e.target.name]: e.target.value, id: $(this).data("passionId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+
+      var state_res = _this.state.passions.find(item => item.id == $(this).data("passionId"));
+      if (state_res) {
+        var props_res = _this.props.resume.passions.find(item => item.id == $(this).data("passionId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitPassion({[e.target.name]: e.target.value, "id": $(this).data("passionId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,21 +44,15 @@ var Passions = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.passions.length>0) {
-      id = this.state.passions[this.state.passions.length-1].id + 1;
-    }
-    var passion = {id:id, name:''};
-    this.state.passions.push(passion);
-    this.setState({passions: this.state.passions});
+    var formData = {sub_section_name:"Passion"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "passions");
   },
   removeSubSection: function(e){  
     e.preventDefault();
-    var obj_to_remove = this.state.passions.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      var newState = this.state.passions.filter(item => item.id !== obj_to_remove.id);
-      this.setState({passions: newState});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Passion"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "passions");  
   },
   render: function() {
     var passions = this.state.passions

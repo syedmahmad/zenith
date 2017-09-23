@@ -17,10 +17,15 @@ var Achievements = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitAchievment({[e.target.name]: e.target.value, "id": $(this).data("achievementId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+      var state_res = _this.state.achievements.find(item => item.id == $(this).data("achievementId"));
+
+      if (state_res) {
+        var props_res = _this.props.resume.achievements.find(item => item.id == $(this).data("achievementId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitAchievment({[e.target.name]: e.target.value, "id": $(this).data("achievementId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +44,17 @@ var Achievements = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.achievements.length>0) {
-      id = this.state.achievements[this.state.achievements.length-1].id + 1;
-    }
-    var achievement = {id:id, title:'', description:'', item_icon:''};
-    this.state.achievements.push(achievement);
-    this.setState({achievements: this.state.achievements});
+
+    var formData = {sub_section_name:"Achievement"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "achievements");
+
   },
   removeSubSection: function(e){  
     e.preventDefault();
-    var obj_to_remove = this.state.achievements.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({achievements: this.state.achievements.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Achievement"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "achievements");    
   },
   render: function() {
     var achievements = this.state.achievements

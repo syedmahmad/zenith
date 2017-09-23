@@ -15,6 +15,7 @@ var Summary = React.createClass({
   },
 
   componentDidMount: function(){
+    var _this = this;
     // show setting and camera buttons
     $(document).on('focusin', ".summary-holder", (function (e) {
       this.firstChild.classList.remove('hide-section');
@@ -22,13 +23,22 @@ var Summary = React.createClass({
     // hide setting and camera buttons
     $(document).on('focusout', ".summary-holder", (function (e) {
       this.firstChild.classList.add('hide-section');
+      if (e.target.value != _this.props.resume.summary[e.target.name]) {
+        _this.submitSummary({[e.target.name]: e.target.value, "id": $(this).data("summaryId")});
+      }
     }));
   },
+
+  submitSummary: function(params){
+    this.props.updateResume(
+      {resume: {summary_attributes: params}}
+    );
+  },   
 
   render: function() {
     return (
       <div className="">
-        <section className="summary-holder">
+        <section className="summary-holder" data-summary-id={this.props.resume.summary.id}>
            <div id="edit_able" className="hide-section">
               <a href="javaScript:void(0);" title="Remove section">
               <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="summary"></i>

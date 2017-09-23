@@ -69,18 +69,23 @@ var EducationItem = React.createClass({
                 <span>
                    <div className="form-group">
                       <input
-                        type="string"
-                        name="cg"
+                        type="text"
+                        name="cgpa"
                         className="form-control"
-                        placeholder="6.00 /"
-                        value={this.state.cg}
+                        placeholder="6.00"
+                        value={this.state.cgpa}
                         onChange={ this.handleChange }
                       />
                    </div>
                 </span>
                 <span>
                    <div className="form-group">
-                      <textarea type="text" rows="1" className="form-control" id="" placeholder="6.00"></textarea>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="/6.00"
+                        value="/6.00"
+                      />
                    </div>
                 </span>
              </div>

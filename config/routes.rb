@@ -8,6 +8,8 @@ Rails.application.routes.draw do
    resources :resumes, :controller => 'cv_builder' do
     member do
       post :clone
+      post :create_sub_record
+      delete :delete_sub_record 
     end
     collection do
       post :new_resume

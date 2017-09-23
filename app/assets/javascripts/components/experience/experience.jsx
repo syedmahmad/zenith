@@ -17,10 +17,15 @@ var Experiences = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitExperience({[e.target.name]: e.target.value, id: $(this).data("experienceId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+      
+      var state_res = _this.state.experiences.find(item => item.id == $(this).data("experienceId"));
+      if (state_res) {
+        var props_res = _this.props.resume.experiences.find(item => item.id == $(this).data("experienceId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitExperience({[e.target.name]: e.target.value, "id": $(this).data("experienceId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +44,15 @@ var Experiences = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.experiences.length>0) {
-      id = this.state.experiences[this.state.experiences.length-1].id + 1;
-    }
-    var experience = {id:id, title:'' , company_name: '', location: '', description:'', duration:''};
-    this.state.experiences.push(experience);
-    this.setState({experiences: this.state.experiences});
+    var formData = {sub_section_name:"Experience"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "experiences");
   },
   removeSubSection: function(e){  
     e.preventDefault();
-    var obj_to_remove = this.state.experiences.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({experiences: this.state.experiences.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Experience"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "experiences");  
   },
   render: function() {
     var experiences = this.state.experiences

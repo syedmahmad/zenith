@@ -17,10 +17,16 @@ var Certificates = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitCertificate({[e.target.name]: e.target.value, id: $(this).data("certificateId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+
+      var state_res = _this.state.certificates.find(item => item.id == $(this).data("certificateId"));
+      if (state_res) {
+        var props_res = _this.props.resume.certificates.find(item => item.id == $(this).data("certificateId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitCertificate({[e.target.name]: e.target.value, "id": $(this).data("certificateId")});
+        }
+      }
+      
     }));
 
    // show and hide buttons
@@ -39,20 +45,15 @@ var Certificates = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.certificates.length>0) {
-      id = this.state.certificates[this.state.certificates.length-1].id + 1;
-    }
-    var certificate = {id:id, name:'', institutiion_name:''};
-    this.state.certificates.push(certificate);
-    this.setState({certificates: this.state.certificates});
+    var formData = {sub_section_name:"Certificate"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "certificates");
   },
   removeSubSection: function(e){  
     e.preventDefault();
-    var obj_to_remove = this.state.certificates.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({certificates: this.state.certificates.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Certificate"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "certificates");  
   },
   render: function() {
     var certificates = this.state.certificates

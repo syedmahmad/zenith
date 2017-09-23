@@ -17,10 +17,15 @@ var Volunteers = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitVolunteers({[e.target.name]: e.target.value, id: $(this).data("volunteerId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+
+      var state_res = _this.state.volunteers.find(item => item.id == $(this).data("volunteerId"));
+      if (state_res) {
+        var props_res = _this.props.resume.volunteers.find(item => item.id == $(this).data("volunteerId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitVolunteers({[e.target.name]: e.target.value, "id": $(this).data("volunteerId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -38,19 +43,16 @@ var Volunteers = React.createClass({
     );
   },    
   addSubSection: function(e){
-    var id=1;
-    if (this.state.volunteers.length>0) {
-      id = this.state.volunteers[this.state.volunteers.length-1].id + 1;
-    }
-    var volunteer = {id:id, title:'', desctiption:'', duration:'', organization_name:''};
-    this.state.volunteers.push(volunteer);
-    this.setState({volunteers: this.state.volunteers});
+    e.preventDefault();
+    var formData = {sub_section_name:"Volunteer"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "volunteers");
   },
   removeSubSection: function(e){  
-    volunteers = $.grep(this.state.volunteers, function(item){ 
-     return item.id != $(e.target).data("sectionId"); 
-    });
-    this.setState({volunteers: volunteers});
+    e.preventDefault();
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Volunteer"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "volunteers");
   },
 
   render: function() {

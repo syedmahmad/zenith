@@ -17,10 +17,15 @@ var Technologies = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitTechnologies({[e.target.name]: e.target.value, id: $(this).data("technologyId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+      
+      var state_res = _this.state.technologies.find(item => item.id == $(this).data("technologyId"));
+      if (state_res) {
+        var props_res = _this.props.resume.technologies.find(item => item.id == $(this).data("technologyId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitTechnologies({[e.target.name]: e.target.value, "id": $(this).data("technologyId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +44,15 @@ var Technologies = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.technologies.length>0) {
-      id = this.state.technologies[this.state.technologies.length-1].id + 1;
-    }
-    var technology = {id:id, name:'', tec_names:''};
-    this.state.technologies.push(technology);
-    this.setState({technologies: this.state.technologies});
+    var formData = {sub_section_name:"Technology"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "technologies");
   },
   removeSubSection: function(e){
     e.preventDefault();
-    var obj_to_remove = this.state.technologies.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({technologies: this.state.technologies.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Technology"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "technologies");
   },
   render: function() {
     var technologies = this.state.technologies;

@@ -17,10 +17,15 @@ var Strengths = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitStrengths({[e.target.name]: e.target.value, id: $(this).data("strengthId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+
+      var state_res = _this.state.strengths.find(item => item.id == $(this).data("strengthId"));
+      if (state_res) {
+        var props_res = _this.props.resume.strengths.find(item => item.id == $(this).data("strengthId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitStrengths({[e.target.name]: e.target.value, "id": $(this).data("strengthId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +44,15 @@ var Strengths = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.strengths.length>0) {
-      id = this.state.strengths[this.state.strengths.length-1].id + 1;
-    }
-    var strength = {id:id, title:'', description:''};
-    this.state.strengths.push(strength);
-    this.setState({strengths: this.state.strengths});
+    var formData = {sub_section_name:"Strength"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "strengths");
   },
   removeSubSection: function(e){
     e.preventDefault();
-    var obj_to_remove = this.state.strengths.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({strengths: this.state.strengths.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Strength"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "strengths");
   },
   render: function() {
     var strengths = this.state.strengths

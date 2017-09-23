@@ -17,10 +17,15 @@ var Languages = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitLanguage({[e.target.name]: e.target.value, id: $(this).data("languageId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+        
+      var state_res = _this.state.languages.find(item => item.id == $(this).data("languageId"));
+      if (state_res) {
+        var props_res = _this.props.resume.languages.find(item => item.id == $(this).data("languageId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitLanguage({[e.target.name]: e.target.value, "id": $(this).data("languageId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +44,15 @@ var Languages = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.languages.length>0) {
-      id = this.state.languages[this.state.languages.length-1].id + 1;
-    }
-    var achievement = {id:id, name:'', level:''};
-    this.state.languages.push(achievement);
-    this.setState({languages: this.state.languages});
+    var formData = {sub_section_name:"Language"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "languages");
   },
   removeSubSection: function(e){  
     e.preventDefault();
-    var obj_to_remove = this.state.languages.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({languages: this.state.languages.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Language"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "languages");  
   },
   render: function() {
     var languages = this.state.languages

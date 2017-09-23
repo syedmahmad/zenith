@@ -17,10 +17,15 @@ var Projects = React.createClass({
     }));
     $(document).on('focusout', ".section-item", (function (e) {
       this.firstChild.classList.add('hide-section');
-      // if(_this.props.achievement[e.target.name] != e.target.value){
-      _this.submitProject({[e.target.name]: e.target.value, id: $(this).data("projectId")});
-        // _this.props.achievement[e.target.name] = e.target.value;
-      // }
+
+      var state_res = _this.state.projects.find(item => item.id == $(this).data("projectId"));
+      if (state_res) {
+        var props_res = _this.props.resume.projects.find(item => item.id == $(this).data("projectId"));
+        if (props_res && props_res[e.target.name] != e.target.value) {
+          //send update call...
+          _this.submitProject({[e.target.name]: e.target.value, "id": $(this).data("projectId")});
+        }
+      }
     }));
 
    // show and hide buttons
@@ -39,20 +44,15 @@ var Projects = React.createClass({
   },    
   addSubSection: function(e){
     e.preventDefault();
-    var id=1;
-    if (this.state.projects.length>0) {
-      id = this.state.projects[this.state.projects.length-1].id + 1;
-    }
-    var project = {id:id, name:'' , location: '', description:'', duration:''};
-    this.state.projects.push(project);
-    this.setState({projects: this.state.projects});
+    var formData = {sub_section_name:"Project"};
+    //updating current state from parent
+    this.props.createSubSection(formData, "projects");
   },
   removeSubSection: function(e){
     e.preventDefault();
-    var obj_to_remove = this.state.projects.find(item => item.id === $(e.target).data("sectionId"));
-    if (obj_to_remove) {
-      this.setState({projects: this.state.projects.filter(item => item.id !== obj_to_remove.id)});    
-    }
+    var formData = {section_id: $(e.target).data("sectionId"), sub_section_name:"Project"};
+    //updating current state from parent
+    this.props.removeSubSection(formData, "projects");
   },
   render: function() {
     var projects = this.state.projects
