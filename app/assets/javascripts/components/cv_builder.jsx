@@ -143,7 +143,7 @@ var CvBuilder = React.createClass({
       key = "page-"+i;  
       data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection}/>);
     };
-
+    debugger;
     return (
       <div className="cv-builder-container">
         <div className="right_col" role="main">
@@ -152,7 +152,7 @@ var CvBuilder = React.createClass({
             {data_1}  
           </div>
         </div>
-        <RearrangeModal handleRearrage={this.handleRearrage} sections={this.state.layoutSections}/>
+        <RearrangeModal pages={this.state.pages} sectionData={this.state.sectionData} handleRearrage={this.handleRearrage} sections={this.state.layoutSections}/>
         <AddSectionModal handleAddSection={this.handleAddSection} sections={this.state.layoutSections}/>
       </div>
     )
