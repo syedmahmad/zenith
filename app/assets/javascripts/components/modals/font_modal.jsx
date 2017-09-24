@@ -1,4 +1,4 @@
-var BackgroundModal = React.createClass({
+var FontModal = React.createClass({
     getInitialState: function() {
       return { isModalOpen: true };
     },
@@ -11,14 +11,14 @@ var BackgroundModal = React.createClass({
       this.setState({ isModalOpen: false });
     },
 
-    changeBackground: function(e){
-      this.props.handleBackground(e);
+    changeFont: function(e){
+      this.props.handleFont(e);
     },
 
     render: function() {
-      var BackgroundImages = this.props.resumeStyle.available_background_images
+      var fonts = this.props.resumeStyle.available_fonts
       return (
-        <div className="modal fade" id="backgroundModal" role="dialog">
+        <div className="modal fade" id="fontModal" role="dialog">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
@@ -28,8 +28,8 @@ var BackgroundModal = React.createClass({
               <div className="modal-body">
                 <div className="reorder-page">
                   {
-                    BackgroundImages.map((img, index) => (
-                      <img src={"/assets/"+img} key={index} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/>
+                    fonts.map((font, index) => (
+                      <p key={index} data-font-name={font} onClick={this.changeFont}>{font}</p>
                   ))}
                 </div>
               </div>

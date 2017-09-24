@@ -110,6 +110,14 @@ var CvBuilder = React.createClass({
     this.state.resumeStyle.background_img = img;
     this.setState({resumeStyle: this.state.resumeStyle});
   },
+  handleFont: function(e) {
+    var font = $(e.target).data("fontName");
+    params = {id: this.props.resume.resume_style.id, "font_family": font};
+    this.updateResume({resume: {resume_style_attributes: params}});
+
+    this.state.resumeStyle.font_family = font;
+    this.setState({resumeStyle: this.state.resumeStyle});
+  },
   handleRemoveSection: function(e){
     var removeSection = $(e.target).data("sectionName");
     var positionInSections = this.state.layoutSections.indexOf(removeSection);
@@ -163,6 +171,7 @@ var CvBuilder = React.createClass({
         <RearrangeModal handleRearrage={this.handleRearrage} sections={this.state.layoutSections}/>
         <AddSectionModal handleAddSection={this.handleAddSection} sections={this.state.layoutSections}/>
         <BackgroundModal handleBackground={this.handleBackground} resumeStyle={this.state.resumeStyle}/>
+        <FontModal handleFont={this.handleFont} resumeStyle={this.state.resumeStyle}/>
       </div>
     )
   }
