@@ -110,12 +110,12 @@
 }
 .page-holder .company .form-control {
   font-size: 16px;
-  color: #00a7dd;
+  color: inherit;
   font-weight: bold;
 }
 .page-holder .company .form-control::placeholder {
   font-size: 18px;
-  color: #00a7dd;
+  color: inherit;
   font-weight: bold;
 }
 .page-holder .job-title {
@@ -123,7 +123,7 @@
 }
 .page-holder .job-title .form-control {
   font-size: 24px;
-  color: #000;
+  color: inherit;
 }
 .page-holder .job-title .form-control::placeholder {
   font-size: 24px;
@@ -152,7 +152,7 @@
   display: inline-block;
   vertical-align: top;
   line-height: 23px;
-  color: #00a7dd;
+  color: inherit;
   font-size: 16px;
   padding-right: 3px;
 }
@@ -212,7 +212,7 @@ ul {
   min-width: 27px;
   min-height: 40px;
   font-size: 30px;
-  color: #00a7dd;
+  color: inherit;
   display: inline-block;
 }
 .achievement-holder .achievement-list li h5 {
@@ -283,7 +283,7 @@ ul {
 }
 .education-holder .languages-add .progress-bar, .languages-holder .languages-add .progress-bar, .experience-holder .languages-add .progress-bar {
   background-image: none;
-  background-color: #00a7dd;
+  background-color: inherit;
 }
 .education-holder .title-position {
   margin: 0;

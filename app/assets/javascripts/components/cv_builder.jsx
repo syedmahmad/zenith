@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {pages: 1, sectionData: [{name: "Summary", page: 0}], layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
+    return {pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -118,6 +118,14 @@ var CvBuilder = React.createClass({
     this.state.resumeStyle.font_family = font;
     this.setState({resumeStyle: this.state.resumeStyle});
   },
+  handleColor: function(e) {
+    var color = $(e.target).data("colorName");
+    params = {id: this.props.resume.resume_style.id, "color": color};
+    this.updateResume({resume: {resume_style_attributes: params}});
+
+    this.state.resumeStyle.color = color;
+    this.setState({resumeStyle: this.state.resumeStyle});
+  },
   handleRemoveSection: function(e){
     var removeSection = $(e.target).data("sectionName");
     var positionInSections = this.state.layoutSections.indexOf(removeSection);
@@ -172,6 +180,7 @@ var CvBuilder = React.createClass({
         <AddSectionModal handleAddSection={this.handleAddSection} sections={this.state.layoutSections}/>
         <BackgroundModal handleBackground={this.handleBackground} resumeStyle={this.state.resumeStyle}/>
         <FontModal handleFont={this.handleFont} resumeStyle={this.state.resumeStyle}/>
+        <ColorModal handleColor={this.handleColor} resumeStyle={this.state.resumeStyle}/>
       </div>
     )
   }

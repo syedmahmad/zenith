@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(version: 20170921052543) do
     t.text     "available_background_images"
     t.string   "font_family"
     t.text     "available_fonts"
+    t.string   "color"
+    t.text     "available_colors"
     t.integer  "resume_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
