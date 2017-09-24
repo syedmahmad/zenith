@@ -17,7 +17,7 @@ var RearrangeModal = React.createClass({
   render: function() {
     pages = this.props.pages
     sectionData = this.props.sectionData
-    var sections = <RearrangeSections pages={pages} sectionData={sectionData} handleRearrange={this.handleRearrange} sections={this.props.sections}/>;
+    var sections = <RearrangeSections layout_type={this.props.layout_type} pages={pages} sectionData={sectionData} handleRearrange={this.handleRearrange} sections={this.props.sections}/>;
     return (
       <div className="modal fade" id="rearrangeModal" role="dialog">
         <div className="modal-dialog">

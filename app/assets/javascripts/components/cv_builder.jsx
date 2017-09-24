@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {pages: 1, sectionData: [{name: "Awards", page: 0}, {name: "Experiences", page: 0}, {name: "Strengths", page: 0}], layoutSections: this.props.resume.layout.section_name, resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {layout_type: "double", pages: 1, sectionData: [{name: "Experiences", page: 0, column: 1}, {name: "Strengths", page: 0, column: 0}], layoutSections: this.props.resume.layout.section_name, resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -9,6 +9,7 @@ var CvBuilder = React.createClass({
     elements = $(".page")
     _this = this;
     $.each(elements, function( index, elem ) {
+      debugger;
       if(elem.scrollHeight > elem.offsetHeight){
         var lastElm = _this.state.layoutSections[_this.state.layoutSections.length - 1];
         pages = _this.state.pages;
@@ -80,12 +81,16 @@ var CvBuilder = React.createClass({
     });
   },
   handleRearrage: function(){
-    sectionData = _this.state.sectionData
+    sectionData = this.state.sectionData
     var section_names = $('.rearrange-section-item').map(function(index, elem) {
       sectionData = $.grep(sectionData, function (a) {
-        debugger
         if (a.name == $(elem).data('sectionName')) {
             a.page = $(elem).closest(".reorder-page").data('page');
+            if($(elem).parents(".resume-col-right").length > 0){
+              a.column = 1
+            }else if($(elem).parents(".resume-col-left").length > 0){
+              a.column = 0
+            }
         }
         return a;
       });
@@ -121,7 +126,6 @@ var CvBuilder = React.createClass({
   },
 
   render: function() {
-    debugger;
     var data = [];
     var data_1 = [];
     var selectedSections = [];
@@ -130,6 +134,8 @@ var CvBuilder = React.createClass({
     var key = "";
     var header = this.state.resume["header"];
     var _this = this;
+    data_right = []
+    data_left = []
 
     for(i=0;i<_this.state.pages;i++){
       data = [];
@@ -137,21 +143,31 @@ var CvBuilder = React.createClass({
       $.grep(_this.state.sectionData, function(item){
         if(item.page == i){
           selectedSections.push(item.name);
+          if(item.column == 1){
+            data_right.push(item.name);
+          }else{
+            data_left.push(item.name);
+          }
         }
       });
 
-      _this.state.layoutSections.forEach(function(section) {
-        if($.inArray(section, selectedSections) > -1){
-          section = section.substr(0,1).toUpperCase()+section.substr(1);
-          MyComponent = window[section];
-          key = section + "holder"+i;
-          data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
-        }
-      });
+      if(_this.state.layout_type == "double"){
+        key = "double-page"+i;
+        data.push(<Double data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+      }else{
+        _this.state.layoutSections.forEach(function(section) {
+          if($.inArray(section, selectedSections) > -1){
+            section = section.substr(0,1).toUpperCase()+section.substr(1);
+            MyComponent = window[section];
+            key = section + "holder"+i;
+            data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+          }
+        });
+      }
+
       key = "page-"+i;  
       data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection}/>);
     };
-    debugger;
     return (
       <div className="cv-builder-container">
         <div className="right_col" role="main">
@@ -160,7 +176,7 @@ var CvBuilder = React.createClass({
             {data_1}  
           </div>
         </div>
-        <RearrangeModal pages={this.state.pages} sectionData={this.state.sectionData} handleRearrage={this.handleRearrage} sections={this.state.layoutSections}/>
+        <RearrangeModal layout_type={this.state.layout_type} pages={this.state.pages} sectionData={this.state.sectionData} handleRearrage={this.handleRearrage} sections={this.state.layoutSections}/>
         <AddSectionModal handleAddSection={this.handleAddSection} sections={this.state.layoutSections}/>
       </div>
     )
