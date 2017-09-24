@@ -137,13 +137,14 @@ ActiveRecord::Schema.define(version: 20170921052543) do
   end
 
   create_table "resume_styles", force: :cascade do |t|
-    t.string   "background"
+    t.string   "background_img"
+    t.text     "background_images"
     t.string   "fontbody"
     t.string   "fontheading"
     t.string   "color"
     t.integer  "resume_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "resumes", force: :cascade do |t|

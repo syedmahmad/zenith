@@ -46,7 +46,7 @@ class Resume < ActiveRecord::Base
 	after_create :setup_sections
 
 	def setup_sections
-		self.create_resume_style
+		ResumeStyle.create_default(self.id)
 		self.create_header
 		self.create_summary
 		Layout.create_default(self.id)

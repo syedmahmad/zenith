@@ -5,7 +5,7 @@ var PassionItem = React.createClass({
     return {name: passion.name};
   },
 
-   handleChange: function(e){
+  handleChange: function(e){
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   },

@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {pages: 1, sectionData: [{name: "Summary", page: 0}], layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {pages: 1, sectionData: [{name: "Summary", page: 0}], layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -102,6 +102,14 @@ var CvBuilder = React.createClass({
     // this.state.sectionData.push({name: newSection, page: 0});
     this.setState({layoutSections: this.state.layoutSections, sectionData: this.state.sectionData});
   },
+  handleBackground: function(e) {
+    var img = $(e.target).data("imageName");
+    params = {id: this.props.resume.resume_style.id, "background_img": img};
+    this.updateResume({resume: {resume_style_attributes: params}});
+
+    this.state.resumeStyle.background_img = img;
+    this.setState({resumeStyle: this.state.resumeStyle});
+  },
   handleRemoveSection: function(e){
     var removeSection = $(e.target).data("sectionName");
     var positionInSections = this.state.layoutSections.indexOf(removeSection);
@@ -141,7 +149,7 @@ var CvBuilder = React.createClass({
         }
       });
       key = "page-"+i;  
-      data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection}/>);
+      data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection} resumeStyle={_this.state.resume.resume_style}/>);
     };
 
     return (
@@ -154,6 +162,7 @@ var CvBuilder = React.createClass({
         </div>
         <RearrangeModal handleRearrage={this.handleRearrage} sections={this.state.layoutSections}/>
         <AddSectionModal handleAddSection={this.handleAddSection} sections={this.state.layoutSections}/>
+        <BackgroundModal handleBackground={this.handleBackground} resumeStyle={this.state.resumeStyle}/>
       </div>
     )
   }
