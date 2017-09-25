@@ -95,10 +95,10 @@ class CvBuilderController < ApplicationController
     end
 
     return{
-      # "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new.attributes),
+      "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new(:background_img => "white.png", :available_background_images => ["arches.png","checkered.png","handmade.png","paper.png","psychedelic.png","struckaxiom.png","vichy.png","weave.png","worn.png"], font_family:"Lato", :available_fonts => ["Lato","Playfair Display","Abril Fatface","Raleway","Montserrat","Exo 2","Oswald","Chivo","Roboto Slab"], color:"black", :available_colors => ["black","#00a7dd","#8616cc","#FF0F0F","#CF924A","#A861A6","#00a7dd","#FA6C00","#FB51A5","#5ac41d","#36006B"]).attributes),
       "id": @resume_data.present? ? @resume_data.id : "",
       "header": (@resume_data.present? && @resume_data.header.present? ? header_data : new_header_data),
-      "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.attributes : Layout.new(:section_names => ["Experiences", "Education", "Strengths", "Achievements", "Languages", "Projects"], :section_data => [{name: "Experiences", page: 0}, {name: "Education", page: 0}, {name: "Strengths", page: 0}, {name: "Achievements", page: 0}, {name: "Languages", page: 0}, {name: "Projects", page: 0}]).attributes),
+      "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.attributes : Layout.new(:section_name => ["Experiences", "Education", "Strengths", "Achievements", "Languages", "Projects"], :section_data => [{name: "Experiences", page: 0}, {name: "Education", page: 0}, {name: "Strengths", page: 0}, {name: "Achievements", page: 0}, {name: "Languages", page: 0}, {name: "Projects", page: 0}]).attributes),
       "summary": (@resume_data.present? && @resume_data.summary.present? ? @resume_data.summary.attributes : Summary.new.attributes),
       "achievements": (@resume_data.present? && @resume_data.achievements.present? ? @resume_data.achievements.map {|rec| rec.attributes} : [Achievement.new.attributes]),
       "awards": (@resume_data.present? && @resume_data.awards.present? ? @resume_data.awards.map {|rec| rec.attributes} : [Award.new.attributes]),
@@ -121,7 +121,7 @@ class CvBuilderController < ApplicationController
     # params = {"resume"=>{"achievements_attributes"=>{"description"=>"sdfsdfsdfsd111111111111111111111111111", "id"=>"1"}}, "id"=>"1"}
     params.require(:resume).permit(:section_names, achievements_attributes: [:title, :description, :id], awards_attributes: [:name, :id], certificates_attributes: [:name, :institutiion_name, :id], courses_attributes: [:title, :description, :id], strengths_attributes: [:title, :description, :id], educations_attributes: [:degree_name, :university_name, :id, :duration, :cgpa], experiences_attributes: [:id, :title, :company_name, :location, :duration, :description], languages_attributes: [:id, :name, :level], passions_attributes: [:id, :name],
       projects_attributes: [:id, :name, :location, :duration, :description], quotes_attributes: [:id, :name], skills_attributes: [:id, :name, :level], technologies_attributes: [:id, :name, :tec_names], volunteers_attributes: [:id, :title, :organization_name, :duration, :description], layout_attributes: [:id, :section_names => [], :section_data => []],
-      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link], summary_attributes: [:id, :title, :description])
+      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link], summary_attributes: [:id, :title, :description], resume_style_attributes: [:id, :background_img, :font_family, :color])
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921052543) do
+ActiveRecord::Schema.define(version: 20170923201519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,18 +72,16 @@ ActiveRecord::Schema.define(version: 20170921052543) do
 
   create_table "headers", force: :cascade do |t|
     t.string   "name",                default: "",   null: false
-    t.string   "job_title",           default: "",   null: false
+    t.string   "location",            default: "",   null: false
+    t.string   "description",         default: "",   null: false
     t.string   "phone",               default: "",   null: false
     t.string   "email",               default: "",   null: false
-    t.string   "location",            default: "",   null: false
-    t.string   "website_link",        default: "",   null: false
     t.boolean  "show_name",           default: true
     t.boolean  "show_location",       default: true
-    t.boolean  "show_job_title",      default: true
+    t.boolean  "show_description",    default: true
     t.boolean  "show_phone",          default: true
     t.boolean  "show_email",          default: true
-    t.boolean  "shwo_website_link",   default: true
-    t.boolean  "show_avatar",         default: true
+    t.boolean  "show_photo",          default: true
     t.integer  "resume_id"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
@@ -102,13 +100,13 @@ ActiveRecord::Schema.define(version: 20170921052543) do
   end
 
   create_table "layouts", force: :cascade do |t|
-    t.integer  "layout_type",   default: 1
-    t.text     "section_names"
+    t.integer  "layout_type",  default: 1
+    t.string   "section_name", default: "", null: false
     t.text     "section_data"
-    t.integer  "resume_id"
     t.integer  "user_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "resume_id"
   end
 
   create_table "passions", force: :cascade do |t|
@@ -129,6 +127,17 @@ ActiveRecord::Schema.define(version: 20170921052543) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "publications", force: :cascade do |t|
+    t.string   "name",         default: "", null: false
+    t.string   "authors_name", default: "", null: false
+    t.integer  "resume_id"
+    t.string   "date",         default: "", null: false
+    t.string   "url"
+    t.string   "description",  default: "", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "quotes", force: :cascade do |t|
     t.string   "name",       default: "", null: false
     t.integer  "resume_id"
@@ -137,20 +146,24 @@ ActiveRecord::Schema.define(version: 20170921052543) do
   end
 
   create_table "resume_styles", force: :cascade do |t|
-    t.string   "background"
-    t.string   "fontbody"
-    t.string   "fontheading"
+    t.string   "background_img"
+    t.text     "available_background_images"
+    t.string   "font_family"
+    t.text     "available_fonts"
     t.string   "color"
+    t.text     "available_colors"
     t.integer  "resume_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "resumes", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        default: "", null: false
+    t.string   "title",       default: "", null: false
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description", default: "", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "skills", force: :cascade do |t|
@@ -198,6 +211,11 @@ ActiveRecord::Schema.define(version: 20170921052543) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "name",                   default: "", null: false
+    t.string   "location",               default: "", null: false
+    t.string   "description",            default: "", null: false
+    t.string   "phone",                  default: "", null: false
+    t.string   "contact_email",          default: "", null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

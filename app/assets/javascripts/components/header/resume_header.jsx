@@ -53,7 +53,7 @@ var ResumeHeader = React.createClass({
   render: function() {
     return (
       <div>
-        <div id="edit_able" className="">  
+        <div id="edit_able" className="hide-section">  
            <form>
              <input 
                ref="file" 
