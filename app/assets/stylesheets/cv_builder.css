@@ -355,3 +355,11 @@ ul {
 .cv-builder .section-item{
   position: relative;
 }
+.resume-col-left{
+  width: 60%;
+  float: left;
+}
+.resume-col-right{
+  width: 40%;
+  float: right;
+}
