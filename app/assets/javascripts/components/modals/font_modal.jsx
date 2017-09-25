@@ -26,7 +26,7 @@ var FontModal = React.createClass({
                 <h4 className="modal-title">Rearrange</h4>
               </div>
               <div className="modal-body">
-                <div className="reorder-page">
+                <div className="font-reorder-page">
                   {
                     fonts.map((font, index) => (
                       <p key={index} data-font-name={font} onClick={this.changeFont}>{font}</p>

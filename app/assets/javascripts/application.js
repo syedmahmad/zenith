@@ -43,4 +43,3 @@
 //= require  js/nprogress.js
 
 //= require flash.js
-//= require overflowing.js

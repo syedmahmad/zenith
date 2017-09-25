@@ -1,17 +1,22 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layout_type: "double", pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
+    return {layout_type: "single", pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
   },
   componentDidUpdate: function(prevProps, prevState){
+    this.setupLayout();    
+  },
+  componentDidMount: function(){
+    this.setupLayout();
+  },
+  setupLayout: function(){
     elements = $(".page")
     _this = this;
     $.each(elements, function( index, elem ) {
-      debugger;
       if(elem.scrollHeight > elem.offsetHeight){
-        var lastElm = _this.state.layoutSections[_this.state.layoutSections.length - 1];
+        var lastElm = $(elem).find(".section-items").last().data("sectionName");
         pages = _this.state.pages;
         if(index+1 == pages){
           pages = pages + 1;
@@ -25,7 +30,7 @@ var CvBuilder = React.createClass({
         // sectionData.push({name: lastElm, page: index + 1});
         _this.setState({pages: pages, sectionData: sectionData});
       }else{
-        if($(elem).find(".section-item").length == 0){
+        if($(elem).find(".section-items").length == 0){
           elem.remove();
           _this.setState({pages: _this.state.pages - 1});
         }
@@ -96,12 +101,18 @@ var CvBuilder = React.createClass({
       });
       return $(elem).data('sectionName');
     }).get();
-    params = {id: this.props.resume.layout.id, "section_names": section_names, section_date: sectionData};
+
+    params = {id: this.props.resume.layout.id, "section_names": section_names, section_date: sectionData, "pages": pages};
     if (this.props.current_user) {
       this.updateResume({resume: {layout_attributes: params}});
     }
+    if(this.state.layout_type == "single"){
+      $(".rearrange-section-modal").sortable("cancel");
+    }else if(this.state.layout_type == "double"){
+      $(".resume-col-left, .resume-col-right").sortable("cancel");
+    }
 
-    this.setState({layoutSections: section_names, sectionData: sectionData});
+    this.setState({layoutSections: section_names, sectionData: sectionData, pages: pages});
   },
   handleAddSection: function(e){
     var newSection = $(e.target).data("sectionName");
@@ -111,7 +122,7 @@ var CvBuilder = React.createClass({
       this.updateResume({resume: {layout_attributes: params}});
     }
     this.setState({layoutSections: this.state.layoutSections});
-    this.state.sectionData.push({name: newSection, page: 0});
+    this.state.sectionData.push({name: newSection, page: 0, column: 0});
     this.setState({layoutSections: this.state.layoutSections, sectionData: this.state.sectionData});
   },
   handleBackground: function(e) {
@@ -148,6 +159,8 @@ var CvBuilder = React.createClass({
     }
     this.setState({layoutSections: this.state.layoutSections});
   },
+  removeChild: function(){
+  },
 
   render: function() {
     var data = [];
@@ -163,6 +176,8 @@ var CvBuilder = React.createClass({
 
     for(i=0;i<_this.state.pages;i++){
       data = [];
+      data_right = [];
+      data_left = [];
       selectedSections = [];
       $.grep(_this.state.sectionData, function(item){
         if(item.page == i){
@@ -174,7 +189,6 @@ var CvBuilder = React.createClass({
           }
         }
       });
-
       if(_this.state.layout_type == "double"){
         key = "double-page"+i;
         data.push(<Double data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
