@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Make you urls look like '/resume/olkarls' instead of '/resume/1'.
 gem 'hashids'
+gem 'modernizr-rails'
 
 gem "font-awesome-rails"
 gem 'react-rails', '~> 1.0'

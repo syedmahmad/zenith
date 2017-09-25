@@ -121,6 +121,7 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    modernizr-rails (2.7.1)
     multi_json (1.11.2)
     multipart-post (2.0.0)
     nokogiri (1.6.7.2)
@@ -227,6 +228,7 @@ DEPENDENCIES
   hashids
   jbuilder (~> 2.0)
   jquery-rails (~> 2.3.0)
+  modernizr-rails
   paperclip (~> 5.0.0)
   paperclip-azure (~> 1.0)
   pg (= 0.20.0)

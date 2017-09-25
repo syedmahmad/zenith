@@ -44,3 +44,5 @@
 
 //= require flash.js
 //= require overflowing.js
+//= require onboarding.js
+//= require modernizr
