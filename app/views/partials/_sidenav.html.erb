@@ -14,7 +14,7 @@
       <div class="profile">
         <% if current_user.present? %>
           <div class="profile_pic">
-            <img src=<%=current_user.resumes.last.header.avatar.url%> class="img-responsive"/>
+            <%= image_tag "default_avatar.png", :class => "img-circle profile_img"  %>
           </div>
           <div class="profile_info">
             <span>Welcome,</span>
@@ -61,6 +61,8 @@
             <li data-toggle="modal" data-target="#backgroundModal">
               <a><i class="fa fa-star-half-o"></i> Background</a>
             </li>
+
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>      
 
           </ul>
         </div>

@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layout_type: "double", pages: 1, sectionData: [{name: "Experiences", page: 0, column: 1}, {name: "Strengths", page: 0, column: 0}], layoutSections: this.props.resume.layout.section_name, resume_ids: this.props.resume_ids, resume: this.props.resume};
+    return {layout_type: "double", pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)

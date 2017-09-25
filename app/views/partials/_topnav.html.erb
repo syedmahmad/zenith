@@ -12,7 +12,7 @@
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 
             <% if current_user.present? %>
-                <img src=<%=current_user.resumes.last.header.avatar.url%>/><%=current_user.email%>
+                <%= image_tag "default_avatar.png", :class => "img-circle profile_img"  %>Guest
             <% else %>
                 <%= image_tag "default_avatar.png", :class => "img-circle profile_img"  %>Guest
             <% end %>

@@ -16,6 +16,7 @@ var BackgroundModal = React.createClass({
     },
 
     render: function() {
+      debugger;
       var BackgroundImages = this.props.resumeStyle.available_background_images
       return (
         <div className="modal fade" id="backgroundModal" role="dialog">
