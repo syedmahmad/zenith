@@ -17,13 +17,12 @@ class CvBuilderController < ApplicationController
   end
 
   def new_resume
-    
     if current_user.present?
       resume = current_user.resumes.create
       @resume_data = Resume.where(id: resume.id).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
       @resume_data = @resume_data.take
       if @resume_data
-        render :json => {:path_to_go => "resumes/#{@resume_data.id}"}, :status => 200
+        render :json => {:path_to_go => "resumes/#{Hashids.new("salt", 16).encode(@resume_data.id)}"}, :status => 200
       else
         render file: "#{Rails.root}/public/422.html", layout: false, status: 422
       end
@@ -66,7 +65,8 @@ class CvBuilderController < ApplicationController
   end
   
   def show
-    @resume_data = Resume.where(id: params[:id]).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
+    id = Hashids.new("salt", 16).decode(params[:id]).try(:first)
+    @resume_data = Resume.where(id: id).includes(:resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
     @resume_data = @resume_data.take
     
     if @resume_data.present?
