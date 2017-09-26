@@ -52,7 +52,9 @@ var RearrangeSections = React.createClass({
     };
     return (
       <div className="reorder-page-container">
-        {data_1}
+        <div className="reorder-page-holder">
+          {data_1}
+        </div>
       </div>
     )
   }

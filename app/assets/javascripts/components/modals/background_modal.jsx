@@ -27,10 +27,12 @@ var BackgroundModal = React.createClass({
               </div>
               <div className="modal-body">
                 <div className="background-reorder-page">
-                  {
-                    BackgroundImages.map((img, index) => (
-                      <img src={"/assets/"+img} key={index} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/>
-                  ))}
+                  <div className="bg-box">
+                    {
+                      BackgroundImages.map((img, index) => (
+                        <img src={"/assets/"+img} key={index} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

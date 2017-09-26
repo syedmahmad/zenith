@@ -1,11 +1,11 @@
 .bg-color {
   background-color: #fff;
 }
-.cv-builder .section-items{
+/*.cv-builder .section-items{
   padding: 10px;
   border: solid black 2px;
   margin-top: 5px;
-}
+}*/
 .cv-builder-container .main_container {
   height: 100%;
   position: fixed;
@@ -15,6 +15,14 @@
 .add-section-modal {
   display: inline-block;
 }
+.color-reorder-page,
+.font-reorder-page,
+.background-reorder-page{
+  overflow: hidden;
+}
+.color-reorder-page p,
+.font-reorder-page p,
+.background-reorder-page .bg-box img,
 .add-section-modal .section {
   color: white;
   cursor: pointer;
@@ -24,9 +32,10 @@
   font-weight: 500;
   height: 109px;
   line-height: 110px;
-  margin: 2px;
+  margin: 1px;
   text-align: center;
   width: 109px;
+  border: 1px solid #000;
 }
 /*cv builder design*/
 .page-holder {
@@ -74,6 +83,7 @@
 }
 .page-holder textarea::placeholder {
   color: #000;
+  vertical-align: top;
 }
 .page-holder .form-control {
   border: 0;
@@ -94,6 +104,7 @@
   font-size: 30px;
   color: #000;
   font-weight: bold;
+  vertical-align: top;
 }
 .page-holder .title-position .form-control {
   font-size: 20px;
@@ -103,6 +114,7 @@
   font-size: 20px;
   color: #000;
   font-weight: 500;
+  vertical-align: top;
 }
 .page-holder .company {
   position: relative;
@@ -116,6 +128,7 @@
 .page-holder .company .form-control::placeholder {
   font-size: 18px;
   color: inherit;
+  vertical-align: top;
   font-weight: bold;
 }
 .page-holder .job-title {
@@ -128,6 +141,7 @@
 .page-holder .job-title .form-control::placeholder {
   font-size: 24px;
   color: #000;
+  vertical-align: top;
   font-weight: 500;
 }
 .page-holder .column {
@@ -147,6 +161,7 @@
   font-size: 14px;
   color: #000;
   font-weight: normal;
+  vertical-align: top;
 }
 .page-holder .column i {
   display: inline-block;
@@ -155,6 +170,7 @@
   color: inherit;
   font-size: 16px;
   padding-right: 3px;
+  margin-top: 5px;
 }
 ul {
   margin: 0;
@@ -312,14 +328,22 @@ ul {
 #rearrangeModal .modal-body{
   text-align: center;
 }
+#rearrangeModal .reorder-page-container{
+  display: flex;
+}
+#rearrangeModal .reorder-page-container .reorder-page-holder{
+  margin: 0 auto;
+}
 #rearrangeModal .reorder-page{
-    max-width: 200px;
-    padding: 10px;
-    background: #fff;
-    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.7);
-    box-shadow: 0 3px 9px rgba(0,0,0,.7);
-    display: inline-block;
-    min-width: 200px;
+  max-width: 150px;
+  padding: 10px;
+  background: #fff;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.7);
+  display: inline-block;
+  min-width: 150px;
+  margin-right: 15px;
+  vertical-align: top;
 }
 #rearrangeModal .reorder-page .rearrange-section-modal .rearrange-section-item{
   min-height: 25px;

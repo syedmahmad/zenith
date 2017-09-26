@@ -61,8 +61,15 @@
             <li data-toggle="modal" data-target="#backgroundModal">
               <a><i class="fa fa-star-half-o"></i> Background</a>
             </li>
-
-            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>      
+            <li class="main-nav">
+              <a class="cd-signup" href="javascript:;" ><i class="fa fa-sign-in"></i> Sign in</a>
+            </li>
+            <li class="main-nav">
+              <a class="cd-signup" href="javascript:;"><i class="fa fa-sign-in"></i> Sign up</a>
+            </li>
+             <li class="main-nav">
+              <%= link_to('Logout', destroy_user_session_path, method: :delete) %> 
+            </li>   
 
           </ul>
         </div>
@@ -89,15 +96,6 @@
   <!-- login -->
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"  rel="stylesheet">
-    <header role="banner">
-      <nav class="main-nav">
-        <ul>
-          <!-- inser more links here -->
-          <li><a class="cd-signin" href="javascript:;">Sign in</a></li>
-          <li><a class="cd-signup" href="javascript:;">Sign up</a></li>
-        </ul>
-      </nav>
-    </header>
     <div class="cv-builder-login-modal">
       <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
         <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
