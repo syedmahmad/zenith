@@ -1,6 +1,6 @@
 var RearrangeModal = React.createClass({
   getInitialState: function() {
-    return { isModalOpen: true};
+    return { isModalOpen: true, sections: this.props.sections};
   },
 
   openModal: function() {
@@ -12,12 +12,13 @@ var RearrangeModal = React.createClass({
   },
   handleRearrange: function(){
     this.props.handleRearrage();
+    this.setState({sections: this.props.sections})
   },
 
   render: function() {
     pages = this.props.pages
     sectionData = this.props.sectionData
-    var sections = <RearrangeSections layout_type={this.props.layout_type} pages={pages} sectionData={sectionData} handleRearrange={this.handleRearrange} sections={this.props.sections}/>;
+    var sections = <RearrangeSections layout_type={this.props.layout_type} pages={pages} sectionData={sectionData} handleRearrange={this.handleRearrange} sections={this.state.sections}/>;
     return (
       <div className="modal fade" id="rearrangeModal" role="dialog">
         <div className="modal-dialog">

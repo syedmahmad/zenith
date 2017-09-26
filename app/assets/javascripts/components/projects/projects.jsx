@@ -71,7 +71,7 @@ var Projects = React.createClass({
            <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.addSubSection}></i>
            </a>
            <a href="javaScript:void(0);">
-           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="project"></i>
+           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="Projects"></i>
            </a>
         </div>
         <section className="education-holder">

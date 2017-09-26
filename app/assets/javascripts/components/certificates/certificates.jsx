@@ -72,7 +72,7 @@ var Certificates = React.createClass({
           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.addSubSection}></i>
           </a>
           <a href="javaScript:void(0);">
-          <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="certificates"></i>
+          <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="Certificates"></i>
           </a>
        </div>
         <section className="achievement-holder">

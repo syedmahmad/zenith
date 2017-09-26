@@ -233,7 +233,7 @@ DEPENDENCIES
   paperclip-azure (~> 1.0)
   pg (= 0.20.0)
   rails (= 4.2.4)
-  react-rails (~> 1.0)
+  react-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
