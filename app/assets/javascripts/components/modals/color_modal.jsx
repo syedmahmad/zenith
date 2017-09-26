@@ -26,7 +26,7 @@ var ColorModal = React.createClass({
                 <h4 className="modal-title">Rearrange</h4>
               </div>
               <div className="modal-body">
-                <div className="reorder-page">
+                <div className="color-reorder-page">
                   {
                     colors.map((color, index) => (
                       <p key={index} data-color-name={color} onClick={this.changeColor}>{color}</p>

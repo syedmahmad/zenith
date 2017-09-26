@@ -16,7 +16,6 @@ var BackgroundModal = React.createClass({
     },
 
     render: function() {
-      debugger;
       var BackgroundImages = this.props.resumeStyle.available_background_images
       return (
         <div className="modal fade" id="backgroundModal" role="dialog">
@@ -27,7 +26,7 @@ var BackgroundModal = React.createClass({
                 <h4 className="modal-title">Rearrange</h4>
               </div>
               <div className="modal-body">
-                <div className="reorder-page">
+                <div className="background-reorder-page">
                   {
                     BackgroundImages.map((img, index) => (
                       <img src={"/assets/"+img} key={index} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/>

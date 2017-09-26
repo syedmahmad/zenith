@@ -1,8 +1,4 @@
 var RearrangeSections = React.createClass({
-  getInitialState: function() {
-    return {layoutSections: this.props.sections};
-  },
-
   handleRearrange: function() {
     this.props.handleRearrange();
   },
@@ -21,15 +17,17 @@ var RearrangeSections = React.createClass({
 
     for(i=0;i<pages;i++){
       data = [];
+      data_right = [];
+      data_left = [];
       selectedSections = [];
       $.grep(sectionData, function(item){
         if(item.page == i){
           selectedSections.push(item.name);
-        if(item.column == 1){
-          data_right.push(item.name);
-        }else{
-          data_left.push(item.name);
-        }
+          if(item.column == 1){
+            data_right.push(item.name);
+          }else{
+            data_left.push(item.name);
+          }
         }
       });
 
@@ -45,14 +43,13 @@ var RearrangeSections = React.createClass({
           }
         });
       }
-      key = "rearrange-page-"+i;  
+      key = "rearrange-page-"+i;
       if(_this.props.layout_type == "double"){
         data_1.push(<RearrangePageDoubleLayout key={key} page={i} handleRearrange={this.props.handleRearrange} page_index={i+1} page_data={data} />);
       }else{
         data_1.push(<RearrangePage key={key} page={i} handleRearrange={this.props.handleRearrange} page_index={i+1} page_data={data} />);
       }
     };
-
     return (
       <div className="reorder-page-container">
         {data_1}
