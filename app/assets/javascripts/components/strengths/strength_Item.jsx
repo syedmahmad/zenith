@@ -23,7 +23,7 @@ var StrengthItem = React.createClass({
               </a>
            </div>
            <div className="icon-holder pull-left">
-              <i className="fa fa-bolt" aria-hidden="true"></i>
+              <i className="fa fa-gavel" aria-hidden="true"></i>
            </div>
            <h5>
               <div className="form-group">

@@ -16,7 +16,8 @@ var BackgroundModal = React.createClass({
     },
 
     render: function() {
-      var BackgroundImages = this.props.resumeStyle.available_background_images
+      var BackgroundImages = this.props.resumeStyle.available_background_images;
+      var bg_img = this.props.resumeStyle.background_img;
       return (
         <div className="modal fade" id="backgroundModal" role="dialog">
           <div className="modal-dialog">
@@ -29,8 +30,11 @@ var BackgroundModal = React.createClass({
                 <div className="background-reorder-page">
                   <div className="bg-box">
                     {
+                      
                       BackgroundImages.map((img, index) => (
-                        <img src={"/assets/"+img} key={index} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/>
+                        bg_img === img
+                          ? <div style={{position: "relative"}}><img src={"/assets/"+img} key={index} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/><div style={{position: "absolute", left: "32px", top: "58px"}} className="color-state-selected"><i className="fa fa-check"></i></div></div>
+                          : <img src={"/assets/"+img} key={index} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/>
                     ))}
                   </div>
                 </div>

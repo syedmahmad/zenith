@@ -23,9 +23,9 @@ var AwardItem = React.createClass({
              </a>
           </div>
           <div className="icon-holder pull-left">
-             <i className="fa fa-bolt" aria-hidden="true"></i>
+             <i className="fa fa-2x fa-trophy" aria-hidden="true"></i>
           </div>
-          <div className="form-group">
+          <div className="form-group" style={{display: "inline-block", marginLeft: "10px"}}>
             <input
               type="string"
               name="name"

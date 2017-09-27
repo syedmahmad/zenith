@@ -70,19 +70,16 @@ var VolunteerItem = React.createClass({
                 </span>
              </div>
              <div className="column">
-                <i className="fa fa-calendar" aria-hidden="true"></i>
-                <span>
-                   <div className="form-group">
-                    <input
-                      type="string"
-                      name="description"
-                      className="form-control"
-                      placeholder="Short summary of your work"
-                      value={this.state.description}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
+               <div className="form-group">
+                <input
+                  type="string"
+                  name="description"
+                  className="form-control"
+                  placeholder="Short summary of your work"
+                  value={this.state.description}
+                  onChange={ this.handleChange }
+                />
+               </div>
              </div>
           </div>
         </div>

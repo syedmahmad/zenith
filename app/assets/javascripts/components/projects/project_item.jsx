@@ -35,20 +35,23 @@ var ProjectItem = React.createClass({
                   />
                 </div>
              </h3>
-             <h3 className="company">
-                <div className="form-group">
-                  <input
-                    type="string"
-                    name="duration"
-                    className="form-control"
-                    placeholder="Date period"
-                    value={this.state.duration}
-                    onChange={ this.handleChange }
-                  />
-                </div>
-             </h3>
              <div className="column">
                 <i className="fa fa-calendar" aria-hidden="true"></i>
+                <span>
+                  <div className="form-group">
+                    <input
+                      type="string"
+                      name="duration"
+                      className="form-control"
+                      placeholder="Date period"
+                      value={this.state.duration}
+                      onChange={ this.handleChange }
+                    />
+                  </div>
+                </span>
+             </div>
+             <div className="column">
+                <i className="fa fa-map-marker" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
                     <input
@@ -63,19 +66,16 @@ var ProjectItem = React.createClass({
                 </span>
              </div>
              <div className="column">
-                <i className="fa fa-calendar" aria-hidden="true"></i>
-                <span>
-                   <div className="form-group">
-                    <input
-                      type="string"
-                      name="description"
-                      className="form-control"
-                      placeholder="Company Description"
-                      value={this.state.description}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
+               <div className="form-group">
+                <input
+                  type="string"
+                  name="description"
+                  className="form-control"
+                  placeholder="Company Description"
+                  value={this.state.description}
+                  onChange={ this.handleChange }
+                />
+               </div>
              </div>
           </div>
         </div>

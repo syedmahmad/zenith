@@ -29,9 +29,6 @@ var QuoteItem = React.createClass({
              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.quote.id}></i>
              </a>
           </div>
-          <div className="icon-holder pull-left">
-             <i className="fa fa-bolt" aria-hidden="true"></i>
-          </div>
           <div className="form-group">
             <input
               type="string"

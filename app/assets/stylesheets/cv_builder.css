@@ -22,7 +22,6 @@
 }
 .color-reorder-page p,
 .font-reorder-page p,
-.background-reorder-page .bg-box img,
 .add-section-modal .section {
   color: white;
   cursor: pointer;
@@ -36,6 +35,19 @@
   text-align: center;
   width: 109px;
   border: 1px solid #000;
+}
+.background-reorder-page .bg-box img {
+  color: white;
+  cursor: pointer;
+  float: left;
+  font-size: 13px;
+  font-weight: 500;
+  height: 109px;
+  line-height: 110px;
+  margin: 1px;
+  text-align: center;
+  width: 109px;
+  border: 1px solid #000; 
 }
 /*cv builder design*/
 .page-holder {
@@ -396,6 +408,7 @@ ul {
   display: flex;
   align-items: center;
   height: 100%;
+  background: #2A3F54;
 }
 .color-state-selected i {
   font-size: 4rem;

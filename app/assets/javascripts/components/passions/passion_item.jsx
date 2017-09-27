@@ -22,10 +22,10 @@ var PassionItem = React.createClass({
                <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.passion.id}></i>
                </a>
             </div>
-            <div className="icon-holder pull-left">
-               <i className="fa fa-bolt" aria-hidden="true"></i>
+            <div className="icon-holder pull-left" style={{display: "flex"}}>
+               <i className="fa fa-heart" aria-hidden="true"></i>
             </div>
-            <h5>
+            <h5 style={{marginLeft: "10px"}}>
                <div className="form-group">
                   <input
                     type="string"

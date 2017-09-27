@@ -63,7 +63,7 @@ var ExperienceItem = React.createClass({
                 </span>
              </div>
              <div className="column">
-                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <i className="fa fa-map-marker" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
                     <input
@@ -78,7 +78,6 @@ var ExperienceItem = React.createClass({
                 </span>
              </div>
              <div className="column">
-                <i className="fa fa-calendar" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
                     <input

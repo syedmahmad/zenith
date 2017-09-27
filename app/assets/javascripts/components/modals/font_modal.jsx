@@ -16,7 +16,8 @@ var FontModal = React.createClass({
     },
 
     render: function() {
-      var fonts = this.props.resumeStyle.available_fonts
+      var fonts = this.props.resumeStyle.available_fonts;
+      var selected_font = this.props.resumeStyle.font_family;
       return (
         <div className="modal fade" id="fontModal" role="dialog">
           <div className="modal-dialog">
@@ -29,7 +30,9 @@ var FontModal = React.createClass({
                 <div className="font-reorder-page">
                   {
                     fonts.map((font, index) => (
-                      <p key={index} data-font-name={font} onClick={this.changeFont}>{font}</p>
+                      selected_font === font
+                        ? <p key={index} data-font-name={font} onClick={this.changeFont}><div className="color-state-selected"><i className="fa fa-check"></i></div></p>
+                        : <p key={index} data-font-name={font} onClick={this.changeFont}>{font}</p>
                   ))}
                 </div>
               </div>
