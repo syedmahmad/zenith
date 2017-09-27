@@ -13,7 +13,7 @@ var CertificateItem = React.createClass({
   render: function() {
     return (
       <div className="">
-       <li className="section-item" data-certificate-id={this.props.certificate.id}>
+       <li className="section-item col-xs-12" data-certificate-id={this.props.certificate.id}>
           <div id="edit_able" className="hide-section">  
              <a href="javaScript:void(0);">
              <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>

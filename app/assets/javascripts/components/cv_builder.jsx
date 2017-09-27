@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layout_type: "single", pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
+    return {layout_type: "double", pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -91,9 +91,9 @@ var CvBuilder = React.createClass({
       sectionData = $.grep(sectionData, function (a) {
         if (a.name == $(elem).data('sectionName')) {
             a.page = $(elem).closest(".reorder-page").data('page');
-            if($(elem).parents(".resume-col-right").length > 0){
+            if($(elem).parents(".rearrange-resume-col-right").length > 0){
               a.column = 1
-            }else if($(elem).parents(".resume-col-left").length > 0){
+            }else if($(elem).parents(".rearrange-resume-col-left").length > 0){
               a.column = 0
             }
         }
@@ -109,7 +109,7 @@ var CvBuilder = React.createClass({
     if(this.state.layout_type == "single"){
       $(".rearrange-section-modal").sortable("cancel");
     }else if(this.state.layout_type == "double"){
-      $(".resume-col-left, .resume-col-right").sortable("cancel");
+      $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("cancel");
     }
 
     this.setState({layoutSections: section_names, sectionData: sectionData, pages: pages});

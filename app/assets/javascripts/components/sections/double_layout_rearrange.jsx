@@ -26,12 +26,12 @@ var DoubleLayoutRearrange = React.createClass({
     });
 
     return (
-      <div>
-        <div className="resume-col-right connectedSortable">
-          {data_right}
-        </div>
-        <div className="resume-col-left connectedSortable">
+      <div className="double-column-rearrange">
+        <div className="rearrange-resume-col-left connectedSortable">
           {data_left}
+        </div>
+        <div className="rearrange-resume-col-right connectedSortable">
+          {data_right}
         </div>
       </div>
     )

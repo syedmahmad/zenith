@@ -1,7 +1,7 @@
 var RearrangePageDoubleLayout = React.createClass({
   componentDidMount: function(){
     var _this = this;
-    $(".resume-col-left, .resume-col-right").sortable({
+    $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable({
       connectWith: ".connectedSortable",
       stop: function  (event, ui) {
         _this.props.handleRearrange();

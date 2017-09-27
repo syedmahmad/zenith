@@ -16,6 +16,7 @@ var ColorModal = React.createClass({
     },
 
     render: function() {
+      var selected_color = this.props.resumeStyle.color
       var colors = this.props.resumeStyle.available_colors
       return (
         <div className="modal fade" id="colorModal" role="dialog">
@@ -23,13 +24,15 @@ var ColorModal = React.createClass({
             <div className="modal-content">
               <div className="modal-header">
                 <button type="button" className="close" data-dismiss="modal">&times;</button>
-                <h4 className="modal-title">Rearrange</h4>
+                <h4 className="modal-title">Select Color Combination</h4>
               </div>
               <div className="modal-body">
                 <div className="color-reorder-page">
                   {
                     colors.map((color, index) => (
-                      <p key={index} data-color-name={color} onClick={this.changeColor}>{color}</p>
+                      <p key={index} style={{background: color}} data-color-name={color} onClick={this.changeColor}>
+                      <div className="color-state-selected"><i className="fa fa-check"></i></div>
+                      </p>
                   ))}
                 </div>
               </div>

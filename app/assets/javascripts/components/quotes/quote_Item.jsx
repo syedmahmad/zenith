@@ -20,7 +20,7 @@ var QuoteItem = React.createClass({
   render: function() {
     return (
       <div className="">
-        <div className="section-item" data-quote-id={this.props.quote.id}>
+        <div className="section-item col-xs-12" data-quote-id={this.props.quote.id}>
           <div id="edit_able" className="hide-section">  
              <a href="javaScript:void(0);">
              <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>

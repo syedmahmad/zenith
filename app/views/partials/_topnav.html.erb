@@ -12,9 +12,9 @@
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 
             <% if current_user.present? %>
-                <%= image_tag "default_avatar.png", :class => "img-circle profile_img"  %>Guest
+                <%= image_tag "default_avatar.png"%>Guest
             <% else %>
-                <%= image_tag "default_avatar.png", :class => "img-circle profile_img"  %>Guest
+                <%= image_tag "default_avatar.png"%>Guest
             <% end %>
             <span class=" fa fa-angle-down"></span>
           </a>
