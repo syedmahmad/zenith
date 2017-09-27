@@ -13,10 +13,10 @@ var RearrangePageDoubleLayout = React.createClass({
     data = this.props.page_data
     return (
       <div className="reorder-page" data-page={this.props.page}>
-        <div className="rearrange-section-modal connectedSortable">
+        <div className="rearrange-section-modal">
           {data}
         </div>
       </div> 
     )
   }
-});
+}); 

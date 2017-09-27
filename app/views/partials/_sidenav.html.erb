@@ -47,6 +47,11 @@
         <div class="menu_section">
           <p></p>
           <ul class="nav side-menu">
+
+            <li data-toggle="modal" data-target="#layoutTypeModal">
+              <a><i class="fa fa-columns"></i> Templates</a>
+            </li>
+
             <li data-toggle="modal" data-target="#rearrangeModal"> <a><i class="fa fa-paw"></i> Rearrange</a>
             </li>
 
@@ -65,7 +70,6 @@
             <li data-toggle="modal" data-target="#backgroundModal">
               <a><i class="fa fa-star-half-o"></i> Background</a>
             </li>
-
             <% if current_user.present? %>
               <li>
                 <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fa fa-sign-out"></i> Logout</a>

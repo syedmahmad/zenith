@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layout_type: "double", pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
+    return {layout_type: this.props.resume.layout.layout_type, pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -160,6 +160,17 @@ var CvBuilder = React.createClass({
     }
     this.setState({layoutSections: this.state.layoutSections});
   },
+  handleLayoutChange: function(e){
+    selectedLayout = $(e.currentTarget).data("layoutType")
+    if(selectedLayout != this.state.layout_type){
+      if (this.props.current_user) {
+        params = {id: this.props.resume.layout.id, "layout_type": selectedLayout};
+        this.updateResume({resume: {layout_attributes: params}});
+      }
+      this.setState({layout_type: selectedLayout});
+    }
+  },
+
   removeChild: function(){
   },
 
@@ -220,6 +231,7 @@ var CvBuilder = React.createClass({
         <BackgroundModal handleBackground={this.handleBackground} resumeStyle={this.state.resumeStyle}/>
         <FontModal handleFont={this.handleFont} resumeStyle={this.state.resumeStyle}/>
         <ColorModal handleColor={this.handleColor} resumeStyle={this.state.resumeStyle}/>
+        <LayoutTypeModal handleLayoutChange={this.handleLayoutChange} currentLayout={this.state.layout_type}/>
       </div>
     )
   }

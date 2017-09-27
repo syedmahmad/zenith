@@ -25,11 +25,11 @@ var Double = React.createClass({
 
     return (
       <div>
-        <div className="resume-col-right">
-          {data_right}
-        </div>
         <div className="resume-col-left">
           {data_left}
+        </div>
+        <div className="resume-col-right">
+          {data_right}
         </div>
       </div>
     )
