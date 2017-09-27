@@ -41,7 +41,7 @@ var Summary = React.createClass({
         <section className="summary-holder" data-summary-id={this.props.resume.summary.id}>
            <div id="edit_able" className="hide-section">
               <a href="javaScript:void(0);" title="Remove section">
-              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="summary"></i>
+              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="Summary"></i>
               </a>
            </div>
            <div className="heading-area">

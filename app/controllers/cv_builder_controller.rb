@@ -79,6 +79,10 @@ class CvBuilderController < ApplicationController
   def update
     return unless current_user.present?
     resume = current_user.resumes.find_by_id(params[:id])
+    if params["resume"]["layout_attributes"]
+      section_data = params["resume"]["layout_attributes"]["section_data"]
+      params["resume"]["layout_attributes"]["section_data"] = section_data.values if section_data
+    end
     resume.update!(permitted_params)
     render json: resume
   end

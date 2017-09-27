@@ -19,7 +19,7 @@ gem 'hashids'
 gem 'modernizr-rails'
 
 gem "font-awesome-rails"
-gem 'react-rails', '~> 1.0'
+gem 'react-rails'
 gem 'devise'
 gem "paperclip", "~> 5.0.0"
 gem 'paperclip-azure', '~> 1.0'

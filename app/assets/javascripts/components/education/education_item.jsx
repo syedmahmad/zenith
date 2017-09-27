@@ -63,33 +63,7 @@ var EducationItem = React.createClass({
                 </span>
              </div>
           </div>
-          <div className="col-xs-6">
-             <div className="gpa-holder">
-                <p>GPA</p>
-                <span>
-                   <div className="form-group">
-                      <input
-                        type="text"
-                        name="cgpa"
-                        className="form-control"
-                        placeholder="6.00"
-                        value={this.state.cgpa}
-                        onChange={ this.handleChange }
-                      />
-                   </div>
-                </span>
-                <span>
-                   <div className="form-group">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="/6.00"
-                        value="/6.00"
-                      />
-                   </div>
-                </span>
-             </div>
-          </div>
+
         </div>
       </div>
     )

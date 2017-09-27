@@ -102,7 +102,7 @@ var CvBuilder = React.createClass({
       return $(elem).data('sectionName');
     }).get();
 
-    params = {id: this.props.resume.layout.id, "section_names": section_names, section_date: sectionData, "pages": pages};
+    params = {id: this.props.resume.layout.id, "section_names": section_names, "section_data": sectionData, "pages": pages};
     if (this.props.current_user) {
       this.updateResume({resume: {layout_attributes: params}});
     }
@@ -116,14 +116,15 @@ var CvBuilder = React.createClass({
   },
   handleAddSection: function(e){
     var newSection = $(e.target).data("sectionName");
-    this.state.layoutSections.push(newSection);
+    sections = this.state.layoutSections
+    sectionData = this.state.sectionData
+    sections.push(newSection);
+    sectionData.push({name: newSection, page: 0, column: 0});
     if (this.props.current_user) {
-      params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections};
+      params = {id: this.props.resume.layout.id, "section_names": sections, "section_data": sectionData};
       this.updateResume({resume: {layout_attributes: params}});
     }
-    this.setState({layoutSections: this.state.layoutSections});
-    this.state.sectionData.push({name: newSection, page: 0, column: 0});
-    this.setState({layoutSections: this.state.layoutSections, sectionData: this.state.sectionData});
+    this.setState({layoutSections: sections, sectionData: sectionData});
   },
   handleBackground: function(e) {
     var img = $(e.target).data("imageName");

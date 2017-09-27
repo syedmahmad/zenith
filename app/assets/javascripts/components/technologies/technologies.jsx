@@ -71,7 +71,7 @@ var Technologies = React.createClass({
           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.addSubSection}></i>
           </a>
           <a href="javaScript:void(0);">
-          <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="technologies"></i>
+          <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="Technologies"></i>
           </a>
        </div>
         <section className="achievement-holder">
