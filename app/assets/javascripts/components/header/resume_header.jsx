@@ -10,7 +10,7 @@ var ResumeHeader = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  _onChange: function(){
+  _onChange: function(e){
     // Assuming only image
     _this =  this;
     var file = this.refs.file.files[0];
@@ -31,13 +31,12 @@ var ResumeHeader = React.createClass({
   componentDidMount: function(){
     var _this = this;
     
-    // show setting and camera buttons
     $(document).on('focusin', ".personal-info", (function (e) {
-      this.previousElementSibling.classList.remove('hide-section');
+      this.firstChild.classList.remove('hide-section');
     }));
-    // hide setting and camera buttons
     $(document).on('focusout', ".personal-info", (function (e) {
-      this.previousElementSibling.classList.add('hide-section');
+      e.preventDefault();
+      this.firstChild.classList.add('hide-section');
       if (e.target.value != _this.props.header[e.target.name]) {
         _this.submitHeader({[e.target.name]: e.target.value, "id": $(this).data("headerId")});
       }
@@ -50,26 +49,31 @@ var ResumeHeader = React.createClass({
     );
   },    
 
+  handleClick: function(e) {
+    $('#img_selector').show().focus().trigger('click');
+  },
+
   render: function() {
     return (
       <div>
-        <div id="edit_able" className="hide-section">  
-           <form>
-             <input 
-               ref="file" 
-               type="file" 
-               name="user[image]" 
-               multiple="true"
-               onChange={this._onChange}/>
-            </form>
-           <a className="" href="javaScript:void(0);" title="">
-           <i aria-hidden="true" className="fa fa-camera"></i>
-           </a>
-           <a href="javaScript:void(0);" title="">
-           <i aria-hidden="true" className="fa fa-cog"></i>
-           </a>
-        </div>
         <section className="personal-info" data-header-id={this.props.header.id}>
+          <div id="edit_able" className="hide-section">  
+             <form style={{width: "0px", height: "0px", overflow: "hidden"}}>
+               <input 
+                 ref="file"
+                 id="img_selector"
+                 type="file" 
+                 name="user[image]" 
+                 multiple="true"
+                 onMouseDown={this._onChange}/>
+              </form>
+             <a href="javaScript:void(0);" title="">
+             <i aria-hidden="true" className="fa fa-camera" onMouseDown={this.handleClick}></i>
+             </a>
+             <a href="javaScript:void(0);" title="">
+             <i aria-hidden="true" className="fa fa-cog"></i>
+             </a>
+          </div>
            <div className="row">
               <div className="col-sm-8">
                  <div className="info-details">

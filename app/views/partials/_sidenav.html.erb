@@ -14,11 +14,15 @@
       <div class="profile">
         <% if current_user.present? %>
           <div class="profile_pic">
-            <%= image_tag "default_avatar.png", :class => "img-circle profile_img"  %>
+            <% if current_user.resumes.present? %>
+              <%= image_tag current_user.resumes.last.header.avatar.url, :class => "img-circle profile_img"  %>
+            <% else %>
+              <%= image_tag "default_avatar.png", :class => "img-circle profile_img"  %>
+            <% end %>    
           </div>
           <div class="profile_info">
             <span>Welcome,</span>
-            <h2><%=current_user.email%></h2>
+            <h2><%=current_user.email.split("@").first%></h2>
           </div>
         <% else %>
           <div class="profile_pic">
@@ -61,15 +65,19 @@
             <li data-toggle="modal" data-target="#backgroundModal">
               <a><i class="fa fa-star-half-o"></i> Background</a>
             </li>
-            <li class="main-nav">
-              <a class="cd-signup" href="javascript:;" ><i class="fa fa-sign-in"></i> Sign in</a>
-            </li>
-            <li class="main-nav">
-              <a class="cd-signup" href="javascript:;"><i class="fa fa-sign-in"></i> Sign up</a>
-            </li>
-             <li class="main-nav">
-              <%= link_to('Logout', destroy_user_session_path, method: :delete) %> 
-            </li>   
+
+            <% if current_user.present? %>
+              <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fa fa-sign-out"></i> Logout</a>
+              </li>
+            <% else %>
+              <li class="main-nav">
+                <a class="cd-signin" href="javascript:;" ><i class="fa fa-sign-in"></i> Sign in</a>
+              </li>
+              <li class="main-nav">
+                <a class="cd-signup" href="javascript:;"><i class="fa fa-sign-in"></i> Sign up</a>
+              </li>
+            <% end %>
 
           </ul>
         </div>
@@ -77,22 +85,6 @@
       </div>
       <!-- /sidebar menu -->
 
-      <!-- /menu footer buttons -->
-      <div class="sidebar-footer hidden-small">
-        <a data-toggle="tooltip" data-placement="top" title="Settings">
-          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-        </a>
-        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-          <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-        </a>
-        <a data-toggle="tooltip" data-placement="top" title="Lock">
-          <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-        </a>
-        <a data-toggle="tooltip" data-placement="top" title="Logout">
-          <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-        </a>
-      </div>
-      <!-- /menu footer buttons -->
   <!-- login -->
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"  rel="stylesheet">
