@@ -16,7 +16,7 @@ $(function() {
                  <div class="holder">
                     <div class="page-holder">
                       <div class="full-layout">
-                       <%= react_component('IndexLogIn', current_user: current_user, resume: @latest_resume, resume_ids: @resume_ids)%>
+                       <%= react_component('IndexLogIn', current_user: current_user, resume: @latest_resume, resume_ids: @resume_ids, host: @host)%>
                        </div>
                     </div>
                  </div>
@@ -97,6 +97,6 @@ $(function() {
   </div>
 <% else %>
   <div role="main">
-    <%= react_component('CvBuilder', current_user: nil, resume: @latest_resume)%>
+    <%= react_component('CvBuilder', current_user: nil, resume: @latest_resume, host: @host)%>
   </div>
 <% end %>

@@ -18,6 +18,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'hashids'
 gem 'modernizr-rails'
 
+# application.yml ENV variables
+gem 'figaro'
+
 gem "font-awesome-rails"
 gem 'react-rails'
 gem 'devise'

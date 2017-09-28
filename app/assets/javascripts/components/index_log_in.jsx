@@ -16,7 +16,7 @@ var IndexLogIn = React.createClass({
       alert("you have reached the max numbers of resumes.");
     }else{
       $.ajax({
-        url: "http://localhost:3000/resumes/new_resume",
+        url: this.props.host+"resumes/new_resume",
         type: 'POST',
         success: function(projects) {
           window.location = projects.path_to_go;

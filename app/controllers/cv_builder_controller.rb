@@ -1,4 +1,5 @@
 class CvBuilderController < ApplicationController
+  before_action :set_host, only: [:index, :new, :show]
 
   def index
     # flash[:success ] = "Success Flash Message: Welcome to GentellelaOnRails"
@@ -135,6 +136,11 @@ class CvBuilderController < ApplicationController
       projects_attributes: [:id, :name, :location, :duration, :description], quotes_attributes: [:id, :name], skills_attributes: [:id, :name, :level], technologies_attributes: [:id, :name, :tec_names], volunteers_attributes: [:id, :title, :organization_name, :duration, :description], layout_attributes: [:id, :layout_type, :section_names => [], :section_data => [:name, :page, :column]],
       header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link], summary_attributes: [:id, :title, :description], resume_style_attributes: [:id, :background_img, :font_family, :color])
   end
+
+  private
+    def set_host
+      @host = ENV["CDN_HOST"]
+    end
 
 end
 

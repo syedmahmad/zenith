@@ -24,7 +24,7 @@ var BackgroundModal = React.createClass({
             <div className="modal-content">
               <div className="modal-header">
                 <button type="button" className="close" data-dismiss="modal">&times;</button>
-                <h4 className="modal-title">Rearrange</h4>
+                <h4 className="modal-title">Choose a Background</h4>
               </div>
               <div className="modal-body">
                 <div className="background-reorder-page">

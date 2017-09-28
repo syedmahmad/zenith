@@ -40,7 +40,7 @@ var CvBuilder = React.createClass({
   updateResume: function(formData){
     var _this = this;
     $.ajax({
-      url: ("http://localhost:3000/resumes/"+_this.state.resume.id),
+      url: (this.props.host+"resumes/"+_this.state.resume.id),
       dataType: 'json',
       type: 'PATCH',
       contentType: 'multipart/form-data',
@@ -57,7 +57,7 @@ var CvBuilder = React.createClass({
   createSubSection: function(formData,sectionName){
     var _this = this;
     $.ajax({
-      url: ("http://localhost:3000/resumes/"+_this.props.resume.id+"/create_sub_record"),
+      url: (this.props.host+"resumes/"+_this.props.resume.id+"/create_sub_record"),
       dataType: 'json',
       type: 'POST',
       contentType: 'multipart/form-data',
@@ -73,7 +73,7 @@ var CvBuilder = React.createClass({
   removeSubSection: function(formData,sectionName){
     var _this = this;
     $.ajax({
-      url: ("http://localhost:3000/resumes/"+formData.section_id+"/delete_sub_record"),
+      url: (this.props.host+"resumes/"+formData.section_id+"/delete_sub_record"),
       type: 'DELETE',
       contentType: 'multipart/form-data',
       data: formData,

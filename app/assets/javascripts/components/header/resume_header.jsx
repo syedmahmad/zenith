@@ -43,7 +43,7 @@ var ResumeHeader = React.createClass({
           _this.submitHeader({[e.target.name]: e.target.value, "id": $(__this).data("headerId")});
         }
 
-      }, 5000);
+      }, 500);
     }));
   },
 
