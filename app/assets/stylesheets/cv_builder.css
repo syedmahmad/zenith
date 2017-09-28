@@ -36,7 +36,7 @@
   width: 109px;
   border: 1px solid #000;
 }
-.background-reorder-page .bg-box img {
+.background-reorder-page .bg-box p {
   color: white;
   cursor: pointer;
   float: left;
@@ -48,6 +48,16 @@
   text-align: center;
   width: 109px;
   border: 1px solid #000; 
+  position: relative;
+}
+.background-reorder-page .bg-box p img{
+  height: 100%;
+}
+.background-reorder-page .bg-box p .color-state-selected{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 /*cv builder design*/
 .page-holder {
