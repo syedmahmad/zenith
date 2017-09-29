@@ -6,6 +6,8 @@ class CvBuilderController < ApplicationController
       @resumes = current_user.resumes
       @resume_ids = @resumes.pluck("id")
       @resume = @resumes.last
+      @is_single_resume = @resumes.count > 1 ? true : false
+      
       if @resume
         @resume_data = Resume.where(id: @resume.id).includes(:layout, :resume_style, :header, :summary, :achievements, :awards, :certificates, :courses, :educations, :experiences, :passions, :projects, :quotes, :volunteers)
         @resume_data = @resume_data.take
@@ -55,7 +57,7 @@ class CvBuilderController < ApplicationController
       if resume.present?
         @resume = resume.amoeba_dup
         @resume.save
-        redirect_to resume_path(@resume.id)
+        redirect_to resume_path(Hashids.new("salt", 16).encode(@resume.id))
       else
         render file: "#{Rails.root}/public/404.html", layout: false, status: 404
       end
@@ -85,6 +87,13 @@ class CvBuilderController < ApplicationController
     end
     resume.update!(permitted_params)
     render json: resume
+  end
+
+  def destroy_resume
+    current_user.resumes.find_by_id(params[:id]).destroy
+    @is_single_resume = current_user.resumes.count > 1 ? true : false
+    flash[:success ] = "Success deleted Resume"
+    redirect_to root_path
   end
 
   def get_user_resume

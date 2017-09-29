@@ -3,9 +3,9 @@ var IndexLogIn = React.createClass({
     return {layoutSections: this.props.resume.layout.section_names.slice(0,1), resume_ids: this.props.resume_ids, resume: this.props.resume};
   },
   componentDidMount: function(){
-    $(".left_col").remove();
-    $(".top_nav").css({marginLeft: '0px'});
-    $("footer").css({marginLeft: '0px'})
+    // $(".left_col").remove();
+    // $(".top_nav").css({marginLeft: '0px'});
+    // $("footer").css({marginLeft: '0px'})
   },
   cloneResume: function(e){
     resume = this.state.resume

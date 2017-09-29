@@ -1,10 +1,102 @@
-<!-- page content -->
-<% if current_user %>
-	<div role="main">
-	  <%= react_component('IndexLogIn', current_user: current_user, resume: @latest_resume, resume_ids: @resume_ids)%>
-	</div>
+<% if current_user.present? %>
+<script type="text/javascript">
+// Shorthand for $( document ).ready()
+$(function() {
+  $(".left_col").remove();
+  $(".fa.fa-bars").remove();
+  $(".top_nav").css({marginLeft: '0px'});
+  $("footer").css({marginLeft: '0px'})
+});
+</script>
+  <div class="cv-dashboard">
+     <div class="container">
+        <div class="row">
+           <div class="col-sm-6 col-md-6">
+              <div class="cv-preveiw">
+                 <div class="holder">
+                    <div class="page-holder">
+                      <div class="full-layout">
+                       <%= react_component('IndexLogIn', current_user: current_user, resume: @latest_resume, resume_ids: @resume_ids)%>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="col-sm-6 col-md-4">
+              <div class="resume-controls">
+                 <div class="btn-area-top">
+                    <div class="form-group">
+                       <label for="resumeTitle">Title</label>
+                       <%if @resume.present? && @resume.header.name%>
+                        <input type="text" class="form-control" readonly id="#" placeholder="User Name resume" value=<%=@resume.header.name%>>
+                       <% else %>
+                        <input type="text" class="form-control" readonly id="#" placeholder="User Name resume" value="">
+                       <% end %>
+                    </div>
+                    <div class="btn-section">
+                       <ul>
+                          <li>
+                             <a href="/resumes/<%= Hashids.new("salt", 16).encode(@resume.id)%>">
+                               <div class="icon-holder">
+                                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                               </div>
+                               <span>Edit</span>
+                             </a>
+                          </li>
+                          <li>                            
+                            <div class="icon-holder">
+                              <a rel="nofollow" data-method="post" href="/resumes/<%=@resume.id%>/clone"><i class="fa fa-files-o"></i></a>
+                            </div>
+                          </li>
+                          <li>
+                            <% if @is_single_resume == true %>
+                              <div class="icon-holder">
+                                <a rel="nofollow" data-method="post" href="/resumes/<%=@resume.id%>/destroy_resume"><i class="fa fa-trash-o"></i></a>
+                              </div>
+                            <% else %>
+                              <div class="icon-holder">
+                                 <i class="fa fa-trash-o"></i>
+                              </div>
+                            <% end %>
+                          </li>
+                       </ul>
+                    </div>
+                 </div>
+                 <div class="btn-area-bottom">
+                    <ul>
+                       <li>
+                          <a href="#">
+                             Download
+                             <div class="icon-holder">
+                                <i class="fa fa-download"></i>
+                             </div>
+                          </a>
+                       </li>
+                       <li>
+                          <a href="#" class="active">
+                             Share Resume
+                             <div class="icon-holder">
+                                <i class="fa fa-link"></i>
+                             </div>
+                          </a>
+                       </li>
+                       <li>
+                          <a href="#">
+                             Ask for Feeedback
+                             <div class="icon-holder">
+                                <i class="fa fa-comment"></i>
+                             </div>
+                          </a>
+                       </li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
 <% else %>
-	<div role="main">
+  <div role="main">
     <%= react_component('CvBuilder', current_user: nil, resume: @latest_resume)%>
-	</div>
+  </div>
 <% end %>

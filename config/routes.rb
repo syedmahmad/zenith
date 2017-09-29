@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post :clone
       post :create_sub_record
       delete :delete_sub_record 
+      post :destroy_resume
     end
     collection do
       post :new_resume
