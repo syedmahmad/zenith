@@ -15,10 +15,11 @@
         <div class="menu_section">
           <p></p>
           <ul class="nav side-menu">
-
-            <li>
-              <a rel="nofollow" href="/"><i class="fa fa-tachometer"></i> Dashboard</a>
-            </li>
+            <% if current_user.present? %>
+              <li>
+                <a rel="nofollow" href="/"><i class="fa fa-tachometer"></i> Dashboard</a>
+              </li>
+            <% end %>
 
             <li data-toggle="modal" data-target="#layoutTypeModal">
               <a><i class="fa fa-columns"></i> Templates</a>
