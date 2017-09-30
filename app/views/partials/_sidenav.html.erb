@@ -44,6 +44,9 @@
               <a><i class="fa fa-star-half-o"></i> Background</a>
             </li>
             <% if current_user.user_type == "guest" %>
+              <li>
+                <a rel="nofollow" data-method="get" href="/resumes/download"><i class="fa fa-download"></i> Download</a>
+              </li>
               <li class="main-nav">
                 <a class="cd-signin" href="javascript:;" ><i class="fa fa-sign-in"></i> Sign in</a>
               </li>

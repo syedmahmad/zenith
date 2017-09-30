@@ -1,7 +1,6 @@
 class CvBuilderController < ApplicationController
-  before_action :set_host, only: [:index, :new, :show]
   before_action :check_user_type, only: [:index]
-
+  before_action :set_host, only: [:index, :new, :show, :download]
 
   def index
     # flash[:success ] = "Success Flash Message: Welcome to GentellelaOnRails"
@@ -16,6 +15,18 @@ class CvBuilderController < ApplicationController
         @resume_data = @resume_data.take
       end
       @latest_resume = get_user_resume
+    end
+  end
+
+  def download
+    @resume = get_user_resume
+    respond_to do |format|
+      format.pdf do
+        render pdf: "download",
+          layout: 'pdf.html.erb',
+          template:  'cv_builder/download.pdf.erb'
+          # disposition: 'attachment'
+      end
     end
   end
 

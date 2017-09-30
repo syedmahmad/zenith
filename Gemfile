@@ -23,6 +23,9 @@ gem 'figaro'
 
 # to delete unclaimed CVs
 gem 'whenever', :require => false
+# PDF Generation
+gem 'wicked_pdf', '= 1.0.6'
+gem 'wkhtmltopdf-binary', '~> 0.12.3'
 
 gem "font-awesome-rails"
 gem 'react-rails'

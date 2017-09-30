@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
     collection do
       post :new_resume
+      get :download, defaults: { format: :pdf }
     end
    end
 
