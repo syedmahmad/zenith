@@ -75,7 +75,7 @@ var CvBuilder = React.createClass({
   createSubSection: function(formData,sectionName){
     var _this = this;
     $.ajax({
-      url: (this.props.host+"resumes/"+_this.props.resume.id+"/create_sub_record"),
+      url: (_this.props.host+"resumes/"+_this.props.resume.id+"/create_sub_record"),
       dataType: 'json',
       type: 'POST',
       contentType: 'multipart/form-data',
@@ -197,6 +197,10 @@ var CvBuilder = React.createClass({
   removeChild: function(){
   },
 
+  handleShowHideChange: function(e){
+    debugger;
+  },
+
   render: function() {
     var data = [];
     var data_1 = [];
@@ -239,7 +243,7 @@ var CvBuilder = React.createClass({
       }
 
       key = "page-"+i;  
-      data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection} resumeStyle={_this.state.resume.resume_style}/>);
+      data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection} resumeStyle={_this.state.resume.resume_style} handleShowHideChange={this.handleShowHideChange}/>);
     };
     return (
       <div className="cv-builder-container">

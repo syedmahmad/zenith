@@ -58,6 +58,8 @@ var ResumeHeader = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["email", "phone", "website"]
+    showHideOptions = <ShowHideOptions section="Header" handleShowHideChange={this.props.handleShowHideChange} options={optionsArr}/>
     return (
       <div>
         <section className="personal-info" data-header-id={this.props.header.id}>
@@ -76,8 +78,9 @@ var ResumeHeader = React.createClass({
              </a>
              <a href="javaScript:void(0);" title="">
              <i aria-hidden="true" className="fa fa-cog"></i>
-             </a>
+             </a>             
           </div>
+          {showHideOptions}
            <div className="row">
               <div className="col-sm-8">
                  <div className="info-details">

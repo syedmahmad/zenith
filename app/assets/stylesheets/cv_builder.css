@@ -98,6 +98,20 @@
    box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
    height: 36px;
 }
+.page-holder .show_hide_section {
+   align-items: center;
+   position: absolute;
+   top: 20px;
+   transform: translateX(-50%);
+   z-index: 10;
+   left: 50%;
+   text-align: center;
+   padding: 0 10px;
+   background: #fff;
+   -webkit-box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
+   box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
+}
+
 .page-holder #edit_able i {
   font-size: 1.6em;
   cursor: pointer;

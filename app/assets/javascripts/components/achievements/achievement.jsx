@@ -28,7 +28,6 @@ var Achievements = React.createClass({
       }
     }));
 
-   // show and hide buttons
     $(document).on('focusin', ".heading-area", (function (e) {
       this.parentElement.previousElementSibling.classList.remove('hide-section');
     })); 
