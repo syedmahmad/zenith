@@ -43,16 +43,16 @@
             <li data-toggle="modal" data-target="#backgroundModal">
               <a><i class="fa fa-star-half-o"></i> Background</a>
             </li>
-            <% if current_user.present? %>
-              <li>
-                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fa fa-sign-out"></i> Logout</a>
-              </li>
-            <% else %>
+            <% if current_user.user_type == "guest" %>
               <li class="main-nav">
                 <a class="cd-signin" href="javascript:;" ><i class="fa fa-sign-in"></i> Sign in</a>
               </li>
               <li class="main-nav">
                 <a class="cd-signup" href="javascript:;"><i class="fa fa-sign-in"></i> Sign up</a>
+              </li>
+            <% else %>
+              <li>
+                <a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fa fa-sign-out"></i> Logout</a>
               </li>
             <% end %>
 

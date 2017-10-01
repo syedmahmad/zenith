@@ -1,4 +1,4 @@
-<% if current_user.present? %>
+<% if current_user.user_type != "guest" %>
 <script type="text/javascript">
 // Shorthand for $( document ).ready()
 $(function() {
@@ -97,6 +97,6 @@ $(function() {
   </div>
 <% else %>
   <div role="main">
-    <%= react_component('CvBuilder', current_user: nil, resume: @latest_resume, host: @host)%>
+    <%= react_component('CvBuilder', current_user: current_user, resume: @latest_resume, host: @host)%>
   </div>
 <% end %>

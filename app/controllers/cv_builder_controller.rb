@@ -1,5 +1,7 @@
 class CvBuilderController < ApplicationController
   before_action :set_host, only: [:index, :new, :show]
+  before_action :check_user_type, only: [:index]
+
 
   def index
     # flash[:success ] = "Success Flash Message: Welcome to GentellelaOnRails"
@@ -14,8 +16,6 @@ class CvBuilderController < ApplicationController
         @resume_data = @resume_data.take
       end
       @latest_resume = get_user_resume
-    else
-      @latest_resume = get_user_resume      
     end
   end
 
@@ -143,5 +143,14 @@ class CvBuilderController < ApplicationController
       @host = ENV["CDN_HOST"]
     end
 
+    def check_user_type
+      # will move this method from the start CV button otherwise it will create always new cv
+      unless current_user.present?
+        email = "#{SecureRandom.urlsafe_base64(nil, false)}@guest.com"
+        user = User.create(user_name: "guest", email: email, password: "zenithcv.com")
+        user.resumes.create
+        sign_in(user)
+      end
+    end
 end
 

@@ -14,7 +14,7 @@
             <% if current_user.present? %>
               <% if current_user.resumes.present? %>
                 <%= image_tag current_user.resumes.last.header.avatar.url %>
-                <%=current_user.email.split("@").first%>
+                <%=current_user.user_name.titleize%>
               <% else %>
                 <%= image_tag "default_avatar.png"%>Guest
               <% end %>    
