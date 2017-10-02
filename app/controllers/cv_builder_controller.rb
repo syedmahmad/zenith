@@ -133,9 +133,25 @@ class CvBuilderController < ApplicationController
   end
 
   def permitted_params
-    params.require(:resume).permit(:section_names, achievements_attributes: [:title, :description, :id], awards_attributes: [:name, :id], certificates_attributes: [:name, :institutiion_name, :id], courses_attributes: [:title, :description, :id], strengths_attributes: [:title, :description, :id], educations_attributes: [:degree_name, :university_name, :id, :duration, :cgpa], experiences_attributes: [:id, :title, :company_name, :location, :duration, :description], languages_attributes: [:id, :name, :level], passions_attributes: [:id, :name],
-      projects_attributes: [:id, :name, :location, :duration, :description], quotes_attributes: [:id, :name], skills_attributes: [:id, :name, :level], technologies_attributes: [:id, :name, :tec_names], volunteers_attributes: [:id, :title, :organization_name, :duration, :description], layout_attributes: [:id, :layout_type, :section_names => [], :section_data => [:name, :page, :column]],
-      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link], summary_attributes: [:id, :title, :description], resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color, :primary_font, :secondary_font, :font_size])
+    params.require(:resume).permit(:section_names,
+      achievements_attributes: [:title, :description, :id],
+      awards_attributes: [:name, :id],
+      certificates_attributes: [:name, :institutiion_name, :id],
+      courses_attributes: [:title, :description, :id],
+      strengths_attributes: [:title, :description, :id],
+      educations_attributes: [:degree_name, :university_name, :id, :duration, :cgpa],
+      experiences_attributes: [:id, :title, :company_name, :location, :duration, :description],
+      languages_attributes: [:id, :name, :level],
+      passions_attributes: [:id, :name],
+      projects_attributes: [:id, :name, :location, :duration, :description],
+      quotes_attributes: [:id, :name],
+      skills_attributes: [:id, :name, :level],
+      technologies_attributes: [:id, :name, :tec_names],
+      volunteers_attributes: [:id, :title, :organization_name, :duration, :description],
+      layout_attributes: [:id, :layout_type, :section_names => [], :section_data => [:name, :page, :column]],
+      resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color, :primary_font, :secondary_font, :font_size],
+      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link, :show_avatar,:show_name,:show_location,:show_job_title,:show_phone,:show_email,:show_website_link],
+      summary_attributes: [:id, :title, :description])
   end
 
   private

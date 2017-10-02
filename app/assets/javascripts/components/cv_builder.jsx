@@ -198,7 +198,16 @@ var CvBuilder = React.createClass({
   },
 
   handleShowHideChange: function(e){
-    debugger;
+    section = $(e.target).closest(".show_hide_section").data("sectionName")
+    field = $(e.target).attr("name")
+    value = $(e.target). prop("checked")
+    itemId = $(e.target).closest(".show_hide_section").data("sectionId")
+    
+    params = {resume: {[section+"_attributes"]: {[field]: value, id: itemId}}}
+    this.updateResume(params)
+    newState = this.state
+    newState.resume.header[field] = value
+    this.setState(newState)
   },
 
   render: function() {

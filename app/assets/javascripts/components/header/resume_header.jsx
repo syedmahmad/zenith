@@ -2,7 +2,7 @@ var ResumeHeader = React.createClass({
 
   getInitialState: function(){
     var header = this.props.header;
-    return {file: [], imgSrc: header.img_url, name: header.name, job_title: header.job_title, phone: header.phone, website_link: header.website_link, email: header.email, location: header.location};
+    return {header: header, file: [], imgSrc: header.img_url, name: header.name, job_title: header.job_title, phone: header.phone, website_link: header.website_link, email: header.email, location: header.location};
   },
 
   handleChange: function(e){
@@ -58,8 +58,8 @@ var ResumeHeader = React.createClass({
   },
 
   render: function() {
-    optionsArr = ["email", "phone", "website"]
-    showHideOptions = <ShowHideOptions section="Header" handleShowHideChange={this.props.handleShowHideChange} options={optionsArr}/>
+    optionsArr = ["show_avatar", "show_email", "show_phone", "show_website_link", "show_location", "show_job_title"]
+    showHideOptions = <ShowHideOptions model={this.state.header} section="header" sectionId={this.props.header.id} handleShowHideChange={this.props.handleShowHideChange} options={optionsArr}/>
     return (
       <div>
         <section className="personal-info" data-header-id={this.props.header.id}>
@@ -84,33 +84,34 @@ var ResumeHeader = React.createClass({
            <div className="row">
               <div className="col-sm-8">
                  <div className="info-details">
-                    <div className="full-name">
-                       <div className="form-group">
-                          <input
+                    { this.state.header.show_name && <div className="full-name">
+                      <div className="form-group">
+                        <input
+                          type="string"
+                          name="name"
+                          className="form-control primary_font"
+                          placeholder="Full Name "
+                          value={this.state.name}
+                          onChange={ this.handleChange}
+                        />
+                      </div>
+                    </div>}
+                    { this.state.header.show_job_title && 
+                      <h3 className="job-title">
+                         <div className="form-group">
+                            <input
                               type="string"
-                              name="name"
-                              className="form-control primary_font"
-                              placeholder="Full Name"
-                              value={this.state.name}
+                              name="job_title"
+                              className="form-control"
+                              placeholder="Job Title"
+                              value={this.state.job_title}
                               onChange={ this.handleChange}
                             />
-                       </div>
-                    </div>
-                    <h3 className="job-title">
-                       <div className="form-group">
-                          <input
-                            type="string"
-                            name="job_title"
-                            className="form-control secondary-color"
-                            placeholder="Job Title"
-                            value={this.state.job_title}
-                            onChange={ this.handleChange}
-                          />
-                       </div>
-                    </h3>
+                         </div>
+                      </h3>}
                  </div>
                  <div className="row">
-                    <div className="col-sm-6">
+                    { this.state.header.show_phone && <div className="col-sm-6">
                        <div className="column">
                           <i className="fa fa-phone" aria-hidden="true"></i>
                           <span>
@@ -126,8 +127,8 @@ var ResumeHeader = React.createClass({
                              </div>
                           </span>
                        </div>
-                    </div>
-                    <div className="col-sm-6">
+                    </div>}
+                    { this.state.header.show_email && <div className="col-sm-6">
                        <div className="column">
                           <i className="fa fa-envelope" aria-hidden="true"></i>
                           <span>
@@ -143,8 +144,8 @@ var ResumeHeader = React.createClass({
                              </div>
                           </span>
                        </div>
-                    </div>
-                    <div className="col-sm-6">
+                    </div>}
+                    { this.state.header.show_website_link && <div className="col-sm-6">
                        <div className="column">
                           <i className="fa fa-link" aria-hidden="true"></i>
                           <span>
@@ -160,8 +161,8 @@ var ResumeHeader = React.createClass({
                              </div>
                           </span>
                        </div>
-                    </div>
-                    <div className="col-sm-6">
+                    </div>}
+                    { this.state.header.show_location && <div className="col-sm-6">
                        <div className="column">
                           <i className="fa fa-map-marker" aria-hidden="true"></i>
                           <span>
@@ -177,13 +178,13 @@ var ResumeHeader = React.createClass({
                              </div>
                           </span>
                        </div>
-                    </div>
+                    </div>}
                  </div>
               </div>
               <div className="col-sm-4">
-                 <div className="profile-image">
+                 { this.state.header.show_avatar && <div className="profile-image">
                     <img src={this.state.imgSrc} className="img-responsive"/>
-                 </div>
+                 </div>}
               </div>
            </div>
         </section>
