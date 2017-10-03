@@ -5,7 +5,8 @@ class CreateResumeStyles < ActiveRecord::Migration
       t.text :available_background_images
       t.string :font_family
       t.text :available_fonts
-      t.string :color
+      t.string :primary_color, :default => "black"
+      t.string :secondary_color, :default => "#00a7dd"
       t.text :available_colors
       t.integer :resume_id
       t.timestamps null: false

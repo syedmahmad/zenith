@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925212135) do
+ActiveRecord::Schema.define(version: 20171002190310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 20170925212135) do
     t.boolean  "show_job_title",      default: true
     t.boolean  "show_phone",          default: true
     t.boolean  "show_email",          default: true
-    t.boolean  "shwo_website_link",   default: true
     t.boolean  "show_avatar",         default: true
     t.integer  "resume_id"
     t.datetime "created_at",                         null: false
@@ -91,6 +90,7 @@ ActiveRecord::Schema.define(version: 20170925212135) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "show_website_link",   default: true
   end
 
   create_table "languages", force: :cascade do |t|
@@ -141,11 +141,12 @@ ActiveRecord::Schema.define(version: 20170925212135) do
     t.text     "available_background_images"
     t.string   "font_family"
     t.text     "available_fonts"
-    t.string   "color"
+    t.string   "primary_color",               default: "black"
+    t.string   "secondary_color",             default: "#00a7dd"
     t.text     "available_colors"
     t.integer  "resume_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   create_table "resumes", force: :cascade do |t|
