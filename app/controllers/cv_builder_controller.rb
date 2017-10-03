@@ -1,6 +1,12 @@
 class CvBuilderController < ApplicationController
   before_action :check_user_type, only: [:index]
   before_action :set_host, only: [:index, :new, :show, :download]
+  PDF_MARGINS = {
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0
+  }.freeze
 
   def index
     # flash[:success ] = "Success Flash Message: Welcome to GentellelaOnRails"
@@ -18,12 +24,20 @@ class CvBuilderController < ApplicationController
     end
   end
 
+  def store_cv
+    session["cv"] = params[:cv_data]
+    render json: true
+  end
+
   def download
     @resume = get_user_resume
+    # @html = render_to_string(:template => "cv_builder/show", :locale => {"resume": @resume, "host": @host},:formats=> [:html])
+    @html = session["cv"].html_safe
     respond_to do |format|
       format.pdf do
         render pdf: "download",
           layout: 'pdf.html.erb',
+          margin: PDF_MARGINS,
           template:  'cv_builder/download.pdf.erb'
           # disposition: 'attachment'
       end

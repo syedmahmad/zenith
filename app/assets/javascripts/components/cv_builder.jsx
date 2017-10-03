@@ -385,7 +385,7 @@ var CvBuilder = React.createClass({
       <div className="cv-builder-container">
         <div className="right_col" role="main">
           <div className="clearfix"></div>
-          <div className="row">
+          <div className="row build-cv">
             {data_1}  
           </div>
         </div>
