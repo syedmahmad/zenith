@@ -27,7 +27,7 @@ var TechnologyItem = React.createClass({
                   <input
                     type="string"
                     name="name"
-                    className="form-control"
+                    className="form-control secondary-color"
                     placeholder="Group Title"
                     value={this.state.name}
                     onChange={ this.handleChange }

@@ -40,7 +40,7 @@ var ExperienceItem = React.createClass({
                   <input
                     type="string"
                     name="company_name"
-                    className="form-control"
+                    className="form-control secondary-color"
                     placeholder="Company"
                     value={this.state.company_name}
                     onChange={ this.handleChange }

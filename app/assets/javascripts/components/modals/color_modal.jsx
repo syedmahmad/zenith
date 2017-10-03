@@ -31,8 +31,8 @@ var ColorModal = React.createClass({
           }
 
 
-
-      var selected_color = this.props.resumeStyle.color
+      var primary_color = this.props.resumeStyle.primary_color
+      var secondary_color = this.props.resumeStyle.secondary_color
       var colors = this.props.resumeStyle.available_colors
       return (
         <div className="modal fade" id="colorModal" role="dialog">
@@ -46,9 +46,9 @@ var ColorModal = React.createClass({
                 <div className="color-reorder-page">
                   {
                     colors.map((color, index) => (
-                      selected_color === color
-                        ? <p key={index} style={{background: color}} data-color-name={color} onClick={this.changeColor}><div className="color-state-selected"><i className="fa fa-check"></i></div></p>
-                        : <p key={index} style={{background: color}} data-color-name={color} onClick={this.changeColor}></p>
+                      secondary_color === color
+                        ? <p key={index} style={{background: color}} data-sec-color-name={color} onClick={this.changeColor}><div className="color-state-selected"><i className="fa fa-check"></i></div></p>
+                        : <p key={index} style={{background: color}} data-sec-color-name={color} onClick={this.changeColor}></p>
                   ))}
                 </div>
               </div>

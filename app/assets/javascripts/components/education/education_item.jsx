@@ -39,7 +39,7 @@ var EducationItem = React.createClass({
                 <div className="form-group">
                   <input
                     type="string"
-                    name="university_name"
+                    name="university_name secondary-color"
                     className="form-control"
                     placeholder="School or University"
                     value={this.state.university_name}

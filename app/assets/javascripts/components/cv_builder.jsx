@@ -10,6 +10,10 @@ var CvBuilder = React.createClass({
   },
   componentDidMount: function(){
     this.setupLayout();
+    var _this = this;
+    $(".cv-builder :input:not(.secondary-color)").each(function(e,val){ 
+      $(val).css('color', _this.state.resumeStyle.primary_color)
+    });
   },
   setupLayout: function(){
     elements = $(".page")
@@ -143,11 +147,11 @@ var CvBuilder = React.createClass({
     this.setState({resumeStyle: this.state.resumeStyle});
   },
   handleColor: function(e) {
-    var color = $(e.target).data("colorName");
-    params = {id: this.props.resume.resume_style.id, "color": color};
+    var color = $(e.target).data("secColorName");
+    params = {id: this.props.resume.resume_style.id, "secondary_color": color};
     this.updateResume({resume: {resume_style_attributes: params}});
 
-    this.state.resumeStyle.color = color;
+    this.state.resumeStyle.secondary_color = color;
     this.setState({resumeStyle: this.state.resumeStyle});
   },
   handleRemoveSection: function(e){
