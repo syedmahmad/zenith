@@ -82,7 +82,7 @@ var Volunteers = React.createClass({
                     <input
                       type="string"
                       name="volunteer_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="VOLUNTEER"
                       value={this.state.volunteer_header}
                       onChange={ this.handleChange }

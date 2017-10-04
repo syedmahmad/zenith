@@ -83,7 +83,7 @@ var Achievements = React.createClass({
                     <input
                       type="string"
                       name="achievement_header"
-                      className="form-control primary_color"
+                      className="form-control primary_font"
                       placeholder="ACHIEVEMENTS"
                       value={this.state.achievement_header}
                       onChange={ this.handleChange }

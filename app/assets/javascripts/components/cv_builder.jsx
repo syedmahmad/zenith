@@ -10,15 +10,25 @@ var CvBuilder = React.createClass({
   },
   componentDidMount: function(){
     this.setupLayout();
-    this.updateColor();
+    this.updateStyle();
   },
   componentDidUpdate: function(){
-    this.updateColor();
+    this.updateStyle();
   },
-  updateColor: function(){
+  updateStyle: function(){
     var _this = this;
+    // apply color
     $(".cv-builder :input:not(.secondary-color)").each(function(e,val){ 
       $(val).css('color', _this.state.resumeStyle.primary_color)
+    });
+    // apply primary_font
+    $(".cv-builder .primary_font").each(function(e,val){ 
+      $(val).css('font-family', _this.state.resumeStyle.primary_font)
+    });
+    // apply primary_font
+    $(".cv-builder :input:not(.primary_font)").each(function(e,val){ 
+      $(val).css({'font-family': _this.state.resumeStyle.secondary_font,
+        'font-size': _this.state.resumeStyle.font_size})
     });
   },
   setupLayout: function(){
@@ -145,11 +155,13 @@ var CvBuilder = React.createClass({
     this.setState({resumeStyle: this.state.resumeStyle});
   },
   handleFont: function(e) {
+    var f_name = $(e.target).data("name");
     var font = $(e.target).data("fontName");
-    params = {id: this.props.resume.resume_style.id, "font_family": font};
+    params = {id: this.props.resume.resume_style.id};
+    params[f_name] = font;
     this.updateResume({resume: {resume_style_attributes: params}});
 
-    this.state.resumeStyle.font_family = font;
+    this.state.resumeStyle[f_name] = font;
     this.setState({resumeStyle: this.state.resumeStyle});
   },
   handleColor: function(e) {

@@ -81,7 +81,7 @@ var Languages = React.createClass({
                     <input
                       type="string"
                       name="language_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="LANGUAGES"
                       value={this.state.language_header}
                       onChange={ this.handleChange }

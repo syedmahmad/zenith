@@ -81,7 +81,7 @@ var Experiences = React.createClass({
                     <input
                       type="string"
                       name="experience_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="EXPERIENCES"
                       value={this.state.experience_header}
                       onChange={ this.handleChange }

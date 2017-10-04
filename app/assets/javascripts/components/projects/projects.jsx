@@ -81,7 +81,7 @@ var Projects = React.createClass({
                     <input
                       type="string"
                       name="project_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="PROJECTS"
                       value={this.state.project_header}
                       onChange={ this.handleChange }

@@ -82,7 +82,7 @@ var Certificates = React.createClass({
                     <input
                       type="string"
                       name="certificate_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="CERTIFICATES"
                       value={this.state.certificate_header}
                       onChange={ this.handleChange }

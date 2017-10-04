@@ -81,7 +81,7 @@ var Passions = React.createClass({
                     <input
                       type="string"
                       name="passion_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="PASSIONS"
                       value={this.state.passion_header}
                       onChange={ this.handleChange }

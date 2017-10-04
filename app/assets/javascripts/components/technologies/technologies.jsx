@@ -81,7 +81,7 @@ var Technologies = React.createClass({
                     <input
                       type="string"
                       name="technology_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="TECHNOLOGIES"
                       value={this.state.technology_header}
                       onChange={ this.handleChange }

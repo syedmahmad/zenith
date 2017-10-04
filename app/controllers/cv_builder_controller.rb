@@ -109,7 +109,7 @@ class CvBuilderController < ApplicationController
     end
 
     return{
-      "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new(:background_img => "white.png", :available_background_images => ["white.png", "arches.png","checkered.png","handmade.png","paper.png","psychedelic.png","struckaxiom.png","vichy.png","weave.png","worn.png"], font_family:"Lato", :available_fonts => ["Lato","Playfair Display","Abril Fatface","Raleway","Montserrat","Exo 2","Oswald","Chivo","Roboto Slab"], primary_color:"black", secondary_color: "#00a7dd", :available_secondary_colors => ["black","#8616cc","#FF0F0F","#CF924A","#A861A6","#00a7dd","#FA6C00","#FB51A5","#5ac41d","#36006B"],
+      "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new(:background_img => "white.png", :available_background_images => ["white.png", "arches.png","checkered.png","handmade.png","paper.png","psychedelic.png","struckaxiom.png","vichy.png","weave.png","worn.png"], primary_font:"Exo2", secondary_font: "Roboto", font_size: "14px",:available_primary_fonts => ['Droid Sans','Exo2','Lato','Montserrat','Oswald','Roboto','Slabo 27px'],:available_secondary_fonts => ['Exo2','Lato','Open Sans','Raleway','Roboto','Roboto Condensed','Slabo 27px'],:available_font_sizes => ['10px', '11px', '12px', '14px', '16px'], primary_color:"black", secondary_color: "#00a7dd", :available_secondary_colors => ["black","#8616cc","#FF0F0F","#CF924A","#A861A6","#00a7dd","#FA6C00","#FB51A5","#5ac41d","#36006B"],
       :available_primary_colors => ["black","#012B7E","#36006B","#58320E","#8616cc","#FF0F0F","#FB51A5"]).attributes),
       "id": @resume_data.present? ? @resume_data.id : "",
       "header": (@resume_data.present? && @resume_data.header.present? ? header_data : new_header_data),
@@ -135,7 +135,7 @@ class CvBuilderController < ApplicationController
   def permitted_params
     params.require(:resume).permit(:section_names, achievements_attributes: [:title, :description, :id], awards_attributes: [:name, :id], certificates_attributes: [:name, :institutiion_name, :id], courses_attributes: [:title, :description, :id], strengths_attributes: [:title, :description, :id], educations_attributes: [:degree_name, :university_name, :id, :duration, :cgpa], experiences_attributes: [:id, :title, :company_name, :location, :duration, :description], languages_attributes: [:id, :name, :level], passions_attributes: [:id, :name],
       projects_attributes: [:id, :name, :location, :duration, :description], quotes_attributes: [:id, :name], skills_attributes: [:id, :name, :level], technologies_attributes: [:id, :name, :tec_names], volunteers_attributes: [:id, :title, :organization_name, :duration, :description], layout_attributes: [:id, :layout_type, :section_names => [], :section_data => [:name, :page, :column]],
-      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link], summary_attributes: [:id, :title, :description], resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color])
+      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link], summary_attributes: [:id, :title, :description], resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color, :primary_font, :secondary_font, :font_size])
   end
 
   private

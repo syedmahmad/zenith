@@ -81,7 +81,7 @@ var Strengths = React.createClass({
                     <input
                       type="string"
                       name="strength_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="STRENGTH"
                       value={this.state.strength_header}
                       onChange={ this.handleChange }

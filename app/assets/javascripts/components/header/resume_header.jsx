@@ -86,7 +86,7 @@ var ResumeHeader = React.createClass({
                           <input
                               type="string"
                               name="name"
-                              className="form-control"
+                              className="form-control primary_font"
                               placeholder="Full Name"
                               value={this.state.name}
                               onChange={ this.handleChange}

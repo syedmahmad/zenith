@@ -50,7 +50,7 @@ var Summary = React.createClass({
                     <input
                       type="string"
                       name="title"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="SUMMARY"
                       value={this.state.title}
                       onChange={ this.handleChange}

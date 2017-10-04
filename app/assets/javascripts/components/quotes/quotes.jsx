@@ -81,7 +81,7 @@ var Quotes = React.createClass({
                     <input
                       type="string"
                       name="quote_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="QUOTES"
                       value={this.state.quote_header}
                       onChange={ this.handleChange }

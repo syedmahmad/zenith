@@ -81,7 +81,7 @@ var Education = React.createClass({
                     <input
                       type="string"
                       name="education_header"
-                      className="form-control"
+                      className="form-control primary_font" 
                       placeholder="EDUCATION"
                       value={this.state.education_header}
                       onChange={ this.handleChange }

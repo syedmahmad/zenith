@@ -5,6 +5,10 @@ var ExperienceItem = React.createClass({
     return {title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description};
   },
 
+  // componentDidMount: function(){
+  //   $('input[name="duration"]').daterangepicker();
+  // },
+
    handleChange: function(e){
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});

@@ -80,7 +80,7 @@ var Awards = React.createClass({
                     <input
                       type="string"
                       name="award_header"
-                      className="form-control"
+                      className="form-control primary_font"
                       placeholder="AWARDS"
                       value={this.state.award_header}
                       onChange={ this.handleChange }
