@@ -143,7 +143,8 @@ ActiveRecord::Schema.define(version: 20170925212135) do
     t.text     "available_fonts"
     t.string   "primary_color",               default: "black"
     t.string   "secondary_color",             default: "#00a7dd"
-    t.text     "available_colors"
+    t.text     "available_primary_colors"
+    t.text     "available_secondary_colors"
     t.integer  "resume_id"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false

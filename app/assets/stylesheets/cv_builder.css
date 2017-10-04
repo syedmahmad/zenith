@@ -15,7 +15,10 @@
 .add-section-modal {
   display: inline-block;
 }
-.color-reorder-page,
+.color-reorder-page {
+  overflow: hidden;
+  margin-left: 20px;
+}
 .font-reorder-page,
 .background-reorder-page{
   overflow: hidden;
@@ -434,4 +437,21 @@ ul {
 .rearrange-resume-col-right {
   min-height: 107px;
   min-width: 54px;
+}
+
+.outer-color {
+  cursor: pointer;
+  float: left;
+  height: 50px;
+  margin: 1px;
+  width: 50px;
+  border: 1px solid #000;
+}
+.inner-color {
+  cursor: pointer;
+  height: 20px;
+  margin: 1px;
+  width: 20px;
+  margin: 13px;
+  border: 1px dotted #2A3F54;
 }
