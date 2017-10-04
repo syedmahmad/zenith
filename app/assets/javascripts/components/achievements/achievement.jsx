@@ -62,12 +62,12 @@ var Achievements = React.createClass({
     var _this = this;
     achievements.forEach(function(achievement) {
       key = "achievement-" + achievement.id;
-      data.push(<AchievementItem achievement={achievement} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      data.push(<AchievementItem handleShowHideChange={_this.handleShowHideChange} achievement={achievement} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
     });
     
     return (
      <div className="section-items col-md-12" data-section-name="Achievements">
-       <div id="edit_able" className="hide-section">  
+       <div id="edit_able" className="hide-section">
           <a href="javaScript:void(0);">
           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.addSubSection}></i>
           </a>

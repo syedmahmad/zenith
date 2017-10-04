@@ -11,63 +11,79 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002190310) do
+ActiveRecord::Schema.define(version: 20171004125356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "achievements", force: :cascade do |t|
-    t.string   "title",       default: "", null: false
+    t.string   "title",            default: "",   null: false
     t.string   "item_icon"
     t.integer  "resume_id"
-    t.string   "description", default: "", null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "description",      default: "",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "show_title",       default: true
+    t.boolean  "show_description", default: true
   end
 
   create_table "awards", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
+    t.string   "name",             default: "",   null: false
     t.integer  "resume_id"
     t.string   "icon"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.text     "description"
+    t.boolean  "show_icon",        default: true
+    t.boolean  "show_description", default: true
   end
 
   create_table "certificates", force: :cascade do |t|
-    t.string   "name",              default: "", null: false
-    t.string   "institutiion_name", default: "", null: false
+    t.string   "name",              default: "",   null: false
+    t.string   "institutiion_name", default: "",   null: false
     t.integer  "resume_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "show_institutiion", default: true
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string   "title",       default: "", null: false
+    t.string   "title",            default: "",   null: false
     t.integer  "resume_id"
-    t.string   "description", default: "", null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "description",      default: "",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "show_description", default: true
   end
 
   create_table "educations", force: :cascade do |t|
-    t.string   "degree_name",     default: "", null: false
-    t.string   "university_name", default: "", null: false
+    t.string   "degree_name",     default: "",   null: false
+    t.string   "university_name", default: "",   null: false
     t.integer  "resume_id"
-    t.string   "duration",        default: "", null: false
+    t.string   "duration",        default: "",   null: false
     t.float    "cgpa"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "show_location",   default: true
+    t.boolean  "show_period",     default: true
+    t.boolean  "show_outcomes",   default: true
+    t.boolean  "show_gpa",        default: true
   end
 
   create_table "experiences", force: :cascade do |t|
-    t.string   "title",        default: "", null: false
-    t.string   "company_name", default: "", null: false
-    t.string   "location",     default: "", null: false
+    t.string   "title",            default: "",   null: false
+    t.string   "company_name",     default: "",   null: false
+    t.string   "location",         default: "",   null: false
     t.integer  "resume_id"
-    t.string   "duration",     default: "", null: false
-    t.string   "description",  default: "", null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "duration",         default: "",   null: false
+    t.string   "description",      default: "",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "show_location",    default: true
+    t.boolean  "show_period",      default: true
+    t.boolean  "show_outcomes",    default: true
+    t.boolean  "show_description", default: true
+    t.boolean  "show_link",        default: true
   end
 
   create_table "headers", force: :cascade do |t|
@@ -94,11 +110,12 @@ ActiveRecord::Schema.define(version: 20171002190310) do
   end
 
   create_table "languages", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
-    t.string   "level",      default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",             default: "",   null: false
+    t.string   "level",            default: "",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "resume_id"
+    t.boolean  "show_proficiency", default: true
   end
 
   create_table "layouts", force: :cascade do |t|
@@ -112,28 +129,37 @@ ActiveRecord::Schema.define(version: 20171002190310) do
   end
 
   create_table "passions", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
+    t.string   "name",             default: "",   null: false
     t.integer  "resume_id"
     t.string   "icon"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "show_icon",        default: true
+    t.boolean  "show_description", default: true
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name",        default: "", null: false
-    t.string   "location",    default: "", null: false
+    t.string   "name",             default: "",   null: false
+    t.string   "location",         default: "",   null: false
     t.integer  "resume_id"
-    t.string   "duration",    default: "", null: false
-    t.string   "description", default: "", null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "duration",         default: "",   null: false
+    t.string   "description",      default: "",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "show_location",    default: true
+    t.boolean  "show_period",      default: true
+    t.boolean  "show_outcomes",    default: true
+    t.boolean  "show_description", default: true
+    t.boolean  "show_link",        default: true
   end
 
   create_table "quotes", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
+    t.string   "name",        default: "",   null: false
     t.integer  "resume_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "author"
+    t.boolean  "show_author", default: true
   end
 
   create_table "resume_styles", force: :cascade do |t|
@@ -162,20 +188,23 @@ ActiveRecord::Schema.define(version: 20171002190310) do
   end
 
   create_table "skills", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
-    t.string   "level",      default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",       default: "",   null: false
+    t.string   "level",      default: "",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "resume_id"
+    t.boolean  "show_level", default: true
   end
 
   create_table "strengths", force: :cascade do |t|
-    t.string   "title",       default: "", null: false
+    t.string   "title",            default: "",   null: false
     t.string   "item_icon"
     t.integer  "resume_id"
-    t.string   "description", default: "", null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "description",      default: "",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "show_icon",        default: true
+    t.boolean  "show_description", default: true
   end
 
   create_table "summaries", force: :cascade do |t|
@@ -188,11 +217,13 @@ ActiveRecord::Schema.define(version: 20171002190310) do
   end
 
   create_table "technologies", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
-    t.text     "tec_names",  default: [],              array: true
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",             default: "",   null: false
+    t.text     "tec_names",        default: [],                array: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "resume_id"
+    t.boolean  "show_icon",        default: true
+    t.boolean  "show_description", default: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -216,13 +247,17 @@ ActiveRecord::Schema.define(version: 20171002190310) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "volunteers", force: :cascade do |t|
-    t.string   "title",             default: "", null: false
-    t.string   "organization_name", default: "", null: false
+    t.string   "title",             default: "",   null: false
+    t.string   "organization_name", default: "",   null: false
     t.integer  "resume_id"
-    t.string   "duration",          default: "", null: false
-    t.string   "description",       default: "", null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "duration",          default: "",   null: false
+    t.string   "description",       default: "",   null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "show_location",     default: true
+    t.boolean  "show_period",       default: true
+    t.boolean  "show_outcomes",     default: true
+    t.boolean  "show_description",  default: true
   end
 
 end

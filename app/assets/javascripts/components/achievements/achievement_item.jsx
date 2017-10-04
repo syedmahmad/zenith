@@ -1,7 +1,7 @@
 var AchievementItem = React.createClass({
   getInitialState: function(){
     var achievement = this.props.achievement;
-    return {title: achievement.title, description: achievement.description};
+    return {title: achievement.title, description: achievement.description, achievement: achievement};
   },
   handleChange: function(e){
     e.preventDefault();
@@ -9,6 +9,8 @@ var AchievementItem = React.createClass({
   },
  
   render: function() {
+    optionsArr = ["show_title", "show_description"]
+    showHideOptions = <ShowHideOptions model={this.props.achievement} section="achievements" sectionId={this.props.achievement.id} handleShowHideChange={this.props.handleShowHideChange} options={optionsArr}/>
     return (
       <div className="">
          <li className="section-item" data-achievement-id={this.props.achievement.id}>
@@ -20,11 +22,12 @@ var AchievementItem = React.createClass({
                <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.achievement.id}></i>
                </a>
             </div>
+            {showHideOptions}
             <div className="icon-holder pull-left">
                <i className="fa fa-bolt" aria-hidden="true"></i>  
             </div>
             <h5>
-               <div className="form-group">
+               { this.state.achievement.show_title && <div className="form-group">
                   <input
                     type="string"
                     name="title"
@@ -33,10 +36,10 @@ var AchievementItem = React.createClass({
                     value={this.state.title}
                     onChange={ this.handleChange }
                   />
-               </div>
+               </div>}
             </h5>
             <h6>
-               <div className="form-group">
+               { this.state.achievement.show_description && <div className="form-group">
                   <input
                     type="string"
                     name="description"
@@ -45,7 +48,7 @@ var AchievementItem = React.createClass({
                     value={this.state.description}
                     onChange={ this.handleChange }
                   />
-               </div>
+               </div>}
             </h6>
          </li>
       </div>

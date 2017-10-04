@@ -199,7 +199,7 @@ var CvBuilder = React.createClass({
 
   handleShowHideChange: function(e){
     section = $(e.target).closest(".show_hide_section").data("sectionName")
-    field = $(e.target).attr("name")
+    field = $(e.target).data("itemName")
     value = $(e.target). prop("checked")
     itemId = $(e.target).closest(".show_hide_section").data("sectionId")
     
@@ -246,7 +246,7 @@ var CvBuilder = React.createClass({
             section = section.substr(0,1).toUpperCase()+section.substr(1);
             MyComponent = window[section];
             key = section + "holder"+i;
-            data.push(<MyComponent handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+            data.push(<MyComponent handleShowHideChange={_this.handleShowHideChange} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
           }
         });
       }
