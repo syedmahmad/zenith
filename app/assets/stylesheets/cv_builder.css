@@ -427,6 +427,10 @@ ul {
   font-size: 4rem;
   margin: 0 auto;
 } 
+.color-reorder-page .color-state-selected i {
+  font-size: 1.2rem;
+  margin: 0 auto;
+} 
 .double-column-rearrange {
   display: flex;
 }
@@ -454,4 +458,37 @@ ul {
   width: 20px;
   margin: 13px;
   border: 1px dotted #2A3F54;
+}
+.layout-type-modal{
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.layout-type-modal .template-holder .icon-holder,
+.layout-type-modal .template-holder {
+  margin: 0 auto;
+}
+.layout-type-modal .template-holder .template{
+  color: white;
+  cursor: pointer;
+  background: #2A3F54;
+  float: left;
+  font-size: 13px;
+  font-weight: 500;
+  height: 130px;
+  margin: 10px;
+  text-align: center;
+  width: 130px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.layout-type-modal .template-holder .template .active-templete{
+  background: #1ABB9C;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 2px;
+  font-size: 1.4rem;
 }
