@@ -206,7 +206,15 @@ var CvBuilder = React.createClass({
     params = {resume: {[section+"_attributes"]: {[field]: value, id: itemId}}}
     this.updateResume(params)
     newState = this.state
-    newState.resume.header[field] = value
+    if(section == "header"){
+      newState.resume[section][field] = value
+    }else{
+      newState.resume[section].forEach(function(item, index) {
+        if(item.id == parseInt(itemId)){
+          newState.resume[section][index][field] = value
+        }      
+      });
+    }
     this.setState(newState)
   },
 
@@ -239,7 +247,7 @@ var CvBuilder = React.createClass({
       });
       if(_this.state.layout_type == "double"){
         key = "double-page"+i;
-        data.push(<Double data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+        data.push(<Double handleShowHideChange={_this.handleShowHideChange} data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
       }else{
         _this.state.layoutSections.forEach(function(section) {
           if($.inArray(section, selectedSections) > -1){
@@ -252,7 +260,7 @@ var CvBuilder = React.createClass({
       }
 
       key = "page-"+i;  
-      data_1.push(<Page key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection} resumeStyle={_this.state.resume.resume_style} handleShowHideChange={this.handleShowHideChange}/>);
+      data_1.push(<Page handleShowHideChange={_this.handleShowHideChange} key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection} resumeStyle={_this.state.resume.resume_style}/>);
     };
     return (
       <div className="cv-builder-container">

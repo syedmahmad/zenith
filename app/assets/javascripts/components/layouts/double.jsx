@@ -8,18 +8,17 @@ var Double = React.createClass({
 
     sections = _this.props.layoutSections
     selectedSections = this.props.selectedSections
-
     sections.forEach(function(section) {
       if($.inArray(section, right_col_data) > -1){
         section = section.substr(0,1).toUpperCase()+section.substr(1);
         MyComponent = window[section];
         key = section + "holder"+i;
-        data_right.push(<MyComponent handleRemoveSection={_this.props.handleRemoveSection} resume={_this.props.resume} key={key} updateResume={_this.props.updateResume} createSubSection={_this.props.createSubSection}  removeSubSection={_this.props.removeSubSection}/>);
+        data_right.push(<MyComponent handleShowHideChange={_this.props.handleShowHideChange} handleRemoveSection={_this.props.handleRemoveSection} resume={_this.props.resume} key={key} updateResume={_this.props.updateResume} createSubSection={_this.props.createSubSection}  removeSubSection={_this.props.removeSubSection}/>);
       }else if($.inArray(section, left_col_data) > -1){
         section = section.substr(0,1).toUpperCase()+section.substr(1);
         MyComponent = window[section];
         key = section + "holder"+i;
-        data_left.push(<MyComponent handleRemoveSection={_this.props.handleRemoveSection} resume={_this.props.resume} key={key} updateResume={_this.props.updateResume} createSubSection={_this.props.createSubSection}  removeSubSection={_this.props.removeSubSection}/>);
+        data_left.push(<MyComponent handleShowHideChange={_this.props.handleShowHideChange} handleRemoveSection={_this.props.handleRemoveSection} resume={_this.props.resume} key={key} updateResume={_this.props.updateResume} createSubSection={_this.props.createSubSection}  removeSubSection={_this.props.removeSubSection}/>);
       }
     });
 

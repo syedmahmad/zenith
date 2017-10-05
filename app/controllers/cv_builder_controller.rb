@@ -54,7 +54,7 @@ class CvBuilderController < ApplicationController
 
   def clone
     if current_user.present?
-      resume = current_user.resumes.find_by_id(params[:id])
+      resume = current_user.resumes.find_by_id(Hashids.new("salt", 16).decode(params[:id]).try(:first))
       if resume.present?
         @resume = resume.amoeba_dup
         @resume.save
@@ -134,8 +134,8 @@ class CvBuilderController < ApplicationController
 
   def permitted_params
     params.require(:resume).permit(:section_names,
-      achievements_attributes: [:title, :description, :id],
-      awards_attributes: [:name, :id],
+      achievements_attributes: [:title, :description, :id, :show_description, :show_title],
+      awards_attributes: [:name, :id, :show_description, :show_icon],
       certificates_attributes: [:name, :institutiion_name, :id],
       courses_attributes: [:title, :description, :id],
       strengths_attributes: [:title, :description, :id],
@@ -149,9 +149,9 @@ class CvBuilderController < ApplicationController
       technologies_attributes: [:id, :name, :tec_names],
       volunteers_attributes: [:id, :title, :organization_name, :duration, :description],
       layout_attributes: [:id, :layout_type, :section_names => [], :section_data => [:name, :page, :column]],
-      resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color, :primary_font, :secondary_font, :font_size],
       header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link, :show_avatar,:show_name,:show_location,:show_job_title,:show_phone,:show_email,:show_website_link],
-      summary_attributes: [:id, :title, :description])
+      summary_attributes: [:id, :title, :description],
+      resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color, :primary_font, :secondary_font, :font_size])
   end
 
   private

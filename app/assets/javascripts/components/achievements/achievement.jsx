@@ -62,7 +62,7 @@ var Achievements = React.createClass({
     var _this = this;
     achievements.forEach(function(achievement) {
       key = "achievement-" + achievement.id;
-      data.push(<AchievementItem handleShowHideChange={_this.handleShowHideChange} achievement={achievement} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      data.push(<AchievementItem handleShowHideChange={_this.props.handleShowHideChange} achievement={achievement} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
     });
     
     return (

@@ -10,7 +10,7 @@ var AchievementItem = React.createClass({
  
   render: function() {
     optionsArr = ["show_title", "show_description"]
-    showHideOptions = <ShowHideOptions model={this.props.achievement} section="achievements" sectionId={this.props.achievement.id} handleShowHideChange={this.props.handleShowHideChange} options={optionsArr}/>
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.props.achievement} section="achievements" sectionId={this.props.achievement.id} options={optionsArr}/>
     return (
       <div className="">
          <li className="section-item" data-achievement-id={this.props.achievement.id}>

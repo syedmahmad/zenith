@@ -11,6 +11,8 @@ var AwardItem = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["show_icon", "show_description"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.props.award} section="awards" sectionId={this.props.achievement.id} options={optionsArr}/>
     return (
       <div className="">
         <div className="section-item" data-award-id={this.props.award.id}>
@@ -22,8 +24,9 @@ var AwardItem = React.createClass({
              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.award.id}></i>
              </a>
           </div>
+          {showHideOptions}
           <div className="icon-holder pull-left">
-             <i className="fa fa-2x fa-trophy" aria-hidden="true"></i>
+             { this.props.award.show_icon && <i className="fa fa-2x fa-trophy" aria-hidden="true"></i>}
           </div>
           <div className="form-group" style={{display: "inline-block", marginLeft: "10px"}}>
             <input
