@@ -15,7 +15,7 @@
         <div class="menu_section">
           <p></p>
           <ul class="nav side-menu">
-            <% if current_user.present? %>
+            <% if current_user.present? && !current_user.user_name.eql?("guest") %>
               <li>
                 <a rel="nofollow" href="/"><i class="fa fa-tachometer"></i> Dashboard</a>
               </li>

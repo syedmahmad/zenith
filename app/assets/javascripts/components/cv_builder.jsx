@@ -7,12 +7,10 @@ var CvBuilder = React.createClass({
   },
   componentDidUpdate: function(prevProps, prevState){
     this.setupLayout();    
+    this.updateStyle();
   },
   componentDidMount: function(){
     this.setupLayout();
-    this.updateStyle();
-  },
-  componentDidUpdate: function(){
     this.updateStyle();
   },
   updateStyle: function(){
