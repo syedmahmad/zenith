@@ -10,10 +10,19 @@ var CvBuilder = React.createClass({
     this.updateStyle();
   },
   componentDidMount: function(){
-    this.setupLayout();
-    this.updateStyle();
+    var _this = this;
+    _this.setupLayout();
+    _this.updateStyle();
+    $(".achievement-list ul").sortable({
+      stop: function  (event, ui) {
+        _this.props.handleSubItemRearrange();
+      }
+    });
   },
-  updateColor: function(){
+  handleSubItemRearrange: function(){
+    
+  },
+  updateStyle: function(){
     var _this = this;
     // apply color
     $(".cv-builder :input:not(.secondary-color)").each(function(e,val){ 

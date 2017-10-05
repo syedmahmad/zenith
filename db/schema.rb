@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004125356) do
+ActiveRecord::Schema.define(version: 20171005232844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.datetime "updated_at",                      null: false
     t.boolean  "show_title",       default: true
     t.boolean  "show_description", default: true
+    t.integer  "item_index"
   end
 
   create_table "awards", force: :cascade do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.text     "description"
     t.boolean  "show_icon",        default: true
     t.boolean  "show_description", default: true
+    t.integer  "item_index"
   end
 
   create_table "certificates", force: :cascade do |t|
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.boolean  "show_institutiion", default: true
+    t.integer  "item_index"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -54,6 +57,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "show_description", default: true
+    t.integer  "item_index"
   end
 
   create_table "educations", force: :cascade do |t|
@@ -68,6 +72,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.boolean  "show_period",     default: true
     t.boolean  "show_outcomes",   default: true
     t.boolean  "show_gpa",        default: true
+    t.integer  "item_index"
   end
 
   create_table "experiences", force: :cascade do |t|
@@ -84,6 +89,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.boolean  "show_outcomes",    default: true
     t.boolean  "show_description", default: true
     t.boolean  "show_link",        default: true
+    t.integer  "item_index"
   end
 
   create_table "headers", force: :cascade do |t|
@@ -116,6 +122,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.datetime "updated_at",                      null: false
     t.integer  "resume_id"
     t.boolean  "show_proficiency", default: true
+    t.integer  "item_index"
   end
 
   create_table "layouts", force: :cascade do |t|
@@ -136,6 +143,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.datetime "updated_at",                      null: false
     t.boolean  "show_icon",        default: true
     t.boolean  "show_description", default: true
+    t.integer  "item_index"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -151,6 +159,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.boolean  "show_outcomes",    default: true
     t.boolean  "show_description", default: true
     t.boolean  "show_link",        default: true
+    t.integer  "item_index"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -160,6 +169,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.datetime "updated_at",                 null: false
     t.string   "author"
     t.boolean  "show_author", default: true
+    t.integer  "item_index"
   end
 
   create_table "resume_styles", force: :cascade do |t|
@@ -194,6 +204,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.datetime "updated_at",                null: false
     t.integer  "resume_id"
     t.boolean  "show_level", default: true
+    t.integer  "item_index"
   end
 
   create_table "strengths", force: :cascade do |t|
@@ -205,6 +216,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.datetime "updated_at",                      null: false
     t.boolean  "show_icon",        default: true
     t.boolean  "show_description", default: true
+    t.integer  "item_index"
   end
 
   create_table "summaries", force: :cascade do |t|
@@ -224,6 +236,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.integer  "resume_id"
     t.boolean  "show_icon",        default: true
     t.boolean  "show_description", default: true
+    t.integer  "item_index"
   end
 
   create_table "users", force: :cascade do |t|
@@ -258,6 +271,7 @@ ActiveRecord::Schema.define(version: 20171004125356) do
     t.boolean  "show_period",       default: true
     t.boolean  "show_outcomes",     default: true
     t.boolean  "show_description",  default: true
+    t.integer  "item_index"
   end
 
 end

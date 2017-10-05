@@ -12,7 +12,7 @@ var ShowHideOptions = React.createClass({
     });
 
     return (
-     <div className="show_hide_section" data-section-name={section} data-section-id={sectionId}>
+     <div className="show_hide_section" style={{display: "none"}} data-section-name={section} data-section-id={sectionId}>
      	{data}
      </div>
     )
