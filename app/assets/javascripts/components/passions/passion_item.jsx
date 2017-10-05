@@ -2,7 +2,7 @@ var PassionItem = React.createClass({
 
   getInitialState: function(){
     var passion = this.props.passion;
-    return {name: passion.name};
+    return {passion: passion, name: passion.name};
   },
 
   handleChange: function(e){
@@ -11,6 +11,8 @@ var PassionItem = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["show_icon", "show_description"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.passion} section="passions" sectionId={this.state.passion.id} options={optionsArr}/>
     return (
       <div className="">
          <li className="section-item" data-passion-id={this.props.passion.id}>
@@ -22,10 +24,11 @@ var PassionItem = React.createClass({
                <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.passion.id}></i>
                </a>
             </div>
-            <div className="icon-holder pull-left" style={{display: "flex"}}>
+            {showHideOptions}
+            { this.state.passion.show_icon && <div className="icon-holder pull-left" style={{display: "flex"}}>
                <i className="fa fa-heart" aria-hidden="true"></i>
-            </div>
-            <h5 style={{marginLeft: "10px"}}>
+            </div>}
+            { this.state.passion.show_description && <h5 style={{marginLeft: "10px"}}>
                <div className="form-group">
                   <input
                     type="string"
@@ -36,7 +39,7 @@ var PassionItem = React.createClass({
                     onChange={ this.handleChange }
                   />
                </div>
-            </h5>
+            </h5>}
          </li>
       </div>
     )

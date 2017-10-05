@@ -62,7 +62,7 @@ var Certificates = React.createClass({
     var _this = this;
     certificates.forEach(function(certificate) {
       key = "certificate-" + certificate.id;
-      data.push(<CertificateItem certificate={certificate} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      data.push(<CertificateItem handleShowHideChange={_this.props.handleShowHideChange} certificate={certificate} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
     });
     
     return (

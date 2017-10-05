@@ -2,7 +2,7 @@ var SkillItem = React.createClass({
 
   getInitialState: function(){
     var skill = this.props.skill;
-    return {name: skill.name, level: skill.level};
+    return {skill: skill, name: skill.name, level: skill.level};
   },
 
    handleChange: function(e){
@@ -11,6 +11,8 @@ var SkillItem = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["show_level"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.skill} section="skills" sectionId={this.state.skill.id} options={optionsArr}/>
     return (
       <div className="">
          <li className="section-item" data-skill-id={this.props.skill.id}>
@@ -34,18 +36,18 @@ var SkillItem = React.createClass({
                   />
                </div>
             </h5>
-            <h6>
-               <div className="form-group">
-                  <input
-                    type="string"
-                    name="level"
-                    className="form-control"
-                    placeholder="Introductory"
-                    value={this.state.level}
-                    onChange={ this.handleChange }
-                  />
-               </div>
-            </h6>
+            { this.state.skill.show_level && <h6>
+              <div className="form-group">
+                <input
+                  type="string"
+                  name="level"
+                  className="form-control"
+                  placeholder="Introductory"
+                  value={this.state.level}
+                  onChange={ this.handleChange }
+                />
+              </div>
+            </h6>}
          </li>
       </div>
     )

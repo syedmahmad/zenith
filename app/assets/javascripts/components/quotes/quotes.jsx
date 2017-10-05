@@ -61,7 +61,7 @@ var Quotes = React.createClass({
     var _this = this;
     quotes.forEach(function(quote) {
       key = "quote-" + quote.id;
-      data.push(<QuoteItem quote={quote} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      data.push(<QuoteItem handleShowHideChange={_this.props.handleShowHideChange} quote={quote} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
     });
     
     return (

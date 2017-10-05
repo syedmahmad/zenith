@@ -50,15 +50,15 @@ class AddShowHideFields < ActiveRecord::Migration
   	add_column :skills, :show_level, :boolean, default: true
 
   	#Strengths
-	add_column :strengths, :show_icon, :boolean, default: true
-	add_column :strengths, :show_description, :boolean, default: true
+  	add_column :strengths, :show_icon, :boolean, default: true
+  	add_column :strengths, :show_description, :boolean, default: true
 
-	#Technologies
-	add_column :technologies, :show_icon, :boolean, default: true
-	add_column :technologies, :show_description, :boolean, default: true
+  	#Technologies
+  	add_column :technologies, :show_icon, :boolean, default: true
+  	add_column :technologies, :show_description, :boolean, default: true
 
-	#Volunteers
-	add_column :volunteers, :show_location, :boolean, default: true
+  	#Volunteers
+  	add_column :volunteers, :show_location, :boolean, default: true
   	add_column :volunteers, :show_period, :boolean, default: true
   	add_column :volunteers, :show_outcomes, :boolean, default: true
   	add_column :volunteers, :show_description, :boolean, default: true

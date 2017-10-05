@@ -13,7 +13,7 @@ var CvBuilder = React.createClass({
     this.setupLayout();
     this.updateStyle();
   },
-  updateStyle: function(){
+  updateColor: function(){
     var _this = this;
     // apply color
     $(".cv-builder :input:not(.secondary-color)").each(function(e,val){ 

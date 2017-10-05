@@ -2,7 +2,7 @@ var EducationItem = React.createClass({
 
   getInitialState: function(){
     var education = this.props.education_item;
-    return {degree_name: education.degree_name, university_name: education.university_name, duration: education.duration, cgpa: education.cgpa};
+    return {education: education ,degree_name: education.degree_name, university_name: education.university_name, duration: education.duration, cgpa: education.cgpa};
   },
 
   handleChange: function(e){
@@ -11,6 +11,8 @@ var EducationItem = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["show_location", "show_period", "show_outcomes", "show_gpa"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.education} section="educations" sectionId={this.state.education.id} options={optionsArr}/>
     return (
       <div className="">
         <div className="section-item col-xs-12" data-education-id={this.props.education_item.id}>
@@ -22,6 +24,7 @@ var EducationItem = React.createClass({
              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.education_item.id}></i>
              </a>
           </div>
+          {showHideOptions}
           <div className="">
              <h3 className="title-position">
                 <div className="form-group">

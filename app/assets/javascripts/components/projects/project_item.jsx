@@ -2,7 +2,7 @@ var ProjectItem = React.createClass({
 
   getInitialState: function(){
     var project = this.props.project;
-    return {name: project.name, location: project.location, duration: project.duration, description: project.description};
+    return {project: project, name: project.name, location: project.location, duration: project.duration, description: project.description};
   },
 
    handleChange: function(e){
@@ -11,6 +11,8 @@ var ProjectItem = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["show_location", "show_period", "show_outcomes", "show_link", "show_description"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.project} section="projects" sectionId={this.state.project.id} options={optionsArr}/>
     return (
       <div className="">
         <div className="section-item col-xs-12" data-project-id={this.props.project.id}>
@@ -22,6 +24,7 @@ var ProjectItem = React.createClass({
              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.project.id}></i>
              </a>
           </div>
+          {showHideOptions}
           <div className="">
              <h3 className="title-position">
                 <div className="form-group">
@@ -35,22 +38,22 @@ var ProjectItem = React.createClass({
                   />
                 </div>
              </h3>
-             <div className="column">
-                <i className="fa fa-calendar" aria-hidden="true"></i>
-                <span>
-                  <div className="form-group">
-                    <input
-                      type="string"
-                      name="duration"
-                      className="form-control"
-                      placeholder="Date period"
-                      value={this.state.duration}
-                      onChange={ this.handleChange }
-                    />
-                  </div>
-                </span>
-             </div>
-             <div className="column">
+            {this.state.project.show_period && <div className="column">
+              <i className="fa fa-calendar" aria-hidden="true"></i>
+              <span>
+                <div className="form-group">
+                  <input
+                    type="string"
+                    name="duration"
+                    className="form-control"
+                    placeholder="Date period"
+                    value={this.state.duration}
+                    onChange={ this.handleChange }
+                  />
+                </div>
+              </span>
+            </div>}
+             {this.state.project.show_location && <div className="column">
                 <i className="fa fa-map-marker" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
@@ -64,8 +67,8 @@ var ProjectItem = React.createClass({
                     />
                    </div>
                 </span>
-             </div>
-             <div className="column">
+             </div>}
+             {this.state.show_description && <div className="column">
                <div className="form-group">
                 <input
                   type="string"
@@ -76,7 +79,7 @@ var ProjectItem = React.createClass({
                   onChange={ this.handleChange }
                 />
                </div>
-             </div>
+             </div>}
           </div>
         </div>
       </div>

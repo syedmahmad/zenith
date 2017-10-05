@@ -2,7 +2,7 @@ var LanguageItem = React.createClass({
 
   getInitialState: function(){
     var language = this.props.language;
-    return {name: language.name, level: language.level};
+    return {language: language, name: language.name, level: language.level};
   },
 
    handleChange: function(e){
@@ -11,6 +11,8 @@ var LanguageItem = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["show_proficiency"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.language} section="languages" sectionId={this.state.language.id} options={optionsArr}/>
     return (
       <div className="">
          <li className="section-item" data-language-id={this.props.language.id}>
@@ -22,6 +24,7 @@ var LanguageItem = React.createClass({
                <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.language.id}></i>
                </a>
             </div>
+            {showHideOptions}
             <h5>
                <div className="form-group">
                   <input
@@ -34,7 +37,7 @@ var LanguageItem = React.createClass({
                   />
                </div>
             </h5>
-            <h6>
+            { this.state.language.show_proficiency && <h6>
                <div className="form-group">
                   <input
                     type="string"
@@ -45,7 +48,7 @@ var LanguageItem = React.createClass({
                     onChange={ this.handleChange }
                   />
                </div>
-            </h6>
+            </h6>}
          </li>
       </div>
     )

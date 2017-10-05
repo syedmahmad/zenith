@@ -61,7 +61,7 @@ var Technologies = React.createClass({
     var _this = this;
     technologies.forEach(function(technology) {
       key = "technology-" + technology.id;
-      data.push(<TechnologyItem technology={technology} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      data.push(<TechnologyItem handleShowHideChange={_this.props.handleShowHideChange} technology={technology} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
     });
     
     return (

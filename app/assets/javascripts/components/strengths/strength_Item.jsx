@@ -2,7 +2,7 @@ var StrengthItem = React.createClass({
 
   getInitialState: function(){
     var strength = this.props.strength;
-    return {title: strength.title, description: strength.description};
+    return {strength: strength, title: strength.title, description: strength.description};
   },
 
    handleChange: function(e){
@@ -11,6 +11,8 @@ var StrengthItem = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["show_icon", "show_description"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.strength} section="strengths" sectionId={this.state.strength.id} options={optionsArr}/>
     return (
      <div className="">
         <li className="section-item" data-strength-id={this.props.strength.id}>
@@ -22,9 +24,10 @@ var StrengthItem = React.createClass({
               <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.strength.id}></i>
               </a>
            </div>
-           <div className="icon-holder pull-left">
+           {showHideOptions}
+           {this.state.strength.show_icon && <div className="icon-holder pull-left">
               <i className="fa fa-gavel" aria-hidden="true"></i>
-           </div>
+           </div>}
            <h5>
               <div className="form-group">
                  <input
@@ -37,7 +40,7 @@ var StrengthItem = React.createClass({
                  />
               </div>
            </h5>
-           <h6>
+           {this.state.strength.show_description && <h6>
               <div className="form-group">
                  <input
                    type="string"
@@ -48,7 +51,7 @@ var StrengthItem = React.createClass({
                    onChange={ this.handleChange }
                  />
               </div>
-           </h6>
+           </h6>}
         </li>
      </div>
     )

@@ -61,7 +61,7 @@ var Languages = React.createClass({
     var _this = this;
     languages.forEach(function(language) {
       key = "language-" + language.id;
-      data.push(<LanguageItem language={language} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      data.push(<LanguageItem handleShowHideChange={_this.props.handleShowHideChange} language={language} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
     });
     
     return (

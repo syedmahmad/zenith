@@ -61,7 +61,7 @@ var Strengths = React.createClass({
     var _this = this;
     strengths.forEach(function(strength) {
       key = "strength-" + strength.id;
-      data.push(<StrengthItem strength={strength} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      data.push(<StrengthItem handleShowHideChange={_this.props.handleShowHideChange} strength={strength} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
     });
     
     return (

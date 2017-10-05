@@ -2,7 +2,7 @@ var ExperienceItem = React.createClass({
 
   getInitialState: function(){
     var experience = this.props.experience;
-    return {title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description};
+    return {experience: experience, title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description};
   },
 
   // componentDidMount: function(){
@@ -15,9 +15,11 @@ var ExperienceItem = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["show_location", "show_period", "show_outcomes", "show_gpa"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.experience} section="experiences" sectionId={this.state.experience.id} options={optionsArr}/>
     return (
       <div className="">
-        <div className="section-item col-xs-12" data-experience-id={this.props.experience.id}>
+        <div className="section-item col-xs-12" data-experience-id={this.state.experience.id}>
           <div id="edit_able" className="hide-section">  
              <a href="javaScript:void(0);">
              <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
@@ -26,6 +28,7 @@ var ExperienceItem = React.createClass({
              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.experience.id}></i>
              </a>
           </div>
+          {showHideOptions}
           <div className="">
              <h3 className="title-position">
                 <div className="form-group">
@@ -51,7 +54,7 @@ var ExperienceItem = React.createClass({
                   />
                 </div>
              </h3>
-             <div className="column">
+             {this.state.experience.show_period && <div className="column">
                 <i className="fa fa-calendar" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
@@ -65,7 +68,7 @@ var ExperienceItem = React.createClass({
                     />
                    </div>
                 </span>
-             </div>
+             </div>}
              <div className="column">
                 <i className="fa fa-map-marker" aria-hidden="true"></i>
                 <span>

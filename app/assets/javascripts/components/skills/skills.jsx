@@ -61,7 +61,7 @@ var Skills = React.createClass({
     var _this = this;
     skills.forEach(function(skill) {
       key = "skill-" + skill.id;
-      data.push(<SkillItem skill={skill} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      data.push(<SkillItem handleShowHideChange={_this.props.handleShowHideChange} skill={skill} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
     });
     
     return (

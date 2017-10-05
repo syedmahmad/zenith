@@ -12,7 +12,7 @@ var AwardItem = React.createClass({
 
   render: function() {
     optionsArr = ["show_icon", "show_description"]
-    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.props.award} section="awards" sectionId={this.props.achievement.id} options={optionsArr}/>
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.props.award} section="awards" sectionId={this.props.award.id} options={optionsArr}/>
     return (
       <div className="">
         <div className="section-item" data-award-id={this.props.award.id}>

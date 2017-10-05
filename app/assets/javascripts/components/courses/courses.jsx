@@ -61,7 +61,7 @@ var Courses = React.createClass({
     var _this = this;
     courses.forEach(function(course) {
       key = "course-" + course.id;
-      data.push(<CourseItem course={course} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      data.push(<CourseItem handleShowHideChange={_this.props.handleShowHideChange} course={course} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
     });
     
     return (

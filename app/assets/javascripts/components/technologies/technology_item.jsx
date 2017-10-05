@@ -2,7 +2,7 @@ var TechnologyItem = React.createClass({
 
   getInitialState: function(){
     var technology = this.props.technology;
-    return {name: technology.name, tec_names: technology.tec_names};
+    return {technology: technology, name: technology.name, tec_names: technology.tec_names};
   },
 
    handleChange: function(e){
@@ -11,6 +11,8 @@ var TechnologyItem = React.createClass({
   },
 
   render: function() {
+    optionsArr = ["show_icon", "show_description"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.technology} section="technologies" sectionId={this.state.technology.id} options={optionsArr}/>
     return (
       <div className="">
          <li className="section-item" data-technology-id={this.props.technology.id}>
@@ -22,6 +24,7 @@ var TechnologyItem = React.createClass({
                <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.technology.id}></i>
                </a>
             </div>
+            {showHideOptions}
             <h5>
                <div className="form-group">
                   <input
