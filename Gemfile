@@ -21,6 +21,9 @@ gem 'modernizr-rails'
 # application.yml ENV variables
 gem 'figaro'
 
+# to delete unclaimed CVs
+gem 'whenever', :require => false
+
 gem "font-awesome-rails"
 gem 'react-rails'
 gem 'devise'

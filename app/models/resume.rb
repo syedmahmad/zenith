@@ -65,4 +65,13 @@ class Resume < ActiveRecord::Base
 		technologies.create
 		skills.create
 	end
+
+
+	def self.delete_unclaimed_CVs
+		Resume.all.where('created_at > ?', 24.hours.ago).each do |resume|
+			if resume.user.present? && resume.user.user_name.eql?("guest")
+				resume.destroy
+			end
+		end
+	end
 end
