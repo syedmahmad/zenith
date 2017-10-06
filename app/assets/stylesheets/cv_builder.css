@@ -5,83 +5,111 @@
   padding: 10px;
   border: solid black 2px;
   margin-top: 5px;
-}*/
-.cv-builder-container .main_container {
-  height: 100%;
-  position: fixed;
-  z-index: 21;
-  left: 0;
-}
-.add-section-modal {
-  display: inline-block;
-}
-.color-reorder-page {
-  overflow: hidden;
-  margin-left: 20px;
-}
-.font-reorder-page,
-.background-reorder-page{
-  overflow: hidden;
-}
-.color-reorder-page p,
-.font-reorder-page p,
-.add-section-modal .section {
-  color: white;
-  cursor: pointer;
-  background: #2A3F54;
-  float: left;
-  font-size: 13px;
-  font-weight: 500;
-  height: 109px;
-  line-height: 110px;
-  margin: 1px;
-  text-align: center;
-  width: 109px;
-  border: 1px solid #000;
-}
-.background-reorder-page .bg-box p {
-  color: white;
-  cursor: pointer;
-  float: left;
-  font-size: 13px;
-  font-weight: 500;
-  height: 109px;
-  line-height: 110px;
-  margin: 1px;
-  text-align: center;
-  width: 109px;
-  border: 1px solid #000; 
-  position: relative;
-}
-.background-reorder-page .bg-box p img{
-  height: 100%;
-}
-.background-reorder-page .bg-box p .color-state-selected{
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-}
-/*cv builder design*/
-.page-holder {
-  -webkit-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
-  margin: 0 auto;
-  margin-bottom: 60px;
-  margin-top: 30px;
-  overflow-y: hidden;
-  padding: 60px;
-  -webkit-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
-  font-family: 'Lato', sans-serif;
-  max-width: 1026px;
-  margin: 0 auto;
-}
-.page-holder .form-group {
-  margin-bottom: 10px;
-}
-.page-holder #edit_able {
+  }*/
+  .cv-builder-container .main_container {
+    height: 100%;
+    position: fixed;
+    z-index: 21;
+    left: 0;
+  }
+  .add-section-modal {
+    display: inline-block;
+  }
+  .color-reorder-page {
+    overflow: hidden;
+  }
+  .font-reorder-page,
+  .background-reorder-page{
+    overflow: hidden;
+  }
+  .font-reorder-page h2{
+    font-weight: 600;
+  }
+  .font-reorder-page p{
+    background: transparent;
+    color: #2A3F54;
+    width: 100%;
+    text-align: left;
+    height: auto;
+    line-height: 18px;
+    padding: 10px 5px;
+    border: 1px solid #2A3F54;
+    position: relative;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .font-reorder-page p:hover{
+    background: #2A3F54;
+    color: #fff;
+  }
+  .font-reorder-page p .color-state-selected{
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .font-reorder-page p .color-state-selected i{
+    font-size: 20px;
+    padding: 0 7px;
+    color: #fff;
+  }
+  .color-reorder-page p,
+  .add-section-modal .section {
+    color: white;
+    cursor: pointer;
+    background: #2A3F54;
+    float: left;
+    font-size: 13px;
+    font-weight: 500;
+    height: 109px;
+    line-height: 110px;
+    margin: 1px;
+    text-align: center;
+    width: 109px;
+    border: 1px solid #000;
+  }
+  .background-reorder-page .bg-box p {
+    color: white;
+    cursor: pointer;
+    float: left;
+    font-size: 13px;
+    font-weight: 500;
+    height: 109px;
+    line-height: 110px;
+    margin: 1px;
+    text-align: center;
+    width: 109px;
+    border: 1px solid #000; 
+    position: relative;
+  }
+  .background-reorder-page .bg-box p img{
+    height: 100%;
+  }
+  .background-reorder-page .bg-box p .color-state-selected{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+  /*cv builder design*/
+  .page-holder {
+    -webkit-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
+    margin: 0 auto;
+    margin-bottom: 60px;
+    margin-top: 30px;
+    overflow-y: hidden;
+    padding: 60px;
+    -webkit-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
+    font-family: 'Lato', sans-serif;
+    max-width: 1026px;
+    margin: 0 auto;
+  }
+  .page-holder .form-group {
+    margin-bottom: 10px;
+  }
+  .page-holder #edit_able {
    display: inline-flex;
    align-items: center;
    position: absolute;
@@ -97,7 +125,7 @@
    -webkit-box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
    box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
    height: 36px;
-}
+ }
 .page-holder .show_hide_section {
    align-items: center;
    position: absolute;
@@ -111,8 +139,7 @@
    -webkit-box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
    box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
 }
-
-.page-holder #edit_able i {
+ .page-holder #edit_able i {
   font-size: 1.6em;
   cursor: pointer;
   margin-left: 5px;
@@ -442,8 +469,9 @@ ul {
   margin: 0 auto;
 } 
 .color-reorder-page .color-state-selected i {
-  font-size: 1.2rem;
+  font-size: 1.9rem;
   margin: 0 auto;
+  color: #fff;
 } 
 .double-column-rearrange {
   display: flex;
@@ -460,18 +488,20 @@ ul {
 .outer-color {
   cursor: pointer;
   float: left;
-  height: 50px;
+  height: 60px;
   margin: 1px;
-  width: 50px;
+  width: 60px;
   border: 1px solid #000;
 }
 .inner-color {
   cursor: pointer;
-  height: 20px;
-  margin: 1px;
-  width: 20px;
-  margin: 13px;
-  border: 1px dotted #2A3F54;
+  height: 30px;
+  width: 30px;
+  margin: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.43);
+}
+.inner-color .color-state-selected{
+  background: transparent;
 }
 .layout-type-modal{
   overflow: hidden;

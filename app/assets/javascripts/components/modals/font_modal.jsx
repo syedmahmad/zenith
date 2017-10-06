@@ -36,30 +36,30 @@ var FontModal = React.createClass({
               <div className="modal-body">
                 <div className="font-reorder-page">
                   <div className="row">
-                   <h2>Main Font</h2>
                    <div className="col-xs-4 col-sm-4 col-md-4"> 
+                   <h2>Main Font</h2>
                     {
                       primary_fonts.map((p_font, index) => (
                         primary_font === p_font
-                          ? <p key={index} data-font-name={p_font} data-name="primary_font" onClick={this.changeFont}><div className="color-state-selected"><i className="fa fa-check"></i></div></p>
+                          ? <p key={index} data-font-name={p_font} data-name="primary_font" onClick={this.changeFont}>{p_font}<div className="color-state-selected"><i className="fa fa-check"></i></div></p>
                           : <p key={index} data-font-name={p_font} data-name="primary_font" onClick={this.changeFont}>{p_font}</p>
                     ))}
                    </div>
-                   <h2>Secondary Font</h2>
                    <div className="col-xs-4 col-sm-4 col-md-4"> 
+                   <h2>Secondary Font</h2>
                      {
                        secondary_fonts.map((s_font, index) => (
                          secondary_font === s_font
-                           ? <p key={index} data-font-name={s_font} data-name="secondary_font" onClick={this.changeFont}><div className="color-state-selected"><i className="fa fa-check"></i></div></p>
+                           ? <p key={index} data-font-name={s_font} data-name="secondary_font" onClick={this.changeFont}>{s_font}<div className="color-state-selected"><i className="fa fa-check"></i></div></p>
                            : <p key={index} data-font-name={s_font} data-name="secondary_font" onClick={this.changeFont}>{s_font}</p>
                      ))}
                    </div>
-                   <h2>Font Size</h2>
                    <div className="col-xs-4 col-sm-4 col-md-4"> 
+                   <h2>Font Size</h2>
                      {
                        font_sizes.map((font_s, index) => (
                          font_size === font_s
-                           ? <p key={index} data-font-name={font_s} data-name="font_size" onClick={this.changeFont}><div className="color-state-selected"><i className="fa fa-check"></i></div></p>
+                           ? <p key={index} data-font-name={font_s} data-name="font_size" onClick={this.changeFont}>{font_s}<div className="color-state-selected"><i className="fa fa-check"></i></div></p>
                            : <p key={index} data-font-name={font_s} data-name="font_size" onClick={this.changeFont}>{font_s}</p>
                      ))}
                    </div>

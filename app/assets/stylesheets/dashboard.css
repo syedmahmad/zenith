@@ -12,17 +12,57 @@
   background-color: #2A3F54;
   padding: 20px;
 }
+.cv-dashboard-holder{
+  margin: 100px 0;
+}
 .cv-dashboard .cv-preveiw .holder {
-  max-width: 330px;
-  margin: 0;
   min-height: 469px;
-  float: right;
+  max-height: 469px;
+}
+.cv-dashboard .cv-preveiw .holder  .right_col .page-holder{
+    background-color: #fff;
+    zoom: 50%;
+    padding: 30px;
+    box-shadow: none;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
+    pointer-events: none;
 }
 .cv-dashboard .cv-preveiw .holder .page-holder {
   background-color: #fff;
-  zoom: 25%;
-  padding: 50px;
-  height: auto;
+      max-width: 430px;
+    float: right;
+    padding: 0;
+  height: -webkit-fill-available;
+  overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+.cv-dashboard .cv-preveiw .holder .page-holder:hover .editer-section{
+  display: block;
+  position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.47);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.cv-dashboard .cv-preveiw .holder .page-holder .editer-section .icon-holder{
+  margin: 0 auto;
+  font-size: 100px;
+  color: #000;
+}
+.editer-section{
+  display: none;
+}
+.cv-dashboard .cv-preveiw .holder .page-holder .right_col{
+      padding: 0;
+    margin-left: 0;
 }
 .cv-dashboard .resume-controls {
   min-height: 469px;
@@ -49,6 +89,9 @@
 .cv-dashboard .resume-controls .btn-area-top .btn-section ul li {
   display: inline-block;
   margin-right: 5px;
+}
+.cv-dashboard .resume-controls .btn-area-top .btn-section ul li a{
+  color: #fff;
 }
 .cv-dashboard .resume-controls .btn-area-top .btn-section ul li:first-child {
   display: inline-block;
@@ -81,9 +124,20 @@
   bottom: 0;
   left: 0;
 }
+.cv-dashboard .resume-controls .templete-count ul,
 .cv-dashboard .resume-controls .btn-area-bottom ul {
   margin-bottom: 0;
 }
+.cv-dashboard .resume-controls .templete-count{
+  max-width: 185px;
+  margin-top: 10px;
+}
+.cv-dashboard .resume-controls .templete-count ul li a{
+  padding: 10px 20px !important;
+  margin-bottom: 2px !important;
+  border:1px solid #fff;
+}
+.cv-dashboard .resume-controls .templete-count ul li a,
 .cv-dashboard .resume-controls .btn-area-bottom ul li a {
   display: inline-block;
   padding: 12px 20px;
@@ -100,7 +154,10 @@
   margin-bottom: 10px;
   overflow: hidden;
 }
-.cv-dashboard .resume-controls .btn-area-bottom ul li a:hover, .cv-dashboard .resume-controls .btn-area-bottom ul li a.active {
+.cv-dashboard .resume-controls .templete-count ul li a:hover,
+.cv-dashboard .resume-controls .btn-area-bottom ul li a:hover,
+.cv-dashboard .resume-controls .templete-count ul li a.active,
+ .cv-dashboard .resume-controls .btn-area-bottom ul li a.active {
   background: #fff;
   color: #2A3F54;
   text-decoration: none;
