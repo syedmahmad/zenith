@@ -9,9 +9,14 @@ var ExperienceItem = React.createClass({
   //   $('input[name="duration"]').daterangepicker();
   // },
 
-   handleChange: function(e){
+  handleChange: function(e){
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
+  },
+
+  handleShowHide: function(e){
+    e.preventDefault();
+    $(e.target).closest(".section-item").find(".show_hide_section").show()
   },
 
   render: function() {
@@ -26,6 +31,9 @@ var ExperienceItem = React.createClass({
              </a>
              <a href="javaScript:void(0);">
              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.experience.id}></i>
+             </a>
+             <a href="javaScript:void(0);" title="">
+             <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
              </a>
           </div>
           {showHideOptions}
@@ -69,7 +77,7 @@ var ExperienceItem = React.createClass({
                    </div>
                 </span>
              </div>}
-             <div className="column">
+             { this.state.experience.show_location && <div className="column">
                 <i className="fa fa-map-marker" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
@@ -83,7 +91,7 @@ var ExperienceItem = React.createClass({
                     />
                    </div>
                 </span>
-             </div>
+             </div>}
              <div className="column">
                 <span>
                    <div className="form-group">

@@ -16,14 +16,18 @@ var Education = React.createClass({
       this.firstChild.classList.remove('hide-section');
     }));
     $(document).on('focusout', ".section-item", (function (e) {
-      this.firstChild.classList.add('hide-section');
 
-      var state_res = _this.state.education.find(item => item.id == $(this).data("educationId"));
-      if (state_res) {
-        var props_res = _this.props.resume.education.find(item => item.id == $(this).data("educationId"));
-        if (props_res && props_res[e.target.name] != e.target.value) {
-          //send update call...
-          _this.submitEducation({[e.target.name]: e.target.value, "id": $(this).data("educationId")});
+      if(!($(e.relatedTarget).hasClass("option_item"))) {
+        $(this).find(".show_hide_section").hide()
+        this.firstChild.classList.add('hide-section');
+
+        var state_res = _this.state.education.find(item => item.id == $(this).data("educationId"));
+        if (state_res) {
+          var props_res = _this.props.resume.education.find(item => item.id == $(this).data("educationId"));
+          if (props_res && props_res[e.target.name] != e.target.value) {
+            //send update call...
+            _this.submitEducation({[e.target.name]: e.target.value, "id": $(this).data("educationId")});
+          }
         }
       }
     }));

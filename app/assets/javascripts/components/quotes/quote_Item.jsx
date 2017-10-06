@@ -5,7 +5,7 @@ var QuoteItem = React.createClass({
     return {quote: quote, name: quote.name};
   },
 
-   handleChange: function(e){
+  handleChange: function(e){
     e.preventDefault();
     this.setState({[e.target.name]: e.target.value});
   },
@@ -15,6 +15,11 @@ var QuoteItem = React.createClass({
     this.props.updateResume(
       {quote: {name: this.state.name}}
     );
+  },
+
+  handleShowHide: function(e){
+    e.preventDefault();
+    $(e.target).closest(".section-item").find(".show_hide_section").show()
   },
 
   render: function() {
@@ -29,6 +34,9 @@ var QuoteItem = React.createClass({
              </a>
              <a href="javaScript:void(0);">
              <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.quote.id}></i>
+             </a>
+             <a href="javaScript:void(0);" title="">
+             <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
              </a>
           </div>
           {showHideOptions}

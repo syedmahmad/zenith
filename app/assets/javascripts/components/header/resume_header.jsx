@@ -36,14 +36,17 @@ var ResumeHeader = React.createClass({
     }));
     $(document).on('focusout', ".personal-info", (function (e) {
       e.preventDefault();
-      var __this = this;
-      setTimeout(function(){ 
-        __this.firstChild.classList.add('hide-section');
-        if (e.target.value != _this.props.header[e.target.name]) {
-          _this.submitHeader({[e.target.name]: e.target.value, "id": $(__this).data("headerId")});
-        }
+      if(!($(e.relatedTarget).hasClass("option_item"))) {
+        $(this).find(".show_hide_section").hide()
+        var __this = this;
+        setTimeout(function(){ 
+          __this.firstChild.classList.add('hide-section');
+          if (e.target.value != _this.props.header[e.target.name]) {
+            _this.submitHeader({[e.target.name]: e.target.value, "id": $(__this).data("headerId")});
+          }
 
-      }, 500);
+        }, 500);
+      }
     }));
   },
 
@@ -55,6 +58,11 @@ var ResumeHeader = React.createClass({
 
   handleClick: function(e) {
     $('#img_selector').show().focus().trigger('click');
+  },
+
+  handleShowHide: function(e){
+    e.preventDefault();
+    $(e.target).closest(".personal-info").find(".show_hide_section").show()
   },
 
   render: function() {
@@ -77,8 +85,8 @@ var ResumeHeader = React.createClass({
              <i aria-hidden="true" className="fa fa-camera" onClick={this.handleClick}></i>
              </a>
              <a href="javaScript:void(0);" title="">
-             <i aria-hidden="true" className="fa fa-cog"></i>
-             </a>             
+             <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
+             </a>
           </div>
           {showHideOptions}
            <div className="row">

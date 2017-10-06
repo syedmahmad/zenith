@@ -10,6 +10,11 @@ var SkillItem = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
+  handleShowHide: function(e){
+    e.preventDefault();
+    $(e.target).closest(".section-item").find(".show_hide_section").show()
+  },
+
   render: function() {
     optionsArr = ["show_level"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.skill} section="skills" sectionId={this.state.skill.id} options={optionsArr}/>
@@ -22,6 +27,9 @@ var SkillItem = React.createClass({
                </a>
                <a href="javaScript:void(0);">
                <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.skill.id}></i>
+               </a>
+               <a href="javaScript:void(0);" title="">
+               <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
                </a>
             </div>
             <h5>

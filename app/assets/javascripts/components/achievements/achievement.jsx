@@ -16,14 +16,17 @@ var Achievements = React.createClass({
       this.firstChild.classList.remove('hide-section');
     }));
     $(document).on('focusout', ".section-item", (function (e) {
-      this.firstChild.classList.add('hide-section');
-      var state_res = _this.state.achievements.find(item => item.id == $(this).data("achievementId"));
+      if(!($(e.relatedTarget).hasClass("option_item"))) {
+        $(this).find(".show_hide_section").hide()
+        this.firstChild.classList.add('hide-section');
+        var state_res = _this.state.achievements.find(item => item.id == $(this).data("achievementId"));
 
-      if (state_res) {
-        var props_res = _this.props.resume.achievements.find(item => item.id == $(this).data("achievementId"));
-        if (props_res && props_res[e.target.name] != e.target.value) {
-          //send update call...
-          _this.submitAchievment({[e.target.name]: e.target.value, "id": $(this).data("achievementId")});
+        if (state_res) {
+          var props_res = _this.props.resume.achievements.find(item => item.id == $(this).data("achievementId"));
+          if (props_res && props_res[e.target.name] != e.target.value) {
+            //send update call...
+            _this.submitAchievment({[e.target.name]: e.target.value, "id": $(this).data("achievementId")});
+          }
         }
       }
     }));
