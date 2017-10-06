@@ -19,7 +19,9 @@ $(function() {
                       <div class="full-layout">
                         <div class="editer-section">
                           <div class="icon-holder">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <a href="/resumes/<%= Hashids.new("salt", 16).encode(@resume.id)%>">
+                              <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
                           </div>
                         </div>
                         <%= react_component('CvBuilder', current_user: current_user, resume: @latest_resume, host: @host)%>
@@ -51,7 +53,7 @@ $(function() {
                           </li>
                           <li>                            
                             <div class="icon-holder">
-                              <a rel="nofollow" data-method="post" href="/resumes/<%=@resume.id%>/clone"><i class="fa fa-files-o"></i></a>
+                              <a rel="nofollow" data-method="post" href="/resumes/<%= Hashids.new("salt", 16).encode(@resume.id)%>/clone"><i class="fa fa-files-o"></i></a>
                             </div>
                           </li>
                           <li>
