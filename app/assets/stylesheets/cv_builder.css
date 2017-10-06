@@ -536,3 +536,64 @@ ul {
   padding: 2px;
   font-size: 1.4rem;
 }
+.show_hide_section{
+  padding: 10px !important;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: sans-serif;
+}
+.show_hide_section .box-holder-toggle{
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.show_hide_section .box-holder-toggle label{
+  float: left;
+}
+.show_hide_section .box-holder-toggle .toggle-holder{
+  float: right;
+}
+.toggle-holder .toggle.btn {
+  border-radius: 35px;
+  border: 0;
+  width: 40px !important;
+      height: 20px !important;
+  margin-left: 15px;
+  min-height: auto;
+  min-width: auto;
+}
+.toggle-holder .toggle-on.btn {
+  padding-right: 50px;
+  padding-left: 20px;
+  background-color: #2a3f54;
+  background-image: none;
+  border: 0;
+  text-transform: uppercase;
+  text-align: left;
+  color: #2a3f54;
+  font-weight: bold;
+  font-size: 1px;
+}
+.toggle-holder .toggle-off.btn {
+  padding-left: 50px;
+  text-align: right;
+  text-transform: uppercase;
+  color: #e6e7e8;
+  font-weight: bold;
+  font-size: 1px;
+  background-color: #e6e7e8;
+  box-shadow: none;
+}
+.toggle-holder .toggle-handle {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 100%;
+  width: 0;
+  border: 0;
+  min-width: 40px;
+  border-radius: 35px;
+  box-shadow: none;
+  background-color: #fff;
+  background-image: none;
+}
