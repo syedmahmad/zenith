@@ -16,7 +16,7 @@ var Projects = React.createClass({
       this.firstChild.classList.remove('hide-section');
     }));
     $(document).on('focusout', ".section-item", (function (e) {
-      if(!($(e.relatedTarget).hasClass("option_item"))) {
+      if(!($(e.target).hasClass("option_item"))) {
         $(this).find(".show_hide_section").hide()
         this.firstChild.classList.add('hide-section');
 

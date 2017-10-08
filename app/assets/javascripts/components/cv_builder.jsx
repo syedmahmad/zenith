@@ -207,6 +207,7 @@ var CvBuilder = React.createClass({
   },
 
   handleShowHideChange: function(e){
+    console.log("fddddddddddddddddddddddddd");
     section = $(e.target).closest(".show_hide_section").data("sectionName")
     field = $(e.target).data("itemName")
     value = $(e.target). prop("checked")
