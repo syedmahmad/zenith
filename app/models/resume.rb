@@ -1,5 +1,7 @@
 class Resume < ActiveRecord::Base
 	
+	attr_accessor :skip_validation
+
 	belongs_to :user
 	has_one :resume_style, dependent: :destroy
 	has_one :header, dependent: :destroy
@@ -43,7 +45,7 @@ class Resume < ActiveRecord::Base
 	accepts_nested_attributes_for :technologies
 	accepts_nested_attributes_for :skills
 
-	after_create :setup_sections
+	after_create :setup_sections, :if => Proc.new{|f| !skip_validation } 
 
 	def setup_sections
 		ResumeStyle.create_default(self.id)

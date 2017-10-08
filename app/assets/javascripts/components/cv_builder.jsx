@@ -13,14 +13,22 @@ var CvBuilder = React.createClass({
     var _this = this;
     _this.setupLayout();
     _this.updateStyle();
-    $(".achievement-list ul").sortable({
-      stop: function  (event, ui) {
-        _this.props.handleSubItemRearrange();
-      }
-    });
+    data = [];
+    // $(".section-items-list ul").sortable({
+    //   placeholder: "ui-state-highlight",
+    //   stop: function  (e, ui) {
+    //     sectionName = $(e.target.closest(".section-items")).data("sectionName").toLowerCase()
+    //     itemsList = $(e.target).find(".section-item")
+    //     itemsList.each(function(i, item){
+    //       data.push({id: $(item).data("sectiontId"), item_index: i})
+    //     });
+    //     _this.handleSubItemRearrange(sectionName, data);
+    //   }
+    // });
   },
-  handleSubItemRearrange: function(){
-    
+  handleSubItemRearrange: function(section, data){
+    params = {resume: {[section+"_attributes"]: data}}
+    this.updateResume(params)
   },
   updateStyle: function(){
     var _this = this;

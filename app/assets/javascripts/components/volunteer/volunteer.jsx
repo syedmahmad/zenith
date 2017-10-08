@@ -78,7 +78,7 @@ var Volunteers = React.createClass({
            <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="Volunteers"></i>
            </a>
         </div>
-        <section className="volunteers-holder">
+        <section className="section-items-holder">
            <div className="heading-area">
               <h3>
                  <div className="form-group">
@@ -93,8 +93,10 @@ var Volunteers = React.createClass({
                  </div>
               </h3>
            </div>
-           <div className="row">
-            {data}
+           <div className="section-items-list">
+              <ul>
+                {data}
+              </ul>
            </div>
        </section>
      </div>

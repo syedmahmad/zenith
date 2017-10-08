@@ -57,6 +57,7 @@ class CvBuilderController < ApplicationController
       resume = current_user.resumes.find_by_id(Hashids.new("salt", 16).decode(params[:id]).try(:first))
       if resume.present?
         @resume = resume.amoeba_dup
+        @resume.skip_validation = true
         @resume.save
         redirect_to resume_path(Hashids.new("salt", 16).encode(@resume.id))
       else

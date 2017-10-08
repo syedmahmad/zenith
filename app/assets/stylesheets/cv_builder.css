@@ -286,55 +286,55 @@ ul {
   color: #000;
   font-weight: bold;
 }
-.achievement-holder .achievement-list {
+.section-items-holder .section-items-list {
   position: relative;
 }
-.achievement-holder .achievement-list li {
+.section-items-holder .section-items-list li {
   margin-bottom: 10px;
   border-bottom: 1px dashed #aaa;
 }
-.achievement-holder .achievement-list li .icon-holder {
+.section-items-holder .section-items-list li .icon-holder {
   min-width: 27px;
   min-height: 40px;
   font-size: 30px;
   color: inherit;
   display: inline-block;
 }
-.achievement-holder .achievement-list li h5 {
+.section-items-holder .section-items-list li h5 {
   display: inline-block;
   width: 90%;
   margin: 0;
 }
-.achievement-holder .achievement-list li h5 .form-group {
+.section-items-holder .section-items-list li h5 .form-group {
   margin-bottom: 0;
 }
-.achievement-holder .achievement-list li h5 .form-group textarea {
+.section-items-holder .section-items-list li h5 .form-group textarea {
   font-size: 1.6rem;
   font-weight: bold;
   color: #000;
 }
-.achievement-holder .achievement-list li h5 .form-group ::placeholder {
+.section-items-holder .section-items-list li h5 .form-group ::placeholder {
   font-size: 1.6rem;
   font-weight: bold;
   color: #000;
   font-weight: bold;
 }
-.achievement-holder .achievement-list li h6 {
+.section-items-holder .section-items-list li h6 {
   font-size: 1.4rem;
   font-weight: normal;
   display: inline-block;
   margin-top: 0px;
   width: 90%;
 }
-.achievement-holder .achievement-list li h6 .form-group {
+.section-items-holder .section-items-list li h6 .form-group {
   margin-bottom: 0;
 }
-.achievement-holder .achievement-list li h6 .form-group textarea {
+.section-items-holder .section-items-list li h6 .form-group textarea {
   font-size: 1.4rem;
   font-weight: normal;
   color: #000;
 }
-.achievement-holder .achievement-list li h6 .form-group ::placeholder {
+.section-items-holder .section-items-list li h6 .form-group ::placeholder {
   font-size: 1.4rem;
   color: #000;
   font-weight: normal;
@@ -388,7 +388,7 @@ ul {
   display: inline-block;
   max-width: 40px;
 }
-.achievement-holder, .summary-holder {
+.section-items-holder, .summary-holder {
   position: relative;
 }
 .page-holder #edit_able.hidden {

@@ -27,7 +27,7 @@ var VolunteerItem = React.createClass({
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.volunteer} section="volunteers" sectionId={this.state.volunteer.id} options={optionsArr}/>
     return (
       <div className="">
-        <div className="section-item col-xs-12" data-volunteer-id={this.props.volunteer.id}>
+        <li className="section-item col-xs-12" data-volunteer-id={this.props.volunteer.id} data-section-id-id={this.props.volunteer.id}>
           <div id="edit_able" className="hide-section">  
              <a href="javaScript:void(0);">
              <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
@@ -93,7 +93,7 @@ var VolunteerItem = React.createClass({
                </div>
              </div>}
           </div>
-        </div>
+        </li>
       </div>
     )
   }
