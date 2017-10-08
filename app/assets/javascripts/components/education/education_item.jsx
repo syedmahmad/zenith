@@ -20,7 +20,7 @@ var EducationItem = React.createClass({
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.education} section="educations" sectionId={this.state.education.id} options={optionsArr}/>
     return (
       <div className="">
-        <div className="section-item col-xs-12" data-education-id={this.props.education_item.id}>
+        <li className="section-item col-xs-12" data-education-id={this.props.education_item.id} data-section-id={this.props.education_item.id}>
           <div id="edit_able" className="hide-section">  
              <a href="javaScript:void(0);">
              <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
@@ -50,8 +50,8 @@ var EducationItem = React.createClass({
                 <div className="form-group">
                   <input
                     type="string"
-                    name="university_name secondary-color"
-                    className="form-control"
+                    name="university_name"
+                    className="form-control secondary-color"
                     placeholder="School or University"
                     value={this.state.university_name}
                     onChange={ this.handleChange }
@@ -90,7 +90,7 @@ var EducationItem = React.createClass({
              </div>
           </div>
 
-        </div>
+        </li>
       </div>
     )
   }

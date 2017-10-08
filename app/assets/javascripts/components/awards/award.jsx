@@ -76,7 +76,7 @@ var Awards = React.createClass({
            <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="Awards"></i>
            </a>
         </div>
-        <section className="achievement-holder">           
+        <section className="section-items-holder">           
            <div className="heading-area" onFocus={this.showButtons} onBlur={this.hideButtons}>
               <h3>
                  <div className="form-group">
@@ -91,7 +91,11 @@ var Awards = React.createClass({
                  </div>
               </h3>
            </div>
-          {data}
+            <div className="section-items-list">
+              <ul>
+                {data}
+              </ul>
+           </div>
         </section>
       </div>
     )

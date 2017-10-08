@@ -20,7 +20,7 @@ var StrengthItem = React.createClass({
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.strength} section="strengths" sectionId={this.state.strength.id} options={optionsArr}/>
     return (
      <div className="">
-        <li className="section-item" data-strength-id={this.props.strength.id}>
+        <li className="section-item" data-strength-id={this.props.strength.id} data-section-id={this.props.strength.id}>
            <div id="edit_able" className="hide-section">  
               <a href="javaScript:void(0);">
               <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>

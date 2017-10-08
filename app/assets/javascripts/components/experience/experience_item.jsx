@@ -24,7 +24,7 @@ var ExperienceItem = React.createClass({
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.experience} section="experiences" sectionId={this.state.experience.id} options={optionsArr}/>
     return (
       <div className="">
-        <div className="section-item col-xs-12" data-experience-id={this.state.experience.id}>
+        <li className="section-item col-xs-12" data-experience-id={this.state.experience.id} data-section-id={this.state.experience.id}>
           <div id="edit_able" className="hide-section">  
              <a href="javaScript:void(0);">
              <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
@@ -107,7 +107,7 @@ var ExperienceItem = React.createClass({
                 </span>
              </div>
           </div>
-        </div>
+        </li>
       </div>
     )
   }
