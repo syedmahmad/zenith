@@ -20,7 +20,7 @@ var ProjectItem = React.createClass({
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.project} section="projects" sectionId={this.state.project.id} options={optionsArr}/>
     return (
       <div className="">
-        <li className="section-item col-xs-12" data-project-id={this.props.project.id} data-section-id-id={this.props.project.id}>
+        <li className="section-item col-xs-12" data-project-id={this.props.project.id} data-section-id={this.props.project.id}>
           <div id="edit_able" className="hide-section">  
              <a href="javaScript:void(0);">
              <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>

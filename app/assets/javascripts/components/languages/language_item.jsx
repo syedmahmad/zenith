@@ -20,7 +20,7 @@ var LanguageItem = React.createClass({
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.language} section="languages" sectionId={this.state.language.id} options={optionsArr}/>
     return (
       <div className="">
-         <li className="section-item" data-language-id={this.props.language.id} data-section-id-id={this.props.language.id}>
+         <li className="section-item" data-language-id={this.props.language.id} data-section-id={this.props.language.id}>
             <div id="edit_able" className="hide-section">  
                <a href="javaScript:void(0);">
                <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
