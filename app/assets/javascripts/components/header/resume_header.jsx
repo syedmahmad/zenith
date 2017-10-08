@@ -31,34 +31,30 @@ var ResumeHeader = React.createClass({
   componentDidMount: function(){
     var _this = this;
     var show_hide_section_clicked = false;
+    
     $(document).on('focusin', ".personal-info", (function (e) {
       this.firstChild.classList.remove('hide-section');
     }));
 
-    // $(document).on('mousedown', ".show_hide_section", (function(e) {
-    //   show_hide_section_clicked = true;
-    // }));
-
-    // $(document).on('blur', ".show_hide_section", (function(e) {
-    //   debugger;
-    //   show_hide_section_clicked = false;
-    // }));
-
     $(document).on('focusout', ".personal-info", (function (e) {
-      debugger;
       e.preventDefault();
-      if (!show_hide_section_clicked) {
-        if(!($(e.target).hasClass("option_item"))) {
-          $(this).find(".show_hide_section").hide()
-          var __this = this;
-          setTimeout(function(){ 
-            __this.firstChild.classList.add('hide-section');
-            if (e.target.value != _this.props.header[e.target.name]) {
-              _this.submitHeader({[e.target.name]: e.target.value, "id": $(__this).data("headerId")});
-            }
+      if($('.show_hide_section').hasClass("hovered")){
+        show_hide_section_clicked = true;
+        $(".personal-info").attr('tabindex',-1).focus();
+      }else{
+        show_hide_section_clicked = false;
+      }
 
-          }, 500);
-        }
+      if (!show_hide_section_clicked) {
+        $(this).find(".show_hide_section").hide()
+        var __this = this;
+        setTimeout(function(){ 
+          __this.firstChild.classList.add('hide-section');
+          if (e.target.value != _this.props.header[e.target.name]) {
+            _this.submitHeader({[e.target.name]: e.target.value, "id": $(__this).data("headerId")});
+          }
+
+        }, 500);
       }
     }));
 

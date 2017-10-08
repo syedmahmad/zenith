@@ -1,5 +1,13 @@
 var ShowHideOptions = React.createClass({
 
+  componentDidMount: function(){
+    $(".show_hide_section").hover(function(){
+       $(this).addClass("hovered");
+    },function(){
+       $(this).removeClass("hovered");
+    });
+  },
+
   render: function() {
     _this = this
     options = this.props.options

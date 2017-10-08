@@ -1,9 +1,5 @@
 var OptionItem = React.createClass({
 
-  componentDidMount: function(){
-    // $('.show_hide_section input').bootstrapToggle();
-  },
-
   render: function() {
   	checked = this.props.model[this.props.item]
   	name = this.props.section+this.props.item+this.props.sectionId
