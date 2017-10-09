@@ -16,7 +16,7 @@ var TechnologyItem = React.createClass({
   },
 
   render: function() {
-    optionsArr = ["show_icon", "show_description"]
+    optionsArr = ["show_gouup_title"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.technology} section="technologies" sectionId={this.state.technology.id} options={optionsArr}/>
     return (
       <div className="">
@@ -34,7 +34,7 @@ var TechnologyItem = React.createClass({
             </div>
             {showHideOptions}
             <h5>
-               <div className="form-group">
+               {this.state.technology.show_gouup_title && <div className="form-group">
                   <input
                     type="string"
                     name="name"
@@ -43,14 +43,14 @@ var TechnologyItem = React.createClass({
                     value={this.state.name}
                     onChange={ this.handleChange }
                   />
-               </div>
+               </div>}
             </h5>
             <h6>
                <div className="form-group">
                   <input
                     type="string"
                     name="tec_names"
-                    className="form-control"
+                    className="form-control hide-show-control"
                     placeholder="Tech"
                     value={this.state.tec_names}
                     onChange={ this.handleChange }

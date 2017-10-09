@@ -2,7 +2,7 @@ var QuoteItem = React.createClass({
 
   getInitialState: function(){
     var quote = this.props.quote;
-    return {quote: quote, name: quote.name};
+    return {quote: quote, name: quote.name, author: quote.author};
   },
 
   handleChange: function(e){
@@ -44,23 +44,24 @@ var QuoteItem = React.createClass({
             <input
               type="string"
               name="name"
-              className="form-control"
+              className="form-control hide-show-control"
               placeholder="Quote"
               value={this.state.name}
               onChange={ this.handleChange }
             />
           </div>
-          
-          { this.state.quote.show_author && <div className="form-group">
-            <input
-              type="string"
-              name="name"
-              className="form-control"
-              placeholder="Quote"
-              value={this.state.author}
-              onChange={ this.handleChange }
-            />
-          </div>}
+          <h3>
+            { this.state.quote.show_author && <div className="form-group">
+              <input
+                type="string"
+                name="name"
+                className="form-control"
+                placeholder="Quote Author"
+                value={this.state.author}
+                onChange={ this.handleChange }
+              />
+            </div>}
+          </h3>
         </li>
       </div>
     )

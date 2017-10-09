@@ -2,7 +2,7 @@ var PassionItem = React.createClass({
 
   getInitialState: function(){
     var passion = this.props.passion;
-    return {passion: passion, name: passion.name};
+    return {passion: passion, name: passion.name, description: passion.description};
   },
 
   handleChange: function(e){
@@ -33,21 +33,33 @@ var PassionItem = React.createClass({
                </a>
             </div>
             {showHideOptions}
-            { this.state.passion.show_icon && <div className="icon-holder pull-left" style={{display: "flex"}}>
+            { this.state.passion.show_icon && <div className="icon-holder pull-left">
                <i className="fa fa-heart" aria-hidden="true"></i>
             </div>}
-            { this.state.passion.show_description && <h5 style={{marginLeft: "10px"}}>
+            <h5>
                <div className="form-group">
                   <input
                     type="string"
                     name="name"
-                    className="form-control"
+                    className="form-control hide-show-control"
                     placeholder="Your Passion"
                     value={this.state.name}
                     onChange={ this.handleChange }
                   />
                </div>
-            </h5>}
+            </h5>
+            <h5>
+               { this.state.passion.show_description && <div className="form-group">
+                  <input
+                    type="string"
+                    name="description"
+                    className="form-control"
+                    placeholder="description"
+                    value={this.state.description}
+                    onChange={ this.handleChange }
+                  />
+               </div>}
+            </h5>
          </li>
       </div>
     )

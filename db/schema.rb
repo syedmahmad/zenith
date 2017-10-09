@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20171005232844) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "title",            default: "",   null: false
-    t.string   "item_icon"
+    t.boolean  "show_icon",        default: true
     t.integer  "resume_id"
     t.string   "description",      default: "",   null: false
     t.datetime "created_at",                      null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20171005232844) do
     t.datetime "updated_at",                     null: false
     t.boolean  "show_location",   default: true
     t.boolean  "show_period",     default: true
-    t.boolean  "show_outcomes",   default: true
+    t.string   "location"
     t.boolean  "show_gpa",        default: true
     t.integer  "item_index"
   end
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20171005232844) do
     t.datetime "updated_at",                      null: false
     t.boolean  "show_location",    default: true
     t.boolean  "show_period",      default: true
-    t.boolean  "show_outcomes",    default: true
+    t.string   "link"
     t.boolean  "show_description", default: true
     t.boolean  "show_link",        default: true
     t.integer  "item_index"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20171005232844) do
   create_table "passions", force: :cascade do |t|
     t.string   "name",             default: "",   null: false
     t.integer  "resume_id"
-    t.string   "icon"
+    t.string   "description"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "show_icon",        default: true
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20171005232844) do
     t.datetime "updated_at",                      null: false
     t.boolean  "show_location",    default: true
     t.boolean  "show_period",      default: true
-    t.boolean  "show_outcomes",    default: true
+    t.string   "link"
     t.boolean  "show_description", default: true
     t.boolean  "show_link",        default: true
     t.integer  "item_index"
@@ -234,8 +234,7 @@ ActiveRecord::Schema.define(version: 20171005232844) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "resume_id"
-    t.boolean  "show_icon",        default: true
-    t.boolean  "show_description", default: true
+    t.boolean  "show_gouup_title", default: true
     t.integer  "item_index"
   end
 
@@ -269,7 +268,7 @@ ActiveRecord::Schema.define(version: 20171005232844) do
     t.datetime "updated_at",                       null: false
     t.boolean  "show_location",     default: true
     t.boolean  "show_period",       default: true
-    t.boolean  "show_outcomes",     default: true
+    t.string   "location"
     t.boolean  "show_description",  default: true
     t.integer  "item_index"
   end

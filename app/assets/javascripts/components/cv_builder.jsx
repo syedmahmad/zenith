@@ -218,7 +218,7 @@ var CvBuilder = React.createClass({
     field = $(e.target).data("itemName")
     value = $(e.target). prop("checked")
     itemId = $(e.target).closest(".show_hide_section").data("sectionId")
-    
+
     params = {resume: {[section+"_attributes"]: {[field]: value, id: itemId}}}
     this.updateResume(params)
     newState = this.state

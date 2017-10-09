@@ -38,7 +38,7 @@ var CertificateItem = React.createClass({
                 <input
                   type="string"
                   name="name"
-                  className="form-control"
+                  className="form-control hide-show-control"
                   placeholder="Certificate Name"
                   value={this.state.name}
                   onChange={ this.handleChange }

@@ -2,12 +2,8 @@ var ExperienceItem = React.createClass({
 
   getInitialState: function(){
     var experience = this.props.experience;
-    return {experience: experience, title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description};
+    return {experience: experience, title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description, link: experience.link};
   },
-
-  // componentDidMount: function(){
-  //   $('input[name="duration"]').daterangepicker();
-  // },
 
   handleChange: function(e){
     e.preventDefault();
@@ -20,7 +16,7 @@ var ExperienceItem = React.createClass({
   },
 
   render: function() {
-    optionsArr = ["show_location", "show_period", "show_outcomes", "show_gpa"]
+    optionsArr = ["show_location", "show_period", "show_link", "show_description"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.experience} section="experiences" sectionId={this.state.experience.id} options={optionsArr}/>
     return (
       <div className="">
@@ -43,7 +39,7 @@ var ExperienceItem = React.createClass({
                   <input
                     type="string"
                     name="title"
-                    className="form-control"
+                    className="form-control hide-show-control"
                     placeholder="Title/Position"
                     value={this.state.title}
                     onChange={ this.handleChange }
@@ -92,7 +88,22 @@ var ExperienceItem = React.createClass({
                    </div>
                 </span>
              </div>}
-             <div className="column">
+             { this.state.experience.show_link && <div className="column">
+                <i className="fa fa-link" aria-hidden="true"></i>
+                <span>
+                   <div className="form-group">
+                    <input
+                      type="string"
+                      name="link"
+                      className="form-control"
+                      placeholder="link"
+                      value={this.state.link}
+                      onChange={ this.handleChange }
+                    />
+                   </div>
+                </span>
+             </div>}
+             { this.state.experience.show_description && <div className="column">
                 <span>
                    <div className="form-group">
                     <input
@@ -105,7 +116,7 @@ var ExperienceItem = React.createClass({
                     />
                    </div>
                 </span>
-             </div>
+             </div>}
           </div>
         </li>
       </div>

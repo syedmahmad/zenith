@@ -20,7 +20,7 @@ var Achievements = React.createClass({
       e.preventDefault();
       if($('.show_hide_section').hasClass("hovered")){
         show_hide_section_clicked = true;
-        $(e.target).closest(".section-item").attr('tabindex',-1).focus();
+        $(e.target).closest(".section-item").find(".hide-show-control").attr('tabindex',-1).focus();
       }else{
         show_hide_section_clicked = false;
       }

@@ -2,7 +2,7 @@ var VolunteerItem = React.createClass({
 
   getInitialState: function(){
     var volunteer = this.props.volunteer;
-    return {volunteer: volunteer, title: volunteer.title, organization_name: volunteer.organization_name, duration: volunteer.duration, description: volunteer.description};
+    return {volunteer: volunteer, title: volunteer.title, organization_name: volunteer.organization_name, duration: volunteer.duration, description: volunteer.description, location: volunteer.location};
   },
 
   handleChange: function(e){
@@ -23,7 +23,7 @@ var VolunteerItem = React.createClass({
   },
 
   render: function() {
-    optionsArr = ["show_location", "show_period", "show_outcomes", "show_description"]
+    optionsArr = ["show_location", "show_period", "show_description"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.volunteer} section="volunteers" sectionId={this.state.volunteer.id} options={optionsArr}/>
     return (
       <div className="">
@@ -46,7 +46,7 @@ var VolunteerItem = React.createClass({
                   <input
                     type="string"
                     name="title"
-                    className="form-control"
+                    className="form-control hide-show-control"
                     placeholder="Title/Role"
                     value={this.state.title}
                     onChange={ this.handleChange }
@@ -80,18 +80,35 @@ var VolunteerItem = React.createClass({
                    </div>
                 </span>
              </div>}
-             {this.state.volunteer.show_description && <div className="column">
-               <div className="form-group">
-                <input
-                  type="string"
-                  name="description"
-                  className="form-control"
-                  placeholder="Short summary of your work"
-                  value={this.state.description}
-                  onChange={ this.handleChange }
-                />
-               </div>
-             </div>}
+             {this.state.volunteer.show_location && <div className="column">
+                 <i className="fa fa-map-marker" aria-hidden="true"></i>
+                 <span>
+                    <div className="form-group">
+                     <input
+                       type="string"
+                       name="location"
+                       className="form-control"
+                       placeholder="Location"
+                       value={this.state.location}
+                       onChange={ this.handleChange }
+                     />
+                    </div>
+                 </span>
+              </div>}
+             <h3>
+               {this.state.volunteer.show_description && <div className="column">
+                 <div className="form-group">
+                  <input
+                    type="string"
+                    name="description"
+                    className="form-control"
+                    placeholder="Short summary of your work"
+                    value={this.state.description}
+                    onChange={ this.handleChange }
+                  />
+                 </div>
+               </div>}
+             </h3>
           </div>
         </li>
       </div>

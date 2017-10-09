@@ -41,14 +41,15 @@ var StrengthItem = React.createClass({
                  <input
                    type="string"
                    name="title"
-                   className="form-control"
+                   className="form-control hide-show-control"
                    placeholder="Your Unique Talent"
                    value={this.state.title}
                    onChange={ this.handleChange }
                  />
               </div>
            </h5>
-           {this.state.strength.show_description && <h6>
+           <h6>
+            {this.state.strength.show_description &&
               <div className="form-group">
                  <input
                    type="string"
@@ -58,8 +59,8 @@ var StrengthItem = React.createClass({
                    value={this.state.description}
                    onChange={ this.handleChange }
                  />
-              </div>
-           </h6>}
+              </div>}
+           </h6>
         </li>
      </div>
     )

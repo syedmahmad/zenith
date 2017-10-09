@@ -2,7 +2,7 @@ var EducationItem = React.createClass({
 
   getInitialState: function(){
     var education = this.props.education_item;
-    return {education: education ,degree_name: education.degree_name, university_name: education.university_name, duration: education.duration, cgpa: education.cgpa};
+    return {education: education ,degree_name: education.degree_name, university_name: education.university_name, duration: education.duration, cgpa: education.cgpa, location: education.location};
   },
 
   handleChange: function(e){
@@ -16,8 +16,8 @@ var EducationItem = React.createClass({
   },
 
   render: function() {
-    optionsArr = ["show_location", "show_period", "show_outcomes", "show_gpa"]
-    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.education} section="educations" sectionId={this.state.education.id} options={optionsArr}/>
+    optionsArr = ["show_location", "show_period", "show_gpa"]
+    showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.education} section="education" sectionId={this.state.education.id} options={optionsArr}/>
     return (
       <div className="">
         <li className="section-item col-xs-12" data-education-id={this.props.education_item.id} data-section-id={this.props.education_item.id}>
@@ -39,7 +39,7 @@ var EducationItem = React.createClass({
                   <input
                     type="string"
                     name="degree_name"
-                    className="form-control"
+                    className="form-control hide-show-control"
                     placeholder="Degree and Field of Study"
                     value={this.state.degree_name}
                     onChange={ this.handleChange }
@@ -58,7 +58,7 @@ var EducationItem = React.createClass({
                   />
                 </div>
              </h3>
-             <div className="column">
+             {this.state.education.show_period && <div className="column">
                 <i className="fa fa-calendar" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
@@ -72,8 +72,23 @@ var EducationItem = React.createClass({
                     />
                    </div>
                 </span>
-             </div>
-             <div className="column">
+             </div>}
+             {this.state.education.show_location && <div className="column">
+                <i className="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                   <div className="form-group">
+                    <input
+                      type="string"
+                      name="location"
+                      className="form-control"
+                      placeholder="location"
+                      value={this.state.location}
+                      onChange={ this.handleChange }
+                    />
+                   </div>
+                </span>
+             </div>}
+             { this.state.education.show_gpa && <div className="column">
                 <i>CGPA </i>
                 <span>
                    <div className="form-group">
@@ -87,7 +102,7 @@ var EducationItem = React.createClass({
                     />
                    </div>
                 </span>
-             </div>
+             </div>}
           </div>
 
         </li>

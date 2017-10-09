@@ -38,7 +38,7 @@ var CourseItem = React.createClass({
               <input
                 type="string"
                 name="title"
-                className="form-control secondary-color"
+                className="form-control hide-show-control"
                 placeholder="Course Title"
                 value={this.state.title}
                 onChange={ this.handleChange }

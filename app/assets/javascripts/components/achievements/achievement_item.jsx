@@ -14,7 +14,7 @@ var AchievementItem = React.createClass({
   },
  
   render: function() {
-    optionsArr = ["show_title", "show_description"]
+    optionsArr = ["show_icon", "show_description"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.props.achievement} section="achievements" sectionId={this.props.achievement.id} options={optionsArr}/>
     return (
       <div className="">
@@ -31,20 +31,22 @@ var AchievementItem = React.createClass({
                </a>
             </div>
             {showHideOptions}
-            <div className="icon-holder pull-left">
-               <i className="fa fa-bolt" aria-hidden="true"></i>  
-            </div>
+            { this.state.achievement.show_icon &&
+              <div className="icon-holder pull-left"> 
+               <i className="fa fa-bolt" aria-hidden="true"></i>
+              </div>
+            }
             <h5>
-               { this.state.achievement.show_title && <div className="form-group">
+              <div className="form-group">
                   <input
                     type="string"
                     name="title"
-                    className="form-control"
+                    className="form-control hide-show-control"
                     placeholder="What are you most proud of?"
                     value={this.state.title}
                     onChange={ this.handleChange }
                   />
-               </div>}
+               </div>
             </h5>
             <h6>
                { this.state.achievement.show_description && <div className="form-group">

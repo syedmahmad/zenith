@@ -38,7 +38,7 @@ var LanguageItem = React.createClass({
                   <input
                     type="string"
                     name="name"
-                    className="form-control"
+                    className="form-control hide-show-control"
                     placeholder="language name"
                     value={this.state.name}
                     onChange={ this.handleChange }

@@ -32,12 +32,13 @@ var SkillItem = React.createClass({
                <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
                </a>
             </div>
+            {showHideOptions}
             <h5>
                <div className="form-group">
                   <input
                     type="string"
                     name="name"
-                    className="form-control"
+                    className="form-control hide-show-control"
                     placeholder="Skill"
                     value={this.state.name}
                     onChange={ this.handleChange }

@@ -18,13 +18,13 @@ class AddShowHideFields < ActiveRecord::Migration
   	#Education
   	add_column :educations, :show_location, :boolean, default: true
   	add_column :educations, :show_period, :boolean, default: true
-  	add_column :educations, :show_outcomes, :boolean, default: true
+  	add_column :educations, :location, :string
   	add_column :educations, :show_gpa, :boolean, default: true
 
   	#Experiences
   	add_column :experiences, :show_location, :boolean, default: true
   	add_column :experiences, :show_period, :boolean, default: true
-  	add_column :experiences, :show_outcomes, :boolean, default: true
+  	add_column :experiences, :link, :string
   	add_column :experiences, :show_description, :boolean, default: true
   	add_column :experiences, :show_link, :boolean, default: true
 
@@ -38,7 +38,7 @@ class AddShowHideFields < ActiveRecord::Migration
   	#Projects
   	add_column :projects, :show_location, :boolean, default: true
   	add_column :projects, :show_period, :boolean, default: true
-  	add_column :projects, :show_outcomes, :boolean, default: true
+  	add_column :projects, :link, :string
   	add_column :projects, :show_description, :boolean, default: true
   	add_column :projects, :show_link, :boolean, default: true
 
@@ -54,13 +54,12 @@ class AddShowHideFields < ActiveRecord::Migration
   	add_column :strengths, :show_description, :boolean, default: true
 
   	#Technologies
-  	add_column :technologies, :show_icon, :boolean, default: true
-  	add_column :technologies, :show_description, :boolean, default: true
+  	add_column :technologies, :show_gouup_title, :boolean, default: true
 
   	#Volunteers
   	add_column :volunteers, :show_location, :boolean, default: true
   	add_column :volunteers, :show_period, :boolean, default: true
-  	add_column :volunteers, :show_outcomes, :boolean, default: true
+  	add_column :volunteers, :location, :string
   	add_column :volunteers, :show_description, :boolean, default: true
 
   end

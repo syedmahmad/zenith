@@ -2,7 +2,7 @@ var AwardItem = React.createClass({
 
   getInitialState: function(){
     var award = this.props.award;
-    return {name: award.name};
+    return {name: award.name, description: award.description};
   },
 
   handleChange: function(e){
@@ -33,19 +33,36 @@ var AwardItem = React.createClass({
              </a>
           </div>
           {showHideOptions}
-          <div className="icon-holder pull-left">
-             { this.props.award.show_icon && <i className="fa fa-2x fa-trophy" aria-hidden="true"></i>}
-          </div>
-          <div className="form-group" style={{display: "inline-block", marginLeft: "10px"}}>
-            <input
-              type="string"
-              name="name"
-              className="form-control"
-              placeholder="Award Name"
-              value={this.state.name}
-              onChange={ this.handleChange }
-            />
-          </div>          
+          { this.props.award.show_icon && 
+            <div className="icon-holder pull-left">
+               <i className="fa fa-trophy" aria-hidden="true"></i>
+            </div>
+          }
+          <h5>
+            <div className="form-group" style={{marginLeft: "10px"}}>
+              <input
+                type="string"
+                name="name"
+                className="form-control hide-show-control"
+                placeholder="Award Name"
+                value={this.state.name}
+                onChange={ this.handleChange }
+              />
+            </div>
+          </h5>
+          <h5>
+            <div className="form-group" style={{marginLeft: "10px"}}>
+              { this.props.award.show_description && <input
+                type="string"
+                name="description"
+                className="form-control"
+                placeholder="Award Description"
+                value={this.state.description}
+                onChange={ this.handleChange }
+              />
+              }
+            </div>            
+          </h5>
         </li>
       </div>
     )

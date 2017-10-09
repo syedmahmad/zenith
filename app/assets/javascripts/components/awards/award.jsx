@@ -12,11 +12,19 @@ var Awards = React.createClass({
   },
   componentDidMount: function(){
     var _this = this;
+    var show_hide_section_clicked = false;
     $(document).on('focusin', ".section-item", (function (e) {
       this.firstChild.classList.remove('hide-section');
     }));
     $(document).on('focusout', ".section-item", (function (e) {
-      if(!($(e.target).hasClass("option_item"))) {
+      e.preventDefault();
+      if($('.show_hide_section').hasClass("hovered")){
+        show_hide_section_clicked = true;
+        $(e.target).closest(".section-item").find(".hide-show-control").attr('tabindex',-1).focus();
+      }else{
+        show_hide_section_clicked = false;
+      }
+      if(!show_hide_section_clicked) {
         $(this).find(".show_hide_section").hide()
         this.firstChild.classList.add('hide-section');
         var state_res = _this.state.awards.find(item => item.id == $(this).data("awardId"));
