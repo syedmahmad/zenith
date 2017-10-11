@@ -58,50 +58,50 @@ var EducationItem = React.createClass({
                   />
                 </div>
              </h3>
-             {this.state.education.show_period && <div className="column">
-                <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
-                <span>
-                   <div className="form-group">
-                    <input
-                      type="string"
-                      name="duration"
-                      className="form-control"
-                      placeholder="Sep 2017"
-                      value={this.state.duration}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
-             </div>}
-             {this.state.education.show_location && <div className="column">
-                <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
-                <span>
-                   <div className="form-group">
-                    <input
-                      type="string"
-                      name="location"
-                      className="form-control"
-                      placeholder="location"
-                      value={this.state.location}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
-             </div>}
+             <div style={{display: 'inline-flex'}}> 
+               {this.state.education.show_period && <div className="column">
+                  <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                  <span>
+                     <div className="form-group">
+                      <input
+                        type="string"
+                        name="duration"
+                        className="form-control"
+                        placeholder="Sep 2017"
+                        value={this.state.duration}
+                        onChange={ this.handleChange }
+                      />
+                     </div>
+                  </span>
+               </div>}
+               {this.state.education.show_location && <div className="column">
+                  <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                  <span>
+                     <div className="form-group">
+                      <input
+                        type="string"
+                        name="location"
+                        className="form-control"
+                        placeholder="location"
+                        value={this.state.location}
+                        onChange={ this.handleChange }
+                      />
+                     </div>
+                  </span>
+               </div>}
+             </div>
              { this.state.education.show_gpa && <div className="column" style={{display: 'inline-flex'}}>
                 <input className="form-control" readonly value="CGPA"/> 
-                <span>
-                   <div className="form-group">
-                    <input
-                      type="string"
-                      name="cgpa"
-                      className="form-control"
-                      placeholder="3.9/6.0"
-                      value={this.state.cgpa}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
+                 <div className="form-group">
+                  <input
+                    type="string"
+                    name="cgpa"
+                    className="form-control"
+                    placeholder="3.9/6.0"
+                    value={this.state.cgpa}
+                    onChange={ this.handleChange }
+                  />
+                 </div>
              </div>}
           </div>
 

@@ -58,36 +58,38 @@ var ExperienceItem = React.createClass({
                   />
                 </div>
              </h3>
-             {this.state.experience.show_period && <div className="column">
-                <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
-                <span>
-                   <div className="form-group">
-                    <input
-                      type="string"
-                      name="duration"
-                      className="form-control"
-                      placeholder="Date period"
-                      value={this.state.duration}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
-             </div>}
-             { this.state.experience.show_location && <div className="column">
-                <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
-                <span>
-                   <div className="form-group">
-                    <input
-                      type="string"
-                      name="location"
-                      className="form-control"
-                      placeholder="Location"
-                      value={this.state.location}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
-             </div>}
+             <div style={{display: 'inline-flex'}}>
+               {this.state.experience.show_period && <div className="column">
+                  <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                  <span>
+                     <div className="form-group">
+                      <input
+                        type="string"
+                        name="duration"
+                        className="form-control"
+                        placeholder="Date period"
+                        value={this.state.duration}
+                        onChange={ this.handleChange }
+                      />
+                     </div>
+                  </span>
+               </div>}
+               { this.state.experience.show_location && <div className="column">
+                  <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                  <span>
+                     <div className="form-group">
+                      <input
+                        type="string"
+                        name="location"
+                        className="form-control"
+                        placeholder="Location"
+                        value={this.state.location}
+                        onChange={ this.handleChange }
+                      />
+                     </div>
+                  </span>
+               </div>}
+             </div>
              { this.state.experience.show_link && <div className="column">
                 <i className="fa fa-link secondary-color" aria-hidden="true"></i>
                 <span>

@@ -107,7 +107,7 @@ var ResumeHeader = React.createClass({
                         <input
                           type="string"
                           name="name"
-                          className="form-control"
+                          className="form-control primary_font"
                           placeholder="Full Name "
                           value={this.state.name}
                           onChange={ this.handleChange}
@@ -120,7 +120,7 @@ var ResumeHeader = React.createClass({
                             <input
                               type="string"
                               name="job_title"
-                              className="form-control secondary-color"
+                              className="form-control secondary-color primary_font"
                               placeholder="Job Title"
                               value={this.state.job_title}
                               onChange={ this.handleChange}

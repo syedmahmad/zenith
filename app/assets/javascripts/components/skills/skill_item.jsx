@@ -33,30 +33,30 @@ var SkillItem = React.createClass({
                </a>
             </div>
             {showHideOptions}
-            <h5>
-               <div className="form-group">
-                  <input
-                    type="string"
-                    name="name"
-                    className="form-control hide-show-control"
-                    placeholder="Skill"
-                    value={this.state.name}
-                    onChange={ this.handleChange }
-                  />
-               </div>
-            </h5>
-            { this.state.skill.show_level && <h6>
-              <div className="form-group">
+            
+             <div className="form-group">
                 <input
                   type="string"
-                  name="level"
-                  className="form-control"
-                  placeholder="Introductory"
-                  value={this.state.level}
+                  name="name"
+                  className="form-control hide-show-control"
+                  placeholder="Skill"
+                  value={this.state.name}
                   onChange={ this.handleChange }
                 />
-              </div>
-            </h6>}
+             </div>
+            <h3>
+              { this.state.skill.show_level &&
+                <div className="form-group">
+                  <input
+                    type="string"
+                    name="level"
+                    className="form-control"
+                    placeholder="Introductory"
+                    value={this.state.level}
+                    onChange={ this.handleChange }
+                  />
+                </div>}
+            </h3>
          </li>
       </div>
     )

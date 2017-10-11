@@ -166,11 +166,12 @@
   border-radius: 0;
 }
 .page-holder .full-name .form-control {
-  font-size: 30px;
+  font-size: 40px;
   color: #000;
+  font-weight: bold;
 }
 .page-holder .full-name .form-control::placeholder {
-  font-size: 30px;
+  font-size: 40px;
   color: #000;
   font-weight: bold;
   vertical-align: top;
@@ -656,4 +657,11 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+.section-items-holder .heading-area .form-group .form-control{
+  font-size: 24px;
+  font-weight: bold;
+}
+.hide-show-control {
+  font-weight: bold;
 }

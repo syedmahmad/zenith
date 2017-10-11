@@ -66,7 +66,7 @@ var CvBuilder = React.createClass({
     });
 
     
-    // apply primary_font
+    // apply primary_font.. Here no need font-size
     $(".cv-builder .primary_font").each(function(e,val){ 
       $(val).css('font-family', _this.state.resumeStyle.primary_font);
     });

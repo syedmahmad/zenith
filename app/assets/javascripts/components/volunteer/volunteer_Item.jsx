@@ -65,36 +65,38 @@ var VolunteerItem = React.createClass({
                   />
                 </div>
              </h3>
-            {this.state.volunteer.show_period && <div className="column">
-                <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
-                <span>
-                   <div className="form-group">
-                    <input
-                      type="string"
-                      name="duration"
-                      className="form-control"
-                      placeholder="Date period"
-                      value={this.state.duration}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
-             </div>}
-             {this.state.volunteer.show_location && <div className="column">
-                 <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
-                 <span>
-                    <div className="form-group">
-                     <input
-                       type="string"
-                       name="location"
-                       className="form-control"
-                       placeholder="Location"
-                       value={this.state.location}
-                       onChange={ this.handleChange }
-                     />
-                    </div>
-                 </span>
-              </div>}
+             <div style={{display: 'inline-flex'}}> 
+              {this.state.volunteer.show_period && <div className="column">
+                  <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                  <span>
+                     <div className="form-group">
+                      <input
+                        type="string"
+                        name="duration"
+                        className="form-control"
+                        placeholder="Date period"
+                        value={this.state.duration}
+                        onChange={ this.handleChange }
+                      />
+                     </div>
+                  </span>
+               </div>}
+               {this.state.volunteer.show_location && <div className="column">
+                   <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                   <span>
+                      <div className="form-group">
+                       <input
+                         type="string"
+                         name="location"
+                         className="form-control"
+                         placeholder="Location"
+                         value={this.state.location}
+                         onChange={ this.handleChange }
+                       />
+                      </div>
+                   </span>
+                </div>}
+            </div>
              <h3>
                {this.state.volunteer.show_description && <div className="column">
                  <div className="form-group">
