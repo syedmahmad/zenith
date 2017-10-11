@@ -59,7 +59,7 @@ var EducationItem = React.createClass({
                 </div>
              </h3>
              {this.state.education.show_period && <div className="column">
-                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
                     <input
@@ -74,7 +74,7 @@ var EducationItem = React.createClass({
                 </span>
              </div>}
              {this.state.education.show_location && <div className="column">
-                <i className="fa fa-map-marker" aria-hidden="true"></i>
+                <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
                     <input
@@ -88,8 +88,8 @@ var EducationItem = React.createClass({
                    </div>
                 </span>
              </div>}
-             { this.state.education.show_gpa && <div className="column">
-                <i>CGPA </i>
+             { this.state.education.show_gpa && <div className="column" style={{display: 'inline-flex'}}>
+                <input className="form-control" readonly value="CGPA"/> 
                 <span>
                    <div className="form-group">
                     <input

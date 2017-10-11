@@ -59,7 +59,7 @@ var ExperienceItem = React.createClass({
                 </div>
              </h3>
              {this.state.experience.show_period && <div className="column">
-                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
                     <input
@@ -74,7 +74,7 @@ var ExperienceItem = React.createClass({
                 </span>
              </div>}
              { this.state.experience.show_location && <div className="column">
-                <i className="fa fa-map-marker" aria-hidden="true"></i>
+                <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
                     <input
@@ -89,7 +89,7 @@ var ExperienceItem = React.createClass({
                 </span>
              </div>}
              { this.state.experience.show_link && <div className="column">
-                <i className="fa fa-link" aria-hidden="true"></i>
+                <i className="fa fa-link secondary-color" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
                     <input

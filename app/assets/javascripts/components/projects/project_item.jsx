@@ -47,7 +47,7 @@ var ProjectItem = React.createClass({
                 </div>
              </h3>
              {this.state.project.show_period && <div className="column">
-               <i className="fa fa-calendar" aria-hidden="true"></i>
+               <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
                <span>
                  <div className="form-group">
                    <input
@@ -62,7 +62,7 @@ var ProjectItem = React.createClass({
                </span>
              </div>}
               {this.state.project.show_location && <div className="column">
-                 <i className="fa fa-map-marker" aria-hidden="true"></i>
+                 <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                  <span>
                     <div className="form-group">
                      <input
@@ -77,7 +77,7 @@ var ProjectItem = React.createClass({
                  </span>
               </div>}
               {this.state.project.show_link && <div className="column">
-                 <i className="fa fa-link" aria-hidden="true"></i>
+                 <i className="fa fa-link secondary-color" aria-hidden="true"></i>
                  <span>
                     <div className="form-group">
                      <input

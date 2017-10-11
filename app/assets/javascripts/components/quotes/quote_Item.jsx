@@ -55,7 +55,7 @@ var QuoteItem = React.createClass({
               <input
                 type="string"
                 name="name"
-                className="form-control"
+                className="form-control secondary-color"
                 placeholder="Quote Author"
                 value={this.state.author}
                 onChange={ this.handleChange }

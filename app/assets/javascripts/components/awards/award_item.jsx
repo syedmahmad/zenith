@@ -35,7 +35,7 @@ var AwardItem = React.createClass({
           {showHideOptions}
           { this.props.award.show_icon && 
             <div className="icon-holder pull-left">
-               <i className="fa fa-trophy" aria-hidden="true"></i>
+               <i className="fa fa-trophy secondary-color" aria-hidden="true"></i>
             </div>
           }
           <h5>

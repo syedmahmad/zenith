@@ -31,13 +31,44 @@ var CvBuilder = React.createClass({
   },
   updateStyle: function(){
     var _this = this;
-    // apply color
-    $(".cv-builder :input:not(.secondary-color)").each(function(e,val){ 
-      $(val).css('color', _this.state.resumeStyle.primary_color)
+    // apply primary color
+    $(".cv-builder :input:not(.secondary-color)").each(function(e,val){
+      var aa = _this.state.resumeStyle.primary_color;
+      if (aa.charAt(0) == "#") {
+        aa = aa.replace("#","color-");
+      }
+      //only apply color for form control...
+      if ($(val).hasClass("form-control")){
+        $(val).removeClass("color").css('color', _this.state.resumeStyle.primary_color);
+        // remove all classes with prefix....
+        $.each(val.classList,function(index, value) {
+          if(value.indexOf("color-")==0) {
+              $(val).removeClass(value);
+          }
+        });
+        $(val).addClass(aa);
+      }
     });
+    $(".cv-builder .secondary-color").each(function(e,val){
+      var aa = _this.state.resumeStyle.secondary_color;
+      if (aa.charAt(0) == "#") {
+        aa = aa.replace("#","color-");
+      }
+
+      $(val).removeClass("color").css('color', _this.state.resumeStyle.secondary_color);
+      // remove all classes with prefix....
+      $.each(val.classList,function(index, value) {
+        if(value.indexOf("color-")==0) {
+            $(val).removeClass(value);
+        }
+      });
+      $(val).addClass(aa);
+    });
+
+    
     // apply primary_font
     $(".cv-builder .primary_font").each(function(e,val){ 
-      $(val).css('font-family', _this.state.resumeStyle.primary_font)
+      $(val).css('font-family', _this.state.resumeStyle.primary_font);
     });
     // apply primary_font
     $(".cv-builder :input:not(.primary_font)").each(function(e,val){ 

@@ -54,7 +54,7 @@ var ResumeHeader = React.createClass({
             _this.submitHeader({[e.target.name]: e.target.value, "id": $(__this).data("headerId")});
           }
 
-        }, 500);
+        }, 1000);
       }
     }));
 
@@ -107,7 +107,7 @@ var ResumeHeader = React.createClass({
                         <input
                           type="string"
                           name="name"
-                          className="form-control primary_font"
+                          className="form-control"
                           placeholder="Full Name "
                           value={this.state.name}
                           onChange={ this.handleChange}
@@ -120,7 +120,7 @@ var ResumeHeader = React.createClass({
                             <input
                               type="string"
                               name="job_title"
-                              className="form-control"
+                              className="form-control secondary-color"
                               placeholder="Job Title"
                               value={this.state.job_title}
                               onChange={ this.handleChange}
@@ -131,7 +131,7 @@ var ResumeHeader = React.createClass({
                  <div className="row">
                     { this.state.header.show_phone && <div className="col-sm-6">
                        <div className="column">
-                          <i className="fa fa-phone" aria-hidden="true"></i>
+                          <i className="fa fa-phone secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
                                 <input
@@ -148,7 +148,7 @@ var ResumeHeader = React.createClass({
                     </div>}
                     { this.state.header.show_email && <div className="col-sm-6">
                        <div className="column">
-                          <i className="fa fa-envelope" aria-hidden="true"></i>
+                          <i className="fa fa-envelope secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
                                 <input
@@ -165,7 +165,7 @@ var ResumeHeader = React.createClass({
                     </div>}
                     { this.state.header.show_website_link && <div className="col-sm-6">
                        <div className="column">
-                          <i className="fa fa-link" aria-hidden="true"></i>
+                          <i className="fa fa-link secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
                                 <input
@@ -182,7 +182,7 @@ var ResumeHeader = React.createClass({
                     </div>}
                     { this.state.header.show_location && <div className="col-sm-6">
                        <div className="column">
-                          <i className="fa fa-map-marker" aria-hidden="true"></i>
+                          <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
                                 <input

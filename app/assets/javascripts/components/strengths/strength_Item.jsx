@@ -34,7 +34,7 @@ var StrengthItem = React.createClass({
            </div>
            {showHideOptions}
            {this.state.strength.show_icon && <div className="icon-holder pull-left">
-              <i className="fa fa-gavel" aria-hidden="true"></i>
+              <i className="fa fa-gavel secondary-color" aria-hidden="true"></i>
            </div>}
            <h5>
               <div className="form-group">

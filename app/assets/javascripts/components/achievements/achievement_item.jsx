@@ -33,7 +33,7 @@ var AchievementItem = React.createClass({
             {showHideOptions}
             { this.state.achievement.show_icon &&
               <div className="icon-holder pull-left"> 
-               <i className="fa fa-bolt" aria-hidden="true"></i>
+               <i className="fa fa-bolt secondary-color" aria-hidden="true"></i>
               </div>
             }
             <h5>

@@ -66,7 +66,7 @@ var VolunteerItem = React.createClass({
                 </div>
              </h3>
             {this.state.volunteer.show_period && <div className="column">
-                <i className="fa fa-calendar" aria-hidden="true"></i>
+                <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
                 <span>
                    <div className="form-group">
                     <input
@@ -81,7 +81,7 @@ var VolunteerItem = React.createClass({
                 </span>
              </div>}
              {this.state.volunteer.show_location && <div className="column">
-                 <i className="fa fa-map-marker" aria-hidden="true"></i>
+                 <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                  <span>
                     <div className="form-group">
                      <input

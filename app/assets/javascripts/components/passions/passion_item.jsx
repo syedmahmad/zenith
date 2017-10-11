@@ -34,7 +34,7 @@ var PassionItem = React.createClass({
             </div>
             {showHideOptions}
             { this.state.passion.show_icon && <div className="icon-holder pull-left">
-               <i className="fa fa-heart" aria-hidden="true"></i>
+               <i className="fa fa-heart secondary-color" aria-hidden="true"></i>
             </div>}
             <h5>
                <div className="form-group">
