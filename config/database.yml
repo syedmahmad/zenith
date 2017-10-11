@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  username: postgres
+  password: postgres
+  host: localhost
+  database: zenith_cv_dev
+
+production:
+  <<: *default
+  username: qspkmkplpwbywm
+  password: 78570639153a1153423e72a947250c311fe6dec3851ede945c429b13a3fecc9a
+  host: ec2-54-247-120-169.eu-west-1.compute.amazonaws.com
+  database: zenith_cv
