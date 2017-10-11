@@ -17,7 +17,13 @@ var AddSections = React.createClass({
     });
     return (
       <div className="add-section-modal">
-        {data}
+        <div className="add-sections-holder col-lg-8">
+          {data}
+        </div>
+        <div className="section-description col-lg-4">
+          <h2></h2>
+          <p></p>
+        </div>
       </div>
     )
   }

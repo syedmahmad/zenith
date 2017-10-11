@@ -11,6 +11,6 @@ class Layout < ActiveRecord::Base
   end
 
   def get_json
-  	{id: id, resume_id: resume_id, layout_type: layout_type, section_names: section_names, section_data: section_data}	
+  	{id: id, underline: underline, resume_id: resume_id, layout_type: layout_type, section_names: section_names, section_data: section_data}	
   end
 end

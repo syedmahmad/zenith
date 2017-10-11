@@ -1,6 +1,6 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {layout_type: this.props.resume.layout.layout_type, pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
+    return {underline: this.props.resume.layout.underline, layout_type: this.props.resume.layout.layout_type, pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
@@ -240,6 +240,9 @@ var CvBuilder = React.createClass({
       this.setState({layout_type: selectedLayout});
     }
   },
+  handleUnderlineChange: function(e){
+    debugger;
+  },
 
   removeChild: function(){
   },
@@ -322,7 +325,7 @@ var CvBuilder = React.createClass({
         <BackgroundModal handleBackground={this.handleBackground} resumeStyle={this.state.resumeStyle}/>
         <FontModal handleFont={this.handleFont} resumeStyle={this.state.resumeStyle}/>
         <ColorModal handleColor={this.handleColor} resumeStyle={this.state.resumeStyle}/>
-        <LayoutTypeModal handleLayoutChange={this.handleLayoutChange} currentLayout={this.state.layout_type}/>
+        <LayoutTypeModal handleLayoutChange={this.handleLayoutChange} handleUnderlineChange={this.handleUnderlineChange} currentLayout={this.state.layout_type} underline={this.state.underline}/>
       </div>
     )
   }

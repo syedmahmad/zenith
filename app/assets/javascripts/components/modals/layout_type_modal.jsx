@@ -17,6 +17,7 @@ var LayoutTypeModal = React.createClass({
 
     render: function() {
       var currentLayout = this.props.currentLayout
+      var checked = this.props.underline
       return (
         <div className="modal fade" id="layoutTypeModal" role="dialog">
           <div className="modal-dialog">
@@ -60,6 +61,15 @@ var LayoutTypeModal = React.createClass({
                            </div>
                         </div>
                       </div>}
+                      <div className="template">
+                        <span className="toggle-holder">
+                          <label className="switch">
+                            <input type="checkbox" onChange={this.props.handleUnderlineChange} name="underline" className="option_item" type="checkbox" checked={checked} data-toggle="toggle"/>
+                            <span className="slider round"></span>
+                          </label>
+                        </span>
+                        <p>underline</p>
+                      </div>
                   </div>
                 </div>
               </div>
