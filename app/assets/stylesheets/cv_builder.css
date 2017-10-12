@@ -272,6 +272,9 @@ ul {
   border-bottom: 3px solid #000;
   margin-bottom: 25px;
 }
+.heading-area.remove-border{
+  border-bottom: 0px !important;
+}
 .heading-area .form-group, .heading-area h3 {
   margin-bottom: 0;
 }
@@ -620,7 +623,7 @@ ul {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
+  -webkit-transition: .1s;
   transition: .1s;
 }
 

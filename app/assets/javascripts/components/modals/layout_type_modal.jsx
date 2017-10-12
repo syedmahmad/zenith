@@ -28,7 +28,7 @@ var LayoutTypeModal = React.createClass({
               </div>
               <div className="modal-body">
                 <div className="layout-type-modal">
-                  <div className="template-holder">
+                  <div className="template-holder" style={{display: 'inline-flex'}}>
                     {
                       currentLayout === 'double' ?
                       <div>
@@ -61,10 +61,10 @@ var LayoutTypeModal = React.createClass({
                            </div>
                         </div>
                       </div>}
-                      <div className="template">
+                      <div style={{ marginTop: '46px', padding: '10px'}}>
                         <span className="toggle-holder">
                           <label className="switch">
-                            <input type="checkbox" onChange={this.props.handleUnderlineChange} name="underline" className="option_item" type="checkbox" checked={checked} data-toggle="toggle"/>
+                            <input type="checkbox" onChange={this.props.handleUnderlineChange} name="underline" type="checkbox" checked={checked} data-toggle="toggle"/>
                             <span className="slider round"></span>
                           </label>
                         </span>

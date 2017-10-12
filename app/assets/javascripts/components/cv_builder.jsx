@@ -31,6 +31,17 @@ var CvBuilder = React.createClass({
   },
   updateStyle: function(){
     var _this = this;
+    //check border_bottom
+    if (!this.state.underline) {
+      $(".cv-builder .heading-area").each(function(e,val){ 
+        $(val).addClass("remove-border");
+      });
+    } else {
+      $(".cv-builder .heading-area").each(function(e,val){ 
+        $(val).removeClass("remove-border");
+      });
+    }
+
     // apply primary color
     $(".cv-builder :input:not(.secondary-color)").each(function(e,val){
       var aa = _this.state.resumeStyle.primary_color;
@@ -241,7 +252,9 @@ var CvBuilder = React.createClass({
     }
   },
   handleUnderlineChange: function(e){
-    debugger;
+    params = {id: this.props.resume.layout.id, "underline": $(e.target).prop("checked")};
+    this.updateResume({resume: {layout_attributes: params}});
+    this.setState({underline: $(e.target).prop("checked")});
   },
 
   removeChild: function(){
@@ -250,7 +263,7 @@ var CvBuilder = React.createClass({
   handleShowHideChange: function(e){
     section = $(e.target).closest(".show_hide_section").data("sectionName")
     field = $(e.target).data("itemName")
-    value = $(e.target). prop("checked")
+    value = $(e.target).prop("checked")
     itemId = $(e.target).closest(".show_hide_section").data("sectionId")
 
     params = {resume: {[section+"_attributes"]: {[field]: value, id: itemId}}}
