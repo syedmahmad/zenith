@@ -83,7 +83,7 @@ var EducationItem = React.createClass({
                         name="location"
                         className="form-control"
                         placeholder="location"
-                        value={this.state.location}
+                        value={this.state.location || ''}
                         onChange={ this.handleChange }
                       />
                      </div>
@@ -91,14 +91,14 @@ var EducationItem = React.createClass({
                </div>}
              </div>
              { this.state.education.show_gpa && <div className="column" style={{display: 'inline-flex'}}>
-                <input className="form-control" readonly value="CGPA"/> 
+                <input className="form-control" readOnly value="CGPA"/> 
                  <div className="form-group">
                   <input
                     type="string"
                     name="cgpa"
                     className="form-control"
                     placeholder="3.9/6.0"
-                    value={this.state.cgpa}
+                    value={this.state.cgpa || ''}
                     onChange={ this.handleChange }
                   />
                  </div>

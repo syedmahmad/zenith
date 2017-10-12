@@ -16,6 +16,7 @@ var SkillItem = React.createClass({
   },
 
   render: function() {
+    var levelHash = {"0": "", "20": "Beginner", "40": "Intermediate", "60": "Advanced", "80": "Proficient", "100": "Native"};
     optionsArr = ["show_level"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.skill} section="skills" sectionId={this.state.skill.id} options={optionsArr}/>
     return (
@@ -44,19 +45,20 @@ var SkillItem = React.createClass({
                   onChange={ this.handleChange }
                 />
              </div>
-            <h3>
-              { this.state.skill.show_level &&
+             { this.state.skill.show_level && <h6>
+                <p>{levelHash[this.state.level]}</p>
                 <div className="form-group">
-                  <input
-                    type="string"
-                    name="level"
-                    className="form-control"
-                    placeholder="Introductory"
-                    value={this.state.level}
-                    onChange={ this.handleChange }
-                  />
-                </div>}
-            </h3>
+                   <input
+                     type="range"
+                     min="0" max="100" step="20"
+                     name="level"
+                     className="form-control"
+                     placeholder="Beginner"
+                     value={this.state.level}
+                     onChange={ this.handleChange }
+                   />
+                </div>
+             </h6>}
          </li>
       </div>
     )

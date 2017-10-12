@@ -87,7 +87,7 @@ var ProjectItem = React.createClass({
                        name="link"
                        className="form-control"
                        placeholder="link"
-                       value={this.state.link}
+                       value={this.state.link || ''}
                        onChange={ this.handleChange }
                      />
                     </div>

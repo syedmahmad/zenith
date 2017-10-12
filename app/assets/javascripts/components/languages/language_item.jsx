@@ -16,6 +16,7 @@ var LanguageItem = React.createClass({
   },
 
   render: function() {
+    var levelHash = {"0": "", "20": "Beginner", "40": "Intermediate", "60": "Advanced", "80": "Proficient", "100": "Native"};
     optionsArr = ["show_proficiency"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.language} section="languages" sectionId={this.state.language.id} options={optionsArr}/>
     return (
@@ -46,9 +47,11 @@ var LanguageItem = React.createClass({
                </div>
             </h5>
             { this.state.language.show_proficiency && <h6>
+               <p>{levelHash[this.state.level]}</p>
                <div className="form-group">
                   <input
-                    type="string"
+                    type="range"
+                    min="0" max="100" step="20"
                     name="level"
                     className="form-control"
                     placeholder="Beginner"

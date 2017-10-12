@@ -15,8 +15,8 @@ var ShowHideOptions = React.createClass({
     sectionId = this.props.sectionId
     model = this.props.model
     data = []
-    options.forEach(function(item) {
-    	data.push(<OptionItem item={item} model={model} section={section} sectionId={sectionId} handleShowHideChange={_this.props.handleShowHideChange}/>)
+    options.forEach(function(item, index) {
+    	data.push(<OptionItem item={item} key={index} model={model} section={section} sectionId={sectionId} handleShowHideChange={_this.props.handleShowHideChange}/>)
     });
 
     return (

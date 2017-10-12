@@ -33,8 +33,8 @@ var BackgroundModal = React.createClass({
                       
                       BackgroundImages.map((img, index) => (
                         bg_img === img
-                          ? <p><img src={"/assets/"+img} key={index} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/><span className="color-state-selected"><i className="fa fa-check"></i></span></p>
-                          : <p><img src={"/assets/"+img} key={index} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/></p>
+                          ? <p key={index}><img src={"/assets/"+img} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/><span className="color-state-selected"><i className="fa fa-check"></i></span></p>
+                          : <p key={index}><img src={"/assets/"+img} data-image-name={img} className="img-responsive" onClick={this.changeBackground}/></p>
                     ))}
                   </div>
                 </div>

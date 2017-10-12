@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20171005232844) do
 
   create_table "languages", force: :cascade do |t|
     t.string   "name",             default: "",   null: false
-    t.string   "level",            default: "",   null: false
+    t.string   "level",            default: "40"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "resume_id"
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20171005232844) do
 
   create_table "skills", force: :cascade do |t|
     t.string   "name",       default: "",   null: false
-    t.string   "level",      default: "",   null: false
+    t.string   "level",      default: "40"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "resume_id"
