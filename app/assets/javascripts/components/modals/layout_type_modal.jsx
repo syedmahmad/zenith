@@ -61,7 +61,7 @@ var LayoutTypeModal = React.createClass({
                            </div>
                         </div>
                       </div>}
-                      <div style={{ marginTop: '46px', padding: '10px'}}>
+                      <div className="template underline-block">
                         <span className="toggle-holder">
                           <label className="switch">
                             <input type="checkbox" onChange={this.props.handleUnderlineChange} name="underline" type="checkbox" checked={checked} data-toggle="toggle"/>

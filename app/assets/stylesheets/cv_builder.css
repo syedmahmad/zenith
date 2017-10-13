@@ -483,6 +483,16 @@ ul {
 .rearrange-resume-col-left {
   min-height: 107px;
   min-width: 54px;
+  margin-right: 10px;
+}
+.rearrange-section-modal .rearrange-section-item:first-child{
+  text-align: center !important;
+}
+.rearrange-resume-col-right .rearrange-section-item,
+.rearrange-resume-col-left .rearrange-section-item{
+  min-height: 30px !important;
+  background: #8c8c8c !important;
+  color: #fff;
 }
 .rearrange-resume-col-right {
   min-height: 107px;
@@ -530,6 +540,22 @@ ul {
   display: flex;
   align-items: center;
   position: relative;
+}
+.layout-type-modal .template-holder .template.underline-block{
+  display: block;
+  .toggle-holder{
+    display: block;
+    margin-top: 47px;
+    .switch{
+      width: 42px;
+      .slider:before{
+        left:5px;
+      }
+    }
+  }
+  input:checked + .slider{
+  background-color: #b1b4b7;
+  }
 }
 .layout-type-modal .template-holder .template .active{
   background: #1ABB9C;
