@@ -1,17 +1,21 @@
 var CvBuilder = React.createClass({
   getInitialState: function() {
-    return {underline: this.props.resume.layout.underline, layout_type: this.props.resume.layout.layout_type, pages: 1, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
+    return {underline: this.props.resume.layout.underline, layout_type: this.props.resume.layout.layout_type, pages: this.props.resume.pages, sectionData: this.props.resume.layout.section_data, layoutSections: this.props.resume.layout.section_names, resume_ids: this.props.resume_ids, resume: this.props.resume, resumeStyle: this.props.resume.resume_style};
   },
   removeArrayItem: function(arr, itemToRemove) {
     return arr.filter(item => item !== itemToRemove)
   },
   componentDidUpdate: function(prevProps, prevState){
-    this.setupLayout();    
+    this.setupLayout();
     this.updateStyle();
+    params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections, "section_data": this.state.sectionData};
+    if (this.props.current_user) {
+      this.updateResume({resume: {"pages": this.state.pages, layout_attributes: params}});
+    }
   },
   componentDidMount: function(){
     var _this = this;
-    _this.setupLayout();
+    // _this.setupLayout();
     _this.updateStyle();
     $(".section-items-list ul").sortable({
       stop: function  (e, ui) {
@@ -93,6 +97,16 @@ var CvBuilder = React.createClass({
     $.each(elements, function( index, elem ) {
       if(elem.scrollHeight > elem.offsetHeight){
         var lastElm = $(elem).find(".section-items").last().data("sectionName");
+        if(_this.state.layout_type == "double"){
+          leftCol = $(elem).find(".resume-col-left");
+          rightCol = $(elem).find(".resume-col-right");
+
+          if(leftCol.height() > rightCol.height()){
+            lastElm = $(leftCol).find(".section-items").last().data("sectionName");
+          }else{
+            lastElm = $(rightCol).find(".section-items").last().data("sectionName");
+          }
+        }
         pages = _this.state.pages;
         if(index+1 == pages){
           pages = pages + 1;
@@ -177,11 +191,11 @@ var CvBuilder = React.createClass({
       });
       return $(elem).data('sectionName');
     }).get();
-
     params = {id: this.props.resume.layout.id, "section_names": section_names, "section_data": sectionData, "pages": pages};
     if (this.props.current_user) {
       this.updateResume({resume: {layout_attributes: params}});
     }
+    
     if(this.state.layout_type == "single"){
       $(".rearrange-section-modal").sortable("cancel");
     }else if(this.state.layout_type == "double"){
@@ -189,6 +203,7 @@ var CvBuilder = React.createClass({
     }
 
     this.setState({layoutSections: section_names, sectionData: sectionData, pages: pages});
+
   },
   handleAddSection: function(e){
     var newSection = $(e.target).data("sectionName");
@@ -208,7 +223,7 @@ var CvBuilder = React.createClass({
     this.updateResume({resume: {resume_style_attributes: params}});
 
     this.state.resumeStyle.background_img = img;
-    this.setState({resumeStyle: this.state.resumeStyle});
+    this.setState({resumeStyle: this.state.resumeStyle}); 
   },
   handleFont: function(e) {
     var f_name = $(e.target).data("name");
@@ -292,7 +307,6 @@ var CvBuilder = React.createClass({
     var _this = this;
     data_right = []
     data_left = []
-
     for(i=0;i<_this.state.pages;i++){
       data = [];
       data_right = [];

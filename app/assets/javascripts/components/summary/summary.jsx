@@ -37,27 +37,29 @@ var Summary = React.createClass({
 
   render: function() {
     return (
-      <div className="section-items col-md-12">
+      <div className="section-items col-md-12" data-section-name="Summary">
         <section className="summary-holder" data-summary-id={this.props.resume.summary.id}>
            <div id="edit_able" className="hide-section">
               <a href="javaScript:void(0);" title="Remove section">
               <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="Summary"></i>
               </a>
            </div>
-           <div className="heading-area">
-              <h3>
-                 <div className="form-group">
-                    <input
-                      type="string"
-                      name="title"
-                      className="form-control primary_font"
-                      placeholder="SUMMARY"
-                      value={this.state.title}
-                      onChange={ this.handleChange}
-                    />
-                 </div>
-              </h3>
-           </div>
+           <section className="section-items-holder">
+             <div className="heading-area">
+                <h3>
+                   <div className="form-group">
+                      <input
+                        type="string"
+                        name="title"
+                        className="form-control primary_font"
+                        placeholder="SUMMARY"
+                        value={this.state.title}
+                        onChange={ this.handleChange}
+                      />
+                   </div>
+                </h3>
+             </div>
+           </section>
            <div className="form-group">
               <input
                 type="string"

@@ -5,6 +5,7 @@ var DoubleLayoutRearrange = React.createClass({
     data_right = []
     right_col_data = _this.props.data_right
     left_col_data = _this.props.data_left
+    page = _this.props.page
 
     sections = _this.props.layoutSections
     selectedSections = this.props.selectedSections
@@ -26,12 +27,15 @@ var DoubleLayoutRearrange = React.createClass({
     });
 
     return (
-      <div className="double-column-rearrange">
-        <div className="rearrange-resume-col-left connectedSortable">
-          {data_left}
-        </div>
-        <div className="rearrange-resume-col-right connectedSortable">
-          {data_right}
+      <div>
+        {this.props.page == 0 && <div className="rearrange-section-item" data-toggle="tooltip" title="Header" data-section-name="ResumeHeader">Header</div>}
+        <div className="double-column-rearrange">
+          <div className="rearrange-resume-col-left connectedSortable">
+            {data_left}
+          </div>
+          <div className="rearrange-resume-col-right connectedSortable">
+            {data_right}
+          </div>
         </div>
       </div>
     )

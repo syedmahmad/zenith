@@ -113,6 +113,7 @@ class CvBuilderController < ApplicationController
       "resume_style": (@resume_data.present? ? @resume_data.resume_style.attributes : ResumeStyle.new(:background_img => "white.png", :available_background_images => ["white.png", "arches.png","checkered.png","handmade.png","paper.png","psychedelic.png","struckaxiom.png","vichy.png","weave.png","worn.png"], primary_font:"Exo2", secondary_font: "Roboto", font_size: "14px",:available_primary_fonts => ['Droid Sans','Exo2','Lato','Montserrat','Oswald','Roboto','Slabo 27px'],:available_secondary_fonts => ['Exo2','Lato','Open Sans','Raleway','Roboto','Roboto Condensed','Slabo 27px'],:available_font_sizes => ['10px', '11px', '12px', '14px', '16px'], primary_color:"black", secondary_color: "#00a7dd", :available_secondary_colors => ["black","#8616cc","#FF0F0F","#CF924A","#A861A6","#00a7dd","#FA6C00","#FB51A5","#5ac41d","#36006B"],
       :available_primary_colors => ["black","#012B7E","#36006B","#58320E","#8616cc","#FF0F0F","#FB51A5"]).attributes),
       "id": @resume_data.present? ? @resume_data.id : "",
+      "pages": @resume_data.present? ? @resume_data.pages : 1,
       "header": (@resume_data.present? && @resume_data.header.present? ? header_data : new_header_data),
       "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.get_json : Layout.new(:section_names => ["Experiences", "Education", "Strengths", "Achievements", "Languages", "Projects"], :section_data => [{name: "Experiences", page: 0, column: 0}, {name: "Achievements", page: 0, column: 1}, {name: "Education", page: 0, column: 0}, {name: "Languages", page: 0, column: 1}, {name: "Strengths", page: 0, column: 0}, {name: "Projects", page: 0, column: 1}], layout_type: "double")),
       "summary": (@resume_data.present? && @resume_data.summary.present? ? @resume_data.summary.attributes : Summary.new.attributes),
@@ -134,7 +135,7 @@ class CvBuilderController < ApplicationController
   end
 
   def permitted_params
-    params.require(:resume).permit(:section_names,
+    params.require(:resume).permit(:pages, :section_names,
       achievements_attributes: [:title, :description, :id, :show_description, :show_icon, :item_index],
       awards_attributes: [:name, :description, :id, :show_description, :show_icon, :item_index],
       certificates_attributes: [:name, :institutiion_name, :id, :show_institutiion, :item_index],

@@ -12,7 +12,7 @@ var RearrangeModal = React.createClass({
   },
   handleRearrange: function(){
     this.props.handleRearrage();
-    this.setState({sections: this.props.sections})
+    // this.setState({sections: this.props.sections})
   },
 
   render: function() {
