@@ -100,7 +100,7 @@ var VolunteerItem = React.createClass({
              <h3>
                {this.state.volunteer.show_description && <div className="column">
                  <div className="form-group">
-                  <input
+                  <textArea
                     type="string"
                     name="description"
                     className="form-control"

@@ -50,7 +50,7 @@ var AchievementItem = React.createClass({
             </h5>
             <h6>
                { this.state.achievement.show_description && <div className="form-group">
-                  <input
+                  <textArea
                     type="string"
                     name="description"
                     className="form-control"

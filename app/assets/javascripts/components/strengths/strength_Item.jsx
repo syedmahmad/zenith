@@ -51,7 +51,7 @@ var StrengthItem = React.createClass({
            <h6>
             {this.state.strength.show_description &&
               <div className="form-group">
-                 <input
+                 <textArea
                    type="string"
                    name="description"
                    className="form-control"

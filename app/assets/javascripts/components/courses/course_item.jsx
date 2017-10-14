@@ -47,7 +47,7 @@ var CourseItem = React.createClass({
         </h5>
         <h6>
            { this.state.course.show_description &&<div className="form-group">
-              <input
+              <textArea
                 type="string"
                 name="description"
                 className="form-control"

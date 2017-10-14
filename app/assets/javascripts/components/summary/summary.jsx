@@ -61,7 +61,7 @@ var Summary = React.createClass({
              </div>
            </section>
            <div className="form-group">
-              <input
+              <textArea
                 type="string"
                 name="description"
                 className="form-control"

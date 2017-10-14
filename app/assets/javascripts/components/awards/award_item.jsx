@@ -52,7 +52,7 @@ var AwardItem = React.createClass({
           </h5>
           <h5>
             <div className="form-group" style={{marginLeft: "10px"}}>
-              { this.props.award.show_description && <input
+              { this.props.award.show_description && <textArea
                 type="string"
                 name="description"
                 className="form-control"

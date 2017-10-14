@@ -153,8 +153,8 @@ var CvBuilder = React.createClass({
       contentType: 'multipart/form-data',
       data: formData,
       success: function(item) {
-        this.state.resume[sectionName].push(item);
-        this.setState({resume: this.state.resume});
+        _this.state.resume[sectionName].push(item);
+        _this.setState({resume: this.state.resume});
       }.bind(this),
       error: function(response, status, err) {
       }
@@ -168,8 +168,9 @@ var CvBuilder = React.createClass({
       contentType: 'multipart/form-data',
       data: formData,
       success: function(item) {
-        this.state.resume[sectionName].splice(item, 1);
-        this.setState({resume: this.state.resume});
+        var position = _this.state.resume[sectionName].findIndex(i => i.id === item.id);
+        _this.state.resume[sectionName].splice(position, 1);
+        _this.setState({resume: this.state.resume});
       }.bind(this),
       error: function(response, status, err) {
       }

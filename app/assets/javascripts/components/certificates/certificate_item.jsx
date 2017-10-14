@@ -47,7 +47,7 @@ var CertificateItem = React.createClass({
           </h5>
           <h6>
             { this.state.certificate.show_institutiion && <div className="form-group">
-              <input
+              <textArea
                 type="string"
                 name="institutiion_name"
                 className="form-control secondary-color"

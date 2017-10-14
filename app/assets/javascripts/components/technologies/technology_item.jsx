@@ -47,7 +47,7 @@ var TechnologyItem = React.createClass({
             </h5>
             <h6>
                <div className="form-group">
-                  <input
+                  <textArea
                     type="string"
                     name="tec_names"
                     className="form-control hide-show-control"

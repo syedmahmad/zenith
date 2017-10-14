@@ -50,7 +50,7 @@ var PassionItem = React.createClass({
             </h5>
             <h5>
                { this.state.passion.show_description && <div className="form-group">
-                  <input
+                  <textArea
                     type="string"
                     name="description"
                     className="form-control"
