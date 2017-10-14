@@ -46,6 +46,9 @@ var CvBuilder = React.createClass({
       });
     }
 
+    //update slider color...
+    $(".input-range").css("background-color", _this.state.resumeStyle.secondary_color);
+
     // apply primary color
     $(".cv-builder :input:not(.secondary-color)").each(function(e,val){
       var aa = _this.state.resumeStyle.primary_color;

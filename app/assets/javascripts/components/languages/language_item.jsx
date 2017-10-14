@@ -53,7 +53,7 @@ var LanguageItem = React.createClass({
                     type="range"
                     min="0" max="100" step="20"
                     name="level"
-                    className="form-control"
+                    className="form-control input-range"
                     placeholder="Beginner"
                     value={this.state.level}
                     onChange={ this.handleChange }
