@@ -31,8 +31,12 @@
 */
 
 .input-range{
-      -webkit-appearance: none;
-    background-color: #000;
-    width: 100%;
-    height: 10px;   
+  -webkit-appearance: none;
+  background-color: #000;
+  width: 100%;
+  height: 10px;   
+}
+
+.ui-datepicker-calendar{
+  display: none;
 }

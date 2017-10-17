@@ -416,6 +416,7 @@ ul {
   vertical-align: top;
   min-width: 150px;
 }
+#rearrangeModal .reorder-page .single-layout.rearrange-section-item,
 #rearrangeModal .reorder-page .rearrange-section-modal .rearrange-section-item{
   min-height: 25px;
   background: #e6e6e6;

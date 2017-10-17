@@ -1,6 +1,6 @@
 var RearrangeSections = React.createClass({
-  handleRearrange: function() {
-    this.props.handleRearrange();
+  handleRearrange: function(prevUiItem) {
+    this.props.handleRearrange(prevUiItem);
   },
   render: function() {
     pages = this.props.pages

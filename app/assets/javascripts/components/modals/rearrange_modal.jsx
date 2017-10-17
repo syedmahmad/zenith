@@ -10,9 +10,8 @@ var RearrangeModal = React.createClass({
   closeModal: function() {
     this.setState({ isModalOpen: false });
   },
-  handleRearrange: function(){
-    this.props.handleRearrage();
-    // this.setState({sections: this.props.sections})
+  handleRearrange: function(prevUiItem){
+    this.props.handleRearrage(prevUiItem);
   },
 
   render: function() {

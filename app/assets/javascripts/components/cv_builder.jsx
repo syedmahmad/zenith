@@ -179,7 +179,8 @@ var CvBuilder = React.createClass({
       }
     });
   },
-  handleRearrage: function(){
+  handleRearrage: function(prevUiItem){
+    debugger;
     sectionData = this.state.sectionData
     var section_names = $('.rearrange-section-item').map(function(index, elem) {
       sectionData = $.grep(sectionData, function (a) {
@@ -199,13 +200,19 @@ var CvBuilder = React.createClass({
     if (this.props.current_user) {
       this.updateResume({resume: {layout_attributes: params}});
     }
+
     
-    if(this.state.layout_type == "single"){
-      $(".rearrange-section-modal").sortable("cancel");
-    }else if(this.state.layout_type == "double"){
+    //     if(this.state.layout_type == "single"){
+    //   $(".rearrange-section-modal").sortable("cancel");
+    // }else if(this.state.layout_type == "double"){
+    //   $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("cancel");
+    // }
+    
+    if(this.state.layout_type == "double"){
       $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("cancel");
     }
 
+    // prevUiItem.remove();
     this.setState({layoutSections: section_names, sectionData: sectionData, pages: pages});
 
   },

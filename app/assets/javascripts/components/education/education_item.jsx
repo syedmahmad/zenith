@@ -15,6 +15,38 @@ var EducationItem = React.createClass({
     $(e.target).closest(".section-item").find(".show_hide_section").show()
   },
 
+  handleDate: function(e) {
+    e.preventDefault();
+    $('.date-picker').show();
+
+  },
+
+  componentDidMount: function(){
+    $(".date-picker").hide();
+    $(".date-picker").datepicker({
+         changeMonth: true,
+         changeYear: true,
+         dateFormat: 'MM yy',
+
+         onClose: function() {
+            var iMonth = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            var iYear = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).datepicker('setDate', new Date(iYear, iMonth, 1));
+         },
+
+         beforeShow: function() {
+           if ((selDate = $(this).val()).length > 0) 
+           {
+              iYear = selDate.substring(selDate.length - 4, selDate.length);
+              iMonth = jQuery.inArray(selDate.substring(0, selDate.length - 5), 
+                       $(this).datepicker('option', 'monthNames'));
+              $(this).datepicker('option', 'defaultDate', new Date(iYear, iMonth, 1));
+              $(this).datepicker('setDate', new Date(iYear, iMonth, 1));
+           }
+      }
+    });
+  },
+
   render: function() {
     optionsArr = ["show_location", "show_period", "show_gpa"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.education} section="education" sectionId={this.state.education.id} options={optionsArr}/>
@@ -69,9 +101,11 @@ var EducationItem = React.createClass({
                         className="form-control"
                         placeholder="Sep 2017"
                         value={this.state.duration}
-                        onChange={ this.handleChange }
+                        onClick={ this.handleDate }
                       />
                      </div>
+                  </span>
+                  <span className="date-picker">
                   </span>
                </div>}
                {this.state.education.show_location && <div className="column">
