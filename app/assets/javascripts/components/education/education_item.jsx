@@ -2,7 +2,7 @@ var EducationItem = React.createClass({
 
   getInitialState: function(){
     var education = this.props.education_item;
-    return {education: education ,degree_name: education.degree_name, university_name: education.university_name, duration: education.duration, cgpa: education.cgpa, location: education.location};
+    return {education: education ,degree_name: education.degree_name, university_name: education.university_name, duration: education.duration, cgpa: education.cgpa, location: education.location, ongoing: education.ongoing};
   },
 
   handleChange: function(e){
@@ -78,14 +78,25 @@ var EducationItem = React.createClass({
 
   handleOngoing: function(e){
     var val = $(e.target).prop("checked");
-    var params = {ongoing: val, "id": $(e.target).closest(".section-item").data("educationId")};
+    this.setState({ongoing: val});
+    if (val){
+      $('.date-picker2').hide();
+      var arr = $(".calendar-input").val().split("-");
+      if (arr[1] || arr[0]){
+        $(".calendar-input").val(arr[0] + " - ongoing");  
+      }else{
+        $(".calendar-input").val(" - ongoing");
+      }
+    }
+    var params = {ongoing: val, duration: $(".calendar-input").val(), "id": $(e.target).closest(".section-item").data("educationId")};
+
     this.props.updateResume(
       {resume: {educations_attributes: {"1": params}}}
     );
   },
 
   render: function() {
-    checked = this.state.education.ongoing
+    checked = this.state.ongoing
     optionsArr = ["show_location", "show_period", "show_gpa"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.education} section="education" sectionId={this.state.education.id} options={optionsArr}/>
     return (
