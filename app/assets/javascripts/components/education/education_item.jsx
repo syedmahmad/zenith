@@ -17,78 +17,75 @@ var EducationItem = React.createClass({
 
   handleDate: function(e) {
     e.preventDefault();
-    $('.date-picker').show();
+    $(".calendar-holder").show();
+    $('.date-picker1').focus();
+    // $('.date-picker2').focus();
+    
   },
 
   componentDidMount: function(){
-    // $(document).on('focusout', ".calendar-input", (function (e) {
-    //   // var iMonth = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-    //   // var iYear = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-    //   $('.date-picker').hide();
-    // }));
-    $(".date-picker").hide();
-    // $(".date-picker").datepicker({
-    //      changeMonth: true,
-    //      changeYear: true,
-    //      dateFormat: 'MM yy',
-    //      showButtonPanel: true,
-
-    //      onClose: function() {
-    //         var iMonth = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-    //         var iYear = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-    //         $(this).datepicker('setDate', new Date(iYear, iMonth, 1));
-    //      },
-
-    //      beforeShow: function() {
-    //        if ((selDate = $(this).val()).length > 0) 
-    //        {
-    //           iYear = selDate.substring(selDate.length - 4, selDate.length);
-    //           iMonth = jQuery.inArray(selDate.substring(0, selDate.length - 5), 
-    //                    $(this).datepicker('option', 'monthNames'));
-    //           $(this).datepicker('option', 'defaultDate', new Date(iYear, iMonth, 1));
-    //           $(this).datepicker('setDate', new Date(iYear, iMonth, 1));
-    //        }
-    //   }
-    // });
-    $('.date-picker').datepicker(
+    $(".calendar-holder").hide();
+    $('.date-picker1').datepicker(
        {
            dateFormat: "mm/yy",
            changeMonth: true,
            changeYear: true,
            showButtonPanel: true,
-           showOn: "button",
-           onSelect: function(dateText, inst) {
-            // alert(dateText);
-            },
            onClose: function(dateText, inst) {
                function isDonePressed(){
                    return ($('#ui-datepicker-div').html().indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
                }
-
                if (isDonePressed()){
                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                   $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
+                   var dateObj = new Date(year, month, 1);
+                   var month = dateObj.getUTCMonth() + 1; 
+                   var year = dateObj.getUTCFullYear();
+                   $(".calendar-input").val(month + "/" + year + " " + $(".calendar-input").val());
+                   // $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
                    
-                    $('.date-picker').focusout()//Added to remove focus from datepicker input box on selecting date
+                   $('.date-picker1').focusout();//Added to remove focus from datepicker input box on selecting date
+                  // $('.date-picker1').hide();
                }
-           },
-           beforeShow : function(input, inst) {
+           }
+       });
 
-               inst.dpDiv.addClass('month_year_datepicker')
-
-               if ((datestr = $(this).val()).length > 0) {
-                   year = datestr.substring(datestr.length-4, datestr.length);
-                   month = datestr.substring(0, 2);
-                   $(this).datepicker('option', 'defaultDate', new Date(year, month-1, 1));
-                   $(this).datepicker('setDate', new Date(year, month-1, 1));
-                   $(".ui-datepicker-calendar").hide();
+    $('.date-picker2').datepicker(
+       {
+           dateFormat: "mm/yy",
+           changeMonth: true,
+           changeYear: true,
+           showButtonPanel: true,
+           onClose: function(dateText, inst) {
+               function isDonePressed(){
+                   return ($('#ui-datepicker-div').html().indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
+               }
+               if (isDonePressed()){
+                   var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                   var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                   var dateObj = new Date(year, month, 1);
+                   var month = dateObj.getUTCMonth() + 1; 
+                   var year = dateObj.getUTCFullYear();
+                   $(".calendar-input").val($(".calendar-input").val() + " - " + month + "/" + year);
+                   // $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
+                   
+                   $('.date-picker2').focusout();//Added to remove focus from datepicker input box on selecting date
+                  // $('.date-picker2').hide();
                }
            }
        });
   },
 
+  handleOngoing: function(e){
+    var val = $(e.target).prop("checked");
+    var params = {ongoing: val, "id": $(e.target).closest(".section-item").data("educationId")};
+    this.props.updateResume(
+      {resume: {educations_attributes: {"1": params}}}
+    );
+  },
+
   render: function() {
+    checked = this.state.education.ongoing
     optionsArr = ["show_location", "show_period", "show_gpa"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.education} section="education" sectionId={this.state.education.id} options={optionsArr}/>
     return (
@@ -146,8 +143,19 @@ var EducationItem = React.createClass({
                       />
                      </div>
                   </span>
-                  <span className="date-picker">From:</span>
-                  <span className="date-picker">To:</span>
+                  <div className="calendar-holder">
+                    <p> From:<input className="date-picker1" /></p>
+                    <p>
+                      <span className="toggle-holder">
+                        <label className="switch">
+                          <span>Ongoing</span>
+                          <input type="checkbox" onChange={this.handleOngoing} data-size="mini" data-toggle="toggle" className="option_item" type="checkbox" checked={checked}/>
+                          <span className="slider round"></span>
+                        </label>
+                      </span>
+                    </p>
+                    <p> To:<input className="date-picker2" /></p>
+                  </div>
                </div>}
                {this.state.education.show_location && <div className="column">
                   <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>

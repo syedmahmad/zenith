@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20171012183458) do
     t.string   "university_name", default: "",   null: false
     t.integer  "resume_id"
     t.string   "duration",        default: "",   null: false
+    t.boolean  "ongoing",         default: true
     t.float    "cgpa"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
