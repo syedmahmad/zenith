@@ -180,9 +180,12 @@ var CvBuilder = React.createClass({
     });
   },
   handleRearrage: function(prevUiItem){
-    debugger;
+    sectionItems = $('.rearrange-section-item')
+    totalSections = sectionItems.length
+    itemIndex = sectionItems.index(prevUiItem)
+    
     sectionData = this.state.sectionData
-    var section_names = $('.rearrange-section-item').map(function(index, elem) {
+    var section_names = sectionItems.map(function(index, elem) {
       sectionData = $.grep(sectionData, function (a) {
         if (a.name == $(elem).data('sectionName')) {
             a.page = $(elem).closest(".reorder-page").data('page');
@@ -200,19 +203,20 @@ var CvBuilder = React.createClass({
     if (this.props.current_user) {
       this.updateResume({resume: {layout_attributes: params}});
     }
-
     
-    //     if(this.state.layout_type == "single"){
-    //   $(".rearrange-section-modal").sortable("cancel");
-    // }else if(this.state.layout_type == "double"){
-    //   $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("cancel");
-    // }
-    
-    if(this.state.layout_type == "double"){
+    if(this.state.layout_type == "single"){
+      $(".rearrange-section-modal").sortable("cancel");
+      $(".rearrange-section-modal").sortable("destroy");
+    }else if(this.state.layout_type == "double"){
       $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("cancel");
+      $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("destroy");
     }
 
-    // prevUiItem.remove();
+    updatedSectionItems = $('.rearrange-section-item')
+    if(totalSections < updatedSectionItems.length){
+      $(updatedSectionItems[itemIndex]).removeUniqueId();
+      $(updatedSectionItems[itemIndex]).remove();
+    }
     this.setState({layoutSections: section_names, sectionData: sectionData, pages: pages});
 
   },

@@ -1,10 +1,29 @@
 var RearrangePage = React.createClass({
-  componentDidMount: function(){
+  componentDidUpdate: function(){
     var _this = this;
+    var uiItem = null;
     $(".rearrange-section-modal").sortable({
       connectWith: ".connectedSortable",
+      start: function( event, ui ) {
+        uiItem = ui.item;
+      },
       stop: function  (event, ui) {
-        _this.props.handleRearrange();
+        _this.props.handleRearrange(uiItem);
+      }
+    });
+    $(".rearrange-section-modal").disableSelection();
+  },
+
+  componentDidMount: function(){
+    var _this = this;
+    var uiItem = null;
+    $(".rearrange-section-modal").sortable({
+      connectWith: ".connectedSortable",
+      start: function( event, ui ) {
+        uiItem = ui.item;
+      },
+      stop: function  (event, ui) {
+        _this.props.handleRearrange(uiItem);
       }
     });
     $(".rearrange-section-modal").disableSelection();
