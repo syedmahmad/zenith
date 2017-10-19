@@ -18,76 +18,18 @@ var EducationItem = React.createClass({
   handleDate: function(e) {
     e.preventDefault();
     $(".calendar-holder").show();
-    $('.date-picker1').focus();
-    // $('.date-picker2').focus();
     
   },
 
   componentDidMount: function(){
     $(".calendar-holder").hide();
-    $('.date-picker1').datepicker(
-       {
-           dateFormat: "mm/yy",
-           changeMonth: true,
-           changeYear: true,
-           showButtonPanel: true,
-           onClose: function(dateText, inst) {
-               function isDonePressed(){
-                   return ($('#ui-datepicker-div').html().indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
-               }
-               if (isDonePressed()){
-                   var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-                   var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                   var dateObj = new Date(year, month, 1);
-                   var month = dateObj.getUTCMonth() + 1; 
-                   var year = dateObj.getUTCFullYear();
-                   $(".calendar-input").val(month + "/" + year + " " + $(".calendar-input").val());
-                   // $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
-                   
-                   $('.date-picker1').focusout();//Added to remove focus from datepicker input box on selecting date
-                  // $('.date-picker1').hide();
-               }
-           }
-       });
-
-    $('.date-picker2').datepicker(
-       {
-           dateFormat: "mm/yy",
-           changeMonth: true,
-           changeYear: true,
-           showButtonPanel: true,
-           onClose: function(dateText, inst) {
-               function isDonePressed(){
-                   return ($('#ui-datepicker-div').html().indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
-               }
-               if (isDonePressed()){
-                   var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-                   var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                   var dateObj = new Date(year, month, 1);
-                   var month = dateObj.getUTCMonth() + 1; 
-                   var year = dateObj.getUTCFullYear();
-                   $(".calendar-input").val($(".calendar-input").val() + " - " + month + "/" + year);
-                   // $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
-                   
-                   $('.date-picker2').focusout();//Added to remove focus from datepicker input box on selecting date
-                  // $('.date-picker2').hide();
-               }
-           }
-       });
+    $('.date-picker1').datepicker();
+    $('.date-picker2').datepicker();
   },
 
   handleOngoing: function(e){
     var val = $(e.target).prop("checked");
     this.setState({ongoing: val});
-    if (val){
-      $('.date-picker2').hide();
-      var arr = $(".calendar-input").val().split("-");
-      if (arr[1] || arr[0]){
-        $(".calendar-input").val(arr[0] + " - ongoing");  
-      }else{
-        $(".calendar-input").val(" - ongoing");
-      }
-    }
     var params = {ongoing: val, duration: $(".calendar-input").val(), "id": $(e.target).closest(".section-item").data("educationId")};
 
     this.props.updateResume(
@@ -165,7 +107,7 @@ var EducationItem = React.createClass({
                         </label>
                       </span>
                     </p>
-                    <p> To:<input className="date-picker2" /></p>
+                    { checked ? <p></p> : <p> To:<input className="date-picker2" /></p> }
                   </div>
                </div>}
                {this.state.education.show_location && <div className="column">
