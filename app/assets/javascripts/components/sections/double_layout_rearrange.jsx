@@ -28,7 +28,7 @@ var DoubleLayoutRearrange = React.createClass({
 
     return (
       <div>
-        {this.props.page == 0 && <div className="rearrange-section-item" data-toggle="tooltip" title="Header" data-section-name="ResumeHeader">Header</div>}
+        {this.props.page == 0 && <div className=" rearrange-header rearrange-section-item" data-toggle="tooltip" title="Header" data-section-name="ResumeHeader">Header</div>}
         <div className="double-column-rearrange">
           <div className="rearrange-resume-col-left connectedSortable">
             {data_left}

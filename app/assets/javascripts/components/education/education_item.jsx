@@ -158,8 +158,8 @@ var EducationItem = React.createClass({
                     <p> From:<input className="date-picker1" /></p>
                     <p>
                       <span className="toggle-holder">
+                      <p>Ongoing</p>
                         <label className="switch">
-                          <span>Ongoing</span>
                           <input type="checkbox" onChange={this.handleOngoing} data-size="mini" data-toggle="toggle" className="option_item" type="checkbox" checked={checked}/>
                           <span className="slider round"></span>
                         </label>
