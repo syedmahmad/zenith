@@ -27,7 +27,8 @@ var Education = React.createClass({
       }
       if(!show_hide_section_clicked) {
       
-        $(this).find(".show_hide_section").hide()
+        $(this).find(".show_hide_section").hide();
+        
         this.firstChild.classList.add('hide-section');
 
         var state_res = _this.state.education.find(item => item.id == $(this).data("educationId"));
@@ -48,6 +49,8 @@ var Education = React.createClass({
     $(document).on('focusout', ".heading-area", (function (e) {
       this.parentElement.previousElementSibling.classList.add('hide-section');
     }));
+
+    
 
   },
   submitEducation: function(params){

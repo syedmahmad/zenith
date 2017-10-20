@@ -2,7 +2,7 @@ var ProjectItem = React.createClass({
 
   getInitialState: function(){
     var project = this.props.project;
-    return {project: project, name: project.name, location: project.location, duration: project.duration, description: project.description, link: project.link};
+    return {project: project, name: project.name, location: project.location, duration: project.duration, description: project.description, link: project.link, ongoing: project.ongoing};
   },
 
   handleChange: function(e){

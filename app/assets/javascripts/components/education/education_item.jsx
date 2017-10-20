@@ -17,28 +17,114 @@ var EducationItem = React.createClass({
 
   handleDate: function(e) {
     e.preventDefault();
-    $(".calendar-holder").show();
-    
+    target = $(e.target).data("calenderTarget");
+    $(".calendar-holder[data-calender-target="+target+"]").show();
   },
 
   componentDidMount: function(){
+    var _this = this;
     $(".calendar-holder").hide();
-    $('.date-picker1').datepicker();
-    $('.date-picker2').datepicker();
+    datePicker1 = ".date-picker1-" + _this.state.education.id;
+    datePicker2 = ".date-picker2-" + _this.state.education.id;
+    $(document).find(datePicker1).datepicker({
+      onSelect: function (dateText, inst) {
+         _this.updateStartDate(dateText, inst);
+      }
+    });
+    $(document).find(datePicker2).datepicker({
+      onSelect: function (dateText, inst) {
+         _this.updateEndDate(dateText, inst);
+      }
+    });
+
+    // $(".calendar-holder").hover(function(){
+    //    $(this).addClass("hovered");
+    // },function(){
+    //   debugger;
+    //   if (!$(".date-picker1").is(":focus") || !$(".date-picker2").is(":focus")){
+    //    $(this).removeClass("hovered");
+    //    $(this).hide();
+    //   }
+    // });
+
+    // if($('.calendar-holder').hasClass("hovered")){
+    //   // $(".calendar-holder").show();
+    //   $(e.target).closest(".section-item").find(".calendar-holder").attr('tabindex',-1).focus();
+    // }else{
+    //   debugger;
+    //   $(".calendar-holder").hide();
+    // }
+  },
+
+  updateStartDate: function(dateText, inst){
+    duration = "";
+    startDate = dateText;
+    endDate = this.state.duration.split("-")[1];
+    duration = startDate.replace(/\s+/g, '');;
+
+    if(endDate != "undefined" && typeof(endDate) != "undefined"){
+      duration = duration + " - " + endDate;
+    }
+
+    params = {duration: duration, "id": $(inst.input).closest(".section-item").data("educationId")};
+    this.props.updateResume(
+      {resume: {educations_attributes: params}}
+    );
+
+    this.setState({"duration": duration});
+  },
+  updateEndDate: function(dateText, inst, ongoing=false){
+    duration = "";
+    var sectionId = $(inst.input).closest(".section-item").data("educationId");
+
+    if(!sectionId){
+      sectionId = $(inst).closest(".section-item").data("educationId");
+    }
+
+    startDate = this.state.duration.split("-")[0];
+    endDate = dateText.replace(/\s+/g, '');
+    duration = startDate.replace(/\s+/g, '');;
+    if(endDate != "undefined" && typeof(endDate) != "undefined"){
+      duration = duration + " - " + endDate;
+    }
+
+    params = {ongoing: ongoing, duration: duration, "id": sectionId};
+    this.props.updateResume(
+      {resume: {educations_attributes: params}}
+    );
+
+    this.setState({"duration": duration, "ongoing": ongoing});
   },
 
   handleOngoing: function(e){
-    var val = $(e.target).prop("checked");
-    this.setState({ongoing: val});
-    var params = {ongoing: val, duration: $(".calendar-input").val(), "id": $(e.target).closest(".section-item").data("educationId")};
+    ongoing = $(e.target).prop("checked");
+    val = "ongoing";
+    sectionId = $(e.target).closest(".section-item").data("educationId");
+    if(ongoing){
+      $(".date-picker2-"+sectionId).datepicker('disable');
+    }else{
+      $(".date-picker2-"+sectionId).datepicker('enable');
+      val = $(".date-picker2-"+sectionId).val();
+    }
 
-    this.props.updateResume(
-      {resume: {educations_attributes: {"1": params}}}
-    );
+    this.updateEndDate(val, $(e.target), ongoing);
   },
 
   render: function() {
     checked = this.state.ongoing
+    duration = this.state.duration;
+    startDate = "";
+    endDate = "";
+    datePicker1 = "date-picker1-" + this.props.education_item.id;
+    datePicker2 = "date-picker2-" + this.props.education_item.id;
+
+    calendarTarget = "calender-terget-"+ this.props.education_item.id;
+
+    if(duration && duration.match("-")){
+      startDate = duration.split("-")[0].replace(/\s+/g, '');
+      endDate = duration.split("-")[1].replace(/\s+/g, '');
+    }
+
     optionsArr = ["show_location", "show_period", "show_gpa"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.education} section="education" sectionId={this.state.education.id} options={optionsArr}/>
     return (
@@ -87,6 +173,7 @@ var EducationItem = React.createClass({
                   <span>
                      <div className="form-group">
                       <input
+                        data-calender-target={calendarTarget}
                         type="string"
                         name="duration"
                         className="form-control calendar-input"
@@ -96,9 +183,9 @@ var EducationItem = React.createClass({
                       />
                      </div>
                   </span>
-                  <div className="calendar-holder">
-                    <p> From:<input className="date-picker1" /></p>
-                    <p>
+                  <section className="calendar-holder" data-calender-target={calendarTarget}>
+                    <p> From:<input className={datePicker1} value={startDate}/></p>
+                    <div>
                       <span className="toggle-holder">
                       <p>Ongoing</p>
                         <label className="switch">
@@ -106,9 +193,9 @@ var EducationItem = React.createClass({
                           <span className="slider round"></span>
                         </label>
                       </span>
-                    </p>
-                    { checked ? <p></p> : <p> To:<input className="date-picker2" /></p> }
-                  </div>
+                    </div>
+                    <p> To:<input className={datePicker2} value={endDate}/></p>
+                  </section>
                </div>}
                {this.state.education.show_location && <div className="column">
                   <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>

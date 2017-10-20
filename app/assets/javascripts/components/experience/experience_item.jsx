@@ -2,7 +2,7 @@ var ExperienceItem = React.createClass({
 
   getInitialState: function(){
     var experience = this.props.experience;
-    return {experience: experience, title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description, link: experience.link};
+    return {experience: experience, title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description, link: experience.link, ongoing: experience.ongoing};
   },
 
   handleChange: function(e){

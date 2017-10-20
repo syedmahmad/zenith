@@ -6,6 +6,7 @@ class CreateVolunteers < ActiveRecord::Migration
 		t.integer :resume_id
 		t.string :duration,       null: false, default: ""
 		t.string :description, null: false, default: ""
+    t.boolean :ongoing, default: true
 		t.timestamps null: false
     end
   end

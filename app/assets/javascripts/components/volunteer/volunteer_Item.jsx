@@ -2,7 +2,7 @@ var VolunteerItem = React.createClass({
 
   getInitialState: function(){
     var volunteer = this.props.volunteer;
-    return {volunteer: volunteer, title: volunteer.title, organization_name: volunteer.organization_name, duration: volunteer.duration, description: volunteer.description, location: volunteer.location};
+    return {volunteer: volunteer, title: volunteer.title, organization_name: volunteer.organization_name, duration: volunteer.duration, description: volunteer.description, location: volunteer.location, ongoing: volunteer.ongoing};
   },
 
   handleChange: function(e){
