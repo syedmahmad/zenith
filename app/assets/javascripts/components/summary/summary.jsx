@@ -65,7 +65,7 @@ var Summary = React.createClass({
                 type="string"
                 name="description"
                 className="form-control"
-                placeholder="What critical problems are you well positioned to solve? A bit about yourself"
+                placeholder="What critical problems are you well positioned to solve?"
                 value={this.state.description}
                 onChange={ this.handleChange}
               />

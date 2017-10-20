@@ -177,7 +177,7 @@ var VolunteerItem = React.createClass({
                         name="duration"
                         className="form-control"
                         placeholder="Date period"
-                        value={this.state.duration}
+                        value={this.state.duration || ''}
                         data-calender-target={calendarTarget}
                         onClick={ this.handleDate }
                         onChange= {this.handleDateChange}
@@ -207,7 +207,7 @@ var VolunteerItem = React.createClass({
                          name="location"
                          className="form-control"
                          placeholder="Location"
-                         value={this.state.location}
+                         value={this.state.location || ''}
                          onChange={ this.handleChange }
                        />
                       </div>
