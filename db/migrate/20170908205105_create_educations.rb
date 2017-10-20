@@ -6,7 +6,7 @@ class CreateEducations < ActiveRecord::Migration
       t.integer :resume_id
       t.string :duration,       null: false, default: ""
       t.boolean :ongoing, default: true
-      t.float :cgpa
+      t.string :cgpa
       t.timestamps null: false
     end
   end

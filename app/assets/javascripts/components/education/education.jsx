@@ -34,7 +34,7 @@ var Education = React.createClass({
         var state_res = _this.state.education.find(item => item.id == $(this).data("educationId"));
         if (state_res) {
           var props_res = _this.props.resume.education.find(item => item.id == $(this).data("educationId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != e.target.value && e.target.name != "calendar") {
             //send update call...
             _this.submitEducation({[e.target.name]: e.target.value, "id": $(this).data("educationId")});
           }

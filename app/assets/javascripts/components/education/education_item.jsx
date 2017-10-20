@@ -12,20 +12,19 @@ var EducationItem = React.createClass({
 
   handleShowHide: function(e){
     e.preventDefault();
-    $(e.target).closest(".section-item").find(".show_hide_section").show()
+    $(e.target).closest(".section-item").find(".show_hide_section").show();
   },
 
   handleDate: function(e) {
     e.preventDefault();
-    target = $(e.target).data("calenderTarget");
-    $(".calendar-holder[data-calender-target="+target+"]").show();
+    $(e.target).closest(".section-item").find(".calendar-holder").show();
   },
 
   componentDidMount: function(){
     var _this = this;
     $(".calendar-holder").hide();
-    datePicker1 = ".date-picker1-" + _this.state.education.id;
-    datePicker2 = ".date-picker2-" + _this.state.education.id;
+    datePicker1 = ".date-picker-edu-" + _this.state.education.id;
+    datePicker2 = ".date-picker2-edu-" + _this.state.education.id;
     $(document).find(datePicker1).datepicker({
       onSelect: function (dateText, inst) {
          _this.updateStartDate(dateText, inst);
@@ -92,13 +91,17 @@ var EducationItem = React.createClass({
     val = "ongoing";
     sectionId = $(e.target).closest(".section-item").data("educationId");
     if(ongoing){
-      $(".date-picker2-"+sectionId).datepicker('disable');
+      $(".date-picker2-edu-"+sectionId).datepicker('disable');
     }else{
-      $(".date-picker2-"+sectionId).datepicker('enable');
-      val = $(".date-picker2-"+sectionId).val();
+      $(".date-picker2-edu-"+sectionId).datepicker('enable');
+      val = $(".date-picker2-edu-"+sectionId).val();
     }
 
     this.updateEndDate(val, $(e.target), ongoing);
+  },
+
+  handleDateChange: function(){
+
   },
 
   render: function() {
@@ -106,8 +109,8 @@ var EducationItem = React.createClass({
     duration = this.state.duration;
     startDate = "";
     endDate = "";
-    datePicker1 = "date-picker1-" + this.props.education_item.id;
-    datePicker2 = "date-picker2-" + this.props.education_item.id;
+    datePicker1 = "date-picker-edu-" + this.props.education_item.id;
+    datePicker2 = "date-picker2-edu-" + this.props.education_item.id;
 
     calendarTarget = "calender-terget-"+ this.props.education_item.id;
 
@@ -153,7 +156,7 @@ var EducationItem = React.createClass({
                     name="university_name"
                     className="form-control secondary-color"
                     placeholder="School or University"
-                    value={this.state.university_name}
+                    value={this.state.university_name || ''}
                     onChange={ this.handleChange }
                   />
                 </div>
@@ -164,18 +167,19 @@ var EducationItem = React.createClass({
                   <span>
                      <div className="form-group">
                       <input
-                        data-calender-target={calendarTarget}
                         type="string"
                         name="duration"
-                        className="form-control calendar-input"
-                        placeholder="Sep 2017"
+                        className="form-control"
+                        placeholder="Date period"
                         value={this.state.duration}
+                        data-calender-target={calendarTarget}
                         onClick={ this.handleDate }
+                        onChange= {this.handleDateChange}
                       />
                      </div>
                   </span>
                   <section className="calendar-holder" data-calender-target={calendarTarget}>
-                    <p> From:<input className={datePicker1} value={startDate}/></p>
+                    <p> From:<input className={datePicker1} name="calendar" value={startDate} onChange= {this.handleDateChange}/></p>
                     <div>
                       <span className="toggle-holder">
                       <p>Ongoing</p>
@@ -185,7 +189,7 @@ var EducationItem = React.createClass({
                         </label>
                       </span>
                     </div>
-                    <p> To:<input className={datePicker2} value={endDate}/></p>
+                    <p> To:<input disabled={checked} className={datePicker2} name="calendar" value={endDate} onChange= {this.handleDateChange}/></p>
                   </section>
                </div>}
                {this.state.education.show_location && <div className="column">

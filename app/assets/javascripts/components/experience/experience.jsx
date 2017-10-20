@@ -31,7 +31,7 @@ var Experiences = React.createClass({
         var state_res = _this.state.experiences.find(item => item.id == $(this).data("experienceId"));
         if (state_res) {
           var props_res = _this.props.resume.experiences.find(item => item.id == $(this).data("experienceId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != e.target.value && e.target.name != "calendar") {
             //send update call...
             _this.submitExperience({[e.target.name]: e.target.value, "id": $(this).data("experienceId")});
           }
