@@ -32,7 +32,7 @@ var Volunteers = React.createClass({
         var state_res = _this.state.volunteers.find(item => item.id == $(this).data("volunteerId"));
         if (state_res) {
           var props_res = _this.props.resume.volunteers.find(item => item.id == $(this).data("volunteerId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != e.target.value && e.target.name != "calendar") {
             //send update call...
             _this.submitVolunteers({[e.target.name]: e.target.value, "id": $(this).data("volunteerId")});
           }
