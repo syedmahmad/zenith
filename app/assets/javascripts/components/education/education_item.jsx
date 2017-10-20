@@ -37,23 +37,14 @@ var EducationItem = React.createClass({
       }
     });
 
-    // $(".calendar-holder").hover(function(){
-    //    $(this).addClass("hovered");
-    // },function(){
-    //   debugger;
-    //   if (!$(".date-picker1").is(":focus") || !$(".date-picker2").is(":focus")){
-    //    $(this).removeClass("hovered");
-    //    $(this).hide();
-    //   }
-    // });
-
-    // if($('.calendar-holder').hasClass("hovered")){
-    //   // $(".calendar-holder").show();
-    //   $(e.target).closest(".section-item").find(".calendar-holder").attr('tabindex',-1).focus();
-    // }else{
-    //   debugger;
-    //   $(".calendar-holder").hide();
-    // }
+    $(".calendar-holder").hover(function(){
+       $(this).addClass("hovered");
+    },function(){
+      if (document.activeElement.className.indexOf("date-picker") != 0){
+       $(this).removeClass("hovered");
+       $(this).hide();
+      }
+    });
   },
 
   updateStartDate: function(dateText, inst){
