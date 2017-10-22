@@ -5,7 +5,7 @@ var OptionItem = React.createClass({
   	name = this.props.section+this.props.item+this.props.sectionId
     return (
     	<div className="box-holder-toggle">
-        <label>{this.props.item}</label>
+        <label>{this.props.item.replace('_',' ')}</label>
         <span className="toggle-holder">
           <label className="switch">
             <input type="checkbox" onChange={this.props.handleShowHideChange} data-size="mini" data-toggle="toggle" name={name} data-item-name={this.props.item} className="option_item" type="checkbox" checked={checked}/>

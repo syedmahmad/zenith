@@ -12,7 +12,7 @@ class ResumeStyle < ActiveRecord::Base
   def self.create_default(resume_id)
     ResumeStyle.create(resume_id: resume_id, background_img:"white.png", 
       :available_background_images => ["white.png","arches.png","checkered.png","handmade.png","paper.png","psychedelic.png","struckaxiom.png","vichy.png","weave.png","worn.png"],
-       primary_font:"Exo2", secondary_font: "Roboto", font_size: "14px",
+       primary_font:"Exo2", secondary_font: "Roboto", font_size: "13px",
       :available_primary_fonts => ['Droid Sans','Exo2','Lato','Montserrat','Oswald','Roboto','Slabo 27px'],
       :available_secondary_fonts => ['Exo2','Lato','Open Sans','Raleway','Roboto','Roboto Condensed','Slabo 27px'],
       :available_font_sizes => ['10px', '11px', '12px', '14px', '16px'],

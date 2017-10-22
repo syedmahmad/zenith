@@ -2,7 +2,8 @@ var ExperienceItem = React.createClass({
 
   getInitialState: function(){
     var experience = this.props.experience;
-    return {experience: experience, title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description, link: experience.link, ongoing: experience.ongoing};
+    debugger;
+    return {experience: experience, title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description, outcomes: experience.outcomes, ongoing: experience.ongoing};
   },
 
   handleChange: function(e){
@@ -21,6 +22,12 @@ var ExperienceItem = React.createClass({
   },
 
   componentDidMount: function(){
+    $('.abc').keyup(function(e){
+      if (e.keyCode == '13') {
+         e.preventDefault();
+         $(this).append("<br />\n");
+      }
+    });
     var _this = this;
     $(".calendar-holder").hide();
     datePicker1 = ".date-picker1-" + _this.state.experience.id;
@@ -118,7 +125,7 @@ var ExperienceItem = React.createClass({
       startDate = duration.split("-")[0].replace(/\s+/g, '');
       endDate = duration.split("-")[1].replace(/\s+/g, '');
     }
-    optionsArr = ["show_location", "show_period", "show_link", "show_description"]
+    optionsArr = ["show_location", "show_period", "show_outcomes", "show_description"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.experience} section="experiences" sectionId={this.state.experience.id} options={optionsArr}/>
     return (
       <div className="">
@@ -162,7 +169,7 @@ var ExperienceItem = React.createClass({
              </h3>
              <div style={{display: 'inline-flex'}}>
                {this.state.experience.show_period && <div className="column">
-                  <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                  <i className="fa fa-calendar secondary-color" onClick={ this.handleDate } aria-hidden="true"></i>
                   <span>
                      <div className="form-group mb-0">
                       <input
@@ -207,21 +214,6 @@ var ExperienceItem = React.createClass({
                   </span>
                </div>}
              </div>
-             { this.state.experience.show_link && <div className="column">
-                <i className="fa fa-link secondary-color" aria-hidden="true"></i>
-                <span>
-                   <div className="form-group mb-0">
-                    <input
-                      type="string"
-                      name="link"
-                      className="form-control"
-                      placeholder="link"
-                      value={this.state.link || ""}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
-             </div>}
              { this.state.experience.show_description && <div className="column">
                 <span>
                    <div className="form-group mb-0">
@@ -231,6 +223,20 @@ var ExperienceItem = React.createClass({
                       className="form-control"
                       placeholder="Company Description"
                       value={this.state.description}
+                      onChange={ this.handleChange }
+                    />
+                   </div>
+                </span>
+             </div>}
+             { this.state.experience.show_outcomes && <div className="column">
+                <span>
+                   <div className="form-group mb-0">
+                    <textArea
+                      type="string"
+                      name="outcomes"
+                      className="form-control abc"
+                      placeholder="outcomes"
+                      value={this.state.outcomes || ""}
                       onChange={ this.handleChange }
                     />
                    </div>

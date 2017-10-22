@@ -135,7 +135,7 @@ var ResumeHeader = React.createClass({
                           <span>
                              <div className="form-group">
                                 <input
-                                    type="string"
+                                    type="number"
                                     name="phone"
                                     className="form-control"
                                     placeholder="Phone"

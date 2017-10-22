@@ -2,6 +2,7 @@ class CreateAchievements < ActiveRecord::Migration
   def change
     create_table :achievements do |t|
       t.string :title,       null: false, default: ""
+      t.string :icon,        null: false, default: "fa-bolt"
       t.boolean :show_icon,  default: true
       t.integer :resume_id
       t.string :description, null: false, default: ""

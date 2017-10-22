@@ -711,6 +711,18 @@ input:checked + .slider:before {
   z-index: 9999;
   border-radius: 15px;
 }
+.acheivement-icon-holder{
+  display: flex;
+  align-items: center;
+  background: #fff;
+  -webkit-box-shadow: 0 0 32px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 32px -5px rgba(0, 0, 0, 0.75);
+  padding: 10px;
+  position: absolute;
+  z-index: 9999;
+  border-radius: 15px;
+  width: 100%;
+}
 .calendar-holder .toggle-holder{
   min-width: 80px;
   display: inline-block;

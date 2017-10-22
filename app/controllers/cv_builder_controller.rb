@@ -136,13 +136,13 @@ class CvBuilderController < ApplicationController
 
   def permitted_params
     params.require(:resume).permit(:pages, :section_names,
-      achievements_attributes: [:title, :description, :id, :show_description, :show_icon, :item_index],
+      achievements_attributes: [:title, :description, :id, :show_description, :icon, :show_icon, :item_index],
       awards_attributes: [:name, :description, :id, :show_description, :show_icon, :item_index],
       certificates_attributes: [:name, :institutiion_name, :id, :show_institutiion, :item_index],
       courses_attributes: [:title, :description, :id, :show_description, :item_index],
       strengths_attributes: [:title, :description, :id, :show_description, :show_icon, :item_index],
       educations_attributes: [:degree_name, :ongoing, :university_name, :id, :duration, :show_period, :cgpa, :show_gpa, :show_location, :location, :item_index],
-      experiences_attributes: [:id, :title, :ongoing, :company_name, :location, :duration, :description, :show_location, :show_period, :link, :show_description, :show_link, :item_index],
+      experiences_attributes: [:id, :title, :ongoing, :company_name, :location, :duration, :description, :show_location, :show_period, :outcomes, :show_description, :show_outcomes, :item_index],
       languages_attributes: [:id, :name, :level, :show_proficiency, :item_index],
       passions_attributes: [:id, :name, :description, :show_icon, :show_description, :item_index],
       projects_attributes: [:id, :name, :ongoing, :location, :duration, :description, :show_location, :show_period, :link, :show_description, :show_link, :item_index],

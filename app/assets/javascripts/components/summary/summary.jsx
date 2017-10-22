@@ -35,6 +35,11 @@ var Summary = React.createClass({
     );
   },   
 
+  textAreaAdjust: function(e){
+    e.target.style.height = "1px";
+    e.target.style.height = (25+e.target.scrollHeight)+"px";
+  },
+
   render: function() {
     return (
       <div className="section-items col-md-12 p0" data-section-name="Summary">
@@ -67,6 +72,7 @@ var Summary = React.createClass({
                 className="form-control"
                 placeholder="What critical problems are you well positioned to solve?"
                 value={this.state.description}
+                onKeyUp={ this.textAreaAdjust }
                 onChange={ this.handleChange}
               />
            </div>

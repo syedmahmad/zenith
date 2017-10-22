@@ -24,9 +24,8 @@ class AddShowHideFields < ActiveRecord::Migration
   	#Experiences
   	add_column :experiences, :show_location, :boolean, default: true
   	add_column :experiences, :show_period, :boolean, default: true
-  	add_column :experiences, :link, :string
+  	add_column :experiences, :show_outcomes, :boolean, default: true
   	add_column :experiences, :show_description, :boolean, default: true
-  	add_column :experiences, :show_link, :boolean, default: true
 
   	#Languages
   	add_column :languages, :show_proficiency, :boolean, default: true

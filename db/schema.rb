@@ -17,12 +17,13 @@ ActiveRecord::Schema.define(version: 20171012183458) do
   enable_extension "plpgsql"
 
   create_table "achievements", force: :cascade do |t|
-    t.string   "title",            default: "",   null: false
+    t.string   "title",            default: "",        null: false
+    t.string   "icon",             default: "fa-bolt", null: false
     t.boolean  "show_icon",        default: true
     t.integer  "resume_id"
-    t.string   "description",      default: "",   null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "description",      default: "",        null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.boolean  "show_title",       default: true
     t.boolean  "show_description", default: true
     t.integer  "item_index"
@@ -82,15 +83,15 @@ ActiveRecord::Schema.define(version: 20171012183458) do
     t.string   "location",         default: "",   null: false
     t.integer  "resume_id"
     t.string   "duration",         default: "",   null: false
+    t.string   "outcomes",         default: "",   null: false
     t.string   "description",      default: "",   null: false
     t.boolean  "ongoing",          default: true
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "show_location",    default: true
     t.boolean  "show_period",      default: true
-    t.string   "link"
+    t.boolean  "show_outcomes",    default: true
     t.boolean  "show_description", default: true
-    t.boolean  "show_link",        default: true
     t.integer  "item_index"
   end
 

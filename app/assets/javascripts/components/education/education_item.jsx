@@ -163,7 +163,7 @@ var EducationItem = React.createClass({
              </h3>
              <div style={{display: 'inline-flex'}}> 
                {this.state.education.show_period && <div className="column">
-                  <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                  <i className="fa fa-calendar secondary-color" onClick={ this.handleDate } aria-hidden="true"></i>
                   <span>
                      <div className="form-group mb-0">
                       <input
