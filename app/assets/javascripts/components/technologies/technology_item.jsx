@@ -33,30 +33,26 @@ var TechnologyItem = React.createClass({
                </a>
             </div>
             {showHideOptions}
-            <h5>
-               {this.state.technology.show_gouup_title && <div className="form-group">
-                  <input
-                    type="string"
-                    name="name"
-                    className="form-control secondary-color"
-                    placeholder="Group Title"
-                    value={this.state.name}
-                    onChange={ this.handleChange }
-                  />
-               </div>}
-            </h5>
-            <h6>
-               <div className="form-group">
-                  <textArea
-                    type="string"
-                    name="tec_names"
-                    className="form-control hide-show-control"
-                    placeholder="Tech"
-                    value={this.state.tec_names}
-                    onChange={ this.handleChange }
-                  />
-               </div>
-            </h6>
+             {this.state.technology.show_gouup_title && <div className="form-group">
+                <textArea
+                  type="string"
+                  name="name"
+                  className="form-control secondary-color"
+                  placeholder="Group Title"
+                  value={this.state.name}
+                  onChange={ this.handleChange }
+                />
+             </div>}
+             <div className="form-group">
+                <textArea
+                  type="string"
+                  name="tec_names"
+                  className="form-control hide-show-control"
+                  placeholder="Tech"
+                  value={this.state.tec_names}
+                  onChange={ this.handleChange }
+                />
+             </div>
          </li>
       </div>
     )

@@ -41,7 +41,7 @@ var QuoteItem = React.createClass({
           </div>
           {showHideOptions}
           <div className="form-group">
-            <input
+            <textArea
               type="string"
               name="name"
               className="form-control hide-show-control"
@@ -50,18 +50,16 @@ var QuoteItem = React.createClass({
               onChange={ this.handleChange }
             />
           </div>
-          <h3>
-            { this.state.quote.show_author && <div className="form-group">
-              <input
-                type="string"
-                name="name"
-                className="form-control secondary-color"
-                placeholder="Quote Author"
-                value={this.state.author}
-                onChange={ this.handleChange }
-              />
-            </div>}
-          </h3>
+          { this.state.quote.show_author && <div className="form-group">
+            <textArea
+              type="string"
+              name="name"
+              className="form-control secondary-color"
+              placeholder="Quote Author"
+              value={this.state.author}
+              onChange={ this.handleChange }
+            />
+          </div>}
         </li>
       </div>
     )

@@ -143,9 +143,9 @@ var VolunteerItem = React.createClass({
           </div>
           {showHideOptions}
           <div className="">
-             <h3 className="title-position">
+             <div className="title-position">
                 <div className="form-group mb-0">
-                  <input
+                  <textArea
                     type="string"
                     name="title"
                     className="form-control hide-show-control"
@@ -154,10 +154,10 @@ var VolunteerItem = React.createClass({
                     onChange={ this.handleChange }
                   />
                 </div>
-             </h3>
-             <h3 className="company">
+             </div>
+             <div className="company">
                 <div className="form-group mb-0">
-                  <input
+                  <textArea
                     type="string"
                     name="organization_name"
                     className="form-control"
@@ -166,13 +166,13 @@ var VolunteerItem = React.createClass({
                     onChange={ this.handleChange }
                   />
                 </div>
-             </h3>
+             </div>
              <div style={{display: 'inline-flex'}}> 
               {this.state.volunteer.show_period && <div className="column">
                   <i className="fa fa-calendar secondary-color" onClick={ this.handleDate } aria-hidden="true"></i>
                   <span>
                      <div className="form-group mb-0">
-                      <input
+                      <textArea
                         type="string"
                         name="duration"
                         className="form-control"
@@ -202,7 +202,7 @@ var VolunteerItem = React.createClass({
                    <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                    <span>
                       <div className="form-group mb-0">
-                       <input
+                       <textArea
                          type="string"
                          name="location"
                          className="form-control"
@@ -214,20 +214,18 @@ var VolunteerItem = React.createClass({
                    </span>
                 </div>}
             </div>
-             <h3>
-               {this.state.volunteer.show_description && <div className="column">
-                 <div className="form-group mb-0">
-                  <textArea
-                    type="string"
-                    name="description"
-                    className="form-control"
-                    placeholder="Short summary of your work"
-                    value={this.state.description}
-                    onChange={ this.handleChange }
-                  />
-                 </div>
-               </div>}
-             </h3>
+             {this.state.volunteer.show_description && <div className="column">
+               <div className="form-group mb-0">
+                <textArea
+                  type="string"
+                  name="description"
+                  className="form-control"
+                  placeholder="Short summary of your work"
+                  value={this.state.description}
+                  onChange={ this.handleChange }
+                />
+               </div>
+             </div>}
           </div>
         </li>
       </div>

@@ -36,7 +36,7 @@ var SkillItem = React.createClass({
             {showHideOptions}
             
              <div className="form-group">
-                <input
+                <textArea
                   type="string"
                   name="name"
                   className="form-control hide-show-control"
@@ -48,7 +48,7 @@ var SkillItem = React.createClass({
              { this.state.skill.show_level && <h6>
                 <p>{levelHash[this.state.level]}</p>
                 <div className="form-group">
-                   <input
+                   <textArea
                      type="range"
                      min="0" max="100" step="20"
                      name="level"

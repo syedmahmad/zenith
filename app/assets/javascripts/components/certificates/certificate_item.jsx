@@ -33,30 +33,26 @@ var CertificateItem = React.createClass({
              </a>
           </div>
           {showHideOptions}
-          <h5>
-             <div className="form-group">
-                <input
-                  type="string"
-                  name="name"
-                  className="form-control hide-show-control"
-                  placeholder="Certificate Name"
-                  value={this.state.name}
-                  onChange={ this.handleChange }
-                />
-             </div>
-          </h5>
-          <h6>
-            { this.state.certificate.show_institutiion && <div className="form-group">
+           <div className="form-group">
               <textArea
                 type="string"
-                name="institutiion_name"
-                className="form-control secondary-color"
-                placeholder="Certificate Institution"
-                value={this.state.institutiion_name}
+                name="name"
+                className="form-control hide-show-control"
+                placeholder="Certificate Name"
+                value={this.state.name}
                 onChange={ this.handleChange }
               />
-            </div>}
-          </h6>
+           </div>
+          { this.state.certificate.show_institutiion && <div className="form-group">
+            <textArea
+              type="string"
+              name="institutiion_name"
+              className="form-control secondary-color"
+              placeholder="Certificate Institution"
+              value={this.state.institutiion_name}
+              onChange={ this.handleChange }
+            />
+          </div>}
        </li>
       </div>
     )

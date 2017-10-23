@@ -33,30 +33,26 @@ var CourseItem = React.createClass({
            </a>
         </div>
         {showHideOptions}
-        <h5>
-           <div className="form-group">
-              <input
-                type="string"
-                name="title"
-                className="form-control hide-show-control secondary-color"
-                placeholder="Course Title"
-                value={this.state.title}
-                onChange={ this.handleChange }
-              />
-           </div>
-        </h5>
-        <h6>
-           { this.state.course.show_description &&<div className="form-group">
-              <textArea
-                type="string"
-                name="description"
-                className="form-control"
-                placeholder="Course Description"
-                value={this.state.description}
-                onChange={ this.handleChange }
-              />
-           </div>}
-        </h6>
+         <div className="form-group">
+            <textArea
+              type="string"
+              name="title"
+              className="form-control hide-show-control secondary-color"
+              placeholder="Course Title"
+              value={this.state.title}
+              onChange={ this.handleChange }
+            />
+         </div>
+         { this.state.course.show_description &&<div className="form-group">
+            <textArea
+              type="string"
+              name="description"
+              className="form-control"
+              placeholder="Course Description"
+              value={this.state.description}
+              onChange={ this.handleChange }
+            />
+         </div>}
        </li>
       </div>
     )

@@ -38,31 +38,27 @@ var AwardItem = React.createClass({
                <i className="fa fa-trophy secondary-color" aria-hidden="true"></i>
             </div>
           }
-          <h5>
-            <div className="form-group" style={{marginLeft: "10px"}}>
-              <input
-                type="string"
-                name="name"
-                className="form-control hide-show-control"
-                placeholder="Award Name"
-                value={this.state.name}
-                onChange={ this.handleChange }
-              />
-            </div>
-          </h5>
-          <h5>
-            <div className="form-group" style={{marginLeft: "10px"}}>
-              { this.props.award.show_description && <textArea
-                type="string"
-                name="description"
-                className="form-control"
-                placeholder="Award Description"
-                value={this.state.description}
-                onChange={ this.handleChange }
-              />
-              }
-            </div>            
-          </h5>
+          <div className="form-group" style={{marginLeft: "10px"}}>
+            <textArea
+              type="string"
+              name="name"
+              className="form-control hide-show-control"
+              placeholder="Award Name"
+              value={this.state.name}
+              onChange={ this.handleChange }
+            />
+          </div>
+          <div className="form-group" style={{marginLeft: "10px"}}>
+            { this.props.award.show_description && <textArea
+              type="string"
+              name="description"
+              className="form-control"
+              placeholder="Award Description"
+              value={this.state.description}
+              onChange={ this.handleChange }
+            />
+            }
+          </div>            
         </li>
       </div>
     )

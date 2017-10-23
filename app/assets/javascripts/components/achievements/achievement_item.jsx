@@ -71,30 +71,26 @@ var AchievementItem = React.createClass({
                </section>
               </div>
             }
-            <h5>
-              <div className="form-group">
-                  <input
-                    type="string"
-                    name="title"
-                    className="form-control hide-show-control"
-                    placeholder="What are you most proud of?"
-                    value={this.state.title}
-                    onChange={ this.handleChange }
-                  />
-               </div>
-            </h5>
-            <h6>
-               { this.state.achievement.show_description && <div className="form-group">
-                  <textArea
-                    type="string"
-                    name="description"
-                    className="form-control"
-                    placeholder="A bit about your achievement"
-                    value={this.state.description}
-                    onChange={ this.handleChange }
-                  />
-               </div>}
-            </h6>
+            <div className="form-group">
+                <textArea
+                  type="string"
+                  name="title"
+                  className="form-control hide-show-control"
+                  placeholder="What are you most proud of?"
+                  value={this.state.title}
+                  onChange={ this.handleChange }
+                />
+             </div>
+             { this.state.achievement.show_description && <div className="form-group">
+                <textArea
+                  type="string"
+                  name="description"
+                  className="form-control"
+                  placeholder="A bit about your achievement"
+                  value={this.state.description}
+                  onChange={ this.handleChange }
+                />
+             </div>}
          </li>
       </div>
     )

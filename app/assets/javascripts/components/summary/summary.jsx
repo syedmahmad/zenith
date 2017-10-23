@@ -51,18 +51,16 @@ var Summary = React.createClass({
            </div>
            <section className="section-items-holder">
              <div className="heading-area">
-                <h3>
-                   <div className="form-group">
-                      <input
-                        type="string"
-                        name="title"
-                        className="form-control primary_font"
-                        placeholder="SUMMARY"
-                        value={this.state.title}
-                        onChange={ this.handleChange}
-                      />
-                   </div>
-                </h3>
+               <div className="form-group">
+                  <input
+                    type="string"
+                    name="title"
+                    className="form-control primary_font"
+                    placeholder="SUMMARY"
+                    value={this.state.title}
+                    onChange={ this.handleChange}
+                  />
+               </div>
              </div>
            </section>
            <div className="form-group">

@@ -83,7 +83,7 @@ var ResumeHeader = React.createClass({
         <section className="personal-info" data-header-id={this.props.header.id}>
           <div id="edit_able" className="hide-section">  
              <form hidden>
-               <input 
+               <textArea 
                  ref="file"
                  id="img_selector"
                  type="file" 
@@ -104,10 +104,10 @@ var ResumeHeader = React.createClass({
                  <div className="info-details">
                     { this.state.header.show_name && <div className="full-name">
                       <div className="form-group">
-                        <input
+                        <textArea
                           type="string"
                           name="name"
-                          className="form-control primary_font"
+                          className="form-control height-20 primary_font"
                           placeholder="Full Name "
                           value={this.state.name}
                           onChange={ this.handleChange}
@@ -117,10 +117,10 @@ var ResumeHeader = React.createClass({
                     { this.state.header.show_job_title && 
                       <h3 className="job-title">
                          <div className="form-group">
-                            <input
+                            <textArea
                               type="string"
                               name="job_title"
-                              className="form-control secondary-color primary_font"
+                              className="form-control height-20 secondary-color primary_font"
                               placeholder="Job Title"
                               value={this.state.job_title}
                               onChange={ this.handleChange}
@@ -134,10 +134,10 @@ var ResumeHeader = React.createClass({
                           <i className="fa fa-phone secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
-                                <input
+                                <textArea
                                     type="number"
                                     name="phone"
-                                    className="form-control"
+                                    className="form-control height-20"
                                     placeholder="Phone"
                                     value={this.state.phone}
                                     onChange={ this.handleChange}
@@ -151,10 +151,10 @@ var ResumeHeader = React.createClass({
                           <i className="fa fa-envelope secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
-                                <input
+                                <textArea
                                   type="string"
                                   name="email"
-                                  className="form-control"
+                                  className="form-control height-20"
                                   placeholder="guest_150523877422@example.com"
                                   value={this.state.email}
                                   onChange={ this.handleChange}
@@ -168,10 +168,10 @@ var ResumeHeader = React.createClass({
                           <i className="fa fa-link secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
-                                <input
+                                <textArea
                                   type="string"
                                   name="website_link"
-                                  className="form-control"
+                                  className="form-control height-20"
                                   placeholder="Website/Link"
                                   value={this.state.website_link}
                                   onChange={ this.handleChange}
@@ -185,10 +185,10 @@ var ResumeHeader = React.createClass({
                           <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
-                                <input
+                                <textArea
                                   type="string"
                                   name="location"
-                                  className="form-control"
+                                  className="form-control height-20"
                                   placeholder="location"
                                   value={this.state.location}
                                   onChange={ this.handleChange}

@@ -136,9 +136,9 @@ var ProjectItem = React.createClass({
           </div>
           {showHideOptions}
           <div className="">
-             <h3 className="title-position">
+             <div className="title-position">
                 <div className="form-group mb-0">
-                  <input
+                  <textArea
                     type="string"
                     name="name"
                     className="form-control hide-show-control"
@@ -147,13 +147,13 @@ var ProjectItem = React.createClass({
                     onChange={ this.handleChange }
                   />
                 </div>
-             </h3>
+             </div>
              <div style={{display: 'inline-flex'}}> 
                {this.state.project.show_period && <div className="column">
                  <i className="fa fa-calendar secondary-color" onClick={ this.handleDate } aria-hidden="true"></i>
                  <span>
                    <div className="form-group mb-0">
-                     <input
+                     <textArea
                        type="string"
                        name="duration"
                        className="form-control"
@@ -183,7 +183,7 @@ var ProjectItem = React.createClass({
                    <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                    <span>
                       <div className="form-group mb-0">
-                       <input
+                       <textArea
                          type="string"
                          name="location"
                          className="form-control"
@@ -199,7 +199,7 @@ var ProjectItem = React.createClass({
                  <i className="fa fa-link secondary-color" aria-hidden="true"></i>
                  <span>
                     <div className="form-group mb-0">
-                     <input
+                     <textArea
                        type="string"
                        name="link"
                        className="form-control"
@@ -210,20 +210,18 @@ var ProjectItem = React.createClass({
                     </div>
                  </span>
               </div>}
-             <h3>
-               {this.state.project.show_description && <div className="column">
-                 <div className="form-group mb-0">
-                  <textArea
-                    type="string"
-                    name="description"
-                    className="form-control"
-                    placeholder="Company Description"
-                    value={this.state.description}
-                    onChange={ this.handleChange }
-                  />
-                 </div>
-               </div>}
-            </h3>
+             {this.state.project.show_description && <div className="column">
+               <div className="form-group mb-0">
+                <textArea
+                  type="string"
+                  name="description"
+                  className="form-control"
+                  placeholder="Company Description"
+                  value={this.state.description}
+                  onChange={ this.handleChange }
+                />
+               </div>
+             </div>}
           </div>
         </li>
       </div>

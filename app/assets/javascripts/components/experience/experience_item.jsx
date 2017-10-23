@@ -2,7 +2,6 @@ var ExperienceItem = React.createClass({
 
   getInitialState: function(){
     var experience = this.props.experience;
-    debugger;
     return {experience: experience, title: experience.title, company_name: experience.company_name, location: experience.location, duration: experience.duration, description: experience.description, outcomes: experience.outcomes, ongoing: experience.ongoing};
   },
 
@@ -143,9 +142,9 @@ var ExperienceItem = React.createClass({
           </div>
           {showHideOptions}
           <div className="">
-             <h3 className="title-position">
+             <div className="title-position">
                 <div className="form-group mb-0">
-                  <input
+                  <textArea
                     type="string"
                     name="title"
                     className="form-control hide-show-control"
@@ -154,10 +153,10 @@ var ExperienceItem = React.createClass({
                     onChange={ this.handleChange }
                   />
                 </div>
-             </h3>
-             <h3 className="company">
+             </div>
+             <div className="company">
                 <div className="form-group mb-0">
-                  <input
+                  <textArea
                     type="string"
                     name="company_name"
                     className="form-control secondary-color"
@@ -166,13 +165,13 @@ var ExperienceItem = React.createClass({
                     onChange={ this.handleChange }
                   />
                 </div>
-             </h3>
+             </div>
              <div style={{display: 'inline-flex'}}>
                {this.state.experience.show_period && <div className="column">
                   <i className="fa fa-calendar secondary-color" onClick={ this.handleDate } aria-hidden="true"></i>
                   <span>
                      <div className="form-group mb-0">
-                      <input
+                      <textArea
                         type="string"
                         name="duration"
                         className="form-control"
@@ -202,7 +201,7 @@ var ExperienceItem = React.createClass({
                   <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                   <span>
                      <div className="form-group mb-0">
-                      <input
+                      <textArea
                         type="string"
                         name="location"
                         className="form-control"
