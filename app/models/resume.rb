@@ -53,13 +53,18 @@ class Resume < ActiveRecord::Base
 		self.create_summary
 		Layout.create_default(self.id)
 		achievements.create
+		achievements.create
 		awards.create
 		certificates.create
 		courses.create
 		educations.create
+		educations.create
+		experiences.create
 		experiences.create
 		languages.create
+		languages.create
 		passions.create
+		projects.create
 		projects.create
 		quotes.create
 		volunteers.create

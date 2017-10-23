@@ -36,27 +36,29 @@ var StrengthItem = React.createClass({
            {this.state.strength.show_icon && <div className="icon-holder pull-left">
               <i className="fa fa-gavel secondary-color" aria-hidden="true"></i>
            </div>}
-            <div className="form-group">
-               <textArea
-                 type="string"
-                 name="title"
-                 className="form-control hide-show-control"
-                 placeholder="Your Unique Talent"
-                 value={this.state.title}
-                 onChange={ this.handleChange }
-               />
-            </div>
-          {this.state.strength.show_description &&
-            <div className="form-group">
-               <textArea
-                 type="string"
-                 name="description"
-                 className="form-control"
-                 placeholder="As result of it / how did you acquire it"
-                 value={this.state.description}
-                 onChange={ this.handleChange }
-               />
-            </div>}
+           <div className="input-holder">
+              <div className="form-group mb-0">
+                 <textArea
+                   type="string"
+                   name="title"
+                   className="form-control hide-show-control"
+                   placeholder="Your Unique Talent"
+                   value={this.state.title}
+                   onChange={ this.handleChange }
+                 />
+              </div>
+            {this.state.strength.show_description &&
+              <div className="form-group mb-0">
+                 <textArea
+                   type="string"
+                   name="description"
+                   className="form-control"
+                   placeholder="As result of it / how did you acquire it"
+                   value={this.state.description}
+                   onChange={ this.handleChange }
+                 />
+              </div>}
+          </div>
         </li>
      </div>
     )

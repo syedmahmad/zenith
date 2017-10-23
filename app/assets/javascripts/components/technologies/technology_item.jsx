@@ -33,7 +33,8 @@ var TechnologyItem = React.createClass({
                </a>
             </div>
             {showHideOptions}
-             {this.state.technology.show_gouup_title && <div className="form-group">
+            <div className="input-holder">
+             {this.state.technology.show_gouup_title && <div className="form-group mb-0">
                 <textArea
                   type="string"
                   name="name"
@@ -43,7 +44,7 @@ var TechnologyItem = React.createClass({
                   onChange={ this.handleChange }
                 />
              </div>}
-             <div className="form-group">
+             <div className="form-group mb-0">
                 <textArea
                   type="string"
                   name="tec_names"
@@ -53,6 +54,7 @@ var TechnologyItem = React.createClass({
                   onChange={ this.handleChange }
                 />
              </div>
+            </div>
          </li>
       </div>
     )

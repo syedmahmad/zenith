@@ -36,26 +36,28 @@ var PassionItem = React.createClass({
             { this.state.passion.show_icon && <div className="icon-holder pull-left">
                <i className="fa fa-heart secondary-color" aria-hidden="true"></i>
             </div>}
-             <div className="form-group">
-                <textArea
-                  type="string"
-                  name="name"
-                  className="form-control hide-show-control"
-                  placeholder="Your Passion"
-                  value={this.state.name}
-                  onChange={ this.handleChange }
-                />
-             </div>
-             { this.state.passion.show_description && <div className="form-group">
-                <textArea
-                  type="string"
-                  name="description"
-                  className="form-control"
-                  placeholder="description"
-                  value={this.state.description}
-                  onChange={ this.handleChange }
-                />
-             </div>}
+            <div className="input-holder">
+               <div className="form-group mb-0">
+                  <textArea
+                    type="string"
+                    name="name"
+                    className="form-control hide-show-control"
+                    placeholder="Your Passion"
+                    value={this.state.name}
+                    onChange={ this.handleChange }
+                  />
+               </div>
+               { this.state.passion.show_description && <div className="form-group mb-0">
+                  <textArea
+                    type="string"
+                    name="description"
+                    className="form-control"
+                    placeholder="description"
+                    value={this.state.description}
+                    onChange={ this.handleChange }
+                  />
+               </div>}
+            </div>
          </li>
       </div>
     )
