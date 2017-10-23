@@ -46,7 +46,7 @@ var AchievementItem = React.createClass({
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.props.achievement} section="achievements" sectionId={this.props.achievement.id} options={optionsArr}/>
     return (
       <div className="">
-         <li className="section-item" data-achievement-id={this.props.achievement.id} data-section-id={this.props.achievement.id}>
+         <li className="section-item row m0" data-achievement-id={this.props.achievement.id} data-section-id={this.props.achievement.id}>
             <div id="edit_able" className="hide-section">  
                <a href="javaScript:void(0);">
                <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
@@ -71,26 +71,28 @@ var AchievementItem = React.createClass({
                </section>
               </div>
             }
-            <div className="form-group">
-                <textArea
-                  type="string"
-                  name="title"
-                  className="form-control hide-show-control"
-                  placeholder="What are you most proud of?"
-                  value={this.state.title}
-                  onChange={ this.handleChange }
-                />
-             </div>
-             { this.state.achievement.show_description && <div className="form-group">
-                <textArea
-                  type="string"
-                  name="description"
-                  className="form-control"
-                  placeholder="A bit about your achievement"
-                  value={this.state.description}
-                  onChange={ this.handleChange }
-                />
-             </div>}
+            <div className="input-holder">
+              <div className="form-group mb-0">
+                  <textArea
+                    type="string"
+                    name="title"
+                    className="form-control hide-show-control"
+                    placeholder="What are you most proud of?"
+                    value={this.state.title}
+                    onChange={ this.handleChange }
+                  />
+               </div>
+               { this.state.achievement.show_description && <div className="form-group">
+                  <textArea
+                    type="string"
+                    name="description"
+                    className="form-control"
+                    placeholder="A bit about your achievement"
+                    value={this.state.description}
+                    onChange={ this.handleChange }
+                  />
+               </div>}
+            </div>
          </li>
       </div>
     )
