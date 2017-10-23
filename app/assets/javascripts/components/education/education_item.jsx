@@ -17,9 +17,12 @@ var EducationItem = React.createClass({
 
   handleDate: function(e) {
     e.preventDefault();
+    $(".calendar-holder").hide();
     $(e.target).closest(".section-item").find(".calendar-holder").show();
   },
-
+  componentDidUpdate: function(){
+    this.adjustTextFields();
+  },
   componentDidMount: function(){
     var _this = this;
     $(".calendar-holder").hide();
@@ -35,17 +38,15 @@ var EducationItem = React.createClass({
          _this.updateEndDate(dateText, inst);
       }
     });
-
-    $(".calendar-holder").hover(function(){
-       $(this).addClass("hovered");
-    },function(){
-      if (document.activeElement.className.indexOf("date-picker") != 0){
-       $(this).removeClass("hovered");
-       $(this).hide();
-      }
-    });
+    this.adjustTextFields();
   },
 
+  adjustTextFields: function(){
+    $.each($(".education-holder textarea"), function(index, el){
+      $(el).height(el.scrollHeight+"px");
+    });
+  },
+  
   updateStartDate: function(dateText, inst){
     duration = "";
     startDate = dateText;

@@ -27,6 +27,10 @@ var VolunteerItem = React.createClass({
     $(e.target).closest(".section-item").find(".calendar-holder").show();
   },
 
+  componentDidUpdate: function(){
+    this.adjustTextFields();
+  },
+  
   componentDidMount: function(){
     var _this = this;
     $(".calendar-holder").hide();
@@ -42,14 +46,12 @@ var VolunteerItem = React.createClass({
          _this.updateEndDate(dateText, inst);
       }
     });
+    this.adjustTextFields();
+  },
 
-    $(".calendar-holder").hover(function(){
-       $(this).addClass("hovered");
-    },function(){
-      if (document.activeElement.className.indexOf("date-picker") != 0){
-       $(this).removeClass("hovered");
-       $(this).hide();
-      }
+  adjustTextFields: function(){
+    $.each($(".volunteer-holder textarea"), function(index, el){
+      $(el).height(el.scrollHeight+"px");
     });
   },
 
@@ -142,7 +144,7 @@ var VolunteerItem = React.createClass({
              </a>
           </div>
           {showHideOptions}
-          <div className="">
+          <div className="volunteer-holder">
              <div className="title-position">
                 <div className="form-group mb-0">
                   <textArea

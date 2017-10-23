@@ -28,6 +28,24 @@ var CvBuilder = React.createClass({
         _this.handleSubItemRearrange(sectionName, data);
       }
     });
+
+    $.each($("textarea"), function(index, el){
+      $(el).height(el.scrollHeight+"px");
+    });
+
+    $("textarea").on("keydown", function(e){
+      e.target.style.height = "1px";
+      e.target.style.height = (e.target.scrollHeight)+"px";
+    });
+
+    $(document).on("click", function(e){
+      if(!$(e.target).data("calenderTarget") && !$(e.target).parents().hasClass("calendar-holder")){
+        $(".calendar-holder").hide();
+      }
+      if(!$(e.target).parents().hasClass("icon-holder")){
+        $(".acheivement-icon-holder").hide();
+      }
+    });
   },
   handleSubItemRearrange: function(section, data){
     params = {resume: {[section+"_attributes"]: data}}

@@ -19,7 +19,9 @@ var ExperienceItem = React.createClass({
     e.preventDefault();
     $(e.target).closest(".section-item").find(".calendar-holder").show();
   },
-
+  componentDidUpdate: function(){
+    this.adjustTextFields();
+  },
   componentDidMount: function(){
     $('.abc').keyup(function(e){
       if (e.keyCode == '13') {
@@ -41,17 +43,14 @@ var ExperienceItem = React.createClass({
          _this.updateEndDate(dateText, inst);
       }
     });
-
-    $(".calendar-holder").hover(function(){
-       $(this).addClass("hovered");
-    },function(){
-      if (document.activeElement.className.indexOf("date-picker") != 0){
-       $(this).removeClass("hovered");
-       $(this).hide();
-      }
-    });
+    this.adjustTextFields();
   },
 
+  adjustTextFields: function(){
+    $.each($(".experience_holder textarea"), function(index, el){
+      $(el).height(el.scrollHeight+"px");
+    });
+  },
   updateStartDate: function(dateText, inst){
     duration = "";
     startDate = dateText;
@@ -141,7 +140,7 @@ var ExperienceItem = React.createClass({
              </a>
           </div>
           {showHideOptions}
-          <div className="">
+          <div className="experience_holder">
              <div className="title-position">
                 <div className="form-group mb-0">
                   <textArea

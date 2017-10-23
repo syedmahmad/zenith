@@ -41,7 +41,6 @@ var Education = React.createClass({
         }
       }
     }));
-
    // show and hide buttons
     $(document).on('focusin', ".heading-area", (function (e) {
       this.parentElement.previousElementSibling.classList.remove('hide-section');
@@ -49,9 +48,6 @@ var Education = React.createClass({
     $(document).on('focusout', ".heading-area", (function (e) {
       this.parentElement.previousElementSibling.classList.add('hide-section');
     }));
-
-    
-
   },
   submitEducation: function(params){
     this.props.updateResume(

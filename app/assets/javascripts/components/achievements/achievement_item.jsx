@@ -16,13 +16,6 @@ var AchievementItem = React.createClass({
   componentDidMount: function(){
     var _this = this;
     $(".acheivement-icon-holder").hide();
-
-    $(".acheivement-icon-holder").hover(function(){
-       $(this).addClass("hovered");
-    },function(){      
-       $(this).removeClass("hovered");
-       $(this).hide();
-    });
   },
 
   handleIcon: function(e){
