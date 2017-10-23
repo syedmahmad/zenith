@@ -137,7 +137,7 @@ var ProjectItem = React.createClass({
           {showHideOptions}
           <div className="">
              <h3 className="title-position">
-                <div className="form-group">
+                <div className="form-group mb-0">
                   <input
                     type="string"
                     name="name"
@@ -152,7 +152,7 @@ var ProjectItem = React.createClass({
                {this.state.project.show_period && <div className="column">
                  <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
                  <span>
-                   <div className="form-group">
+                   <div className="form-group mb-0">
                      <input
                        type="string"
                        name="duration"
@@ -182,7 +182,7 @@ var ProjectItem = React.createClass({
                 {this.state.project.show_location && <div className="column">
                    <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                    <span>
-                      <div className="form-group">
+                      <div className="form-group mb-0">
                        <input
                          type="string"
                          name="location"
@@ -198,7 +198,7 @@ var ProjectItem = React.createClass({
               {this.state.project.show_link && <div className="column">
                  <i className="fa fa-link secondary-color" aria-hidden="true"></i>
                  <span>
-                    <div className="form-group">
+                    <div className="form-group mb-0">
                      <input
                        type="string"
                        name="link"
@@ -212,7 +212,7 @@ var ProjectItem = React.createClass({
               </div>}
              <h3>
                {this.state.project.show_description && <div className="column">
-                 <div className="form-group">
+                 <div className="form-group mb-0">
                   <textArea
                     type="string"
                     name="description"

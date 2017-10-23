@@ -144,7 +144,7 @@ var VolunteerItem = React.createClass({
           {showHideOptions}
           <div className="">
              <h3 className="title-position">
-                <div className="form-group">
+                <div className="form-group mb-0">
                   <input
                     type="string"
                     name="title"
@@ -156,7 +156,7 @@ var VolunteerItem = React.createClass({
                 </div>
              </h3>
              <h3 className="company">
-                <div className="form-group">
+                <div className="form-group mb-0">
                   <input
                     type="string"
                     name="organization_name"
@@ -171,7 +171,7 @@ var VolunteerItem = React.createClass({
               {this.state.volunteer.show_period && <div className="column">
                   <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
                   <span>
-                     <div className="form-group">
+                     <div className="form-group mb-0">
                       <input
                         type="string"
                         name="duration"
@@ -201,7 +201,7 @@ var VolunteerItem = React.createClass({
                {this.state.volunteer.show_location && <div className="column">
                    <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                    <span>
-                      <div className="form-group">
+                      <div className="form-group mb-0">
                        <input
                          type="string"
                          name="location"
@@ -216,7 +216,7 @@ var VolunteerItem = React.createClass({
             </div>
              <h3>
                {this.state.volunteer.show_description && <div className="column">
-                 <div className="form-group">
+                 <div className="form-group mb-0">
                   <textArea
                     type="string"
                     name="description"

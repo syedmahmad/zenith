@@ -137,7 +137,7 @@ var ExperienceItem = React.createClass({
           {showHideOptions}
           <div className="">
              <h3 className="title-position">
-                <div className="form-group">
+                <div className="form-group mb-0">
                   <input
                     type="string"
                     name="title"
@@ -149,7 +149,7 @@ var ExperienceItem = React.createClass({
                 </div>
              </h3>
              <h3 className="company">
-                <div className="form-group">
+                <div className="form-group mb-0">
                   <input
                     type="string"
                     name="company_name"
@@ -164,7 +164,7 @@ var ExperienceItem = React.createClass({
                {this.state.experience.show_period && <div className="column">
                   <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
                   <span>
-                     <div className="form-group">
+                     <div className="form-group mb-0">
                       <input
                         type="string"
                         name="duration"
@@ -194,7 +194,7 @@ var ExperienceItem = React.createClass({
                { this.state.experience.show_location && <div className="column">
                   <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                   <span>
-                     <div className="form-group">
+                     <div className="form-group mb-0">
                       <input
                         type="string"
                         name="location"
@@ -210,7 +210,7 @@ var ExperienceItem = React.createClass({
              { this.state.experience.show_link && <div className="column">
                 <i className="fa fa-link secondary-color" aria-hidden="true"></i>
                 <span>
-                   <div className="form-group">
+                   <div className="form-group mb-0">
                     <input
                       type="string"
                       name="link"
@@ -224,7 +224,7 @@ var ExperienceItem = React.createClass({
              </div>}
              { this.state.experience.show_description && <div className="column">
                 <span>
-                   <div className="form-group">
+                   <div className="form-group mb-0">
                     <textArea
                       type="string"
                       name="description"

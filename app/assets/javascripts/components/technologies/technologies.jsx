@@ -77,7 +77,7 @@ var Technologies = React.createClass({
     });
     
     return (
-     <div className="section-items col-md-12" data-section-name="Technologies">
+     <div className="section-items col-md-12 p0" data-section-name="Technologies">
        <div id="edit_able" className="hide-section">  
           <a href="javaScript:void(0);">
           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.addSubSection}></i>

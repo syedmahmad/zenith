@@ -37,7 +37,7 @@ var Summary = React.createClass({
 
   render: function() {
     return (
-      <div className="section-items col-md-12" data-section-name="Summary">
+      <div className="section-items col-md-12 p0" data-section-name="Summary">
         <section className="summary-holder" data-summary-id={this.props.resume.summary.id}>
            <div id="edit_able" className="hide-section">
               <a href="javaScript:void(0);" title="Remove section">
