@@ -65,7 +65,9 @@ var AchievementItem = React.createClass({
                <section className="acheivement-icon-holder">
                 {
                   data.map((icon_name, index) => (
-                    <i key={index} onClick={ this.changeIcon }  data-icon-name={icon_name} style={{padding: '10px'}} className={"fa " + icon_name}></i>
+                    <div className="popover-icon-picker-single"> 
+                      <i key={index} onClick={ this.changeIcon }  data-icon-name={icon_name} style={{padding: '10px'}} className={"fa " + icon_name}></i>
+                    </div>
                   ))
                 }
                </section>

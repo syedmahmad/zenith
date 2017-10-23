@@ -1,20 +1,62 @@
-.black::placeholder { color: #000; }
-.color-8616cc::placeholder { color: #8616cc; }
-.color-FF0F0F::placeholder { color: #FF0F0F; }
+.black::-webkit-input-placeholder { color: #000; }
+.black:-moz-placeholder { color: #000; opacity: 1;}
+.black::-moz-placeholder { color: #000; opacity: 1;}
+.black:-ms-input-placeholder { color: #000; opacity: 1;}
 
-.color-CF924A::placeholder { color: #CF924A; }
-.color-A861A6::placeholder { color: #A861A6; }
+.color-8616cc::-webkit-input-placeholder { color: #8616cc; }
+.color-8616cc:-moz-placeholder { color: #8616cc; opacity: 1;}
+.color-8616cc::-moz-placeholder { color: #8616cc; opacity: 1;}
+.color-8616cc:-ms-input-placeholder { color: #8616cc; opacity: 1;}
 
-.color-00a7dd::placeholder { color: #00a7dd; }
-.color-FA6C00::placeholder { color: #FA6C00; }
+.color-FF0F0F::-webkit-input-placeholder { color: #FF0F0F; }
+.color-FF0F0F:-moz-placeholder { color: #FF0F0F; opacity: 1;}
+.color-FF0F0F::-moz-placeholder { color: #FF0F0F; opacity: 1;}
+.color-FF0F0F:-ms-input-placeholder { color: #FF0F0F; opacity: 1;}
 
-.color-FB51A5::placeholder { color: #FB51A5; }
-.color-5ac41d::placeholder { color: #5ac41d; }
+.color-CF924A::-webkit-input-placeholder { color: #CF924A; }
+.color-CF924A:-moz-placeholder { color: #CF924A; opacity: 1;}
+.color-CF924A::-moz-placeholder { color: #CF924A; opacity: 1;}
+.color-CF924A:-ms-input-placeholder { color: #CF924A; opacity: 1;}
 
-.color-36006B::placeholder { color: #36006B; }
-.color-58320E::placeholder { color: #58320E; }
+.color-A861A6::-webkit-input-placeholder { color: #A861A6; }
+.color-A861A6:-moz-placeholder { color: #A861A6; opacity: 1;}
+.color-A861A6::-moz-placeholder { color: #A861A6; opacity: 1;}
+.color-A861A6:-ms-input-placeholder { color: #A861A6; opacity: 1;}
 
-.color-012B7E::placeholder { color: #012B7E; }
+.color-00a7dd::-webkit-input-placeholder { color: #00a7dd; }
+.color-00a7dd:-moz-placeholder { color: #00a7dd; opacity: 1;}
+.color-00a7dd::-moz-placeholder { color: #00a7dd; opacity: 1;}
+.color-00a7dd:-ms-input-placeholder { color: #00a7dd; opacity: 1;}
+
+.color-FA6C00::-webkit-input-placeholder { color: #FA6C00; }
+.color-FA6C00:-moz-placeholder { color: #FA6C00; opacity: 1;}
+.color-FA6C00::-moz-placeholder { color: #FA6C00; opacity: 1;}
+.color-FA6C00:-ms-input-placeholder { color: #FA6C00; opacity: 1;}
+
+.color-FB51A5::-webkit-input-placeholder { color: #FB51A5; }
+.color-FB51A5:-moz-placeholder { color: #FB51A5; opacity: 1;}
+.color-FB51A5::-moz-placeholder { color: #FB51A5; opacity: 1;}
+.color-FB51A5:-ms-input-placeholder { color: #FB51A5; opacity: 1;}
+
+.color-5ac41d::-webkit-input-placeholder { color: #5ac41d; }
+.color-5ac41d:-moz-placeholder { color: #5ac41d; opacity: 1;}
+.color-5ac41d::-moz-placeholder { color: #5ac41d; opacity: 1;}
+.color-5ac41d:-ms-input-placeholder { color: #5ac41d; opacity: 1;}
+
+.color-36006B::-webkit-input-placeholder { color: #36006B; }
+.color-36006B:-moz-placeholder { color: #36006B; opacity: 1;}
+.color-36006B::-moz-placeholder { color: #36006B; opacity: 1;}
+.color-36006B:-ms-input-placeholder { color: #36006B; opacity: 1;}
+
+.color-58320E::-webkit-input-placeholder { color: #58320E; }
+.color-58320E:-moz-placeholder { color: #58320E; opacity: 1;}
+.color-58320E::-moz-placeholder { color: #58320E; opacity: 1;}
+.color-58320E:-ms-input-placeholder { color: #58320E; opacity: 1;}
+
+.color-012B7E::-webkit-input-placeholder { color: #012B7E; }
+.color-012B7E:-moz-placeholder { color: #012B7E; opacity: 1;}
+.color-012B7E::-moz-placeholder { color: #012B7E; opacity: 1;}
+.color-012B7E:-ms-input-placeholder { color: #012B7E; opacity: 1;}
 
 .input-range{
   -webkit-appearance: none;
@@ -40,4 +82,25 @@ textarea{
 	overflow: hidden;
 	resize: none;
 	word-wrap: break-word;
+}
+
+.height-25 {
+  height: 25px;
+}
+.height-20 {
+  height: 20px;
+}
+.height-15 {
+  height: 15px;
+}
+.popover-icon-picker-single {
+  width: 40px;
+  height: 40px;
+  line-height: 44px;
+  display: inline-block;
+  margin: 8px 10px;
+  padding-left: 1px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
 }

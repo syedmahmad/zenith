@@ -147,7 +147,7 @@ var ExperienceItem = React.createClass({
                   <textArea
                     type="string"
                     name="title"
-                    className="form-control hide-show-control"
+                    className="form-control height-25 hide-show-control"
                     placeholder="Title/Position"
                     value={this.state.title}
                     onChange={ this.handleChange }
@@ -159,7 +159,7 @@ var ExperienceItem = React.createClass({
                   <textArea
                     type="string"
                     name="company_name"
-                    className="form-control secondary-color"
+                    className="form-control height-20 secondary-color"
                     placeholder="Company"
                     value={this.state.company_name}
                     onChange={ this.handleChange }
@@ -174,7 +174,7 @@ var ExperienceItem = React.createClass({
                       <textArea
                         type="string"
                         name="duration"
-                        className="form-control"
+                        className="form-control height-15"
                         placeholder="Date period"
                         value={this.state.duration}
                         data-calender-target={calendarTarget}
@@ -204,7 +204,7 @@ var ExperienceItem = React.createClass({
                       <textArea
                         type="string"
                         name="location"
-                        className="form-control"
+                        className="form-control height-15"
                         placeholder="Location"
                         value={this.state.location}
                         onChange={ this.handleChange }
@@ -219,7 +219,7 @@ var ExperienceItem = React.createClass({
                     <textArea
                       type="string"
                       name="description"
-                      className="form-control"
+                      className="form-control height-15"
                       placeholder="Company Description"
                       value={this.state.description}
                       onChange={ this.handleChange }
@@ -233,7 +233,7 @@ var ExperienceItem = React.createClass({
                     <textArea
                       type="string"
                       name="outcomes"
-                      className="form-control abc"
+                      className="form-control abc height-15"
                       placeholder="outcomes"
                       value={this.state.outcomes || ""}
                       onChange={ this.handleChange }
