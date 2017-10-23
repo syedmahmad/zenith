@@ -15,6 +15,15 @@
   .mb-0{
     margin-bottom: 0 !important;
   }
+  .mt-24{
+    margin-top: -22px !important;
+  }
+  .height-5{
+    height: 5px !important;
+  }
+  .text-right{
+    text-align: right;
+  }
   .page-holder .personal-info .form-control{
     height: 20px;
   }
@@ -350,7 +359,7 @@ ul {
   font-weight: normal;
   display: inline-block;
   margin-top: 0px;
-  width: 90%;
+  width: 100%;
 }
 .section-items-holder .section-items-list li h6 .form-group {
   margin-bottom: 0;
@@ -760,4 +769,14 @@ input:checked + .slider:before {
 }
 .hide-show-control {
   font-weight: bold;
+}
+.education-holder{
+  display: flex;
+}
+.education-holder .cgpa-section .form-group{
+  width: 100%;
+}
+.education-holder .cgpa-section .form-control{
+  text-align: center !important;
+  border-left: 1px solid;
 }

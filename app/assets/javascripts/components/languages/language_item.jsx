@@ -34,7 +34,7 @@ var LanguageItem = React.createClass({
                </a>
             </div>
             {showHideOptions}
-               <div className="form-group">
+               <div className="form-group mb-0">
                   <textArea
                     type="string"
                     name="name"
@@ -44,14 +44,14 @@ var LanguageItem = React.createClass({
                     onChange={ this.handleChange }
                   />
                </div>
-            { this.state.language.show_proficiency && <h6>
-               <p>{levelHash[this.state.level]}</p>
+            { this.state.language.show_proficiency && <h6 className="mt-24">
+               <p className="text-right">{levelHash[this.state.level]}</p>
                <div className="form-group">
-                  <textArea
+                  <input
                     type="range"
                     min="0" max="100" step="20"
                     name="level"
-                    className="form-control input-range"
+                    className=" height-5 form-control input-range"
                     placeholder="Beginner"
                     value={this.state.level}
                     onChange={ this.handleChange }
