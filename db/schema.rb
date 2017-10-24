@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20171012183458) do
     t.string   "location",         default: "",   null: false
     t.integer  "resume_id"
     t.string   "duration",         default: "",   null: false
-    t.string   "outcomes",         default: "",   null: false
+    t.text     "outcomes"
     t.string   "description",      default: "",   null: false
     t.boolean  "ongoing",          default: true
     t.datetime "created_at",                      null: false

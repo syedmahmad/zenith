@@ -23,12 +23,12 @@ var ExperienceItem = React.createClass({
     this.adjustTextFields();
   },
   componentDidMount: function(){
-    $('.abc').keyup(function(e){
-      if (e.keyCode == '13') {
-         e.preventDefault();
-         $(this).append("<br />\n");
-      }
-    });
+    // $('.abc').keyup(function(e){
+    //   if (e.keyCode == '13') {
+    //      e.preventDefault();
+    //      $(this).append("<br />\n");
+    //   }
+    // });
     var _this = this;
     $(".calendar-holder").hide();
     datePicker1 = ".date-picker1-" + _this.state.experience.id;
@@ -123,6 +123,16 @@ var ExperienceItem = React.createClass({
       startDate = duration.split("-")[0].replace(/\s+/g, '');
       endDate = duration.split("-")[1].replace(/\s+/g, '');
     }
+    outcomeData = [];
+    outcomes = this.state.outcomes;
+    if(outcomes.length < 1){
+      outcomes.push("");
+    }
+    
+    outcomes.forEach(function(outcome, index) {
+      key = "outcome-" + index;
+      outcomeData.push(<Outcomes key={key} outcome={outcome}/>);
+    });
     optionsArr = ["show_location", "show_period", "show_outcomes", "show_description"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.experience} section="experiences" sectionId={this.state.experience.id} options={optionsArr}/>
     return (
@@ -226,20 +236,7 @@ var ExperienceItem = React.createClass({
                    </div>
                 </span>
              </div>}
-             { this.state.experience.show_outcomes && <div className="column">
-                <span>
-                   <div className="form-group mb-0">
-                    <textArea
-                      type="string"
-                      name="outcomes"
-                      className="form-control abc height-15"
-                      placeholder="outcomes"
-                      value={this.state.outcomes || ""}
-                      onChange={ this.handleChange }
-                    />
-                   </div>
-                </span>
-             </div>}
+            { this.state.experience.show_outcomes && outcomeData }
           </div>
         </li>
       </div>

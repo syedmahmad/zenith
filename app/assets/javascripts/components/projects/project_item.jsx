@@ -215,7 +215,7 @@ var ProjectItem = React.createClass({
                   type="string"
                   name="description"
                   className="form-control"
-                  placeholder="Company Description"
+                  placeholder="Short summary of your work"
                   value={this.state.description}
                   onChange={ this.handleChange }
                 />
