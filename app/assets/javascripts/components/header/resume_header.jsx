@@ -54,7 +54,7 @@ var ResumeHeader = React.createClass({
             _this.submitHeader({[e.target.name]: e.target.value, "id": $(__this).data("headerId")});
           }
 
-        }, 1000);
+        }, 2000);
       }
     }));
 
@@ -83,7 +83,7 @@ var ResumeHeader = React.createClass({
         <section className="personal-info" data-header-id={this.props.header.id}>
           <div id="edit_able" className="hide-section">  
              <form hidden>
-               <textArea 
+               <input 
                  ref="file"
                  id="img_selector"
                  type="file" 

@@ -5,7 +5,7 @@ class CreateEducations < ActiveRecord::Migration
       t.string :university_name,       null: false, default: ""
       t.integer :resume_id
       t.string :duration,       null: false, default: ""
-      t.boolean :ongoing, default: true
+      t.boolean :ongoing, default: false
       t.string :cgpa
       t.timestamps null: false
     end

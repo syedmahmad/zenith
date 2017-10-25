@@ -14,6 +14,10 @@ var Summary = React.createClass({
     this.props.handleRemoveSection(e);
   },
 
+  componentDidUpdate: function(){
+    this.adjustTextFields();
+  },
+
   componentDidMount: function(){
     var _this = this;
     // show setting and camera buttons
@@ -27,8 +31,15 @@ var Summary = React.createClass({
         _this.submitSummary({[e.target.name]: e.target.value, "id": $(this).data("summaryId")});
       }
     }));
+    this.adjustTextFields();
   },
 
+  adjustTextFields: function(){
+    $.each($(".summary-holder textarea"), function(index, el){
+      $(el).height(el.scrollHeight+"px");
+    });
+  },
+  
   submitSummary: function(params){
     this.props.updateResume(
       {resume: {summary_attributes: params}}

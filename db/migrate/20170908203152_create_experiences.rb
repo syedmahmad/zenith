@@ -8,7 +8,7 @@ class CreateExperiences < ActiveRecord::Migration
       t.string :duration,       null: false, default: ""
       t.text :outcomes
       t.string :description, null: false, default: ""
-      t.boolean :ongoing, default: true
+      t.boolean :ongoing, default: false
       t.timestamps null: false
     end
   end
