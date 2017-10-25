@@ -31,9 +31,18 @@ var Experiences = React.createClass({
         var state_res = _this.state.experiences.find(item => item.id == $(this).data("experienceId"));
         if (state_res) {
           var props_res = _this.props.resume.experiences.find(item => item.id == $(this).data("experienceId"));
-          if (props_res && props_res[e.target.name] != e.target.value && e.target.name != "calendar" && e.target.name != "outcomes") {
+          if (props_res && props_res[e.target.name] != e.target.value && e.target.name != "calendar") {
             //send update call...
-            _this.submitExperience({[e.target.name]: e.target.value, "id": $(this).data("experienceId")});
+            var valName = e.target.name;
+            var valObj = e.target.value;
+            var selector = $(e.target).closest(".section-item");
+            if(valName == "outcomes"){
+              valObj = [];
+              $.each($(selector).find("textarea[name='outcomes']"), function(index, el){
+                valObj.push($(el).val());
+              });
+            }
+            _this.submitExperience({[valName]: valObj, "id": $(this).data("experienceId")});
           }
         }
       }

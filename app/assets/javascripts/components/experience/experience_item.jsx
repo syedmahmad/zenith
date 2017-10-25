@@ -23,12 +23,6 @@ var ExperienceItem = React.createClass({
     this.adjustTextFields();
   },
   componentDidMount: function(){
-    // $('.abc').keyup(function(e){
-    //   if (e.keyCode == '13') {
-    //      e.preventDefault();
-    //      $(this).append("<br />\n");
-    //   }
-    // });
     var _this = this;
     $(".calendar-holder").hide();
     datePicker1 = ".date-picker1-" + _this.state.experience.id;
@@ -47,7 +41,7 @@ var ExperienceItem = React.createClass({
   },
 
   adjustTextFields: function(){
-    $.each($(".experience_holder textarea"), function(index, el){
+    $.each($(document).find(".experience_holder textarea"), function(index, el){
       $(el).height(el.scrollHeight+"px");
     });
   },
@@ -110,13 +104,25 @@ var ExperienceItem = React.createClass({
   },
 
   addOutcome: function(e){
-
     var outcomes = this.state.outcomes;
-    outcomes.push({id: $(e.target).closest(".mb-0").data("id")+1, data:""});
-    console.log("sssssssssssssssssssss", outcomes);
+    var selector = $(e.target).closest(".section-item");
+    outcomes.push("");
+    // selector.find("textarea[name='outcomes']")
+
     this.setState({outcomes: outcomes});
     e.target.blur();
-    var params = {[e.target.name]: outcomes, "id": $(e.target).closest(".section-item").data("experienceId")}
+
+    var params = {outcomes: outcomes, "id": $(e.target).closest(".section-item").data("experienceId")}
+    
+    this.props.updateResume(
+      {resume: {experiences_attributes: params}}
+    );
+  },
+  removeOutcome: function(index){
+    var outcomes = this.state.outcomes;
+    outcomes.splice(index, 1);
+    this.setState({outcomes: outcomes});
+    var params = {outcomes: outcomes, "id": this.state.experience.id}
     this.props.updateResume(
       {resume: {experiences_attributes: params}}
     );
@@ -139,10 +145,9 @@ var ExperienceItem = React.createClass({
     }
     outcomeData = [];
     outcomes = this.state.outcomes;
-
     outcomes.forEach(function(outcome, index) {
       key = "outcome-" + index;
-      outcomeData.push(<Outcomes key={key} outcome={outcome} addNewOutcome={_this.addOutcome}/>);
+      outcomeData.push(<Outcomes key={key} outcome={outcome} addNewOutcome={_this.addOutcome} removeOutcome={_this.removeOutcome} adjustTextFields={_this.adjustTextFields} index={index}/>);
     });
 
     optionsArr = ["show_location", "show_period", "show_outcomes", "show_description"]
@@ -166,9 +171,10 @@ var ExperienceItem = React.createClass({
              <div className="title-position">
                 <div className="form-group mb-0">
                   <textArea
+                    id="height-25"
                     type="string"
                     name="title"
-                    className="form-control height-25 hide-show-control"
+                    className="form-control hide-show-control"
                     placeholder="Title/Position"
                     value={this.state.title}
                     onChange={ this.handleChange }
@@ -178,9 +184,10 @@ var ExperienceItem = React.createClass({
              <div className="company">
                 <div className="form-group mb-0">
                   <textArea
+                    id="height-20"
                     type="string"
                     name="company_name"
-                    className="form-control height-20 secondary-color"
+                    className="form-control secondary-color"
                     placeholder="Company"
                     value={this.state.company_name}
                     onChange={ this.handleChange }
@@ -193,9 +200,10 @@ var ExperienceItem = React.createClass({
                   <span>
                      <div className="form-group mb-0">
                       <textArea
+                        id="height-15"
                         type="string"
                         name="duration"
-                        className="form-control height-15"
+                        className="form-control"
                         placeholder="Date period"
                         value={this.state.duration}
                         data-calender-target={calendarTarget}
@@ -223,9 +231,10 @@ var ExperienceItem = React.createClass({
                   <span>
                      <div className="form-group mb-0">
                       <textArea
+                        id="height-15"
                         type="string"
                         name="location"
-                        className="form-control height-15"
+                        className="form-control"
                         placeholder="Location"
                         value={this.state.location}
                         onChange={ this.handleChange }
@@ -238,9 +247,10 @@ var ExperienceItem = React.createClass({
                 <span>
                    <div className="form-group mb-0">
                     <textArea
+                      id="height-15"
                       type="string"
                       name="description"
-                      className="form-control height-15"
+                      className="form-control"
                       placeholder="Company Description"
                       value={this.state.description}
                       onChange={ this.handleChange }

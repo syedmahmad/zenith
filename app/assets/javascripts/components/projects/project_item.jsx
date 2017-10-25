@@ -2,7 +2,7 @@ var ProjectItem = React.createClass({
 
   getInitialState: function(){
     var project = this.props.project;
-    return {project: project, name: project.name, location: project.location, duration: project.duration, description: project.description, link: project.link, ongoing: project.ongoing};
+    return {project: project, name: project.name, location: project.location, duration: project.duration, description: project.description, link: project.link, ongoing: project.ongoing, outcomes: project.outcomes};
   },
 
   handleChange: function(e){
@@ -103,7 +103,40 @@ var ProjectItem = React.createClass({
 
   },
 
+  adjustTextFields: function(){
+    $.each($(document).find(".project-holder textarea"), function(index, el){
+      $(el).height(el.scrollHeight+"px");
+    });
+  },
+
+  addOutcome: function(e){
+    var outcomes = this.state.outcomes;
+    var selector = $(e.target).closest(".section-item");
+    outcomes.push("");
+    // selector.find("textarea[name='outcomes']")
+
+    this.setState({outcomes: outcomes});
+    e.target.blur();
+
+    var params = {outcomes: outcomes, "id": $(e.target).closest(".section-item").data("projectId")}
+    
+    this.props.updateResume(
+      {resume: {projects_attributes: params}}
+    );
+  },
+
+  removeOutcome: function(index){
+    var outcomes = this.state.outcomes;
+    outcomes.splice(index, 1);
+    this.setState({outcomes: outcomes});
+    var params = {outcomes: outcomes, "id": this.state.project.id}
+    this.props.updateResume(
+      {resume: {projects_attributes: params}}
+    );
+  },
+
   render: function() {
+    var _this = this;
     checked = this.state.ongoing
     duration = this.state.duration;
     startDate = "";
@@ -117,7 +150,15 @@ var ProjectItem = React.createClass({
       startDate = duration.split("-")[0].replace(/\s+/g, '');
       endDate = duration.split("-")[1].replace(/\s+/g, '');
     }
-    optionsArr = ["show_location", "show_period", "show_link", "show_description"]
+
+    outcomeData = [];
+    outcomes = this.state.outcomes;
+    outcomes.forEach(function(outcome, index) {
+      key = "outcome-" + index;
+      outcomeData.push(<Outcomes key={key} outcome={outcome} addNewOutcome={_this.addOutcome} removeOutcome={_this.removeOutcome} adjustTextFields={_this.adjustTextFields} index={index}/>);
+    });
+
+    optionsArr = ["show_location", "show_period", "show_link", "show_description", "show_outcomes"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.project} section="projects" sectionId={this.state.project.id} options={optionsArr}/>
     return (
       <div className="">
@@ -221,6 +262,7 @@ var ProjectItem = React.createClass({
                 />
                </div>
              </div>}
+             { this.state.project.show_outcomes && outcomeData }
           </div>
         </li>
       </div>

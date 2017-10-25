@@ -146,7 +146,7 @@ class CvBuilderController < ApplicationController
       experiences_attributes: [:id, :title, :ongoing, :company_name, :location, :duration, :description, :show_location, :show_period, :show_description, :show_outcomes, :item_index, :outcomes => []],
       languages_attributes: [:id, :name, :level, :show_proficiency, :item_index],
       passions_attributes: [:id, :name, :description, :show_icon, :show_description, :item_index],
-      projects_attributes: [:id, :name, :ongoing, :location, :duration, :description, :show_location, :show_period, :link, :show_description, :show_link, :item_index],
+      projects_attributes: [:id, :name, :ongoing, :location, :duration, :description, :show_location, :show_period, :link, :show_description, :show_link, :item_index, :show_outcomes, :outcomes => []],
       quotes_attributes: [:id, :name, :author, :show_author, :item_index],
       skills_attributes: [:id, :name, :level, :show_level, :item_index],
       technologies_attributes: [:id, :name, :tec_names, :show_icon, :show_description, :item_index],

@@ -64,8 +64,8 @@ class Resume < ActiveRecord::Base
 		languages.create
 		languages.create
 		passions.create
-		projects.create
-		projects.create
+		Project.create_default(self.id)
+		Project.create_default(self.id)
 		quotes.create
 		volunteers.create
 		strengths.create

@@ -5,6 +5,6 @@ class Experience < ActiveRecord::Base
 
 
   def self.create_default(resume_id)
-    Experience.create(resume_id: resume_id, :outcomes => [ { id: 1, data:"" } ])
+    Experience.create(resume_id: resume_id, :outcomes => [""])
   end
 end

@@ -35,7 +35,16 @@ var Projects = React.createClass({
           var props_res = _this.props.resume.projects.find(item => item.id == $(this).data("projectId"));
           if (props_res && props_res[e.target.name] != e.target.value && e.target.name != "calendar") {
             //send update call...
-            _this.submitProject({[e.target.name]: e.target.value, "id": $(this).data("projectId")});
+            var valName = e.target.name;
+            var valObj = e.target.value;
+            var selector = $(e.target).closest(".section-item");
+            if(valName == "outcomes"){
+              valObj = [];
+              $.each($(selector).find("textarea[name='outcomes']"), function(index, el){
+                valObj.push($(el).val());
+              });
+            }
+            _this.submitProject({[valName]: valObj, "id": $(this).data("projectId")});
           }
         }
       }
