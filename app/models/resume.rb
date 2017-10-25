@@ -59,8 +59,8 @@ class Resume < ActiveRecord::Base
 		courses.create
 		educations.create
 		educations.create
-		experiences.create
-		experiences.create
+		Experience.create_default(self.id)
+		Experience.create_default(self.id)
 		languages.create
 		languages.create
 		passions.create

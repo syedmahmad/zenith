@@ -109,7 +109,21 @@ var ExperienceItem = React.createClass({
 
   },
 
+  addOutcome: function(e){
+
+    var outcomes = this.state.outcomes;
+    outcomes.push({id: $(e.target).closest(".mb-0").data("id")+1, data:""});
+    console.log("sssssssssssssssssssss", outcomes);
+    this.setState({outcomes: outcomes});
+    e.target.blur();
+    var params = {[e.target.name]: outcomes, "id": $(e.target).closest(".section-item").data("experienceId")}
+    this.props.updateResume(
+      {resume: {experiences_attributes: params}}
+    );
+  },
+
   render: function() {
+    var _this = this;
     checked = this.state.ongoing
     duration = this.state.duration;
     startDate = "";
@@ -125,14 +139,12 @@ var ExperienceItem = React.createClass({
     }
     outcomeData = [];
     outcomes = this.state.outcomes;
-    if(outcomes.length < 1){
-      outcomes.push("");
-    }
-    
+
     outcomes.forEach(function(outcome, index) {
       key = "outcome-" + index;
-      outcomeData.push(<Outcomes key={key} outcome={outcome}/>);
+      outcomeData.push(<Outcomes key={key} outcome={outcome} addNewOutcome={_this.addOutcome}/>);
     });
+
     optionsArr = ["show_location", "show_period", "show_outcomes", "show_description"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.experience} section="experiences" sectionId={this.state.experience.id} options={optionsArr}/>
     return (
