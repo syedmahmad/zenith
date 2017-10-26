@@ -134,7 +134,7 @@ var ResumeHeader = React.createClass({
                           <i className="fa fa-phone secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
-                                <textArea
+                                <input
                                     type="number"
                                     name="phone"
                                     className="form-control height-20"
