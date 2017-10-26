@@ -83,15 +83,13 @@ textarea{
 	resize: none;
 	word-wrap: break-word;
 }
-
-#height-25 {
-  height: 25px;
+#sub-header {
+  font-size: 1.2em !important;
+  font-weight: bold;
 }
-#height-20 {
-  height: 20px;
-}
-#height-15 {
-  height: 15px;
+#color-area {
+  font-size: 1.1em !important;
+  font-weight: bold;
 }
 .popover-icon-picker-single {
   width: 40px;

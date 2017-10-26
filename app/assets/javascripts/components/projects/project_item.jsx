@@ -179,6 +179,7 @@ var ProjectItem = React.createClass({
              <div className="title-position">
                 <div className="form-group mb-0">
                   <textArea
+                    id="sub-header"
                     type="string"
                     name="name"
                     className="form-control hide-show-control"

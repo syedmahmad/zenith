@@ -62,14 +62,14 @@ ActiveRecord::Schema.define(version: 20171012183458) do
   end
 
   create_table "educations", force: :cascade do |t|
-    t.string   "degree_name",     default: "",   null: false
-    t.string   "university_name", default: "",   null: false
+    t.string   "degree_name",     default: "",    null: false
+    t.string   "university_name", default: "",    null: false
     t.integer  "resume_id"
-    t.string   "duration",        default: "",   null: false
-    t.boolean  "ongoing",         default: true
+    t.string   "duration",        default: "",    null: false
+    t.boolean  "ongoing",         default: false
     t.string   "cgpa"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.boolean  "show_location",   default: true
     t.boolean  "show_period",     default: true
     t.string   "location"
@@ -78,16 +78,16 @@ ActiveRecord::Schema.define(version: 20171012183458) do
   end
 
   create_table "experiences", force: :cascade do |t|
-    t.string   "title",            default: "",   null: false
-    t.string   "company_name",     default: "",   null: false
-    t.string   "location",         default: "",   null: false
+    t.string   "title",            default: "",    null: false
+    t.string   "company_name",     default: "",    null: false
+    t.string   "location",         default: "",    null: false
     t.integer  "resume_id"
-    t.string   "duration",         default: "",   null: false
+    t.string   "duration",         default: "",    null: false
     t.text     "outcomes"
-    t.string   "description",      default: "",   null: false
-    t.boolean  "ongoing",          default: true
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "description",      default: "",    null: false
+    t.boolean  "ongoing",          default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.boolean  "show_location",    default: true
     t.boolean  "show_period",      default: true
     t.boolean  "show_outcomes",    default: true
@@ -151,16 +151,16 @@ ActiveRecord::Schema.define(version: 20171012183458) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name",             default: "",   null: false
-    t.string   "location",         default: "",   null: false
+    t.string   "name",             default: "",    null: false
+    t.string   "location",         default: "",    null: false
     t.integer  "resume_id"
     t.text     "outcomes"
     t.boolean  "show_outcomes",    default: true
-    t.string   "duration",         default: "",   null: false
-    t.string   "description",      default: "",   null: false
-    t.boolean  "ongoing",          default: true
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "duration",         default: "",    null: false
+    t.string   "description",      default: "",    null: false
+    t.boolean  "ongoing",          default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.boolean  "show_location",    default: true
     t.boolean  "show_period",      default: true
     t.string   "link"
@@ -267,14 +267,14 @@ ActiveRecord::Schema.define(version: 20171012183458) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "volunteers", force: :cascade do |t|
-    t.string   "title",             default: "",   null: false
-    t.string   "organization_name", default: "",   null: false
+    t.string   "title",             default: "",    null: false
+    t.string   "organization_name", default: "",    null: false
     t.integer  "resume_id"
-    t.string   "duration",          default: "",   null: false
-    t.string   "description",       default: "",   null: false
-    t.boolean  "ongoing",           default: true
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.string   "duration",          default: "",    null: false
+    t.string   "description",       default: "",    null: false
+    t.boolean  "ongoing",           default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.boolean  "show_location",     default: true
     t.boolean  "show_period",       default: true
     t.string   "location"

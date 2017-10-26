@@ -171,7 +171,7 @@ var ExperienceItem = React.createClass({
              <div className="title-position">
                 <div className="form-group mb-0">
                   <textArea
-                    id="height-25"
+                    id="sub-header"
                     type="string"
                     name="title"
                     className="form-control hide-show-control"
@@ -184,7 +184,7 @@ var ExperienceItem = React.createClass({
              <div className="company">
                 <div className="form-group mb-0">
                   <textArea
-                    id="height-20"
+                    id="color-area"
                     type="string"
                     name="company_name"
                     className="form-control secondary-color"
@@ -200,7 +200,6 @@ var ExperienceItem = React.createClass({
                   <span>
                      <div className="form-group mb-0">
                       <textArea
-                        id="height-15"
                         type="string"
                         name="duration"
                         className="form-control"
@@ -231,7 +230,6 @@ var ExperienceItem = React.createClass({
                   <span>
                      <div className="form-group mb-0">
                       <textArea
-                        id="height-15"
                         type="string"
                         name="location"
                         className="form-control"
@@ -247,7 +245,6 @@ var ExperienceItem = React.createClass({
                 <span>
                    <div className="form-group mb-0">
                     <textArea
-                      id="height-15"
                       type="string"
                       name="description"
                       className="form-control"

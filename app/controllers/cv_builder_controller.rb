@@ -37,7 +37,11 @@ class CvBuilderController < ApplicationController
 
   def create_sub_record
     section_names = params[:sub_section_name].constantize
-    obj = section_names.create(resume_id: params[:id])
+    if params[:sub_section_name].eql?("Experience") || params[:sub_section_name].eql?("Project")
+      obj = section_names.create(resume_id: params[:id], :outcomes => [""])
+    else
+      obj = section_names.create(resume_id: params[:id])
+    end
     render json: obj
   end
 
