@@ -123,113 +123,111 @@ var EducationItem = React.createClass({
     optionsArr = ["show_location", "show_period", "show_gpa"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.education} section="education" sectionId={this.state.education.id} options={optionsArr}/>
     return (
-      <div className="">
-        <li className="section-item col-xs-12" data-education-id={this.props.education_item.id} data-section-id={this.props.education_item.id}>
-          <div id="edit_able" className="hide-section">  
-             <a href="javaScript:void(0);">
-             <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
-             </a>
-             <a href="javaScript:void(0);">
-             <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.education_item.id}></i>
-             </a>
-             <a href="javaScript:void(0);" title="">
-             <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
-             </a>
-          </div>
-          {showHideOptions}
-          <div className="education-holder">
-            <div className="heading-section">
-               <div className="title-position">
-                  <div className="form-group mb-0">
-                    <textArea
-                      id="sub-header"
-                      type="string"
-                      name="degree_name"
-                      className="form-control hide-show-control"
-                      placeholder="Degree and Field of Study"
-                      value={this.state.degree_name}
-                      onChange={ this.handleChange }
-                    />
-                  </div>
-               </div>
-               <div className="company">
-                  <div className="form-group mb-0">
-                    <textArea
-                      id="color-area"
-                      type="string"
-                      name="university_name"
-                      className="form-control secondary-color"
-                      placeholder="School or University"
-                      value={this.state.university_name || ''}
-                      onChange={ this.handleChange }
-                    />
-                  </div>
-               </div>
-               <div style={{display: 'inline-flex'}}> 
-                 {this.state.education.show_period && <div className="column">
-                    <i className="fa fa-calendar secondary-color" onClick={ this.handleDate } aria-hidden="true"></i>
-                    <span>
-                       <div className="form-group mb-0">
-                        <textArea
-                          type="string"
-                          name="duration"
-                          className="form-control"
-                          placeholder="Date period"
-                          value={this.state.duration}
-                          data-calender-target={calendarTarget}
-                          onClick={ this.handleDate }
-                          onChange= {this.handleDateChange}
-                        />
-                       </div>
-                    </span>
-                    <section className="calendar-holder" data-calender-target={calendarTarget}>
-                      <p> From:<input className={datePicker1} name="calendar" value={startDate} onChange= {this.handleDateChange}/></p>
-                      <div>
-                        <span className="toggle-holder">
-                        <p>Ongoing</p>
-                          <label className="switch">
-                            <input type="checkbox" onChange={this.handleOngoing} data-size="mini" data-toggle="toggle" className="option_item" type="checkbox" checked={checked}/>
-                            <span className="slider round"></span>
-                          </label>
-                        </span>
-                      </div>
-                      <p> To:<input disabled={checked} className={datePicker2} name="calendar" value={endDate} onChange= {this.handleDateChange}/></p>
-                    </section>
-                 </div>}
-                 {this.state.education.show_location && <div className="column">
-                    <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
-                    <span>
-                       <div className="form-group mb-0">
-                        <textArea
-                          type="string"
-                          name="location"
-                          className="form-control"
-                          placeholder="location"
-                          value={this.state.location || ''}
-                          onChange={ this.handleChange }
-                        />
-                       </div>
-                    </span>
-                 </div>}
-               </div>
-             </div>
-             { this.state.education.show_gpa && <div className="column cgpa-section" style={{display: 'block'}}>
-                <textArea className="form-control" readOnly value="CGPA"/> 
-                 <div className="form-group mb-0">
+      <li className="section-item col-xs-12" data-education-id={this.props.education_item.id} data-section-id={this.props.education_item.id}>
+        <div id="edit_able" className="hide-section">  
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
+           </a>
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.education_item.id}></i>
+           </a>
+           <a href="javaScript:void(0);" title="">
+           <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
+           </a>
+        </div>
+        {showHideOptions}
+        <div className="education-holder">
+          <div className="heading-section">
+             <div className="title-position">
+                <div className="form-group mb-0">
                   <textArea
+                    id="sub-header"
                     type="string"
-                    name="cgpa"
-                    className="form-control"
-                    placeholder="3.9/6.0"
-                    value={this.state.cgpa || ''}
+                    name="degree_name"
+                    className="form-control hide-show-control"
+                    placeholder="Degree and Field of Study"
+                    value={this.state.degree_name}
                     onChange={ this.handleChange }
                   />
-                 </div>
-             </div>}
-          </div>
+                </div>
+             </div>
+             <div className="company">
+                <div className="form-group mb-0">
+                  <textArea
+                    id="color-area"
+                    type="string"
+                    name="university_name"
+                    className="form-control secondary-color"
+                    placeholder="School or University"
+                    value={this.state.university_name || ''}
+                    onChange={ this.handleChange }
+                  />
+                </div>
+             </div>
+             <div style={{display: 'inline-flex'}}> 
+               {this.state.education.show_period && <div className="column">
+                  <i className="fa fa-calendar secondary-color" onClick={ this.handleDate } aria-hidden="true"></i>
+                  <span>
+                     <div className="form-group mb-0">
+                      <textArea
+                        type="string"
+                        name="duration"
+                        className="form-control line-height-26"
+                        placeholder="Date period"
+                        value={this.state.duration}
+                        data-calender-target={calendarTarget}
+                        onClick={ this.handleDate }
+                        onChange= {this.handleDateChange}
+                      />
+                     </div>
+                  </span>
+                  <section className="calendar-holder" data-calender-target={calendarTarget}>
+                    <p> From:<input className={datePicker1} name="calendar" value={startDate} onChange= {this.handleDateChange}/></p>
+                    <div>
+                      <span className="toggle-holder">
+                      <p>Ongoing</p>
+                        <label className="switch">
+                          <input type="checkbox" onChange={this.handleOngoing} data-size="mini" data-toggle="toggle" className="option_item" type="checkbox" checked={checked}/>
+                          <span className="slider round"></span>
+                        </label>
+                      </span>
+                    </div>
+                    <p> To:<input disabled={checked} className={datePicker2} name="calendar" value={endDate} onChange= {this.handleDateChange}/></p>
+                  </section>
+               </div>}
+               {this.state.education.show_location && <div className="column">
+                  <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                  <span>
+                     <div className="form-group mb-0">
+                      <textArea
+                        type="string"
+                        name="location"
+                        className="form-control line-height-26"
+                        placeholder="location"
+                        value={this.state.location || ''}
+                        onChange={ this.handleChange }
+                      />
+                     </div>
+                  </span>
+               </div>}
+             </div>
+           </div>
+           { this.state.education.show_gpa && <div className="column cgpa-section" style={{display: 'block'}}>
+              <textArea className="form-control cgpa-input" readOnly value="CGPA"/> 
+               <div className="form-group mb-0">
+                <textArea
+                  type="string"
+                  name="cgpa"
+                  className="form-control"
+                  placeholder="3.9/6.0"
+                  value={this.state.cgpa || ''}
+                  onChange={ this.handleChange }
+                />
+               </div>
+           </div>}
+        </div>
 
-        </li>
-      </div>
+      </li>
     )
   }
 });

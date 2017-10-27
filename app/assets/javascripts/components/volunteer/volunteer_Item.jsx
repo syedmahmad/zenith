@@ -130,107 +130,105 @@ var VolunteerItem = React.createClass({
     optionsArr = ["show_location", "show_period", "show_description"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.volunteer} section="volunteers" sectionId={this.state.volunteer.id} options={optionsArr}/>
     return (
-      <div className="">
-        <li className="section-item col-xs-12" data-volunteer-id={this.props.volunteer.id} data-section-id={this.props.volunteer.id}>
-          <div id="edit_able" className="hide-section">  
-             <a href="javaScript:void(0);">
-             <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
-             </a>
-             <a href="javaScript:void(0);">
-             <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.volunteer.id}></i>
-             </a>
-             <a href="javaScript:void(0);" title="">
-             <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
-             </a>
-          </div>
-          {showHideOptions}
-          <div className="volunteer-holder">
-             <div className="title-position">
-                <div className="form-group mb-0">
-                  <textArea
-                    type="string"
-                    name="title"
-                    className="form-control hide-show-control"
-                    placeholder="Title/Role"
-                    value={this.state.title}
-                    onChange={ this.handleChange }
-                  />
-                </div>
-             </div>
-             <div className="company">
-                <div className="form-group mb-0">
-                  <textArea
-                    type="string"
-                    name="organization_name"
-                    className="form-control"
-                    placeholder="Organization Name"
-                    value={this.state.organization_name}
-                    onChange={ this.handleChange }
-                  />
-                </div>
-             </div>
-             <div style={{display: 'inline-flex'}}> 
-              {this.state.volunteer.show_period && <div className="column">
-                  <i className="fa fa-calendar secondary-color" onClick={ this.handleDate } aria-hidden="true"></i>
-                  <span>
-                     <div className="form-group mb-0">
-                      <textArea
-                        type="string"
-                        name="duration"
-                        className="form-control"
-                        placeholder="Date period"
-                        value={this.state.duration || ''}
-                        data-calender-target={calendarTarget}
-                        onClick={ this.handleDate }
-                        onChange= {this.handleDateChange}
-                      />
-                     </div>
-                     <section className="calendar-holder" data-calender-target={calendarTarget}>
-                       <p> From:<input className={datePicker1} name="calendar" value={startDate} onChange= {this.handleDateChange}/></p>
-                       <div>
-                         <span className="toggle-holder">
-                         <p>Ongoing</p>
-                           <label className="switch">
-                             <input type="checkbox" onChange={this.handleOngoing} data-size="mini" data-toggle="toggle" className="option_item" type="checkbox" checked={checked}/>
-                             <span className="slider round"></span>
-                           </label>
-                         </span>
-                       </div>
-                       <p> To:<input disabled={checked} className={datePicker2} name="calendar" value={endDate} onChange= {this.handleDateChange}/></p>
-                     </section>
-                  </span>
-               </div>}
-               {this.state.volunteer.show_location && <div className="column">
-                   <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
-                   <span>
-                      <div className="form-group mb-0">
-                       <textArea
-                         type="string"
-                         name="location"
-                         className="form-control"
-                         placeholder="Location"
-                         value={this.state.location || ''}
-                         onChange={ this.handleChange }
-                       />
-                      </div>
-                   </span>
-                </div>}
-            </div>
-             {this.state.volunteer.show_description && <div className="column">
-               <div className="form-group mb-0">
+      <li className="section-item col-xs-12" data-volunteer-id={this.props.volunteer.id} data-section-id={this.props.volunteer.id}>
+        <div id="edit_able" className="hide-section">  
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
+           </a>
+           <a href="javaScript:void(0);">
+           <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.volunteer.id}></i>
+           </a>
+           <a href="javaScript:void(0);" title="">
+           <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
+           </a>
+        </div>
+        {showHideOptions}
+        <div className="volunteer-holder">
+           <div className="title-position">
+              <div className="form-group mb-0">
                 <textArea
                   type="string"
-                  name="description"
-                  className="form-control"
-                  placeholder="Short summary of your work"
-                  value={this.state.description}
+                  name="title"
+                  className="form-control hide-show-control"
+                  placeholder="Title/Role"
+                  value={this.state.title}
                   onChange={ this.handleChange }
                 />
-               </div>
+              </div>
+           </div>
+           <div className="company">
+              <div className="form-group mb-0">
+                <textArea
+                  type="string"
+                  name="organization_name"
+                  className="form-control"
+                  placeholder="Organization Name"
+                  value={this.state.organization_name}
+                  onChange={ this.handleChange }
+                />
+              </div>
+           </div>
+           <div style={{display: 'inline-flex'}}> 
+            {this.state.volunteer.show_period && <div className="column">
+                <i className="fa fa-calendar secondary-color" onClick={ this.handleDate } aria-hidden="true"></i>
+                <span>
+                   <div className="form-group mb-0">
+                    <textArea
+                      type="string"
+                      name="duration"
+                      className="form-control line-height-26"
+                      placeholder="Date period"
+                      value={this.state.duration || ''}
+                      data-calender-target={calendarTarget}
+                      onClick={ this.handleDate }
+                      onChange= {this.handleDateChange}
+                    />
+                   </div>
+                   <section className="calendar-holder" data-calender-target={calendarTarget}>
+                     <p> From:<input className={datePicker1} name="calendar" value={startDate} onChange= {this.handleDateChange}/></p>
+                     <div>
+                       <span className="toggle-holder">
+                       <p>Ongoing</p>
+                         <label className="switch">
+                           <input type="checkbox" onChange={this.handleOngoing} data-size="mini" data-toggle="toggle" className="option_item" type="checkbox" checked={checked}/>
+                           <span className="slider round"></span>
+                         </label>
+                       </span>
+                     </div>
+                     <p> To:<input disabled={checked} className={datePicker2} name="calendar" value={endDate} onChange= {this.handleDateChange}/></p>
+                   </section>
+                </span>
              </div>}
+             {this.state.volunteer.show_location && <div className="column">
+                 <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                 <span>
+                    <div className="form-group mb-0">
+                     <textArea
+                       type="string"
+                       name="location"
+                       className="form-control line-height-26"
+                       placeholder="Location"
+                       value={this.state.location || ''}
+                       onChange={ this.handleChange }
+                     />
+                    </div>
+                 </span>
+              </div>}
           </div>
-        </li>
-      </div>
+           {this.state.volunteer.show_description && <div className="column">
+             <div className="form-group mb-0">
+              <textArea
+                type="string"
+                name="description"
+                className="form-control"
+                placeholder="Short summary of your work"
+                value={this.state.description}
+                onChange={ this.handleChange }
+              />
+             </div>
+           </div>}
+        </div>
+      </li>
     )
   }
 });

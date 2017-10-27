@@ -10,7 +10,7 @@ class ResumeStyle < ActiveRecord::Base
   serialize :available_font_sizes, Array
   
   def self.create_default(resume_id)
-    ResumeStyle.create(resume_id: resume_id, background_img:"white.png", 
+    ResumeStyle.create(resume_id: resume_id, background_img:"handmade.png", 
       :available_background_images => ["white.png","arches.png","checkered.png","handmade.png","paper.png","psychedelic.png","struckaxiom.png","vichy.png","weave.png","worn.png"],
        primary_font:"Exo 2", secondary_font: "Roboto", font_size: "12px",
       :available_primary_fonts => ['Droid Sans','Exo 2','Lato','Montserrat','Oswald','Roboto','Slabo 27px'],

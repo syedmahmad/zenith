@@ -117,7 +117,7 @@ var ResumeHeader = React.createClass({
                     { this.state.header.show_job_title && 
                       <h3 className="job-title">
                          <div className="form-group">
-                            <textArea
+                            <input
                               type="string"
                               name="job_title"
                               className="form-control height-20 secondary-color primary_font"
@@ -151,7 +151,7 @@ var ResumeHeader = React.createClass({
                           <i className="fa fa-envelope secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
-                                <textArea
+                                <input
                                   type="string"
                                   name="email"
                                   className="form-control height-20"
@@ -168,7 +168,7 @@ var ResumeHeader = React.createClass({
                           <i className="fa fa-link secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
-                                <textArea
+                                <input
                                   type="string"
                                   name="website_link"
                                   className="form-control height-20"
@@ -185,7 +185,7 @@ var ResumeHeader = React.createClass({
                           <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                           <span>
                              <div className="form-group">
-                                <textArea
+                                <input
                                   type="string"
                                   name="location"
                                   className="form-control height-20"

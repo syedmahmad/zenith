@@ -19,47 +19,45 @@ var PassionItem = React.createClass({
     optionsArr = ["show_icon", "show_description"]
     showHideOptions = <ShowHideOptions handleShowHideChange={this.props.handleShowHideChange} model={this.state.passion} section="passions" sectionId={this.state.passion.id} options={optionsArr}/>
     return (
-      <div className="">
-         <li className="section-item" data-passion-id={this.props.passion.id} data-section-id={this.props.passion.id}>
-            <div id="edit_able" className="hide-section">  
-               <a href="javaScript:void(0);">
-               <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
-               </a>
-               <a href="javaScript:void(0);">
-               <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.passion.id}></i>
-               </a>
-               <a href="javaScript:void(0);" title="">
-               <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
-               </a>
-            </div>
-            {showHideOptions}
-            { this.state.passion.show_icon && <div className="icon-holder pull-left">
-               <i className="fa fa-heart secondary-color" aria-hidden="true"></i>
-            </div>}
-            <div className="input-holder">
-               <div className="form-group mb-0">
-                  <textArea
-                    type="string"
-                    name="name"
-                    className="form-control hide-show-control"
-                    placeholder="Your Passion"
-                    value={this.state.name}
-                    onChange={ this.handleChange }
-                  />
-               </div>
-               { this.state.passion.show_description && <div className="form-group mb-0">
-                  <textArea
-                    type="string"
-                    name="description"
-                    className="form-control"
-                    placeholder="description"
-                    value={this.state.description}
-                    onChange={ this.handleChange }
-                  />
-               </div>}
-            </div>
-         </li>
-      </div>
+       <li className="section-item row mrl0" data-passion-id={this.props.passion.id} data-section-id={this.props.passion.id}>
+          <div id="edit_able" className="hide-section">  
+             <a href="javaScript:void(0);">
+             <i aria-hidden="true" className="fa fa-plus-circle" onMouseDown={this.props.addSubSection}></i>
+             </a>
+             <a href="javaScript:void(0);">
+             <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.props.removeSubSection} data-section-id={this.props.passion.id}></i>
+             </a>
+             <a href="javaScript:void(0);" title="">
+             <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
+             </a>
+          </div>
+          {showHideOptions}
+          { this.state.passion.show_icon && <div className="icon-holder pull-left">
+             <i className="fa fa-heart secondary-color" aria-hidden="true"></i>
+          </div>}
+          <div className="input-holder">
+             <div className="form-group mb-0">
+                <textArea
+                  type="string"
+                  name="name"
+                  className="form-control hide-show-control"
+                  placeholder="Your Passion"
+                  value={this.state.name}
+                  onChange={ this.handleChange }
+                />
+             </div>
+             { this.state.passion.show_description && <div className="form-group mb-0">
+                <textArea
+                  type="string"
+                  name="description"
+                  className="form-control"
+                  placeholder="description"
+                  value={this.state.description}
+                  onChange={ this.handleChange }
+                />
+             </div>}
+          </div>
+       </li>
     )
   }
 });

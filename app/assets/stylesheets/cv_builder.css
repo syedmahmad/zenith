@@ -10,13 +10,19 @@
     padding: 0;
   }
   .m0{
-    margin: 0;
+    margin: 0 !important;
+  }
+  .mrl0{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
   .mb-0{
     margin-bottom: 0 !important;
   }
   .mt-24{
     margin-top: -22px !important;
+    display: block !important;
+    margin-bottom: 20px;
   }
   .height-5{
     height: 5px !important;
@@ -167,7 +173,7 @@
    text-align: center;
    padding: 0 10px;
    background: #fff;
-   min-width: 180px;
+   min-width: 200px;
    -webkit-box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
    box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
 }
@@ -240,7 +246,8 @@
 }
 .page-holder .column {
   position: relative;
-  min-height: 34px;
+  min-height: 26px;
+  padding: 0;
 }
 .page-holder .column .form-group {
   display: inline-block;
@@ -317,8 +324,15 @@ ul {
 .section-items-holder .section-items-list {
   position: relative;
 }
+.section-items-holder .section-items-list ul li:last-child {
+  border: 0;
+  margin-bottom: 0px;
+}
+.section-items-holder .section-items-list ul li:first-child{
+  border-bottom: 1px dashed #aaa;
+}
 .section-items-holder .section-items-list li {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   border-bottom: 1px dashed #aaa;
   padding: 0;
   overflow: inherit;
@@ -326,12 +340,12 @@ ul {
 .section-items-holder .section-items-list li .input-holder{
     float: left;
     width: 85%;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .section-items-holder .section-items-list li .icon-holder {
   min-width: 27px;
   min-height: 40px;
-  font-size: 30px;
+  font-size: 26px;
   color: inherit;
   display: inline-block;
 }
@@ -425,7 +439,7 @@ ul {
 }
 .section-items-holder, .summary-holder {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .page-holder #edit_able.hidden {
   display: none !important;
@@ -779,4 +793,25 @@ input:checked + .slider:before {
 .education-holder .cgpa-section .form-control{
   text-align: center !important;
   border-left: 1px solid;
+}
+.education-holder .cgpa-section .form-control.cgpa-input{
+  margin-top: 12px !important;
+}
+.line-height-26{
+  line-height: 25px;
+}
+.outcome-icon-6{
+  font-size: 6px !important;
+}
+.popover-icon-picker-single {
+  width: 40px;
+  height: 40px;
+  line-height: 44px;
+  display: inline-block;
+  margin: 8px 7px;
+  padding-left: 1px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  font-size: 22px;
 }

@@ -102,7 +102,7 @@ var Technologies = React.createClass({
               </h3>
            </div>
            <div className="section-items-list">
-              <ul>
+              <ul className="row mrl0">
                 {data}
               </ul>
            </div>

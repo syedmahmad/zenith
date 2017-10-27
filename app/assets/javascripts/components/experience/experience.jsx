@@ -109,8 +109,8 @@ var Experiences = React.createClass({
                  </div>
               </h3>
            </div>
-           <div className="section-items-list">
-              <ul>
+           <div className="section-items-list row m0">
+              <ul className="row m0">
                 {data}
               </ul>
            </div>

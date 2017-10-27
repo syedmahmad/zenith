@@ -26,7 +26,7 @@ var Outcomes = React.createClass({
     outcome = this.state.outcome;
     return (
         <div className="column">
-          <i className="fa fa-circle">
+          <i className="fa fa-circle outcome-icon-6 secondary-color">
           </i>
            <span>
               <div className="form-group mb-0">
@@ -34,8 +34,8 @@ var Outcomes = React.createClass({
                  id="height-15"
                  type="string"
                  name="outcomes"
-                 className="form-control abc height-15"
-                 placeholder="What was an example of a successful outcome of this activity? (e.g. Made 30+ partnerships)"
+                 className="form-control line-height-26"
+                 placeholder="Outcomes"
                  rows="1"
                  value={outcome.trim()} 
                  onKeyUp={ this.addOutcome }
