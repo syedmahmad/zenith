@@ -104,7 +104,7 @@ var ResumeHeader = React.createClass({
                  <div className="info-details">
                     { this.state.header.show_name && <div className="full-name section-items-holder">
                       <div className="form-group">
-                        <input
+                        <textArea
                           type="string"
                           name="name"
                           className="form-control height-20 primary_font"

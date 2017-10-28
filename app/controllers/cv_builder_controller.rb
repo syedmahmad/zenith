@@ -6,6 +6,9 @@ class CvBuilderController < ApplicationController
     left: 0,
     right: 0,
     top: 0
+    top: 0,
+    margin: 0,
+    padding: 0
   }.freeze
 
   def index
@@ -24,20 +27,23 @@ class CvBuilderController < ApplicationController
     end
   end
 
+  # ToDO: will remove after download
   def store_cv
     session["cv"] = params[:cv_data]
     render json: true
   end
 
   def download
-    @resume = get_user_resume
+    @resume = Resume.first
+    @header = @resume.header
+    
     # @html = render_to_string(:template => "cv_builder/show", :locale => {"resume": @resume, "host": @host},:formats=> [:html])
     @html = session["cv"].html_safe
     respond_to do |format|
       format.pdf do
         render pdf: "download",
           layout: 'pdf.html.erb',
-          margin: PDF_MARGINS,
+          # margin: PDF_MARGINS,
           template:  'cv_builder/download.pdf.erb'
           # disposition: 'attachment'
       end

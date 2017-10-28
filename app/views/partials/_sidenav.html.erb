@@ -43,6 +43,7 @@
             <li data-toggle="modal" data-target="#backgroundModal">
               <a><i class="fa fa-star-half-o"></i> Background</a>
             </li>
+
             <% if current_user.user_type == "guest" %>
               <li>
                 <a rel="nofollow" data-method="get" id="xyz" href="javascript:;"><i class="fa fa-download"></i> Download</a>
@@ -201,24 +202,26 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  $(function(){
 
-    $("#xyz").on("click",function() {
-      cv_data = $(".build-cv").html();
-      $.ajax({
-        url: ("http://localhost:3000/resumes/store_cv"),
-        dataType: 'json',
-        type: 'POST',
-        contentType: 'multipart/form-data',
-        data: {cv_data: cv_data},
-        success: function(projects) {
-          window.location = "http://localhost:3000/resumes/download";
-        }.bind(this),
-        error: function(response, status, err) {
-          // onError(response.responseJSON)
-        }
-      });
-    });
-});
+<script type="text/javascript">
+// ToDO: will remove after dowload
+//   $(function(){
+
+//     $("#xyz").on("click",function() {
+//       cv_data = $(".build-cv").html();
+//       $.ajax({
+//         url: ("http://localhost:3000/resumes/store_cv"),
+//         dataType: 'json',
+//         type: 'POST',
+//         contentType: 'multipart/form-data',
+//         data: {cv_data: cv_data},
+//         success: function(projects) {
+//           window.location = "http://localhost:3000/resumes/download";
+//         }.bind(this),
+//         error: function(response, status, err) {
+//           // onError(response.responseJSON)
+//         }
+//       });
+//     });
+// });
 </script>
