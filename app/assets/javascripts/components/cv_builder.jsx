@@ -78,7 +78,7 @@ var CvBuilder = React.createClass({
         $(val).removeClass("color").css('color', _this.state.resumeStyle.primary_color);
         // remove all classes with prefix....
         $.each(val.classList,function(index, value) {
-          if(value.indexOf("color-")==0) {
+          if(value && value.indexOf("color-")==0) {
               $(val).removeClass(value);
           }
         });
@@ -94,7 +94,7 @@ var CvBuilder = React.createClass({
       $(val).removeClass("color").css('color', _this.state.resumeStyle.secondary_color);
       // remove all classes with prefix....
       $.each(val.classList,function(index, value) {
-        if(value.indexOf("color-")==0) {
+        if(value && value.indexOf("color-")==0) {
             $(val).removeClass(value);
         }
       });
@@ -106,10 +106,19 @@ var CvBuilder = React.createClass({
     $(".cv-builder .primary_font").each(function(e,val){ 
       $(val).css('font-family', "'"+_this.state.resumeStyle.primary_font+"'");
     });
+
     // apply primary_font
     $(".cv-builder :input:not(.primary_font)").each(function(e,val){ 
-      $(val).css({'font-family': _this.state.resumeStyle.secondary_font,
-        'font-size': _this.state.resumeStyle.font_size})
+      if ($(val).hasClass("sub-header")) {
+        $(val).css({'font-family': _this.state.resumeStyle.secondary_font,
+          'font-size': parseInt(_this.state.resumeStyle.font_size) + 2 + "px"})
+      } else if ($(val).hasClass("sub-color-area")) {
+        $(val).css({'font-family': _this.state.resumeStyle.secondary_font,
+          'font-size': parseInt(_this.state.resumeStyle.font_size) + 1 + "px"})
+      } else {
+        $(val).css({'font-family': _this.state.resumeStyle.secondary_font,
+          'font-size': _this.state.resumeStyle.font_size})
+      }
     });
   },
   setupLayout: function(){

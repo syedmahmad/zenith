@@ -70,7 +70,7 @@ var AchievementItem = React.createClass({
                 <textArea
                   type="string"
                   name="title"
-                  className="form-control hide-show-control"
+                  className="form-control hide-show-control sub-header"
                   placeholder="What are you most proud of?"
                   value={this.state.title}
                   onChange={ this.handleChange }

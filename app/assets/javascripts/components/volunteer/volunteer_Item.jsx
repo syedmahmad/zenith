@@ -149,7 +149,7 @@ var VolunteerItem = React.createClass({
                 <textArea
                   type="string"
                   name="title"
-                  className="form-control hide-show-control"
+                  className="form-control hide-show-control sub-header"
                   placeholder="Title/Role"
                   value={this.state.title}
                   onChange={ this.handleChange }
@@ -161,7 +161,7 @@ var VolunteerItem = React.createClass({
                 <textArea
                   type="string"
                   name="organization_name"
-                  className="form-control"
+                  className="form-control sub-color-area"
                   placeholder="Organization Name"
                   value={this.state.organization_name}
                   onChange={ this.handleChange }

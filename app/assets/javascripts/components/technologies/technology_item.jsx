@@ -37,7 +37,7 @@ var TechnologyItem = React.createClass({
               <textArea
                 type="string"
                 name="name"
-                className="form-control secondary-color"
+                className="form-control secondary-color sub-header"
                 placeholder="Group Title"
                 value={this.state.name}
                 onChange={ this.handleChange }

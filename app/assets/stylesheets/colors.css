@@ -83,11 +83,7 @@ textarea{
 	resize: none;
 	word-wrap: break-word;
 }
-#sub-header {
-  font-size: 1.2em !important;
-  font-weight: bold;
-}
-#color-area {
-  font-size: 1.1em !important;
+.sub-header,
+.sub-color-area {
   font-weight: bold;
 }

@@ -42,7 +42,7 @@ var AwardItem = React.createClass({
             <textArea
               type="string"
               name="name"
-              className="form-control hide-show-control"
+              className="form-control hide-show-control sub-header"
               placeholder="Award Name"
               value={this.state.name}
               onChange={ this.handleChange }

@@ -141,10 +141,9 @@ var EducationItem = React.createClass({
              <div className="title-position">
                 <div className="form-group mb-0">
                   <textArea
-                    id="sub-header"
                     type="string"
                     name="degree_name"
-                    className="form-control hide-show-control"
+                    className="form-control hide-show-control sub-header"
                     placeholder="Degree and Field of Study"
                     value={this.state.degree_name}
                     onChange={ this.handleChange }
@@ -154,10 +153,9 @@ var EducationItem = React.createClass({
              <div className="company">
                 <div className="form-group mb-0">
                   <textArea
-                    id="color-area"
                     type="string"
                     name="university_name"
-                    className="form-control secondary-color"
+                    className="form-control secondary-color sub-color-area"
                     placeholder="School or University"
                     value={this.state.university_name || ''}
                     onChange={ this.handleChange }

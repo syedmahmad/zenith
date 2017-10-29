@@ -37,7 +37,7 @@ var CourseItem = React.createClass({
             <textArea
               type="string"
               name="title"
-              className="form-control hide-show-control secondary-color"
+              className="form-control hide-show-control secondary-color sub-header"
               placeholder="Course Title"
               value={this.state.title}
               onChange={ this.handleChange }

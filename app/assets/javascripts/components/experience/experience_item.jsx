@@ -170,10 +170,9 @@ var ExperienceItem = React.createClass({
            <div className="title-position">
               <div className="form-group mb-0">
                 <textArea
-                  id="sub-header"
                   type="string"
                   name="title"
-                  className="form-control hide-show-control"
+                  className="form-control hide-show-control sub-header"
                   placeholder="Title/Position"
                   value={this.state.title}
                   onChange={ this.handleChange }
@@ -183,10 +182,9 @@ var ExperienceItem = React.createClass({
            <div className="company">
               <div className="form-group mb-0">
                 <input
-                  id="color-area"
                   type="string"
                   name="company_name"
-                  className="form-control secondary-color"
+                  className="form-control secondary-color sub-color-area"
                   placeholder="Company"
                   value={this.state.company_name}
                   onChange={ this.handleChange }

@@ -40,7 +40,7 @@ var StrengthItem = React.createClass({
                <textArea
                  type="string"
                  name="title"
-                 className="form-control hide-show-control"
+                 className="form-control hide-show-control sub-header"
                  placeholder="Your Unique Talent"
                  value={this.state.title}
                  onChange={ this.handleChange }

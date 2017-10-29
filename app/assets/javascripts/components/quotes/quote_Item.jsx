@@ -44,7 +44,7 @@ var QuoteItem = React.createClass({
             <textArea
               type="string"
               name="name"
-              className="form-control hide-show-control"
+              className="form-control hide-show-control sub-header"
               placeholder="Quote"
               value={this.state.name}
               onChange={ this.handleChange }
