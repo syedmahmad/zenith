@@ -37,7 +37,7 @@ class CvBuilderController < ApplicationController
     @header = @resume.header
     
     # @html = render_to_string(:template => "cv_builder/show", :locale => {"resume": @resume, "host": @host},:formats=> [:html])
-    @html = session["cv"].html_safe
+    # @html = session["cv"].html_safe
     respond_to do |format|
       format.pdf do
         render pdf: "download",
