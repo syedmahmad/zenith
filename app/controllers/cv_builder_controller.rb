@@ -28,8 +28,11 @@ class CvBuilderController < ApplicationController
 
   # ToDO: will remove after download
   def store_cv
-    session["cv"] = params[:cv_data]
-    render json: true
+    # session["cv"] = params[:cv_data]
+    # render json: true
+    @resume = Resume.first
+    @header = @resume.header
+    @layout = @resume.layout
   end
 
   def download
