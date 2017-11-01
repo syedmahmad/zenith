@@ -291,12 +291,20 @@ var CvBuilder = React.createClass({
   handleRemoveSection: function(e){
     var removeSection = $(e.target).data("sectionName");
     var positionInSections = this.state.layoutSections.indexOf(removeSection);
+    var positionInSectionData = null;
+    this.state.sectionData.forEach(function(item, index) {
+      if(item.name == removeSection){
+        positionInSectionData = index;
+        return;
+      }      
+    });
+    this.state.sectionData.splice(positionInSectionData, 1);
     this.state.layoutSections.splice(positionInSections, 1);
     if (this.props.current_user) {
       params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections};
       this.updateResume({resume: {layout_attributes: params}});
     }
-    this.setState({layoutSections: this.state.layoutSections});
+    this.setState({layoutSections: this.state.layoutSections, sectionData: this.state.sectionData});
   },
   handleLayoutChange: function(e){
     selectedLayout = $(e.currentTarget).data("layoutType")

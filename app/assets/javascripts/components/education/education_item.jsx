@@ -29,6 +29,13 @@ var EducationItem = React.createClass({
     datePicker1 = ".date-picker-edu-" + _this.state.education.id;
     datePicker2 = ".date-picker2-edu-" + _this.state.education.id;
     $(document).find(datePicker1).datepicker({
+      // changeMonth: true,
+      // changeYear: true,
+      // showButtonPanel: true,
+      // dateFormat: 'MM yy',
+      // onClose: function(dateText, inst) { 
+      //   $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+      // },
       onSelect: function (dateText, inst) {
          _this.updateStartDate(dateText, inst);
       }
