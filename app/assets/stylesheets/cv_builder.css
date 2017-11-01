@@ -400,7 +400,7 @@ ul {
 .education-holder .company .form-group, .languages-holder .company .form-group, .experience-holder .company .form-group {
   margin-bottom: 5px;
 }
-.education-holder .column, .languages-holder .column, .experience-holder .column {
+.education-holder .column, .languages-holder .column, .experience-holder .column, .certificate-holder .column {
   display: inline-block;
 }
 .education-holder .languages-add, .languages-holder .languages-add, .experience-holder .languages-add {
@@ -744,6 +744,9 @@ input:checked + .slider:before {
   z-index: 9999;
   border-radius: 15px;
 }
+.award-icon-holder,
+.passion-icon-holder,
+.strength-icon-holder,
 .acheivement-icon-holder{
   display: block;
   align-items: center;
@@ -815,6 +818,6 @@ input:checked + .slider:before {
   z-index: 10;
   font-size: 22px;
 }
-.ui-datepicker-calendar {
-  display: none;
-}
+/*.ui-datepicker-calendar {
+  display: block;
+}*/

@@ -43,7 +43,7 @@ var CvBuilder = React.createClass({
         $(".calendar-holder").hide();
       }
       if(!$(e.target).parents().hasClass("icon-holder")){
-        $(".acheivement-icon-holder").hide();
+        $(".acheivement-icon-holder,.award-icon-holder,.strength-icon-holder,.passion-icon-holder").hide();
       }
     });
   },
@@ -301,7 +301,7 @@ var CvBuilder = React.createClass({
     this.state.sectionData.splice(positionInSectionData, 1);
     this.state.layoutSections.splice(positionInSections, 1);
     if (this.props.current_user) {
-      params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections};
+      params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections, "section_data": this.state.sectionData};
       this.updateResume({resume: {layout_attributes: params}});
     }
     this.setState({layoutSections: this.state.layoutSections, sectionData: this.state.sectionData});
