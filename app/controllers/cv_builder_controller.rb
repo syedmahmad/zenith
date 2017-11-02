@@ -33,6 +33,7 @@ class CvBuilderController < ApplicationController
     @resume = Resume.first
     @header = @resume.header
     @layout = @resume.layout
+    @achievements = @resume.achievements
   end
 
   def download
