@@ -189,7 +189,7 @@ var ResumeHeader = React.createClass({
                                   type="string"
                                   name="location"
                                   className="form-control height-20"
-                                  placeholder="location"
+                                  placeholder="Location"
                                   value={this.state.location}
                                   onChange={ this.handleChange}
                                 />

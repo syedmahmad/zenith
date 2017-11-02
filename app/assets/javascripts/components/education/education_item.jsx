@@ -208,7 +208,7 @@ var EducationItem = React.createClass({
                         type="string"
                         name="location"
                         className="form-control line-height-26"
-                        placeholder="location"
+                        placeholder="Location"
                         value={this.state.location || ''}
                         onChange={ this.handleChange }
                       />
