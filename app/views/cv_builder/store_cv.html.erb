@@ -3,14 +3,15 @@
   <div class="cv-builder-container">
     <div class="right_col" role="main">
       <div class="row build-cv">
-        <div class="col-xs-12">
-          <div class="page-holder bg-color page">
-            <div class="cv-builder full-layout">
-             <%= render "partials/resume/header" %>
-             <%= render "partials/resume/achievement" %>
-            </div>
-          </div>
-        </div>
+        <% @resume.pages.times do |page| %>
+        
+          <% if @resume.layout.layout_type == 'double' %>
+            <%= render "partials/resume/double_layout", page: page%>
+          <% else %>
+            <%= render "partials/resume/achievement" %>
+            <%= render "partials/resume/award" %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

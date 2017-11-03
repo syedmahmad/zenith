@@ -1,0 +1,95 @@
+ <div className="section-items col-md-12 p0" data-section-name="Education">
+  <section className="section-items-holder">
+     <div className="heading-area">
+        <h3>
+           <div className="form-group">
+              <input
+                type="string"
+                name="education_header"
+                className="form-control primary_font" 
+                placeholder="EDUCATION"
+                value="EDUCATION"
+              />
+           </div>
+        </h3>
+     </div>
+     <div className="section-items-list">
+        <ul>
+          <% @resume.educations.each do |education|%>
+            <li className="section-item col-xs-12">
+              <div className="education-holder">
+                <div className="heading-section">
+                   <div className="title-position">
+                      <div className="form-group mb-0">
+                        <textArea
+                          type="string"
+                          name="degree_name"
+                          className="form-control hide-show-control sub-header"
+                          placeholder="Degree and Field of Study"
+                        ><%= education.degree_name %></textArea>
+                      </div>
+                   </div>
+                   <div className="company">
+                      <div className="form-group mb-0">
+                        <textArea
+                          type="string"
+                          name="university_name"
+                          className="form-control secondary-color sub-color-area"
+                          placeholder="School or University"
+                        ><%= education.university_name %></textArea>
+                      </div>
+                   </div>
+                   <div style="display: 'inline-flex';"> 
+                     <% if education.show_period %> 
+                      <div className="column">
+                        <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                        <span>
+                           <div className="form-group mb-0">
+                            <textArea
+                              type="string"
+                              name="duration"
+                              className="form-control line-height-26"
+                              placeholder="Date period"
+                            ><%= education.duration %></textArea>
+                           </div>
+                        </span>
+                      </div>
+                     <% end %>
+                     <% if education.show_location %>
+                      <div className="column">
+                        <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                        <span>
+                           <div className="form-group mb-0">
+                            <textArea
+                              type="string"
+                              name="location"
+                              className="form-control line-height-26"
+                              placeholder="location"
+                            ><%= education.location %></textArea>
+                           </div>
+                        </span>
+                     </div>
+                    <% end %>
+                   </div>
+                 </div>
+                 <% if education.show_gpa %> 
+                  <div className="column cgpa-section" style="display: 'block';">
+                    <textArea className="form-control cgpa-input" readOnly value="CGPA"/> 
+                     <div className="form-group mb-0">
+                      <textArea
+                        type="string"
+                        name="cgpa"
+                        className="form-control"
+                        placeholder="3.9/6.0"
+                      ><%= education.cgpa %></textArea>
+                     </div>
+                 </div>
+                <% end %>
+              </div>
+
+            </li>
+          <% end %>
+        </ul>
+     </div>
+ </section>
+</div>

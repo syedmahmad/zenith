@@ -1,0 +1,47 @@
+<div className="section-items col-md-12 p0" data-section-name="Languages">
+ <section className="section-items-holder">
+    <div className="heading-area">
+       <h3>
+          <div className="form-group">
+             <input
+               type="string"
+               name="language_header"
+               className="form-control primary_font"
+               placeholder="LANGUAGES"
+               value="LANGUAGES"
+             />
+          </div>
+       </h3>
+    </div>
+    <div className="section-items-list">
+       <ul className="row mrl0">
+         <% @resume.languages.each do |language|%>
+            <li className="section-item row mrl0">
+                  <div className="form-group mb-0">
+                     <textArea
+                       type="string"
+                       name="name"
+                       className="form-control hide-show-control sub-header"
+                       placeholder="language name"
+                     ><%= language.name %></textArea>
+                  </div>
+               <% if language.show_proficiency %> <h6 className="mt-24">
+                  <p className="text-right"><%= language.level%></p>
+                  <div className="form-group">
+                     <input
+                       type="range"
+                       min="0" max="100" step="20"
+                       name="level"
+                       className=" height-5 form-control input-range"
+                       placeholder="Beginner"
+                       value=<%= language.level %>
+                     />
+                  </div>
+               </h6>
+              <% end %>
+            </li>
+         <% end %>
+       </ul>
+    </div>
+ </section>
+</div>

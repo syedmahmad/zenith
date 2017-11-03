@@ -1,12 +1,22 @@
 <!-- page content -->
 <div role="main">
   <div class="cv-builder-container">
-    <div class="right_col" role="main">
+    <div role="main">
       <div class="row build-cv">
         <div class="col-xs-12">
-          <div class="page-holder bg-color page">
-            <div class="cv-builder full-layout">
-             <%= render "partials/resume/header" %>
+          <div class="cv-builder full-layout">
+            <div class="cv-builder-container">
+              <div class="clearfix"></div>
+              <div class="row build-cv">
+                <div class="col-xs-12">
+                  <div class="page-holder bg-color page" style="background-image: url(/assets/handmade.png);" >
+                    <div class="cv-builder full-layout">
+                      <%= render "partials/resume/header" %>
+                      <%= render "partials/resume/achievement" %>
+                    </div>
+                  </div>
+                </div>        
+              </div>
             </div>
           </div>
         </div>

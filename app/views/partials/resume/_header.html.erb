@@ -40,7 +40,7 @@
                             name="phone"
                             class="form-control height-20"
                             placeholder="Phone"
-                            value=<%=@header.phone%>
+                            value="<%=@header.phone%>"
                           />
                      </div>
                   </span>
@@ -58,7 +58,7 @@
                           name="email"
                           class="form-control height-20"
                           placeholder="guest_150523877422@example.com"
-                          value=<%=@header.email%>
+                          value="<%=@header.email%>"
                         />
                      </div>
                   </span>
@@ -76,7 +76,7 @@
                           name="website_link"
                           class="form-control height-20"
                           placeholder="Website/Link"
-                          value=<%=@header.website_link%>
+                          value="<%=@header.website_link%>"
                         />
                      </div>
                   </span>
@@ -94,7 +94,7 @@
                           name="location"
                           class="form-control height-20"
                           placeholder="location"
-                          value=<%=@header.location%>
+                          value="<%=@header.location%>"
                         />
                      </div>
                   </span>
@@ -104,11 +104,11 @@
          </div>
       </div>
       <div class="col-sm-4">
-        <% if @header.show_avatar %>
          <div class="profile-image">
-            <%= wicked_pdf_image_tag '/images/default_avatar.png', :class => "img-responsive" %>
+          <% if @header.show_avatar %>
+            <%= wicked_pdf_image_tag @header.avatar.url, :class => "img-responsive" %>
+          <% end %>
          </div>
-        <% end %>
       </div>
    </div>
 </section>

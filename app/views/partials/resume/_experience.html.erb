@@ -1,0 +1,97 @@
+<div className="section-items col-md-12 p0" data-section-name="Experiences">
+  <section className="section-items-holder">
+     <div className="heading-area">
+        <h3>
+           <div className="form-group">
+              <input
+                type="string"
+                name="experience_header"
+                className="form-control primary_font"
+                placeholder="EXPERIENCES"
+                value="EXPERIENCES"
+              />
+           </div>
+        </h3>
+     </div>
+     <div className="section-items-list row m0">
+        <ul className="row m0">
+          <% @resume.experiences.each do |experience|%>
+            <li className="section-item col-xs-12">
+              <div className="experience_holder">
+                 <div className="title-position">
+                    <div className="form-group mb-0">
+                      <textArea
+                        type="string"
+                        name="title"
+                        className="form-control hide-show-control sub-header"
+                        placeholder="Title/Position"
+                      ><%= experience.title %></textArea>
+                    </div>
+                 </div>
+                 <div className="company">
+                    <div className="form-group mb-0">
+                      <input
+                        type="string"
+                        name="company_name"
+                        className="form-control secondary-color sub-color-area"
+                        placeholder="Company"
+                        value=<%= experience.company_name %>
+                      />
+                    </div>
+                 </div>
+                 <div style={{display: 'inline-flex'}}>
+                   <% if experience.show_period %> 
+                    <div className="column">
+                      <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                      <span>
+                         <div className="form-group mb-0">
+                          <textArea
+                            type="string"
+                            name="duration"
+                            className="form-control line-height-26"
+                            placeholder="Date period"
+                          ><%= experience.duration %></textArea>
+                         </div>
+                      </span>
+                   </div>
+                  <% end %>
+                   <% if experience.show_location %>
+                    <div className="column">
+                      <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                      <span>
+                         <div className="form-group mb-0">
+                          <textArea
+                            type="string"
+                            name="location"
+                            className="form-control line-height-26"
+                            placeholder="Location"
+                          ><%= experience.location %></textArea>
+                         </div>
+                      </span>
+                   </div>
+                  <% end %>
+                 </div>
+                 <% if experience.show_description %> 
+                  <div className="column">
+                    <span>
+                       <div className="form-group mb-0">
+                        <textArea
+                          type="string"
+                          name="description"
+                          className="form-control"
+                          placeholder="Company Description"
+                        ><%= experience.description %></textArea>
+                       </div>
+                    </span>
+                 </div>
+                <% end %>
+                <% if experience.show_outcomes %> 
+                  <p> outcomeData </p>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+     </div>
+ </section>
+</div>

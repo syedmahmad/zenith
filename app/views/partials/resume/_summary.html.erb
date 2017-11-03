@@ -1,0 +1,28 @@
+ <div class="section-items col-md-12 p0" data-section-name="Summary">
+  <section class="summary-holder">
+     <section class="section-items-holder">
+       <div class="heading-area">
+         <div class="form-group">
+            <input
+              type="string"
+              name="title"
+              class="form-control primary_font"
+              placeholder="SUMMARY"
+              value="SUMMARY"
+            />
+         </div>
+       </div>
+     </section>
+     <div class="form-group">
+        <textArea id="textarea"
+          type="string"
+          name="description"
+          class="form-control"
+          placeholder="What critical problems are you well positioned to solve?"
+          value=<% @resume.summary.description %>
+        />
+     </div>
+     <div class="divider"></div>
+  </section>
+
+</div>

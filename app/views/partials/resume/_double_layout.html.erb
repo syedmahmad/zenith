@@ -1,0 +1,28 @@
+<div class="col-xs-12">
+  <div class="cv-builder full-layout">
+    <div class="cv-builder-container">
+      <div role="main">
+        <div class="clearfix"></div>
+        <div class="row build-cv">
+          <div class="col-xs-12">
+            <div class="page-holder bg-color page" style="background-image: url(/assets/<%= @resume.resume_style.background_img %>)" >
+              <div class="cv-builder full-layout">
+                <div>
+                  <%= render "partials/resume/header" %>
+                </div>
+                <div>
+                  <div class="resume-col-left">
+                    <%= render "partials/resume/achievement" %>
+                  </div>
+                  <div class="resume-col-right">
+                    <%= render "partials/resume/achievement" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,7 +39,8 @@ class CvBuilderController < ApplicationController
   def download
     @resume = Resume.first
     @header = @resume.header
-    
+    @layout = @resume.layout
+    @achievements = @resume.achievements
     # @html = render_to_string(:template => "cv_builder/show", :locale => {"resume": @resume, "host": @host},:formats=> [:html])
     # @html = session["cv"].html_safe
     respond_to do |format|

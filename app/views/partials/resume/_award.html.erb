@@ -1,0 +1,50 @@
+<div className="section-items col-md-12 p0">
+ <section className="section-items-holder">           
+    <div className="heading-area">
+       <h3>
+          <div className="form-group">
+             <input
+               type="string"
+               name="award_header"
+               className="form-control primary_font"
+               placeholder="AWARDS"
+               value="AWARDS"
+             />
+          </div>
+       </h3>
+    </div>
+     <div className="section-items-list">
+       <ul className="row mrl0">
+         <% @resume.awards.each do |award| %>
+           <li className="section-item row mrl0">
+             <% if award.show_icon %> 
+               <div className="icon-holder pull-left">
+                  <i className="fa fa-trophy secondary-color" aria-hidden="true"></i>
+               </div>
+             <% end %>
+             <div className="input-holder">
+               <div className="form-group mb-0">
+                 <textArea
+                   type="string"
+                   name="name"
+                   className="form-control hide-show-control sub-header"
+                   placeholder="Award Name"
+                 ><%= award.name %></textArea>
+               </div>
+               <div className="form-group mb-0">
+                 <% if award.show_icon %> 
+                   <textArea
+                     type="string"
+                     name="description"
+                     className="form-control"
+                     placeholder="Award Description"
+                   ><%= award.description %></textArea>
+                 <% end %>
+               </div>
+             </div>
+           </li>
+         <% end %>
+       </ul>
+    </div>
+ </section>
+</div>
