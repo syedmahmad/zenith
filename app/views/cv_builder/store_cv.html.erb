@@ -4,12 +4,11 @@
     <div class="right_col" role="main">
       <div class="row build-cv">
         <% @resume.pages.times do |page| %>
-        
+          
           <% if @resume.layout.layout_type == 'double' %>
             <%= render "partials/resume/double_layout", page: page%>
           <% else %>
-            <%= render "partials/resume/achievement" %>
-            <%= render "partials/resume/award" %>
+            <%= render "partials/resume/single_layout", page: page %>
           <% end %>
         <% end %>
       </div>

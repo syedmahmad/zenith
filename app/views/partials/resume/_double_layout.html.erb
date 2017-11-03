@@ -12,14 +12,22 @@
                 </div>
                 <div>
                   <div class="resume-col-left">
-                    <%= render "partials/resume/summary" %>
-                    <%= render "partials/resume/experience" %>
-                    <%= render "partials/resume/education" %>
+                    <% @resume.layout.section_data.each do |item| %>
+                      <% if item[:page].to_i == page %>
+                        <% if item[:column].to_i == 0 %>
+                          <%= render "partials/resume/#{item[:name].downcase}" %>
+                        <%end %>
+                      <% end %>
+                    <% end %>
                   </div>
                   <div class="resume-col-right">
-                    <%= render "partials/resume/achievement" %>
-                    <%= render "partials/resume/languages" %>
-                    <%= render "partials/resume/projects" %>
+                    <% @resume.layout.section_data.each do |item| %>
+                      <% if item[:page].to_i == page %>
+                        <% if item[:column].to_i == 1 %>
+                          <%= render "partials/resume/#{item[:name].downcase}" %>
+                        <%end %>
+                      <% end %>
+                    <% end %>
                   </div>
                 </div>
               </div>
