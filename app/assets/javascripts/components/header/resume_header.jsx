@@ -48,7 +48,7 @@ var ResumeHeader = React.createClass({
       if (!show_hide_section_clicked) {
         $(this).find(".show_hide_section").hide()
         var __this = this;
-        setTimeout(function(){ 
+        setTimeout(function(){
           __this.firstChild.classList.add('hide-section');
           if (e.target.value != _this.props.header[e.target.name]) {
             _this.submitHeader({[e.target.name]: e.target.value, "id": $(__this).data("headerId")});

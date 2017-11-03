@@ -1,44 +1,44 @@
-<div className="section-items col-md-12 p0" data-section-name="Projects">
-   <section className="section-items-holder">
-      <div className="heading-area">
+<div class="section-items col-md-12 p0" data-section-name="Projects">
+   <section class="section-items-holder">
+      <div class="heading-area">
          <h3>
-            <div className="form-group">
+            <div class="form-group">
                <input
                  type="string"
                  name="project_header"
-                 className="form-control primary_font"
+                 class="form-control primary_font"
                  placeholder="PROJECTS"
                  value="PROJECTS"
                />
             </div>
          </h3>
       </div>
-      <div className="section-items-list">
+      <div class="section-items-list">
          <ul>
            <% @resume.projects.each do |project|%>
-              <li className="section-item col-xs-12">
-                <div className="project-holder">
-                   <div className="title-position">
-                      <div className="form-group mb-0">
+              <li class="section-item col-xs-12">
+                <div class="project-holder">
+                   <div class="title-position">
+                      <div class="form-group mb-0">
                         <textArea
                           id="sub-header"
                           type="string"
                           name="name"
-                          className="form-control hide-show-control sub-header"
+                          class="form-control hide-show-control sub-header"
                           placeholder="Project/Activity name"
                         ><%= project.name %></textArea>
                       </div>
                    </div>
                    <div style="display: 'inline-flex';"> 
                      <% if project.show_period %> 
-                      <div className="column">
-                       <i className="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                      <div class="column">
+                       <i class="fa fa-calendar secondary-color" aria-hidden="true"></i>
                        <span>
-                         <div className="form-group mb-0">
+                         <div class="form-group mb-0">
                            <textArea
                              type="string"
                              name="duration"
-                             className="form-control line-height-26"
+                             class="form-control line-height-26"
                              placeholder="Date period"
                            ><%= project.duration %></textArea>
                          </div>
@@ -46,14 +46,14 @@
                       </div>
                      <% end %>
                       <% if project.show_location %> 
-                        <div className="column">
-                         <i className="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                        <div class="column">
+                         <i class="fa fa-map-marker secondary-color" aria-hidden="true"></i>
                          <span>
-                            <div className="form-group mb-0">
+                            <div class="form-group mb-0">
                              <textArea
                                type="string"
                                name="location"
-                               className="form-control line-height-26"
+                               class="form-control line-height-26"
                                placeholder="Location"
                              ><%= project.location %></textArea>
                             </div>
@@ -62,14 +62,14 @@
                       <% end %>
                     </div>
                     <% if project.show_link %>
-                      <div className="column">
-                       <i className="fa fa-link secondary-color" aria-hidden="true"></i>
+                      <div class="column">
+                       <i class="fa fa-link secondary-color" aria-hidden="true"></i>
                        <span>
-                          <div className="form-group mb-0">
+                          <div class="form-group mb-0">
                            <textArea
                              type="string"
                              name="link"
-                             className="form-control line-height-26"
+                             class="form-control line-height-26"
                              placeholder="link"
                            ><%= project.link %></textArea>
                           </div>
@@ -77,12 +77,12 @@
                      </div>
                     <% end %>
                    <% if project.show_description %> 
-                    <div className="column">
-                     <div className="form-group mb-0">
+                    <div class="column">
+                     <div class="form-group mb-0">
                       <textArea
                         type="string"
                         name="description"
-                        className="form-control"
+                        class="form-control"
                         placeholder="Short summary of your work"
                       ><%= project.description %></textArea>
                      </div>
