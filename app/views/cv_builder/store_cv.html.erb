@@ -5,7 +5,7 @@
       <div class="row build-cv">
         <% @resume.pages.times do |page| %>
           
-          <% if @resume.layout.layout_type == 'double' %>
+          <% if @resume.layout.layout_type == 'doublefasdfs' %>
             <%= render "partials/resume/double_layout", page: page%>
           <% else %>
             <%= render "partials/resume/single_layout", page: page %>
