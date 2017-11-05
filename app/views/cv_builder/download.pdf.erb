@@ -1,26 +1,35 @@
 <!-- page content -->
 <div role="main">
   <div class="cv-builder-container">
-    <div role="main">
+    <div class="right_col" role="main">
       <div class="row build-cv">
-        <div class="col-xs-12">
-          <div class="cv-builder full-layout">
-            <div class="cv-builder-container">
-              <div class="clearfix"></div>
-              <div class="row build-cv">
-                <div class="col-xs-12">
-                  <div class="page-holder bg-color page" style="background-image: url(/assets/handmade.png);" >
-                    <div class="cv-builder full-layout">
-                      <%= render "partials/resume/header" %>
-                      <%= render "partials/resume/achievement" %>
-                    </div>
-                  </div>
-                </div>        
-              </div>
-            </div>
-          </div>
-        </div>
+        <% @resume.pages.times do |page| %>
+          
+          <% if @resume.layout.layout_type == 'double' %>
+            <%= render "partials/resume/double_layout", page: page%>
+          <% else %>
+            <%= render "partials/resume/single_layout", page: page %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $.each($("textarea"), function(index, el){
+    $(el).height(el.scrollHeight+"px");
+  });
+
+  if (!<%= @resume.layout.underline %>) {
+    $(".cv-builder .heading-area").each(function(e,val){ 
+      $(val).addClass("remove-border");
+    });
+  } else {
+    $(".cv-builder .heading-area").each(function(e,val){ 
+      $(val).removeClass("remove-border");
+    });
+  }
+
+  
+</script>

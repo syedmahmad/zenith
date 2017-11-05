@@ -1,4 +1,4 @@
-<div class="col-xs-12">
+<div class="col-xs-12 col-xs-12">
   <div class="cv-builder full-layout">
     <div class="cv-builder-container">
       <div role="main">
@@ -7,9 +7,11 @@
           <div class="col-xs-12">
             <div class="page-holder bg-color page" style="background-image: url(/assets/<%= @resume.resume_style.background_img %>)" >
               <div class="cv-builder full-layout">
-                <div>
-                  <%= render "partials/resume/header" %>
-                </div>
+                <% if page == 0 %>
+                  <div>
+                    <%= render "partials/resume/header" %>
+                  </div>
+                <% end %>
                 <div>
                   <div class="resume-col-left">
                     <% @resume.layout.section_data.each do |item| %>

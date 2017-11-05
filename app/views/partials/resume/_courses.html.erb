@@ -1,0 +1,45 @@
+<div class="section-items col-md-12 col-xs-12 p0" data-section-name="Courses">
+  <section class="section-items-holder">
+     <div class="heading-area">
+        <h3>
+           <div class="form-group">
+              <input
+                type="string"
+                name="course_header"
+                class="form-control primary_font"
+                placeholder="COURSES"
+                value="COURSES"
+              />
+           </div>
+        </h3>
+     </div>
+     <div class="section-items-list">
+        <ul class="row mrl0">
+          <% @resume.courses.each do |course|%>
+            <li class="section-item row mrl0">
+             <div class="input-holder">
+                <div class="form-group mb-0">
+                   <textArea
+                     type="string"
+                     name="title"
+                     class="form-control hide-show-control secondary-color sub-header"
+                     placeholder="Course Title"
+                   ><%= course.title %></textArea>
+                </div>
+                <% if course.show_description %>
+                  <div class="form-group">
+                   <textArea
+                     type="string"
+                     name="description"
+                     class="form-control mb-0"
+                     placeholder="Course Description"
+                   ><%= course.description %></textArea>
+                  </div>
+                <% end %>
+             </div>
+            </li>
+          <% end %>
+        </ul>
+     </div>
+  </section>
+</div>

@@ -1,0 +1,45 @@
+<div class="section-items col-md-12 col-xs-12 p0" data-section-name="Certificates">
+  <section class="section-items-holder">
+     <div class="heading-area">
+        <h3>
+           <div class="form-group">
+              <input
+                type="string"
+                name="certificate_header"
+                class="form-control primary_font"
+                placeholder="CERTIFICATES"
+                value="CERTIFICATES"
+              />
+           </div>
+        </h3>
+     </div>
+     <div class="section-items-list">
+        <ul class="row mrl0">
+          <% @resume.certificates.each do |certificate|%>|
+            <li class="section-item row mrl0 col-xs-12">
+               <div class="input-holder">
+                  <div class="form-group mb-0">
+                     <textArea
+                       type="string"
+                       name="name"
+                       class="form-control hide-show-control sub-header"
+                       placeholder="Certificate Name"
+                     ><%= certificate.name %></textArea>
+                  </div>
+                 <% if certificate.show_institutiion %>
+                   <div class="form-group mb-0">
+                     <textArea
+                       type="string"
+                       name="institutiion_name"
+                       class="form-control secondary-color"
+                       placeholder="Certificate Institution" 
+                     ><%= certificate.institutiion_name %></textArea>
+                   </div>
+                 <% end %>
+               </div>
+            </li>
+          <% end %>
+        </ul>
+     </div>
+  </section>
+</div>

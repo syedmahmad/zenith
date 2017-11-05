@@ -1,0 +1,45 @@
+<div class="section-items col-md-12 col-xs-12 p0" data-section-name="Technologies">
+  <section class="section-items-holder">
+     <div class="heading-area">
+        <h3>
+           <div class="form-group">
+              <input
+                type="string"
+                name="technology_header"
+                class="form-control primary_font"
+                placeholder="TECHNOLOGIES"
+                value="TECHNOLOGIES"
+              />
+           </div>
+        </h3>
+     </div>
+     <div class="section-items-list">
+        <ul class="row mrl0">
+          <% @resume.technologies.each do |technologie|%>
+            <li class="section-item row mrl0">
+               <div class="input-holder">
+                <% if technology.show_gouup_title %> 
+                  <div class="form-group mb-0">
+                     <textArea
+                       type="string"
+                       name="name"
+                       class="form-control secondary-color sub-header"
+                       placeholder="Group Title"
+                     ><%= technologie.name %></textArea>
+                  </div>
+                <% end %>
+                <div class="form-group mb-0">
+                   <textArea
+                     type="string"
+                     name="tec_names"
+                     class="form-control hide-show-control"
+                     placeholder="Tech"
+                   ><%= technologie.tec_names %></textArea>
+                </div>
+               </div>
+            </li>
+          <% end %>
+        </ul>
+     </div>
+  </section>
+</div>

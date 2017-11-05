@@ -1,0 +1,46 @@
+<div class="section-items col-md-12 col-xs-12 p0" data-section-name="Quotes" >
+  <section class="section-items-holder">           
+     <div class="heading-area">
+        <h3>
+           <div class="form-group">
+              <input
+                type="string"
+                name="quote_header"
+                class="form-control primary_font"
+                placeholder="QUOTES"
+                value="QUOTES"
+              />
+           </div>
+        </h3>
+     </div>
+    <div class="section-items-list">
+        <ul class="row mrl0">
+          <% @resume.quotes.each do |quote|%>
+            <li class="section-item row mrl0 col-xs-12">
+              <div class="input-holder">
+                <div class="form-group mb-0">
+                  <textArea
+                    type="string"
+                    name="name"
+                    class="form-control hide-show-control sub-header"
+                    placeholder="Quote"
+                    <%= quote.name %>
+                  />
+                </div>
+                <% if quote.show_author %> 
+                  <div class="form-group mb-0">
+                    <textArea
+                      type="string"
+                      name="name"
+                      class="form-control secondary-color"
+                      placeholder="Quote Author"
+                    ><%= quote.author %></textArea>
+                  </div>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+     </div>
+  </section>
+</div>

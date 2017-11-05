@@ -1,0 +1,50 @@
+<div class="section-items col-md-12 col-xs-12 p0" data-section-name="Passions">
+  <section class="section-items-holder">
+     <div class="heading-area">
+        <h3>
+           <div class="form-group">
+              <input
+                type="string"
+                name="passion_header"
+                class="form-control primary_font"
+                placeholder="PASSIONS"
+                value="PASSIONS"
+              />
+           </div>
+        </h3>
+     </div>
+     <div class="section-items-list">
+        <ul class="row mrl0">
+          <% @resume.passions.each do |passion|%>
+            <li class="section-item row mrl0">
+               <% if passion.show_icon %>  
+                 <div class="icon-holder pull-left">
+                    <i class="fa fa-heart secondary-color" aria-hidden="true"></i>
+                 </div>
+               <% end %>
+               <div class="input-holder">
+                  <div class="form-group mb-0">
+                     <textArea
+                       type="string"
+                       name="name"
+                       class="form-control hide-show-control sub-header"
+                       placeholder="Your Passion"
+                     ><%= passion.name %></textArea>
+                  </div>
+                  <% if passion.show_description %> 
+                    <div class="form-group mb-0">
+                       <textArea
+                         type="string"
+                         name="description"
+                         class="form-control"
+                         placeholder="description"
+                       ><% id passion.description %></textArea>
+                    </div>
+                  <% end %>
+               </div>
+            </li>
+          <% end %>
+        </ul>
+     </div>
+  </section>
+</div>

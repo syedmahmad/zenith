@@ -5,9 +5,7 @@ class CvBuilderController < ApplicationController
     bottom: 0,
     left: 0,
     right: 0,
-    top: 0,
-    margin: 0,
-    padding: 0
+    top: 0
   }.freeze
 
   def index
