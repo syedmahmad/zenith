@@ -28,6 +28,7 @@ class CvBuilderController < ApplicationController
   def store_cv
     # session["cv"] = params[:cv_data]
     # render json: true
+    @levelHash = {0 => "Beginner", 20 => "Intermediate", 40 => "Advanced", 60 => "Proficient", 80 => "Excellent", 100 => "Native"}
     @resume = Resume.first
     @header = @resume.header
     @layout = @resume.layout

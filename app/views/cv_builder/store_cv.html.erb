@@ -18,13 +18,13 @@
 
 
 <script type="text/javascript">
-  // $(function() {
-  //     console.log( "ready!" );
-  //     $(".cv-builder .heading-area").each(function(e,val){ 
-  //       debugger;
-  //       $(val).addClass("remove-border");
-  //     });
-  // });
+
+  // update height of inputs 
+  $.each($("textarea"), function(index, el){
+    $(el).height(el.scrollHeight+"px");
+  });
+
+  // update underline of header
   if (!<%= @resume.layout.underline %>) {
     $(".cv-builder .heading-area").each(function(e,val){ 
       $(val).addClass("remove-border");
@@ -34,10 +34,10 @@
       $(val).removeClass("remove-border");
     });
   }
+
   //update slider color...
   $(".input-range").css("background-color", '<%= @resume.resume_style.secondary_color %>');
 
-  debugger;
   // apply primary_font.. Here no need font-size
   $(".cv-builder .primary_font").each(function(e,val){ 
     $(val).css('font-family', '<%= @resume.resume_style.primary_font %>');
@@ -56,4 +56,42 @@
         'font-size': '<%= @resume.resume_style.font_size %>'});
     }
   });
+
+  // apply primary color
+  $(".cv-builder :input:not(.secondary-color)").each(function(e,val){
+    var aa = '<%= @resume.resume_style.primary_color %>'
+    if (aa.charAt(0) == "#") {
+      aa = aa.replace("#","color-");
+    }
+    //only apply color for form control...
+    if ($(val).hasClass("form-control")){
+      $(val).removeClass("color").css('color', '<%= @resume.resume_style.primary_color %>');
+      // remove all classes with prefix....
+      $.each(val.classList,function(index, value) {
+        if(value && value.indexOf("color-")==0) {
+            $(val).removeClass(value);
+        }
+      });
+      $(val).addClass(aa);
+    }
+  });
+
+  // apply secondary color
+  $(".cv-builder .secondary-color").each(function(e,val){
+    var aa = '<%= @resume.resume_style.secondary_color %>';
+    if (aa.charAt(0) == "#") {
+      aa = aa.replace("#","color-");
+    }
+
+    $(val).removeClass("color").css('color', '<%= @resume.resume_style.secondary_color %>');
+    // remove all classes with prefix....
+    $.each(val.classList,function(index, value) {
+      if(value && value.indexOf("color-")==0) {
+          $(val).removeClass(value);
+      }
+    });
+    $(val).addClass(aa);
+  });
+
+
 </script>

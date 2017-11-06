@@ -15,7 +15,7 @@
      </div>
      <div class="section-items-list">
         <ul class="row mrl0">
-          <% @resume.technologies.each do |technologie|%>
+          <% @resume.technologies.each do |technology|%>
             <li class="section-item row mrl0">
                <div class="input-holder">
                 <% if technology.show_gouup_title %> 
@@ -25,7 +25,7 @@
                        name="name"
                        class="form-control secondary-color sub-header"
                        placeholder="Group Title"
-                     ><%= technologie.name %></textArea>
+                     ><%= technology.name %></textArea>
                   </div>
                 <% end %>
                 <div class="form-group mb-0">
@@ -34,7 +34,7 @@
                      name="tec_names"
                      class="form-control hide-show-control"
                      placeholder="Tech"
-                   ><%= technologie.tec_names %></textArea>
+                   ><%= technology.tec_names %></textArea>
                 </div>
                </div>
             </li>

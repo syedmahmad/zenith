@@ -3,6 +3,16 @@
 <head>
   <title><%= content_for?(:title) ? yield(:title) : "Zenith CV" %> </title>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Droid Sans', 'Exo+2', 'Open+Sans', 'Montserrat', 'Roboto', 'Roboto+Condensed', 'Lato', 'Oswald', 'Raleway', 'Slabo+27px']
+      },
+      timeout: 4000 // Set the timeout to 4 seconds
+    });
+  </script>
+
   <%= wicked_pdf_stylesheet_link_tag 'pdf' %>
   <%= wicked_pdf_javascript_include_tag 'pdf' %>
 

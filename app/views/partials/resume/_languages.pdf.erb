@@ -26,7 +26,7 @@
                      ><%= language.name %></textArea>
                   </div>
                <% if language.show_proficiency %> <h6 class="mt-24">
-                  <p class="text-right"><%= language.level%></p>
+                  <p class="text-right">@levelHash[<%=language.level%>]</p>
                   <div class="form-group">
                      <input
                        type="range"
