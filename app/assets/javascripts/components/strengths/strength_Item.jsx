@@ -90,6 +90,7 @@ var StrengthItem = React.createClass({
                />
             </div>}
         </div>
+        <div className="sub-section-rearrange"><i className="fa fa-arrows"></i></div>
       </li>
     )
   }

@@ -176,6 +176,9 @@
    min-width: 200px;
    -webkit-box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
    box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
+  border-radius: 10px;
+  border: 1px solid #7d7a7a;
+
 }
  .page-holder #edit_able i {
   font-size: 1.6em;
@@ -497,6 +500,9 @@ ul {
 .cv-builder .section-item{
   position: relative;
 }
+.cv-builder .section-item:hover .sub-section-rearrange{
+  display: block;
+}
 .resume-col-left{
   width: 60%;
   float: left;
@@ -817,6 +823,16 @@ input:checked + .slider:before {
   position: relative;
   z-index: 10;
   font-size: 22px;
+}
+.sub-section-rearrange {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: all-scroll;
+}
+.sub-section-rearrange i{
+   cursor: all-scroll;
 }
 /*.ui-datepicker-calendar {
   display: block;
