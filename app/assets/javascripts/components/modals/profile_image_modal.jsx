@@ -21,7 +21,7 @@ var ProfileImageModal = React.createClass({
 
     render: function() {
       return (
-        <div className="modal fade" id="addSectionModal" role="dialog">
+        <div className="modal fade" id="profileImageModal" role="dialog">
           <div className="modal-dialog modal-lg">
             <div className="modal-content">
               <div className="modal-header">

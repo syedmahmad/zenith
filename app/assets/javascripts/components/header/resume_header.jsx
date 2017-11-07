@@ -73,7 +73,7 @@ var ResumeHeader = React.createClass({
     $(e.target).closest(".personal-info").find(".show_hide_section").show()
   },
   handleProfileImageClick: function(e){
-    $("#addSectionModal").modal('show')
+    $("#profileImageModal").modal('show')
   },
   handleImageStyleChange: function(e){
     style = $(e.target).data("style");
