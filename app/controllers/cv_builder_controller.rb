@@ -47,7 +47,7 @@ class CvBuilderController < ApplicationController
       format.pdf do
         render pdf: "download",
           layout: 'pdf.html.erb',
-          # margin: PDF_MARGINS,
+          margin: PDF_MARGINS,
           template:  'cv_builder/download.pdf.erb'
           # disposition: 'attachment'
       end

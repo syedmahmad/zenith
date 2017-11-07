@@ -1,40 +1,29 @@
-<div class="col-xs-12 col-xs-12">
-  <div class="cv-builder full-layout">
-    <div class="cv-builder-container">
-      <div role="main">
-        <div class="clearfix"></div>
-        <div class="row build-cv">
-          <div class="col-xs-12">
-            <div class="page-holder bg-color page" style="background-image: url(file://<%= Rails.root.join('app/assets/images/'+@resume.resume_style.background_img) %>)">
-              <div class="cv-builder full-layout">
-                <% if page == 0 %>
-                  <div>
-                    <%= render "partials/resume/header" %>
-                  </div>
-                <% end %>
-                <div>
-                  <div class="resume-col-left">
-                    <% @resume.layout.section_data.each do |item| %>
-                      <% if item[:page].to_i == page %>
-                        <% if item[:column].to_i == 0 %>
-                          <%= render "partials/resume/#{item[:name].downcase}" %>
-                        <%end %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                  <div class="resume-col-right">
-                    <% @resume.layout.section_data.each do |item| %>
-                      <% if item[:page].to_i == page %>
-                        <% if item[:column].to_i == 1 %>
-                          <%= render "partials/resume/#{item[:name].downcase}" %>
-                        <%end %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>        
+<div class="col-xs-12">
+  <div class="page-holder bg-color page" style="background-image: url(file://<%= Rails.root.join('app/assets/images/'+@resume.resume_style.background_img) %>)">
+    <div class="cv-builder full-layout">
+      <% if page == 0 %>
+        <div>
+          <%= render "partials/resume/header" %>
+        </div>
+      <% end %>
+      <div>
+        <div class="resume-col-left">
+          <% @resume.layout.section_data.each do |item| %>
+            <% if item[:page].to_i == page %>
+              <% if item[:column].to_i == 0 %>
+                <%= render "partials/resume/#{item[:name].downcase}" %>
+              <%end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="resume-col-right">
+          <% @resume.layout.section_data.each do |item| %>
+            <% if item[:page].to_i == page %>
+              <% if item[:column].to_i == 1 %>
+                <%= render "partials/resume/#{item[:name].downcase}" %>
+              <%end %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>

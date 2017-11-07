@@ -1,29 +1,18 @@
 <div class="col-xs-12">
-  <div class="cv-builder full-layout">
-    <div class="cv-builder-container">
-      <div role="main">
-        <div class="clearfix"></div>
-        <div class="row build-cv">
-          <div class="col-xs-12">
-            <div class="page-holder bg-color page" style="background-image: url(file://<%= Rails.root.join('app/assets/images/'+@resume.resume_style.background_img) %>)">
-              <div class="cv-builder full-layout">
-                <% if page == 0 %>
-  								<div>
-  								  <%= render "partials/resume/header" %>
-  								</div>
-                <% end %>
-								<div>
-									<% @resume.layout.section_data.each do |item| %>
-									  <% if item[:page].to_i == page %>
-									  	<%= render "partials/resume/#{item[:name].downcase}" %>
-										<%end %>
-									<% end %>
-								</div>
-              </div>
-            </div>
-          </div>        
-        </div>
-      </div>
+  <div class="page-holder bg-color page" style="background-image: url(file://<%= Rails.root.join('app/assets/images/'+@resume.resume_style.background_img) %>)">
+    <div class="cv-builder full-layout">
+      <% if page == 0 %>
+				<div>
+				  <%= render "partials/resume/header" %>
+				</div>
+      <% end %>
+			<div>
+				<% @resume.layout.section_data.each do |item| %>
+				  <% if item[:page].to_i == page %>
+				  	<%= render "partials/resume/#{item[:name].downcase}" %>
+					<%end %>
+				<% end %>
+			</div>
     </div>
   </div>
 </div>
