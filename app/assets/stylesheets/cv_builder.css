@@ -192,7 +192,6 @@
   background-color: transparent;
 }
 .page-holder textarea::placeholder {
-  color: #000;
   vertical-align: top;
 }
 .page-holder .form-control {
@@ -213,7 +212,6 @@
 }
 .page-holder .full-name .form-control::placeholder {
   font-size: 40px;
-  color: #000;
   font-weight: bold;
   vertical-align: top;
 }
@@ -243,7 +241,6 @@
 }
 .page-holder .job-title .form-control::placeholder {
   font-size: 24px;
-  color: #000;
   vertical-align: top;
   font-weight: 500;
 }
@@ -260,7 +257,6 @@
 /*
 .page-holder .column .form-group .form-control::placeholder {
   font-size: 14px;
-  color: #000;
   font-weight: normal;
   vertical-align: top;
 }*/
