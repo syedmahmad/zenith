@@ -73,9 +73,9 @@ class CvBuilderController < ApplicationController
   def create_sub_record
     section_names = params[:sub_section_name].constantize
     if params[:sub_section_name].eql?("Experience") || params[:sub_section_name].eql?("Project")
-      obj = section_names.create(resume_id: params[:id], :outcomes => [""])
+      obj = section_names.create(resume_id: params[:id], :outcomes => [""], item_index: 0)
     else
-      obj = section_names.create(resume_id: params[:id])
+      obj = section_names.create(resume_id: params[:id], item_index: 0)
     end
     render json: obj
   end
@@ -177,21 +177,21 @@ class CvBuilderController < ApplicationController
   def permitted_params
     params.require(:resume).permit(:pages, :section_names,
       achievements_attributes: [:title, :description, :id, :show_description, :icon, :show_icon, :item_index],
-      awards_attributes: [:name, :description, :id, :show_description, :show_icon, :item_index],
-      certificates_attributes: [:name, :institutiion_name, :id, :show_institutiion, :item_index],
+      awards_attributes: [:name, :description, :id, :show_description, :show_icon, :item_index, :icon],
+      certificates_attributes: [:name, :institutiion_name, :id, :show_institutiion, :item_index, :duration],
       courses_attributes: [:title, :description, :id, :show_description, :item_index],
-      strengths_attributes: [:title, :description, :id, :show_description, :show_icon, :item_index],
+      strengths_attributes: [:title, :description, :id, :show_description, :show_icon, :item_index, :icon],
       educations_attributes: [:degree_name, :ongoing, :university_name, :id, :duration, :show_period, :cgpa, :show_gpa, :show_location, :location, :item_index],
       experiences_attributes: [:id, :title, :ongoing, :company_name, :location, :duration, :description, :show_location, :show_period, :show_description, :show_outcomes, :item_index, :outcomes => []],
       languages_attributes: [:id, :name, :level, :show_proficiency, :item_index],
-      passions_attributes: [:id, :name, :description, :show_icon, :show_description, :item_index],
+      passions_attributes: [:id, :name, :description, :show_icon, :show_description, :item_index, :icon],
       projects_attributes: [:id, :name, :ongoing, :location, :duration, :description, :show_location, :show_period, :link, :show_description, :show_link, :item_index, :show_outcomes, :outcomes => []],
       quotes_attributes: [:id, :name, :author, :show_author, :item_index],
       skills_attributes: [:id, :name, :level, :show_level, :item_index],
       technologies_attributes: [:id, :name, :tec_names, :show_icon, :show_description, :item_index],
       volunteers_attributes: [:id, :title, :ongoing, :organization_name, :duration, :description, :show_location, :show_period, :location, :show_description, :item_index],
       layout_attributes: [:id, :underline, :layout_type, :section_names => [], :section_data => [:name, :page, :column]],
-      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link, :show_avatar,:show_name,:show_location,:show_job_title,:show_phone,:show_email,:show_website_link],
+      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link, :image_style, :show_avatar,:show_name,:show_location,:show_job_title,:show_phone,:show_email,:show_website_link],
       summary_attributes: [:id, :title, :description],
       resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color, :primary_font, :secondary_font, :font_size])
   end

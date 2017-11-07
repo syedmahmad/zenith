@@ -44,8 +44,8 @@ var SkillItem = React.createClass({
                 onChange={ this.handleChange }
               />
            </div>
-           { this.state.skill.show_level && <h6 className="mt-24">
-              <p className="text-right">{levelHash[this.state.level]}</p>
+           <h6>
+              { this.state.skill.show_level && <p>{levelHash[this.state.level]}</p>}
               <div className="form-group">
                  <input
                    type="range"
@@ -57,7 +57,8 @@ var SkillItem = React.createClass({
                    onChange={ this.handleChange }
                  />
               </div>
-           </h6>}
+           </h6>
+           <div className="sub-section-rearrange"><i className="fa fa-arrows"></i></div>
        </li>
     )
   }

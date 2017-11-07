@@ -8,6 +8,8 @@ var CvBuilder = React.createClass({
   componentDidUpdate: function(prevProps, prevState){
     this.setupLayout();
     this.updateStyle();
+    this.handleSubSectionRearrange();
+    this.handleShowHideButtonStyle();
     params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections, "section_data": this.state.sectionData};
     if (this.props.current_user) {
       this.updateResume({resume: {"pages": this.state.pages, layout_attributes: params}});
@@ -17,17 +19,6 @@ var CvBuilder = React.createClass({
     var _this = this;
     // _this.setupLayout();
     _this.updateStyle();
-    $(".section-items-list ul").sortable({
-      stop: function  (e, ui) {
-        data = [];
-        sectionName = $(e.target.closest(".section-items")).data("sectionName").toLowerCase()
-        itemsList = $(e.target).find(".section-item")
-        itemsList.each(function(i, item){
-          data.push({"id": $(item).data("sectionId"), "item_index": i})
-        });
-        _this.handleSubItemRearrange(sectionName, data);
-      }
-    });
 
     $.each($("textarea"), function(index, el){
       $(el).height(el.scrollHeight+"px");
@@ -43,8 +34,32 @@ var CvBuilder = React.createClass({
         $(".calendar-holder").hide();
       }
       if(!$(e.target).parents().hasClass("icon-holder")){
-        $(".acheivement-icon-holder").hide();
+        $(".acheivement-icon-holder,.award-icon-holder,.strength-icon-holder,.passion-icon-holder").hide();
       }
+    });
+    this.handleSubSectionRearrange();
+    this.handleShowHideButtonStyle();
+  },
+  handleSubSectionRearrange: function(){
+    var _this = this;
+    $(document).find(".section-items-list ul").sortable({
+      handle: ".sub-section-rearrange",
+      stop: function  (e, ui) {
+        data = [];
+        sectionName = $(e.target.closest(".section-items")).data("sectionName").toLowerCase()
+        itemsList = $(e.target).find(".section-item")
+        itemsList.each(function(i, item){
+          data.push({"id": $(item).data("sectionId"), "item_index": i})
+        });
+        _this.handleSubItemRearrange(sectionName, data);
+      }
+    });
+  },
+  handleShowHideButtonStyle: function(){
+    $.each($(".show_hide_section"), function(index, el){
+      height = $(el).height();
+      height = height + 75;
+      $(el).css("top", "-"+height+"px")
     });
   },
   handleSubItemRearrange: function(section, data){
@@ -183,7 +198,7 @@ var CvBuilder = React.createClass({
       contentType: 'multipart/form-data',
       data: formData,
       success: function(item) {
-        _this.state.resume[sectionName].push(item);
+        _this.state.resume[sectionName].unshift(item);
         _this.setState({resume: this.state.resume});
       }.bind(this),
       error: function(response, status, err) {
@@ -291,12 +306,20 @@ var CvBuilder = React.createClass({
   handleRemoveSection: function(e){
     var removeSection = $(e.target).data("sectionName");
     var positionInSections = this.state.layoutSections.indexOf(removeSection);
+    var positionInSectionData = null;
+    this.state.sectionData.forEach(function(item, index) {
+      if(item.name == removeSection){
+        positionInSectionData = index;
+        return;
+      }      
+    });
+    this.state.sectionData.splice(positionInSectionData, 1);
     this.state.layoutSections.splice(positionInSections, 1);
     if (this.props.current_user) {
-      params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections};
+      params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections, "section_data": this.state.sectionData};
       this.updateResume({resume: {layout_attributes: params}});
     }
-    this.setState({layoutSections: this.state.layoutSections});
+    this.setState({layoutSections: this.state.layoutSections, sectionData: this.state.sectionData});
   },
   handleLayoutChange: function(e){
     selectedLayout = $(e.currentTarget).data("layoutType")

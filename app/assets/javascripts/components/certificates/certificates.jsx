@@ -101,7 +101,7 @@ var Certificates = React.createClass({
               </h3>
            </div>
            <div className="section-items-list">
-              <ul className="row mrl0">
+              <ul className="row m0">
                 {data}
               </ul>
            </div>

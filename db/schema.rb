@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012183458) do
+ActiveRecord::Schema.define(version: 20171107222414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 20171012183458) do
   end
 
   create_table "awards", force: :cascade do |t|
-    t.string   "name",             default: "",   null: false
+    t.string   "name",             default: "",          null: false
     t.integer  "resume_id"
-    t.string   "icon"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "icon",             default: "fa-trophy"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.text     "description"
     t.boolean  "show_icon",        default: true
     t.boolean  "show_description", default: true
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20171012183458) do
     t.datetime "updated_at",                       null: false
     t.boolean  "show_institutiion", default: true
     t.integer  "item_index"
+    t.string   "duration",          default: ""
+    t.boolean  "show_period",       default: true
   end
 
   create_table "courses", force: :cascade do |t|
@@ -96,12 +98,12 @@ ActiveRecord::Schema.define(version: 20171012183458) do
   end
 
   create_table "headers", force: :cascade do |t|
-    t.string   "name",                default: "",   null: false
-    t.string   "job_title",           default: "",   null: false
-    t.string   "phone",               default: "",   null: false
-    t.string   "email",               default: "",   null: false
-    t.string   "location",            default: "",   null: false
-    t.string   "website_link",        default: "",   null: false
+    t.string   "name",                default: "",       null: false
+    t.string   "job_title",           default: "",       null: false
+    t.string   "phone",               default: "",       null: false
+    t.string   "email",               default: "",       null: false
+    t.string   "location",            default: "",       null: false
+    t.string   "website_link",        default: "",       null: false
     t.boolean  "show_name",           default: true
     t.boolean  "show_location",       default: true
     t.boolean  "show_job_title",      default: true
@@ -109,13 +111,14 @@ ActiveRecord::Schema.define(version: 20171012183458) do
     t.boolean  "show_email",          default: true
     t.boolean  "show_avatar",         default: true
     t.integer  "resume_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "show_website_link",   default: true
+    t.string   "image_style",         default: "circle"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -140,14 +143,15 @@ ActiveRecord::Schema.define(version: 20171012183458) do
   end
 
   create_table "passions", force: :cascade do |t|
-    t.string   "name",             default: "",   null: false
+    t.string   "name",             default: "",         null: false
     t.integer  "resume_id"
     t.string   "description"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.boolean  "show_icon",        default: true
     t.boolean  "show_description", default: true
     t.integer  "item_index"
+    t.string   "icon",             default: "fa-heart"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -226,15 +230,16 @@ ActiveRecord::Schema.define(version: 20171012183458) do
   end
 
   create_table "strengths", force: :cascade do |t|
-    t.string   "title",            default: "",   null: false
+    t.string   "title",            default: "",        null: false
     t.string   "item_icon"
     t.integer  "resume_id"
-    t.string   "description",      default: "",   null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "description",      default: "",        null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.boolean  "show_icon",        default: true
     t.boolean  "show_description", default: true
     t.integer  "item_index"
+    t.string   "icon",             default: "fa-star"
   end
 
   create_table "summaries", force: :cascade do |t|

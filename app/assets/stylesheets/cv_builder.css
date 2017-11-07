@@ -150,7 +150,7 @@
    display: inline-flex;
    align-items: center;
    position: absolute;
-   top: -20px;
+   top: -40px;
    transform: translateX(-50%);
    z-index: 10;
    left: 50%;
@@ -176,6 +176,9 @@
    min-width: 200px;
    -webkit-box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
    box-shadow: 0 0 32px -5px rgba(0,0,0,.75);
+  border-radius: 10px;
+  border: 1px solid #7d7a7a;
+
 }
  .page-holder #edit_able i {
   font-size: 1.6em;
@@ -189,7 +192,6 @@
   background-color: transparent;
 }
 .page-holder textarea::placeholder {
-  color: #000;
   vertical-align: top;
 }
 .page-holder .form-control {
@@ -210,7 +212,6 @@
 }
 .page-holder .full-name .form-control::placeholder {
   font-size: 40px;
-  color: #000;
   font-weight: bold;
   vertical-align: top;
 }
@@ -240,7 +241,6 @@
 }
 .page-holder .job-title .form-control::placeholder {
   font-size: 24px;
-  color: #000;
   vertical-align: top;
   font-weight: 500;
 }
@@ -257,7 +257,6 @@
 /*
 .page-holder .column .form-group .form-control::placeholder {
   font-size: 14px;
-  color: #000;
   font-weight: normal;
   vertical-align: top;
 }*/
@@ -400,7 +399,7 @@ ul {
 .education-holder .company .form-group, .languages-holder .company .form-group, .experience-holder .company .form-group {
   margin-bottom: 5px;
 }
-.education-holder .column, .languages-holder .column, .experience-holder .column {
+.education-holder .column, .languages-holder .column, .experience-holder .column, .certificate-holder .column {
   display: inline-block;
 }
 .education-holder .languages-add, .languages-holder .languages-add, .experience-holder .languages-add {
@@ -496,6 +495,9 @@ ul {
 }
 .cv-builder .section-item{
   position: relative;
+}
+.cv-builder .section-item:hover .sub-section-rearrange{
+  display: block;
 }
 .resume-col-left{
   width: 60%;
@@ -744,6 +746,9 @@ input:checked + .slider:before {
   z-index: 9999;
   border-radius: 15px;
 }
+.award-icon-holder,
+.passion-icon-holder,
+.strength-icon-holder,
 .acheivement-icon-holder{
   display: block;
   align-items: center;
@@ -814,4 +819,24 @@ input:checked + .slider:before {
   position: relative;
   z-index: 10;
   font-size: 22px;
+}
+.sub-section-rearrange {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: all-scroll;
+}
+.sub-section-rearrange i{
+   cursor: all-scroll;
+}
+/*.ui-datepicker-calendar {
+  display: block;
+}*/
+
+.rounded {
+  border-radius: 20%;
+}
+.circle {
+  border-radius: 50%;
 }

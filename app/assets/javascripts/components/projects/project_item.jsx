@@ -264,6 +264,7 @@ var ProjectItem = React.createClass({
            </div>}
            { this.state.project.show_outcomes && outcomeData }
         </div>
+        <div className="sub-section-rearrange"><i className="fa fa-arrows"></i></div>
       </li>
     )
   }

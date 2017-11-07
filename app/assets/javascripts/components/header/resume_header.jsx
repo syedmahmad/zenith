@@ -2,7 +2,7 @@ var ResumeHeader = React.createClass({
 
   getInitialState: function(){
     var header = this.props.header;
-    return {header: header, file: [], imgSrc: header.img_url, name: header.name, job_title: header.job_title, phone: header.phone, website_link: header.website_link, email: header.email, location: header.location};
+    return {header: header, file: [], imageStyle: header.image_style, imgSrc: header.img_url, name: header.name, job_title: header.job_title, phone: header.phone, website_link: header.website_link, email: header.email, location: header.location};
   },
 
   handleChange: function(e){
@@ -61,9 +61,7 @@ var ResumeHeader = React.createClass({
   },
 
   submitHeader: function(params){
-    this.props.updateResume(
-      {resume: {header_attributes: params}}
-    );
+    this.updateHeader(params);
   },    
 
   handleClick: function(e) {
@@ -74,8 +72,23 @@ var ResumeHeader = React.createClass({
     e.preventDefault();
     $(e.target).closest(".personal-info").find(".show_hide_section").show()
   },
+  handleProfileImageClick: function(e){
+    $("#profileImageModal").modal('show')
+  },
+  handleImageStyleChange: function(e){
+    style = $(e.target).data("style");
+    params = {"image_style": style, "id": $(e.target).closest(".buttons-holder").data("headerId")};
+    this.updateHeader(params);
+    this.setState({imageStyle: style});
+  },
+  updateHeader: function(params){
+    this.props.updateResume(
+      {resume: {header_attributes: params}}
+    );
+  },
 
   render: function() {
+    profileImageStyle = "img-responsive "+this.state.imageStyle;
     optionsArr = ["show_avatar", "show_email", "show_phone", "show_website_link", "show_location", "show_job_title"]
     showHideOptions = <ShowHideOptions model={this.state.header} section="header" sectionId={this.props.header.id} handleShowHideChange={this.props.handleShowHideChange} options={optionsArr}/>
     return (
@@ -189,7 +202,7 @@ var ResumeHeader = React.createClass({
                                   type="string"
                                   name="location"
                                   className="form-control height-20"
-                                  placeholder="location"
+                                  placeholder="Location"
                                   value={this.state.location}
                                   onChange={ this.handleChange}
                                 />
@@ -201,11 +214,12 @@ var ResumeHeader = React.createClass({
               </div>
               <div className="col-sm-4">
                  { this.state.header.show_avatar && <div className="profile-image">
-                    <img src={this.state.imgSrc} className="img-responsive"/>
+                    <img src={this.state.imgSrc} onClick={this.handleProfileImageClick} className={profileImageStyle}/>
                  </div>}
               </div>
            </div>
         </section>
+        <ProfileImageModal headerId={this.state.header.id} handleImageStyleChange={this.handleImageStyleChange} profileImageStyle={profileImageStyle} imgSrc={this.state.imgSrc} handleClick={this.handleClick}/>
       </div>
     )
   }
