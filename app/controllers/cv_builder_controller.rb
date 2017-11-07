@@ -156,7 +156,7 @@ class CvBuilderController < ApplicationController
       technologies_attributes: [:id, :name, :tec_names, :show_icon, :show_description, :item_index],
       volunteers_attributes: [:id, :title, :ongoing, :organization_name, :duration, :description, :show_location, :show_period, :location, :show_description, :item_index],
       layout_attributes: [:id, :underline, :layout_type, :section_names => [], :section_data => [:name, :page, :column]],
-      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link, :show_avatar,:show_name,:show_location,:show_job_title,:show_phone,:show_email,:show_website_link],
+      header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link, :image_style, :show_avatar,:show_name,:show_location,:show_job_title,:show_phone,:show_email,:show_website_link],
       summary_attributes: [:id, :title, :description],
       resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color, :primary_font, :secondary_font, :font_size])
   end

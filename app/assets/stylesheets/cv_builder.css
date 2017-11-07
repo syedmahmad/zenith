@@ -150,7 +150,7 @@
    display: inline-flex;
    align-items: center;
    position: absolute;
-   top: -20px;
+   top: -40px;
    transform: translateX(-50%);
    z-index: 10;
    left: 50%;
@@ -833,3 +833,10 @@ input:checked + .slider:before {
 /*.ui-datepicker-calendar {
   display: block;
 }*/
+
+.rounded {
+  border-radius: 20%;
+}
+.circle {
+  border-radius: 50%;
+}

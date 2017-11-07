@@ -58,7 +58,7 @@ var CvBuilder = React.createClass({
   handleShowHideButtonStyle: function(){
     $.each($(".show_hide_section"), function(index, el){
       height = $(el).height();
-      height = height + 45;
+      height = height + 75;
       $(el).css("top", "-"+height+"px")
     });
   },
