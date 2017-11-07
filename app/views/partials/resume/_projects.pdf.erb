@@ -89,7 +89,24 @@
                    </div>
                   <% end %>
                    <% if project.show_outcomes %> 
-                      <p>outcomeData </p>
+                      <% project.outcomes.each do |outcome| %>
+                        <div class="column">
+                          <i class="fa fa-circle outcome-icon-6 secondary-color">
+                          </i>
+                           <span>
+                              <div class="form-group mb-0">
+                               <textArea
+                                 id="height-15"
+                                 type="string"
+                                 name="outcomes"
+                                 class="form-control line-height-26"
+                                 placeholder="Outcomes"
+                                 rows="1" 
+                               ><%= outcome %></textArea>
+                              </div>
+                           </span>
+                        </div>
+                      <% end %>
                    <% end %>
                 </div>
               </li>

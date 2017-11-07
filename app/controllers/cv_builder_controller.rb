@@ -36,6 +36,7 @@ class CvBuilderController < ApplicationController
   end
 
   def download
+    @levelHash = {0 => "Beginner", 20 => "Intermediate", 40 => "Advanced", 60 => "Proficient", 80 => "Excellent", 100 => "Native"}
     @resume = Resume.first
     @header = @resume.header
     @layout = @resume.layout
