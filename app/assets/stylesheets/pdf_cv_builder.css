@@ -129,7 +129,7 @@
   }
   /*cv builder design*/
   .page-holder {
-    -webkit-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
+/*    -webkit-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
     margin: 0 auto;
@@ -141,7 +141,7 @@
     -moz-box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.75);
     font-family: 'Lato', sans-serif;
     max-width: 1026px;
-    margin: 0 auto;
+    margin: 0 auto;*/
   }
   .page-holder .form-group {
     margin-bottom: 10px;
@@ -814,4 +814,11 @@ input:checked + .slider:before {
   position: relative;
   z-index: 10;
   font-size: 22px;
+}
+
+.rounded {
+  border-radius: 20%;
+}
+.circle {
+  border-radius: 50%;
 }

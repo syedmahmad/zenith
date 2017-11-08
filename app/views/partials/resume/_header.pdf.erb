@@ -106,7 +106,7 @@
       <div class="col-sm-4 col-xs-4">
          <div class="profile-image">
           <% if @header.show_avatar %>
-            <%= wicked_pdf_image_tag @header.avatar.url, :class => "img-responsive" %>
+            <%= wicked_pdf_image_tag @header.avatar.url, :class => "img-responsive "+ @header.image_style %>
           <% end %>
          </div>
       </div>
