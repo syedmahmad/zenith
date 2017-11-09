@@ -28,11 +28,13 @@ var ExperienceItem = React.createClass({
     datePicker1 = ".date-picker1-" + _this.state.experience.id;
     datePicker2 = ".date-picker2-" + _this.state.experience.id;
     $(document).find(datePicker1).datepicker({
+      dateFormat: 'mm / yy',
       onSelect: function (dateText, inst) {
          _this.updateStartDate(dateText, inst);
       }
     });
     $(document).find(datePicker2).datepicker({
+      dateFormat: 'mm / yy',
       onSelect: function (dateText, inst) {
          _this.updateEndDate(dateText, inst);
       }
@@ -110,13 +112,12 @@ var ExperienceItem = React.createClass({
     // selector.find("textarea[name='outcomes']")
 
     this.setState({outcomes: outcomes});
-    e.target.blur();
 
-    var params = {outcomes: outcomes, "id": $(e.target).closest(".section-item").data("experienceId")}
+    // var params = {outcomes: outcomes, "id": $(e.target).closest(".section-item").data("experienceId")}
     
-    this.props.updateResume(
-      {resume: {experiences_attributes: params}}
-    );
+    // this.props.updateResume(
+    //   {resume: {experiences_attributes: params}}
+    // );
   },
   removeOutcome: function(index){
     var outcomes = this.state.outcomes;

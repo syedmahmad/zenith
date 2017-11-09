@@ -193,7 +193,7 @@
   vertical-align: top;
 }
 .page-holder .form-control {
-  border: 0;
+  border: 0 !important;
   box-shadow: none;
   padding: 0;
   margin-bottom: 0;
@@ -790,13 +790,16 @@ input:checked + .slider:before {
 .education-holder .cgpa-section .form-group{
   width: 100%;
 }
+.education-holder .cgpa-section textarea::placeholder,
 .education-holder .cgpa-section .form-control{
   text-align: center !important;
-  border-left: 1px solid;
+  border: 0;
 }
-.education-holder .cgpa-section .form-control.cgpa-input{
+.education-holder .cgpa-section textarea{
   margin-top: 12px !important;
+  border: 0 !important;
 }
+
 .line-height-26{
   line-height: 25px;
 }

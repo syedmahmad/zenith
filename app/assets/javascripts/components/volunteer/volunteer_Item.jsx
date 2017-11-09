@@ -37,11 +37,13 @@ var VolunteerItem = React.createClass({
     datePicker1 = ".date-picker-vol-" + _this.state.volunteer.id;
     datePicker2 = ".date-picker2-vol-" + _this.state.volunteer.id;
     $(document).find(datePicker1).datepicker({
+      dateFormat: 'mm / yy',
       onSelect: function (dateText, inst) {
          _this.updateStartDate(dateText, inst);
       }
     });
     $(document).find(datePicker2).datepicker({
+      dateFormat: 'mm / yy',
       onSelect: function (dateText, inst) {
          _this.updateEndDate(dateText, inst);
       }

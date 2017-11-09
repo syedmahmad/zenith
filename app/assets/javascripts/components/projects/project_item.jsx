@@ -28,11 +28,13 @@ var ProjectItem = React.createClass({
     datePicker1 = ".date-picker-pro-" + _this.state.project.id;
     datePicker2 = ".date-picker2-pro-" + _this.state.project.id;
     $(document).find(datePicker1).datepicker({
+      dateFormat: 'mm / yy',
       onSelect: function (dateText, inst) {
          _this.updateStartDate(dateText, inst);
       }
     });
     $(document).find(datePicker2).datepicker({
+      dateFormat: 'mm / yy',
       onSelect: function (dateText, inst) {
          _this.updateEndDate(dateText, inst);
       }

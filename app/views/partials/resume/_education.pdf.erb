@@ -17,8 +17,8 @@
         <ul>
           <% @resume.educations.each do |education|%>
             <li class="section-item col-xs-12">
-              <div class="education-holder">
-                <div class="heading-section">
+              <div class="education-holder row">
+                <div class="heading-section col-xs-8 pl-0">
                    <div class="title-position">
                       <div class="form-group mb-0">
                         <textArea
@@ -80,8 +80,7 @@
                         type="string"
                         name="cgpa"
                         class="form-control"
-                        placeholder="3.9/6.0"
-                      ><%= education.cgpa %></textArea>
+                      ><%= education.cgpa.present? ? education.cgpa : '3.9/6.0' %></textArea>
                      </div>
                  </div>
                 <% end %>
