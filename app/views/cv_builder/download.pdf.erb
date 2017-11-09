@@ -1,89 +1,10 @@
 <!-- page content -->
-<div role="main">
-  <div class="cv-builder-container">
-    <div class="row build-cv">
-      <% @resume.pages.times do |page| %>
-        
-        <% if @resume.layout.layout_type == 'double' %>
-          <%= render "partials/resume/double_layout", page: page%>
-        <% else %>
-          <%= render "partials/resume/single_layout", page: page %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
 
-<script type="text/javascript">
+<% @resume.pages.times do |page| %>
   
-  // update underline of header
-  if (!<%= @resume.layout.underline %>) {
-    $(".cv-builder .heading-area").each(function(e,val){ 
-      $(val).addClass("remove-border");
-    });
-  } else {
-    $(".cv-builder .heading-area").each(function(e,val){ 
-      $(val).removeClass("remove-border");
-    });
-  }
-
-  //update slider color...
-  $(".input-range").css("background-color", '<%= @resume.resume_style.secondary_color %>');
-
-  // apply primary_font.. Here no need font-size
-  $(".cv-builder .primary_font").each(function(e,val){ 
-    $(val).css('font-family', '<%= @resume.resume_style.primary_font %>');
-  });
-
-  // apply primary_font
-  $(".cv-builder :input:not(.primary_font)").each(function(e,val){ 
-    if ($(val).hasClass("sub-header")) {
-      $(val).css({'font-family': '<%= @resume.resume_style.secondary_font %>',
-        'font-size': parseInt('<%= @resume.resume_style.font_size %>') + 2 + "px"});
-    } else if ($(val).hasClass("sub-color-area")) {
-      $(val).css({'font-family': '<%= @resume.resume_style.secondary_font %>',
-        'font-size': parseInt('<%= @resume.resume_style.font_size %>') + 1 + "px"});
-    } else {
-      $(val).css({'font-family': '<%= @resume.resume_style.secondary_font %>',
-        'font-size': '<%= @resume.resume_style.font_size %>'});
-    }
-  });
-
-  // apply primary color
-  $(".cv-builder :input:not(.secondary-color)").each(function(e,val){
-    var aa = '<%= @resume.resume_style.primary_color %>'
-    if (aa.charAt(0) == "#") {
-      aa = aa.replace("#","color-");
-    }
-    //only apply color for form control...
-    if ($(val).hasClass("form-control")){
-      $(val).removeClass("color").css('color', '<%= @resume.resume_style.primary_color %>');
-      // remove all classes with prefix....
-      $.each(val.classList,function(index, value) {
-        if(value && value.indexOf("color-")==0) {
-            $(val).removeClass(value);
-        }
-      });
-      $(val).addClass(aa);
-    }
-  });
-
-  // apply secondary color
-  $(".cv-builder .secondary-color").each(function(e,val){
-    var aa = '<%= @resume.resume_style.secondary_color %>';
-    if (aa.charAt(0) == "#") {
-      aa = aa.replace("#","color-");
-    }
-
-    $(val).removeClass("color").css('color', '<%= @resume.resume_style.secondary_color %>');
-    // remove all classes with prefix....
-    $.each(val.classList,function(index, value) {
-      if(value && value.indexOf("color-")==0) {
-          $(val).removeClass(value);
-      }
-    });
-    $(val).addClass(aa);
-  });
-
-  
-</script>
+  <% if @resume.layout.layout_type == 'double' %>
+    <%= render "partials/resume/double_layout", page: page%>
+  <% else %>
+    <%= render "partials/resume/single_layout", page: page %>
+  <% end %>
+<% end %>

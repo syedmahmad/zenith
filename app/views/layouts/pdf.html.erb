@@ -4,7 +4,9 @@
   <title><%= content_for?(:title) ? yield(:title) : "Zenith CV" %> </title>
   <%= javascript_include_tag "http://code.jquery.com/jquery-1.10.0.min.js" %>
   <%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" %>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js" %>
+  <%= stylesheet_link_tag 'application', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css' %>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 
   <script type="text/javascript">
     WebFont.load({
@@ -15,7 +17,6 @@
     });
   </script>
   <%= wicked_pdf_stylesheet_link_tag 'pdf' ,media: 'print'%>
-  <%= wicked_pdf_javascript_include_tag 'pdf' %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,15 +25,13 @@
 
 </head>
 
-<body class="nav-md">
-<div class="container body">
+<body style="margin: 0; padding: 0;">
+<div class="container body" style="height: 295.5mm; width: 209mm;">
 
   <div class="main_container">
 
     <%= yield %>
   </div>
-
-  <%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => true %>
 
 </body>
 </html>

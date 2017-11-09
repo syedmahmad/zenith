@@ -1,18 +1,97 @@
-<div class="col-xs-12">
-  <div class="page-holder bg-color page" style="background-image: url(file://<%= Rails.root.join('app/assets/images/'+@resume.resume_style.background_img) %>)">
-    <div class="cv-builder full-layout">
-      <% if page == 0 %>
-				<div>
-				  <%= render "partials/resume/header" %>
-				</div>
-      <% end %>
-			<div>
-				<% @resume.layout.section_data.each do |item| %>
-				  <% if item[:page].to_i == page %>
-				  	<%= render "partials/resume/#{item[:name].downcase}" %>
-					<%end %>
-				<% end %>
-			</div>
-    </div>
-  </div>
+<div class="page-holder bg-color page" style="background-image: url(file://<%= Rails.root.join('app/assets/images/'+@resume.resume_style.background_img) %>)">
+<div class="cv-builder full-layout">
+  <% if page == 0 %>
+	<div>
+	  <%= render "partials/resume/header" %>
+	</div>
+  <% end %>
+	<div>
+		<% @resume.layout.section_data.each do |item| %>
+		  <% if item[:page].to_i == page %>
+		  	<%= render "partials/resume/#{item[:name].downcase}" %>
+			<%end %>
+		<% end %>
+	</div>
 </div>
+</div>
+
+<script type="text/javascript">
+  
+
+    // update height of inputs 
+    $.each($("textarea"), function(index, el){
+      $(el).height(el.scrollHeight+"px");
+    });
+    // update underline of header
+    if (!<%= @resume.layout.underline %>) {
+      $(".cv-builder .heading-area").each(function(e,val){ 
+        $(val).addClass("remove-border");
+      });
+    } else {
+      $(".cv-builder .heading-area").each(function(e,val){ 
+        $(val).removeClass("remove-border");
+      });
+    }
+
+    //update slider color...
+    $(".input-range").css("background-color", '<%= @resume.resume_style.secondary_color %>');
+
+    // apply primary_font.. Here no need font-size
+    $(".cv-builder .primary_font").each(function(e,val){ 
+      $(val).css('font-family', '<%= @resume.resume_style.primary_font %>');
+    });
+
+    // $(".secondary-color").addClass("color-FB51A5");
+
+    // apply primary_font
+    $(".cv-builder :input:not(.primary_font)").each(function(e,val){ 
+      if ($(val).hasClass("sub-header")) {
+        $(val).css({'font-family': '<%= @resume.resume_style.secondary_font %>',
+          'font-size': parseInt('<%= @resume.resume_style.font_size %>') + 2 + "px"});
+      } else if ($(val).hasClass("sub-color-area")) {
+        $(val).css({'font-family': '<%= @resume.resume_style.secondary_font %>',
+          'font-size': parseInt('<%= @resume.resume_style.font_size %>') + 1 + "px"});
+      } else {
+        $(val).css({'font-family': '<%= @resume.resume_style.secondary_font %>',
+          'font-size': '<%= @resume.resume_style.font_size %>'});
+      }
+    });
+
+    // apply primary color
+    $(".cv-builder :input:not(.secondary-color)").each(function(e,val){
+      var aa = '<%= @resume.resume_style.primary_color %>'
+      if (aa.charAt(0) == "#") {
+        aa = aa.replace("#","color-");
+      }
+      //only apply color for form control...
+      if ($(val).hasClass("form-control")){
+        $(val).removeClass("color").css('color', '<%= @resume.resume_style.primary_color %>');
+        // remove all classes with prefix....
+        $.each(val.classList,function(index, value) {
+          if(value && value.indexOf("color-")==0) {
+              $(val).removeClass(value);
+          }
+        });
+        $(val).addClass(aa);
+      }
+    });
+
+    // apply secondary color
+    $(".cv-builder .secondary-color").each(function(e,val){
+      var aa = '<%= @resume.resume_style.secondary_color %>';
+      if (aa.charAt(0) == "#") {
+        aa = aa.replace("#","color-");
+      }
+
+      $(val).removeClass("color").css('color', '<%= @resume.resume_style.secondary_color %>');
+      // remove all classes with prefix....
+      $.each(val.classList,function(index, value) {
+        if(value && value.indexOf("color-")==0) {
+            $(val).removeClass(value);
+        }
+      });
+      $(val).addClass(aa);
+    });
+
+  
+</script>
