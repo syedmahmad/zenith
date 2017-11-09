@@ -16,11 +16,6 @@
 
 <script type="text/javascript">
   
-  // update height of inputs 
-  $.each($("textarea"), function(index, el){
-    $(el).height(el.scrollHeight+"px");
-  });
-
   // update underline of header
   if (!<%= @resume.layout.underline %>) {
     $(".cv-builder .heading-area").each(function(e,val){ 

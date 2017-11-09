@@ -317,7 +317,7 @@ ul {
 }
 .heading-area textarea::placeholder {
   font-size: 24px;
-  color: #000;
+  /*color: #000;*/
   font-weight: bold;
 }
 .section-items-holder .section-items-list {
@@ -364,7 +364,7 @@ ul {
 .section-items-holder .section-items-list li h5 .form-group ::placeholder {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #000;
+  /*color: #000;*/
   font-weight: bold;
 }
 .section-items-holder .section-items-list li h6 {
@@ -384,7 +384,7 @@ ul {
 }
 .section-items-holder .section-items-list li h6 .form-group ::placeholder {
   font-size: 1.4rem;
-  color: #000;
+  /*color: #000;*/
   font-weight: normal;
 }
 .education-holder, .languages-holder, .experience-holder {
