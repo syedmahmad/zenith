@@ -4,7 +4,7 @@ class CvBuilderController < ApplicationController
   PDF_MARGINS = {
     bottom: 0,
     left: 0,
-    right: 5,
+    right: 0,
     top: 0,
   }.freeze
 
