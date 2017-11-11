@@ -128,6 +128,10 @@ class CvBuilderController < ApplicationController
       params["resume"]["layout_attributes"]["section_data"] = section_data.values if section_data
     end
 
+    if params[:resume][:header_attributes] && params[:resume][:header_attributes][:avatar].eql?("remove_image")
+      params[:resume][:header_attributes][:avatar] = File.new("#{Rails.root}/public/images/default_avatar.png", "r")
+    end
+
     resume.update!(permitted_params)
     render json: resume
   end

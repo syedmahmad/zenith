@@ -15,6 +15,9 @@ var ProfileImageModal = React.createClass({
     handleClick: function(e){
       this.props.handleClick();
     },
+    handleDelete: function() {
+      this.props.handleDelete();
+    },
     handleImageStyleChange: function(e){
       this.props.handleImageStyleChange(e);
     },
@@ -32,11 +35,12 @@ var ProfileImageModal = React.createClass({
                 <div className="profile-image">
                   <img src={this.props.imgSrc} className={this.props.profileImageStyle}/>
                 </div>
-                <div className="buttons-holder" data-header-id={this.props.headerId}>
-                  <button onClick={this.handleImageStyleChange} data-style="circle">Circle</button>
-                  <button onClick={this.handleImageStyleChange} data-style="rounded">Rounded</button>
-                  <button onClick={this.handleImageStyleChange} data-style="thumbnail">Thumbnail</button>
-                  <button onClick={this.handleClick}>Upload Image</button>
+                <div className="profile-buttons-holder" data-header-id={this.props.headerId}>
+                  <button className="btn btn-default" onClick={this.handleImageStyleChange} data-style="circle">Circle</button>
+                  <button className="btn btn-default" onClick={this.handleImageStyleChange} data-style="rounded">Rounded</button>
+                  <button className="btn btn-default" onClick={this.handleImageStyleChange} data-style="thumbnail">Thumbnail</button>
+                  <button className="btn btn-primary" onClick={this.handleClick}>Upload Image</button>
+                  <button className="btn btn-danger" onClick={this.handleDelete}>Delete Image</button>
                 </div>
               </div>
             </div>

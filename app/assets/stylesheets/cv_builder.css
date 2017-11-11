@@ -278,10 +278,17 @@ ul {
   margin-bottom: 30px;
 }
 .profile-image {
+  min-width: 150px;
   max-width: 150px;
   max-height: 150px;
+  min-height: 150px;
   border-radius: 100%;
   margin: 0 auto;
+}
+.profile-buttons-holder {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 15px;
 }
 .column {
   padding: 4px 0;

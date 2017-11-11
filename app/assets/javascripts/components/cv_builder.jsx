@@ -30,7 +30,7 @@ var CvBuilder = React.createClass({
     });
 
     $(document).on("click", function(e){
-      if(!$(e.target).data("calenderTarget") && !$(e.target).parents().hasClass("calendar-holder")){
+      if(!$(e.target).data("calenderTarget") && !$(e.target).parents().hasClass("calendar-holder") && !$(e.target).parents().hasClass("ui-datepicker-header")){
         $(".calendar-holder").hide();
       }
       if(!$(e.target).parents().hasClass("icon-holder")){

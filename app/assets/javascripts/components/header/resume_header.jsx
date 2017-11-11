@@ -68,6 +68,16 @@ var ResumeHeader = React.createClass({
     $('#img_selector').show().focus().trigger('click');
   },
 
+  handleDelete: function() {
+    this.setState({
+        imgSrc: "/images/default_avatar.png"
+    })
+    
+    params = {id: this.props.header.id, avatar: "remove_image"};
+    
+    this.props.updateResume({resume: {header_attributes: params}});
+  },
+
   handleShowHide: function(e){
     e.preventDefault();
     $(e.target).closest(".personal-info").find(".show_hide_section").show()
@@ -219,7 +229,7 @@ var ResumeHeader = React.createClass({
               </div>
            </div>
         </section>
-        <ProfileImageModal headerId={this.state.header.id} handleImageStyleChange={this.handleImageStyleChange} profileImageStyle={profileImageStyle} imgSrc={this.state.imgSrc} handleClick={this.handleClick}/>
+        <ProfileImageModal headerId={this.state.header.id} handleImageStyleChange={this.handleImageStyleChange} profileImageStyle={profileImageStyle} imgSrc={this.state.imgSrc} handleDelete={this.handleDelete} handleClick={this.handleClick}/>
       </div>
     )
   }
