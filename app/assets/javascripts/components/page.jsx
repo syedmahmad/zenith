@@ -4,7 +4,7 @@ var Page = React.createClass({
 
     return (
       <div className="col-xs-12">
-        <div className="page-holder bg-color page" style={{backgroundImage: "url(/assets/"+this.props.resumeStyle.background_img+")"}}>
+        <div className="page-holder bg-color page" data-page-index={this.props.page_index} style={{backgroundImage: "url(/assets/"+this.props.resumeStyle.background_img+")"}}>
           <div className="cv-builder full-layout">
             {this.props.page_index == 1 && <ResumeHeader handleShowHideChange={this.props.handleShowHideChange} header={this.props.header} updateResume={this.props.updateResume}/>}
             {data}

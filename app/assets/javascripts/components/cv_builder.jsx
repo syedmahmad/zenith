@@ -162,12 +162,23 @@ var CvBuilder = React.createClass({
                         }
                         return a;
                     });
-        // sectionData.push({name: lastElm, page: index + 1});
+        params = {id: _this.props.resume.layout.id,"section_data": sectionData, "pages": pages};
+        _this.updateResume({resume: {layout_attributes: params}});
         _this.setState({pages: pages, sectionData: sectionData});
       }else{
-        if($(elem).find(".section-items").length == 0){
-          elem.remove();
-          _this.setState({pages: _this.state.pages - 1});
+        if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
+          pageIndex = $(elem).data("pageIndex");
+          sectionData = $.grep(_this.state.sectionData, function (a) {
+            currentPageInex = parseInt(a.page);
+            if ((currentPageInex + 1) > pageIndex) {
+              a.page =  (currentPageInex - 1).toString();
+            }
+            return a;
+          });
+          params = {id: _this.props.resume.layout.id,"section_data": sectionData, "pages": _this.state.pages - 1};
+          _this.updateResume({resume: {layout_attributes: params}});
+
+          _this.setState({pages: _this.state.pages - 1, sectionData: sectionData});
         }
       }
     });

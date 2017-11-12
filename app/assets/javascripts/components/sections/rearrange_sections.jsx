@@ -7,7 +7,6 @@ var RearrangeSections = React.createClass({
     sectionData = this.props.sectionData
     layoutSections = this.props.sections
 
-    var sectionsHash = {"Achievements":{height: "180px", width: "100px", backgroundColor: "red", color: "#fff"}, "Courses":{height: "180px", width: "90px", backgroundColor: "blue", color: "#fff"}, "Education":{height: "180px", width: "130px", backgroundColor: "black", color: "#fff"}};
     var data = [];
     var data_1 = []
     var data_right = [];
