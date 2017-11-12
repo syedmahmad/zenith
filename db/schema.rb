@@ -253,7 +253,7 @@ ActiveRecord::Schema.define(version: 20171107222414) do
 
   create_table "technologies", force: :cascade do |t|
     t.string   "name",             default: "",   null: false
-    t.text     "tec_names",        default: [],                array: true
+    t.string   "tec_names",        default: "",   null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "resume_id"

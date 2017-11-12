@@ -36,11 +36,15 @@ var ProfileImageModal = React.createClass({
                   <img src={this.props.imgSrc} className={this.props.profileImageStyle}/>
                 </div>
                 <div className="profile-buttons-holder" data-header-id={this.props.headerId}>
-                  <button className="btn btn-default" onClick={this.handleImageStyleChange} data-style="circle">Circle</button>
-                  <button className="btn btn-default" onClick={this.handleImageStyleChange} data-style="rounded">Rounded</button>
-                  <button className="btn btn-default" onClick={this.handleImageStyleChange} data-style="thumbnail">Thumbnail</button>
-                  <button className="btn btn-primary" onClick={this.handleClick}>Upload Image</button>
-                  <button className="btn btn-danger" onClick={this.handleDelete}>Delete Image</button>
+                  <div className="row nav-row">
+                    <button className="btn btn-default" onClick={this.handleImageStyleChange} data-style="circle">Circle</button>
+                    <button className="btn btn-default" onClick={this.handleImageStyleChange} data-style="rounded">Rounded</button>
+                    <button className="btn btn-default" onClick={this.handleImageStyleChange} data-style="thumbnail">Thumbnail</button>
+                  </div>
+                  <div className="row nav-row">
+                    <button className="btn btn-primary" onClick={this.handleClick}>Upload Image</button>
+                    <button className="btn btn-danger" onClick={this.handleDelete}>Delete Image</button>
+                  </div>
                 </div>
               </div>
             </div>
