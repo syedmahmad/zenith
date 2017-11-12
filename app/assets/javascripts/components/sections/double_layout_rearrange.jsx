@@ -10,16 +10,13 @@ var DoubleLayoutRearrange = React.createClass({
     sections = _this.props.layoutSections
     selectedSections = this.props.selectedSections
 
-    right_col_data.forEach(function(section) {
-      if($.inArray(section, selectedSections) > -1){
+    sections.forEach(function(section) {
+      if($.inArray(section, right_col_data) > -1){
         section = section.substr(0,1).toUpperCase()+section.substr(1);
         key = "rearrange" + section + "holder";
         data_right.push(<div className="rearrange-section-item" data-toggle="tooltip" title={section} key={key} data-section-name={section}>{section}</div>);
       }
-    });
-
-    left_col_data.forEach(function(section) {
-      if($.inArray(section, selectedSections) > -1){
+      else if($.inArray(section, left_col_data) > -1){
         section = section.substr(0,1).toUpperCase()+section.substr(1);
         key = "rearrange" + section + "holder";
         data_left.push(<div className="rearrange-section-item" data-toggle="tooltip" title={section} key={key} data-section-name={section}>{section}</div>);

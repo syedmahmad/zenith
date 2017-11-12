@@ -29,7 +29,6 @@ var RearrangeSections = React.createClass({
           }
         }
       });
-
       if(_this.props.layout_type == "double"){
         key = "double-page"+i;
         data.push(<DoubleLayoutRearrange page={i} data_right={data_right} data_left={data_left} layoutSections={layoutSections} selectedSections={selectedSections}  key={key}/>);
