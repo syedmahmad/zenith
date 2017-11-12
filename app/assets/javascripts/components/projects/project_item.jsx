@@ -128,13 +128,15 @@ var ProjectItem = React.createClass({
   },
 
   removeOutcome: function(index){
-    var outcomes = this.state.outcomes;
-    outcomes.splice(index, 1);
-    this.setState({outcomes: outcomes});
-    var params = {outcomes: outcomes, "id": this.state.project.id}
-    this.props.updateResume(
-      {resume: {projects_attributes: params}}
-    );
+    if (this.state.outcomes.length != 1) {
+      var outcomes = this.state.outcomes;
+      outcomes.splice(index, 1);
+      this.setState({outcomes: outcomes});
+      var params = {outcomes: outcomes, "id": this.state.project.id}
+      this.props.updateResume(
+        {resume: {projects_attributes: params}}
+      );
+    }
   },
 
   render: function() {

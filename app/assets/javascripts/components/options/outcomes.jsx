@@ -11,16 +11,20 @@ var Outcomes = React.createClass({
     if (e.which == enterKey){
       e.target.blur();
       this.props.addNewOutcome(e);
-    } else if(e.which == 8 && !$(e.target).val().trim()){
+    } else if(e.which == 8 && !$(e.target).val().replace(/(\r\n|\n|\r)/gm,"")){
       index = $(e.target).data("index");
       this.props.removeOutcome(index);
     }
   },
   componentDidUpdate: function(){
     this.props.adjustTextFields();
+    $(ReactDOM.findDOMNode(this)).find(".form-control").focus();
   },
   componentDidMount: function(){
     this.props.adjustTextFields();
+    if (this.props.outcome == "") {
+      $(ReactDOM.findDOMNode(this)).find(".form-control").focus();
+    }
   },
 
   render: function() {
