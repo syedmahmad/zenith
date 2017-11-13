@@ -17,7 +17,7 @@
         <ul>
           <% @resume.educations.each do |education|%>
             <li class="section-item col-xs-12">
-              <div class="education-holder">
+              <div class="education-holder row">
                 <div class="heading-section col-xs-8 pl-0">
                    <div class="title-position">
                       <div class="form-group mb-0">
@@ -34,7 +34,7 @@
                         <textArea
                           type="string"
                           name="university_name"
-                          class="form-control secondary-color sub-color-area"
+                          class="form-control line-height-26 secondary-color sub-color-area"
                           placeholder="School or University"
                         ><%= education.university_name %></textArea>
                       </div>

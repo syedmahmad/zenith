@@ -29,7 +29,7 @@ class CvBuilderController < ApplicationController
     # session["cv"] = params[:cv_data]
     # render json: true
     @levelHash = {0 => "Beginner", 20 => "Intermediate", 40 => "Advanced", 60 => "Proficient", 80 => "Excellent", 100 => "Native"}
-    @resume = Resume.first
+    @resume = current_user.resumes.last
     @header = @resume.header
     @layout = @resume.layout
     @achievements = @resume.achievements
@@ -37,7 +37,7 @@ class CvBuilderController < ApplicationController
 
   def download
     @levelHash = {0 => "Beginner", 20 => "Intermediate", 40 => "Advanced", 60 => "Proficient", 80 => "Excellent", 100 => "Native"}
-    @resume = Resume.first
+    @resume = current_user.resumes.last
     @header = @resume.header
     @layout = @resume.layout
     @achievements = @resume.achievements
@@ -53,7 +53,7 @@ class CvBuilderController < ApplicationController
           page_height: '10.5in', 
           page_width: '7in',
           disable_smart_shrinking:  false,
-          show_as_html: true,
+          # show_as_html: true,
           template:  'cv_builder/download.pdf.erb'
           # disposition: 'attachment'
       end
