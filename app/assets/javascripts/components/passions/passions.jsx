@@ -74,7 +74,7 @@ var Passions = React.createClass({
     var _this = this;
     passions.forEach(function(passion) {
       key = "passion-" + passion.id;
-      data.push(<PassionItem handleShowHideChange={_this.props.handleShowHideChange} passion={passion} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      data.push(<PassionItem total={_this.state.passions.length} handleShowHideChange={_this.props.handleShowHideChange} passion={passion} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
     });
     
     return (

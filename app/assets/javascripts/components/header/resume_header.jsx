@@ -87,7 +87,7 @@ var ResumeHeader = React.createClass({
   },
   handleImageStyleChange: function(e){
     style = $(e.target).data("style");
-    params = {"image_style": style, "id": $(e.target).closest(".buttons-holder").data("headerId")};
+    params = {"image_style": style, "id": $(e.target).closest(".profile-buttons-holder").data("headerId")};
     this.updateHeader(params);
     this.setState({imageStyle: style});
   },
