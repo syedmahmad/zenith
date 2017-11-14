@@ -16,8 +16,9 @@ var Summary = React.createClass({
 
   componentDidUpdate: function(){
     this.adjustTextFields();
+    this.props.setupLayout();
   },
-
+  
   componentDidMount: function(){
     var _this = this;
     // show setting and camera buttons

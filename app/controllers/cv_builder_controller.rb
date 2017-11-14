@@ -43,6 +43,40 @@ class CvBuilderController < ApplicationController
     @achievements = @resume.achievements
     # @html = render_to_string(:template => "cv_builder/show", :locale => {"resume": @resume, "host": @host},:formats=> [:html])
     # @html = session["cv"].html_safe
+
+    @left_col_data = {}
+    @right_col_data = {}
+    @single_layout_data = {}
+
+    (0..@resume.pages - 1).each do |i|
+      @single_layout_data[i] = []
+      @left_col_data[i] = []
+      @right_col_data[i] = []
+      page_left = []
+      page_right = []
+      single_layout = []
+      @layout.section_data.each do |item|
+        if item["page"].to_i == i
+          single_layout << item["name"]
+          if item["column"].to_i == 0
+            page_left << item["name"]
+          else
+            page_right << item["name"]
+          end
+        end
+      end
+
+      @layout.section_names.each do |section|
+        @single_layout_data[i] << section if single_layout.include?(section)
+        if page_left.include?(section)
+          @left_col_data[i] << section
+        elsif page_right.include?(section)
+          @right_col_data[i] << section
+        end
+      end
+    end
+
+
     respond_to do |format|
       format.pdf do
         render pdf: "download",

@@ -83,7 +83,7 @@ var Projects = React.createClass({
     var _this = this;
     projects.forEach(function(project) {
       key = "project-" + project.id;
-      data.push(<ProjectItem total={_this.state.projects.length} handleShowHideChange={_this.props.handleShowHideChange} project={project} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      data.push(<ProjectItem setupLayout={_this.props.setupLayout} total={_this.state.projects.length} handleShowHideChange={_this.props.handleShowHideChange} project={project} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
     });
     
     return (

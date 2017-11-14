@@ -18,13 +18,14 @@ var Outcomes = React.createClass({
   },
   componentDidUpdate: function(){
     this.props.adjustTextFields();
-    $(ReactDOM.findDOMNode(this)).find(".form-control").focus();
+    $(ReactDOM.findDOMNode(this)).closest(".column").find("textarea[name='outcomes']").last().focus();
+    this.props.setupLayout();
   },
   componentDidMount: function(){
     this.props.adjustTextFields();
-    if (this.props.outcome == "") {
-      $(ReactDOM.findDOMNode(this)).find(".form-control").focus();
-    }
+    // if (this.props.outcome == "") {
+    //   $(ReactDOM.findDOMNode(this)).find(".form-control").focus();
+    // }
   },
 
   render: function() {

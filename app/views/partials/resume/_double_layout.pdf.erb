@@ -8,21 +8,13 @@
     <% end %>
     <div>
       <div class="resume-col-left">
-        <% @resume.layout.section_data.each do |item| %>
-          <% if item[:page].to_i == page %>
-            <% if item[:column].to_i == 0 %>
-              <%= render "partials/resume/#{item[:name].downcase}" %>
-            <%end %>
-          <% end %>
+        <% @left_col_data[page].each do |item| %>
+          <%= render "partials/resume/#{item.downcase}" %>
         <% end %>
       </div>
       <div class="resume-col-right">
-        <% @resume.layout.section_data.each do |item| %>
-          <% if item[:page].to_i == page %>
-            <% if item[:column].to_i == 1 %>
-              <%= render "partials/resume/#{item[:name].downcase}" %>
-            <%end %>
-          <% end %>
+        <% @right_col_data[page].each do |item| %>
+          <%= render "partials/resume/#{item.downcase}" %>
         <% end %>
       </div>
     </div>

@@ -400,14 +400,14 @@ var CvBuilder = React.createClass({
       });
       if(_this.state.layout_type == "double"){
         key = "double-page"+i;
-        data.push(<Double handleShowHideChange={_this.handleShowHideChange} data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+        data.push(<Double setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
       }else{
         _this.state.layoutSections.forEach(function(section) {
           if($.inArray(section, selectedSections) > -1){
             section = section.substr(0,1).toUpperCase()+section.substr(1);
             MyComponent = window[section];
             key = section + "holder"+i;
-            data.push(<MyComponent handleShowHideChange={_this.handleShowHideChange} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+            data.push(<MyComponent setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
           }
         });
       }
