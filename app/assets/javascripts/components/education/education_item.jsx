@@ -231,7 +231,9 @@ var EducationItem = React.createClass({
                </div>
            </div>}
         </div>
-        <div className="sub-section-rearrange"><i className="fa fa-arrows"></i></div>
+        { this.props.total > 1 &&
+          <div className="sub-section-rearrange"><i className="fa fa-arrows"></i></div>
+        }
       </li>
     )
   }

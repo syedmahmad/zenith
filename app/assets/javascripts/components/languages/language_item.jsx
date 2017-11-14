@@ -57,7 +57,9 @@ var LanguageItem = React.createClass({
                 />
              </div>
           </h6>
-          <div className="sub-section-rearrange"><i className="fa fa-arrows"></i></div>
+          { this.props.total > 1 &&
+            <div className="sub-section-rearrange"><i className="fa fa-arrows"></i></div>
+          }
        </li>
     )
   }
