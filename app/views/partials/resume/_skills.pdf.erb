@@ -6,6 +6,7 @@
               <input
                 type="string"
                 name="skill_header"
+                style="height: 30px;"
                 class="form-control primary_font"
                 placeholder="SKILLS"
                 value="SKILLS"
@@ -27,7 +28,7 @@
                 </div>
                 <% if skill.show_level %> 
                   <h6 class="mt-24">
-                     <p class="text-right"><%= skill.level %></p>
+                     <p class="text-right"><%=@levelHash[skill.level.to_i]%></p>
                      <div class="form-group">
                         <input
                           type="range"

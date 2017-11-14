@@ -50,7 +50,7 @@ class CvBuilderController < ApplicationController
           margin: PDF_MARGINS,
           disable_javascript: false,
           page_size: nil,
-          page_height: '10.5in', 
+          page_height: '11.2in', 
           page_width: '7in',
           disable_smart_shrinking:  false,
           # show_as_html: true,

@@ -847,3 +847,7 @@ input:checked + .slider:before {
 .circle {
   border-radius: 50%;
 }
+.thumbnail {
+  border-radius: 0%; 
+  max-height: 167px;
+}

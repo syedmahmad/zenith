@@ -206,9 +206,11 @@
   font-size: 40px;
   /*color: #000;*/
   font-weight: bold;
+  margin-bottom: -6px !important;
 }
 .page-holder .full-name .form-control::placeholder {
   font-size: 40px;
+  margin-bottom: -6px !important;
   /*color: #000;*/
   font-weight: bold;
   vertical-align: top;
@@ -231,6 +233,7 @@
 
 .page-holder .job-title {
   position: relative;
+  margin-top: 15px !important;
 }
 .page-holder .job-title .form-control {
   font-size: 24px;
@@ -299,8 +302,8 @@ ul {
 }
 .heading-area {
   border-bottom: 3px solid #000;
-  margin-bottom: 10px;
-  flex-wrap: nowrap;
+  margin-bottom: 15px;
+  padding-bottom: 3px;
 }
 .heading-area.remove-border{
   border-bottom: 0px !important;
@@ -485,9 +488,10 @@ ul {
   display: none !important;
 }
 .page{
+  page-break-inside: avoid;
   padding: 60px;
   width: 940px;
-  height: 1388px
+  height: 1499px;
 }
 .cv-builder .section-item{
   position: relative;
@@ -902,7 +906,8 @@ input[type="range"]::-webkit-slider-thumb {
   height: 1.5em;
   width: 1.5em;
   position: relative;
-  background: -webkit-repeating-linear-gradient(-25deg, #000, #000, #00a7dd 5px, #00a7dd 8px);
+  background: #d3d3d3; 
+  /*-webkit-repeating-linear-gradient(-25deg, #000, #000, #00a7dd 5px, #00a7dd 8px);*/
 }
 
 input[type='number'] {
