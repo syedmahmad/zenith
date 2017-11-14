@@ -53,9 +53,9 @@ class CvBuilderController < ApplicationController
           page_height: '11.2in', 
           page_width: '7in',
           disable_smart_shrinking:  false,
+          template:  'cv_builder/download.pdf.erb',
+          disposition: 'attachment'
           # show_as_html: true,
-          template:  'cv_builder/download.pdf.erb'
-          # disposition: 'attachment'
       end
     end
   end
