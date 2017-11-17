@@ -31,7 +31,7 @@ gem 'wkhtmltopdf-binary', '~> 0.12.3'
 
 gem "font-awesome-rails"
 gem 'react-rails'
-gem 'devise'
+
 gem "paperclip", "~> 5.0.0"
 gem 'paperclip-azure', '~> 1.0'
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -68,4 +68,10 @@ group :development do
   gem 'spring'
 end
 
-gem 'omniauth-facebook'
+# login-with-multiple-providers-devise-via-omniauth
+gem 'devise'
+gem 'omniauth-facebook', '= 4.0.0'
+gem 'omniauth-twitter'
+gem 'omniauth-linkedin'
+gem 'omniauth-github'
+gem "omniauth-google-oauth2"
