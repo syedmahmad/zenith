@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, :only => []
   def create
+    puts "RegistrationsController ...............\n"*100
     # adding custom create logic...
     if current_user.user_type.eql?("guest")
       current_user.update_attributes(user_name: params[:user_name], email: params[:email], password: params[:password], user_type: "account")

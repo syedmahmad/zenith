@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users,controllers: {sessions: "sessions", registrations: "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
+  # devise_for :users,controllers: {sessions: "sessions", registrations: "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
+  
+  devise_for :users, :controllers => { sessions: 'sessions', registrations: 'registrations', omniauth_callbacks: "omniauth_callbacks", confirmations: "confirmations" }
+  # as :user do
+  #    get 'login' => 'sessions#new', :as => "login"
+  #    get 'signup' => 'registrations#new', :as => "signup"  
+  #    get 'signout' => 'devise/sessions#destroy', :as => "signout"
+  # end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
