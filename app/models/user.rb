@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   
   devise :database_authenticatable, :registerable, :omniauthable,
-          :recoverable, :rememberable, :trackable, :validatable
+          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
   has_many :resumes
 
   # user_omniauth_authorize_path(provider)

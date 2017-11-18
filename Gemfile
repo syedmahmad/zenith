@@ -70,7 +70,7 @@ end
 
 # login-with-multiple-providers-devise-via-omniauth
 gem 'devise'
-gem 'omniauth-facebook', '= 4.0.0'
+gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-twitter'
 gem 'omniauth-linkedin'
 gem 'omniauth-github'
