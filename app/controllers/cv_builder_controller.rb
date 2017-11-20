@@ -9,7 +9,7 @@ class CvBuilderController < ApplicationController
   }.freeze
 
   def index
-    # flash[:success ] = "Success Flash Message: Welcome to GentellelaOnRails"
+    flash[:success ] = "Welcome to zenithcv"
     if current_user
       @resumes = current_user.resumes
       @resume_ids = @resumes.pluck("id")
