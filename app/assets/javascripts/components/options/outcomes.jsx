@@ -18,7 +18,7 @@ var Outcomes = React.createClass({
   },
   componentDidUpdate: function(){
     this.props.adjustTextFields();
-    $(ReactDOM.findDOMNode(this)).closest(".column").find("textarea[name='outcomes']").last().focus();
+    // $(ReactDOM.findDOMNode(this)).find(".form-control").focus()
     this.props.setupLayout();
   },
   componentDidMount: function(){

@@ -87,3 +87,7 @@ textarea{
 .sub-color-area {
   font-weight: bold;
 }
+.invalid-field
+{
+    border: 1px solid red !important; 
+}

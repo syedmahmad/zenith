@@ -29,6 +29,7 @@ var ProjectItem = React.createClass({
     datePicker2 = ".date-picker2-pro-" + _this.state.project.id;
     $(document).find(datePicker1).datepicker({
       dateFormat: 'mm / yy',
+      maxDate: new Date,
       onSelect: function (dateText, inst) {
          _this.updateStartDate(dateText, inst);
       }
@@ -74,7 +75,14 @@ var ProjectItem = React.createClass({
 
     startDate = this.state.duration.split("-")[0];
     endDate = dateText.replace(/\s+/g, '');
-    duration = startDate.replace(/\s+/g, '');;
+    duration = startDate.replace(/\s+/g, '');
+    
+    datePicker2 = ".date-picker2-pro-" + this.state.project.id;
+    if (new Date(parseInt(endDate.split("/")[1]), parseInt(endDate.split("/")[0])) < new Date(parseInt(duration.split("/")[1]), parseInt(duration.split("/")[0]))){
+      $(document).find(datePicker2).addClass("invalid-field");
+    } else {
+      $(document).find(datePicker2).removeClass("invalid-field");
+    }
     if(endDate != "undefined" && typeof(endDate) != "undefined"){
       duration = duration + " - " + endDate;
     }
