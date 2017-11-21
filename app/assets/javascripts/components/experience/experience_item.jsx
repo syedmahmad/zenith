@@ -21,6 +21,8 @@ var ExperienceItem = React.createClass({
   },
   componentDidUpdate: function(){
     this.adjustTextFields();
+    this.props.updateStyle();
+    this.props.setupLayout();
   },
   componentDidMount: function(){
     var _this = this;

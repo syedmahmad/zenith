@@ -22,6 +22,7 @@ var EducationItem = React.createClass({
   },
   componentDidUpdate: function(){
     this.adjustTextFields();
+    this.props.setupLayout();
   },
   componentDidMount: function(){
     var _this = this;
