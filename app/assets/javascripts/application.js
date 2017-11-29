@@ -42,6 +42,6 @@
 
 //= require  js/nprogress.js
 
-//= require flash.js
 //= require onboarding.js
 //= require modernizr
+//= require flash.js

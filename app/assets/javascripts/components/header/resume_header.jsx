@@ -28,6 +28,12 @@ var ResumeHeader = React.createClass({
       }.bind(this);
   },
 
+  updateCroppedImage: function(result) {
+    params = {id: this.props.header.id, avatar: result};
+    
+    this.props.updateResume({resume: {header_attributes: params}});
+  },
+
   componentDidMount: function(){
     var _this = this;
     var show_hide_section_clicked = false;
@@ -85,12 +91,12 @@ var ResumeHeader = React.createClass({
   handleProfileImageClick: function(e){
     $("#profileImageModal").modal('show')
   },
-  handleImageStyleChange: function(e){
-    style = $(e.target).data("style");
-    params = {"image_style": style, "id": $(e.target).closest(".profile-buttons-holder").data("headerId")};
-    this.updateHeader(params);
-    this.setState({imageStyle: style});
-  },
+  // handleImageStyleChange: function(e){
+  //   style = $(e.target).data("style");
+  //   params = {"image_style": style, "id": $(e.target).closest(".profile-buttons-holder").data("headerId")};
+  //   this.updateHeader(params);
+  //   this.setState({imageStyle: style});
+  // },
   updateHeader: function(params){
     this.props.updateResume(
       {resume: {header_attributes: params}}
@@ -98,7 +104,7 @@ var ResumeHeader = React.createClass({
   },
 
   render: function() {
-    profileImageStyle = "img-responsive "+this.state.imageStyle;
+    profileImageStyle = "img-responsive rounded";
     optionsArr = ["show_avatar", "show_email", "show_phone", "show_website_link", "show_location", "show_job_title"]
     showHideOptions = <ShowHideOptions model={this.state.header} section="header" sectionId={this.props.header.id} handleShowHideChange={this.props.handleShowHideChange} options={optionsArr}/>
     return (
@@ -224,12 +230,12 @@ var ResumeHeader = React.createClass({
               </div>
               <div className="col-sm-4">
                  { this.state.header.show_avatar && <div className="profile-image">
-                    <img src={this.state.imgSrc} onClick={this.handleProfileImageClick} className={profileImageStyle}/>
+                    <img id="perfect-size" src={this.state.imgSrc} onClick={this.handleProfileImageClick} className={profileImageStyle}/>
                  </div>}
               </div>
            </div>
         </section>
-        <ProfileImageModal headerId={this.state.header.id} handleImageStyleChange={this.handleImageStyleChange} profileImageStyle={profileImageStyle} imgSrc={this.state.imgSrc} handleDelete={this.handleDelete} handleClick={this.handleClick}/>
+        <ProfileImageModal updateCroppedImage={this.updateCroppedImage} headerId={this.state.header.id} profileImageStyle={profileImageStyle} imgSrc={this.state.imgSrc} handleDelete={this.handleDelete} handleClick={this.handleClick}/>
       </div>
     )
   }
