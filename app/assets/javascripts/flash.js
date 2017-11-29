@@ -665,7 +665,8 @@ $(function() {
         }
 
         self._currentZoom = ui ? ui.value : self._currentZoom;
-        transform.scale = self._currentZoom;
+     
+        transform.scale = 0.5;//self._currentZoom;
         self.elements.zoomer.setAttribute('aria-valuenow', self._currentZoom);
         applyCss();
 
@@ -1201,6 +1202,7 @@ $(function() {
             ctx.closePath();
             ctx.fill();
         }
+        debugger;
         return canvas;
     }
 
