@@ -10,24 +10,6 @@ var ResumeHeader = React.createClass({
     this.setState({[e.target.name]: e.target.value});
   },
 
-  _onChange: function(e){
-    // Assuming only image
-    _this =  this;
-    var file = this.refs.file.files[0];
-    var reader = new FileReader();
-    var url = reader.readAsDataURL(file);
-
-     reader.onloadend = function (e) {
-        this.setState({
-            imgSrc: [reader.result]
-        });
-    
-        params = {id: this.props.header.id, avatar: reader.result};
-        
-        this.props.updateResume({resume: {header_attributes: params}});
-      }.bind(this);
-  },
-
   updateCroppedImage: function(result) {
     params = {id: this.props.header.id, avatar: result};
     this.setState({
@@ -73,8 +55,13 @@ var ResumeHeader = React.createClass({
     this.updateHeader(params);
   },    
 
-  handleClick: function(e) {
-    $('#img_selector').show().focus().trigger('click');
+  saveImage: function(url) {
+    this.setState({
+        imgSrc: [url]
+    });
+    params = {id: this.props.header.id, avatar: url};
+    this.props.updateResume({resume: {header_attributes: params}});
+    // $("#profileImageModal").modal('show');
   },
 
   handleDelete: function() {
@@ -113,18 +100,9 @@ var ResumeHeader = React.createClass({
     return (
       <div>
         <section className="personal-info" data-header-id={this.props.header.id}>
-          <div id="edit_able" className="hide-section">  
-             <form hidden>
-               <input 
-                 ref="file"
-                 id="img_selector"
-                 type="file" 
-                 name="user[image]" 
-                 multiple="true"
-                 onChange={this._onChange}/>
-              </form>
+          <div id="edit_able" className="hide-section">
              <a href="javaScript:void(0);" title="">
-             <i aria-hidden="true" className="fa fa-camera" onClick={this.handleClick}></i>
+             <i aria-hidden="true" className="fa fa-camera" onClick={this.handleProfileImageClick}></i>
              </a>
              <a href="javaScript:void(0);" title="">
              <i aria-hidden="true" className="fa fa-cog" onMouseDown={this.handleShowHide}></i>
@@ -238,7 +216,7 @@ var ResumeHeader = React.createClass({
               </div>
            </div>
         </section>
-        <ProfileImageModal updateCroppedImage={this.updateCroppedImage} headerId={this.state.header.id} profileImageStyle={profileImageStyle} imgSrc={this.state.imgSrc} handleDelete={this.handleDelete} handleClick={this.handleClick}/>
+        <ProfileImageModal updateCroppedImage={this.updateCroppedImage} headerId={this.state.header.id} profileImageStyle={profileImageStyle} imgSrc={this.state.imgSrc} handleDelete={this.handleDelete} saveImage={this.saveImage}/>
       </div>
     )
   }

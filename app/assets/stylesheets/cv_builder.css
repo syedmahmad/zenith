@@ -285,17 +285,17 @@ ul {
   border-radius: 100%;
   margin: 0 auto;
 }
-.modal-profile-image {
+/*.modal-profile-image {
   min-width: 150px;
   max-width: 150px;
   max-height: 150px;
   min-height: 150px;
   border-radius: 100%;
   margin: 6px 0 0 347px;
-}
+}*/
 .profile-buttons-holder {
   text-align: center;
-  margin: 150px 0 28px 379px;
+  /*margin: 150px 0 28px 379px;*/
 }
 .column {
   padding: 4px 0;
