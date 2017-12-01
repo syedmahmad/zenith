@@ -31,7 +31,7 @@ var ResumeHeader = React.createClass({
   updateCroppedImage: function(result) {
     params = {id: this.props.header.id, avatar: result};
     this.setState({
-        imgSrc: [reader.result]
+        imgSrc: [result]
     });
     
     this.props.updateResume({resume: {header_attributes: params}});
@@ -92,7 +92,7 @@ var ResumeHeader = React.createClass({
     $(e.target).closest(".personal-info").find(".show_hide_section").show()
   },
   handleProfileImageClick: function(e){
-    $("#profileImageModal").modal('show')
+    $("#profileImageModal").modal('show');
   },
   // handleImageStyleChange: function(e){
   //   style = $(e.target).data("style");

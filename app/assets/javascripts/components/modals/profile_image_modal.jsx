@@ -3,10 +3,14 @@ var ProfileImageModal = React.createClass({
       return { isModalOpen: true };
     },
     componentDidMount: function(){
-      this.setupImageCropping();
+      var _this = this;
+      // Initialize Croppie after modal is shown otherwise zoom value disturbed
+      $("#profileImageModal").on('shown.bs.modal', function () {
+          _this.setupImageCropping();
+       });
     },
     componentDidUpdate: function(){
-      this.setupImageCropping();
+      // this.setupImageCropping();
     },
     setupImageCropping: function() {
       var el = $('.crop-area')[0];
@@ -17,7 +21,7 @@ var ProfileImageModal = React.createClass({
           viewport: { width: 200, height: 200 },
           boundary: { width: 300, height: 300 },
           enableZoom: true,
-          showZoomer: true,
+          showZoomer: false,
           enableResize: true,
           enableOrientation: true
       });
@@ -26,17 +30,17 @@ var ProfileImageModal = React.createClass({
     },
     resultantImage: function() {
       var _this = this;
-      debugger;
       this.vanilla.result('base64','original').then(function (resp) {
         _this.props.updateCroppedImage(resp);
       });
-      this.setState({ isModalOpen: false })
+      $("#profileImageModal").modal('hide');
     },
     openModal: function() {
       this.setState({ isModalOpen: true });
     },
 
     closeModal: function() {
+      debugger;
       this.setState({ isModalOpen: false });
     },
     handleClick: function(e){
@@ -46,6 +50,7 @@ var ProfileImageModal = React.createClass({
       this.props.handleDelete();
     },
     render: function() {
+      
       return (
         <div className="modal fade" id="profileImageModal" role="dialog">
           <div className="modal-dialog modal-lg">

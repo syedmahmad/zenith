@@ -22,7 +22,7 @@ $(function() {
         // Browser globals
         factory((root.commonJsStrict = {}));
     }
-}(this, function (exports) {
+    }(this, function (exports) {
 
     /* Polyfills */
     if (typeof Promise !== 'function') {
@@ -285,7 +285,7 @@ $(function() {
     }
 
     function drawCanvas(canvas, img, orientation) {
-        
+
         var width = img.width,
             height = img.height,
             ctx = canvas.getContext('2d');
@@ -589,11 +589,15 @@ $(function() {
     }
 
     function _setZoomerVal(v) {
-        if (this.options.enableZoom) {
-            var z = this.elements.zoomer,
-                val = fix(v, 4);
+        // if (this.options.enableZoom) {
+        //     var z = this.elements.zoomer,
+        //         val = fix(v, 4);
 
-            z.value = Math.max(z.min, Math.min(z.max, val));
+        //     z.value = Math.max(z.min, Math.min(z.max, val));
+        // }
+        if (this.options.enableZoom) {
+           var z = this.elements.zoomer;
+           z.value = Math.min(z.max, Math.max(z.min, fix(v, 4)));
         }
     }
 
