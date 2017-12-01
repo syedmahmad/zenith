@@ -285,6 +285,7 @@ $(function() {
     }
 
     function drawCanvas(canvas, img, orientation) {
+        
         var width = img.width,
             height = img.height,
             ctx = canvas.getContext('2d');
@@ -450,6 +451,7 @@ $(function() {
     }
 
     function _initializeResize () {
+        
         var self = this;
         var wrap = document.createElement('div');
         var isDragging = false;
@@ -665,8 +667,7 @@ $(function() {
         }
 
         self._currentZoom = ui ? ui.value : self._currentZoom;
-     
-        transform.scale = 0.5;//self._currentZoom;
+        transform.scale = self._currentZoom;
         self.elements.zoomer.setAttribute('aria-valuenow', self._currentZoom);
         applyCss();
 
@@ -701,6 +702,7 @@ $(function() {
     }
 
     function _getVirtualBoundaries(viewport) {
+        
         var self = this,
             scale = self._currentZoom,
             vpWidth = viewport.width,
@@ -742,6 +744,7 @@ $(function() {
     }
 
     function _updateCenterPoint() {
+        
         var self = this,
             scale = self._currentZoom,
             data = self.elements.preview.getBoundingClientRect(),
@@ -769,6 +772,7 @@ $(function() {
     }
 
     function _initDraggable() {
+        // 
         var self = this,
             isDragging = false,
             originalX,
@@ -991,7 +995,7 @@ $(function() {
             initialZoom = 1,
             cssReset = {},
             img = self.elements.preview,
-            imgData = self.elements.preview.getBoundingClientRect(),
+            imgData = null,
             transformReset = new Transform(0, 0, initialZoom),
             originReset = new TransformOrigin(),
             isVisible = _isVisible.call(self);
@@ -1006,6 +1010,8 @@ $(function() {
         cssReset[CSS_TRANS_ORG] = originReset.toString();
         cssReset['opacity'] = 1;
         css(img, cssReset);
+
+        imgData = self.elements.preview.getBoundingClientRect();
 
         self._originalImageWidth = imgData.width;
         self._originalImageHeight = imgData.height;
@@ -1150,12 +1156,14 @@ $(function() {
             canvasWidth = outWidth,
             canvasHeight = outHeight,
             customDimensions = (data.outputWidth && data.outputHeight),
-            outputRatio = 1;
+            outputWidthRatio = 1;
+            outputHeightRatio = 1;
 
         if (customDimensions) {
             canvasWidth = data.outputWidth;
             canvasHeight = data.outputHeight;
-            outputRatio = canvasWidth / outWidth;
+            outputWidthRatio = canvasWidth / outWidth;
+            outputHeightRatio = canvasHeight / outHeight;
         }
 
         canvas.width = canvasWidth;
@@ -1163,8 +1171,9 @@ $(function() {
 
         if (data.backgroundColor) {
             ctx.fillStyle = data.backgroundColor;
-            ctx.fillRect(0, 0, outWidth, outHeight);
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
         }
+
 
         // start fixing data to send to draw image for enforceBoundary: false
         if (!self.options.enforceBoundary) {
@@ -1185,15 +1194,18 @@ $(function() {
                 outHeight = height;
             }
         }
-
-        if (outputRatio !== 1) {
-            startX *= outputRatio;
-            startY *= outputRatio;
-            outWidth *= outputRatio;
-            outHeight *= outputRatio;
+        else{
+           width=Math.min(width, self._originalImageWidth);
+           height=Math.min(height, self._originalImageHeight)
         }
 
-        ctx.drawImage(this.elements.preview, left, top, Math.min(width, self._originalImageWidth), Math.min(height, self._originalImageHeight), startX, startY, outWidth, outHeight);
+        if (outputWidthRatio !== 1 || outputHeightRatio !== 1) {
+            startX *= outputWidthRatio;
+            startY *= outputHeightRatio;
+            outWidth *= outputWidthRatio;
+            outHeight *= outputHeightRatio;
+        }
+        ctx.drawImage(this.elements.preview, left, top, width, height, startX, startY, outWidth, outHeight);
         if (circle) {
             ctx.fillStyle = '#fff';
             ctx.globalCompositeOperation = 'destination-in';
@@ -1202,7 +1214,6 @@ $(function() {
             ctx.closePath();
             ctx.fill();
         }
-        debugger;
         return canvas;
     }
 

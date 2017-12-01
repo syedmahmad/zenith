@@ -20,7 +20,7 @@ var ResumeHeader = React.createClass({
      reader.onloadend = function (e) {
         this.setState({
             imgSrc: [reader.result]
-        })
+        });
     
         params = {id: this.props.header.id, avatar: reader.result};
         
@@ -30,6 +30,9 @@ var ResumeHeader = React.createClass({
 
   updateCroppedImage: function(result) {
     params = {id: this.props.header.id, avatar: result};
+    this.setState({
+        imgSrc: [reader.result]
+    });
     
     this.props.updateResume({resume: {header_attributes: params}});
   },
