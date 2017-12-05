@@ -71,9 +71,12 @@ var Quotes = React.createClass({
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
     quotes.forEach(function(quote) {
-      key = "quote-" + quote.id;
-      data.push(<QuoteItem total= {_this.state.quotes.length} handleShowHideChange={_this.props.handleShowHideChange} quote={quote} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      if(page == quote.page){
+        key = "quote-" + quote.id;
+        data.push(<QuoteItem total= {_this.state.quotes.length} handleShowHideChange={_this.props.handleShowHideChange} quote={quote} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      }
     });
     
     return (

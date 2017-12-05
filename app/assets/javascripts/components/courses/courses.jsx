@@ -70,9 +70,12 @@ var Courses = React.createClass({
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
     courses.forEach(function(course) {
-      key = "course-" + course.id;
-      data.push(<CourseItem total={_this.state.courses.length} handleShowHideChange={_this.props.handleShowHideChange} course={course} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      if(page == course.page){
+        key = "course-" + course.id;
+        data.push(<CourseItem total={_this.state.courses.length} handleShowHideChange={_this.props.handleShowHideChange} course={course} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      }
     });
     
     return (

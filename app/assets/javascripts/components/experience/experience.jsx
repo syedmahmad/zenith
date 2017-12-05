@@ -79,9 +79,12 @@ var Experiences = React.createClass({
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
     experiences.forEach(function(experience) {
-      key = "experience-" + experience.id;
-      data.push(<ExperienceItem updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={_this.state.experiences.length} handleShowHideChange={_this.props.handleShowHideChange} experience={experience} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      if(page == experience.page){
+        key = "experience-" + experience.id;
+        data.push(<ExperienceItem updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={_this.state.experiences.length} handleShowHideChange={_this.props.handleShowHideChange} experience={experience} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      }
     });
     
     return (

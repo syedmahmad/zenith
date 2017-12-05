@@ -69,9 +69,12 @@ var Awards = React.createClass({
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
     awards.forEach(function(award) {
-      key = "award-" + award.id;
-      data.push(<AwardItem total={_this.state.awards.length} handleShowHideChange={_this.props.handleShowHideChange} award={award} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      if(page == award.page){
+        key = "award-" + award.id;
+        data.push(<AwardItem total={_this.state.awards.length} handleShowHideChange={_this.props.handleShowHideChange} award={award} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      }
     });
     
     return (

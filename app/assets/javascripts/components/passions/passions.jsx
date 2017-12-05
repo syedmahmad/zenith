@@ -72,9 +72,12 @@ var Passions = React.createClass({
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
     passions.forEach(function(passion) {
-      key = "passion-" + passion.id;
-      data.push(<PassionItem total={_this.state.passions.length} handleShowHideChange={_this.props.handleShowHideChange} passion={passion} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      if(page == passion.page){
+        key = "passion-" + passion.id;
+        data.push(<PassionItem total={_this.state.passions.length} handleShowHideChange={_this.props.handleShowHideChange} passion={passion} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      }
     });
     
     return (

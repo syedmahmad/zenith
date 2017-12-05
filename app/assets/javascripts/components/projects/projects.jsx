@@ -81,9 +81,12 @@ var Projects = React.createClass({
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
     projects.forEach(function(project) {
-      key = "project-" + project.id;
-      data.push(<ProjectItem updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={_this.state.projects.length} handleShowHideChange={_this.props.handleShowHideChange} project={project} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      if(page == project.page){
+        key = "project-" + project.id;
+        data.push(<ProjectItem updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={_this.state.projects.length} handleShowHideChange={_this.props.handleShowHideChange} project={project} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      }
     });
     
     return (

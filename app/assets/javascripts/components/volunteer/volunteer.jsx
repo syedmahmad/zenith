@@ -72,9 +72,13 @@ var Volunteers = React.createClass({
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
     volunteers.forEach(function(volunteer) {
-      key = "volunteer-" + volunteer.id;
-      data.push(<VolunteerItem total={_this.state.volunteers.length} handleShowHideChange={_this.props.handleShowHideChange} volunteer={volunteer} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      debugger;
+      if(page == volunteer.page){
+        key = "volunteer-" + volunteer.id;
+        data.push(<VolunteerItem total={_this.state.volunteers.length} handleShowHideChange={_this.props.handleShowHideChange} volunteer={volunteer} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      }
     });
     
     return (

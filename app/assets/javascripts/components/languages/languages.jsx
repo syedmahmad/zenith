@@ -70,9 +70,12 @@ var Languages = React.createClass({
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
     languages.forEach(function(language) {
-      key = "language-" + language.id;
-      data.push(<LanguageItem total={_this.state.languages.length} handleShowHideChange={_this.props.handleShowHideChange} language={language} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      if(page == language.page){
+        key = "language-" + language.id;
+        data.push(<LanguageItem total={_this.state.languages.length} handleShowHideChange={_this.props.handleShowHideChange} language={language} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      }
     });
     
     return (

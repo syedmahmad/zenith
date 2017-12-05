@@ -116,7 +116,6 @@ var CvBuilder = React.createClass({
       $(val).addClass(aa);
     });
 
-    
     // apply primary_font.. Here no need font-size
     $(".cv-builder .primary_font").each(function(e,val){ 
       $(val).css('font-family', "'"+_this.state.resumeStyle.primary_font+"'");
@@ -141,7 +140,9 @@ var CvBuilder = React.createClass({
     _this = this;
     $.each(elements, function( index, elem ) {
       if(elem.scrollHeight > elem.offsetHeight){
-        var lastElm = $(elem).find(".section-items").last().data("sectionName");
+        var lastElmObj = $(elem).find(".section-items").last();
+        var lastElm = $(lastElmObj).data("sectionName");
+        var elmCol = 0;
         if(_this.state.layout_type == "double"){
           leftCol = $(elem).find(".resume-col-left");
           rightCol = $(elem).find(".resume-col-right");
@@ -149,6 +150,7 @@ var CvBuilder = React.createClass({
           if(leftCol.height() > rightCol.height()){
             lastElm = $(leftCol).find(".section-items").last().data("sectionName");
           }else{
+            elmCol = 1;
             lastElm = $(rightCol).find(".section-items").last().data("sectionName");
           }
         }
@@ -156,14 +158,18 @@ var CvBuilder = React.createClass({
         if(index+1 == pages){
           pages = pages + 1;
         }
-        sectionData = $.grep(_this.state.sectionData, function (a) {
-                        if (a.name == lastElm) {
-                            a.page = index + 1;
-                        }
-                        return a;
-                    });
-        params = {id: _this.props.resume.layout.id,"section_data": sectionData, "pages": pages};
-        _this.updateResume({resume: {layout_attributes: params}});
+        sectionData.push({name: lastElm, page: index + 1, column: elmCol});
+        debugger;
+        var sectionId = $(lastElmObj).find(".section-item").last().data("sectionId");
+
+        // sectionData = $.grep(_this.state.sectionData, function (a) {
+        //                 if (a.name == lastElm) {
+        //                     a.page = index + 1;
+        //                 }
+        //                 return  a;
+        //             });
+        params = {id: _this.props.resume.layout.id,"section_data": sectionData};
+        _this.updateResume({resume: {"pages": pages, layout_attributes: params, [lastElm.toLowerCase()+"_attributes"]: {id: sectionId, page: index + 1}}});
         _this.setState({pages: pages, sectionData: sectionData});
       }else{
         if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
@@ -175,11 +181,19 @@ var CvBuilder = React.createClass({
             }
             return a;
           });
-          params = {id: _this.props.resume.layout.id,"section_data": sectionData, "pages": _this.state.pages - 1};
-          _this.updateResume({resume: {layout_attributes: params}});
+          params = {id: _this.props.resume.layout.id,"section_data": sectionData};
+          _this.updateResume({resume: {"pages": _this.state.pages - 1, layout_attributes: params}});
 
           _this.setState({pages: _this.state.pages - 1, sectionData: sectionData});
         }
+
+        // $.each($(".section-items .section-items-holder"), function( index, elem ) {
+        //   if($(elem).find("li.section-item").length == 0){
+        //     debugger;
+        //     sectionName = $(elem).closest(".section-items").data("sectionName");
+        //     _this.handleRemoveSection(null, sectionName);
+        //   }
+        // });
       }
     });
   },
@@ -202,6 +216,8 @@ var CvBuilder = React.createClass({
   },
   createSubSection: function(formData,sectionName){
     var _this = this;
+    subSectionPage = $(".section-items [data-section-name="+sectionName+"]").last().closest(".page-holder").data("pageIndex");
+    formData["page"] = parseInt(subSectionPage) - 1;
     $.ajax({
       url: (_this.props.host+"resumes/"+_this.props.resume.id+"/create_sub_record"),
       dataType: 'json',
@@ -314,8 +330,13 @@ var CvBuilder = React.createClass({
     this.state.resumeStyle.secondary_color = sec_color;
     this.setState({resumeStyle: this.state.resumeStyle});
   },
-  handleRemoveSection: function(e){
-    var removeSection = $(e.target).data("sectionName");
+  handleRemoveSection: function(e, sectionName=null){
+    var removeSection = null;
+    if(e){
+      removeSection = $(e.target).data("sectionName");
+    }else{
+      removeSection = sectionName;
+    }
     var positionInSections = this.state.layoutSections.indexOf(removeSection);
     var positionInSectionData = null;
     this.state.sectionData.forEach(function(item, index) {
@@ -400,7 +421,7 @@ var CvBuilder = React.createClass({
       });
       if(_this.state.layout_type == "double"){
         key = "double-page"+i;
-        data.push(<Double updateStyle={_this.updateStyle} setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+        data.push(<Double page={i} updateStyle={_this.updateStyle} setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
       }else{
         _this.state.layoutSections.forEach(function(section) {
           if($.inArray(section, selectedSections) > -1){

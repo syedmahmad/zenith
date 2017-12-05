@@ -71,9 +71,12 @@ var Skills = React.createClass({
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
     skills.forEach(function(skill) {
-      key = "skill-" + skill.id;
-      data.push(<SkillItem total={_this.state.skills.length} handleShowHideChange={_this.props.handleShowHideChange} skill={skill} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      if(page == skill.page){
+        key = "skill-" + skill.id;
+        data.push(<SkillItem total={_this.state.skills.length} handleShowHideChange={_this.props.handleShowHideChange} skill={skill} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      }
     });
     
     return (

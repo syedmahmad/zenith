@@ -13,12 +13,12 @@ var DoubleLayoutRearrange = React.createClass({
     sections.forEach(function(section) {
       if($.inArray(section, right_col_data) > -1){
         section = section.substr(0,1).toUpperCase()+section.substr(1);
-        key = "rearrange" + section + "holder";
+        key = "rearrange" + section + "holder" + page;
         data_right.push(<div className="rearrange-section-item" data-toggle="tooltip" title={section} key={key} data-section-name={section}>{section}</div>);
       }
       else if($.inArray(section, left_col_data) > -1){
         section = section.substr(0,1).toUpperCase()+section.substr(1);
-        key = "rearrange" + section + "holder";
+        key = "rearrange" + section + "holder" + page;
         data_left.push(<div className="rearrange-section-item" data-toggle="tooltip" title={section} key={key} data-section-name={section}>{section}</div>);
       }
     });
