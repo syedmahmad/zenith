@@ -166,7 +166,7 @@ class CvBuilderController < ApplicationController
       section_data = params["resume"]["layout_attributes"]["section_data"]
       params["resume"]["layout_attributes"]["section_data"] = section_data.values if section_data
     end
-
+    
     if params[:resume][:header_attributes] && params[:resume][:header_attributes][:avatar].eql?("remove_image")
       params[:resume][:header_attributes][:avatar] = File.new("#{Rails.root}/public/images/default_avatar.png", "r")
     end
