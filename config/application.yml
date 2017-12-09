@@ -6,6 +6,7 @@
 
 development:
   CDN_HOST: "http://localhost:3000/"
+  
   FACEBOKK_APP_ID: "1976550559234614"
   FACEBOKK_APP_SECRET: "6eaa6b78a17b0c823140d0167000d04c"
 

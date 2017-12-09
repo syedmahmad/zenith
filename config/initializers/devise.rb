@@ -16,7 +16,7 @@ Devise.setup do |config|
   config.omniauth :facebook, ENV["FACEBOKK_APP_ID"], ENV["FACEBOKK_APP_SECRET"], token_params: { parse: :json }, :info_fields => 'id,email'
   config.omniauth :twitter, ENV["TWITTER_APP_ID"], ENV["TWITTER_APP_SECRET"]
   config.omniauth :linkedin, ENV["LINKEDIN_APP_ID"], ENV["LINKEDIN_APP_SECRET"]
-  config.omniauth :google_oauth2, ENV["GOOGLE_APP_ID"], ENV["GOOGLE_APP_SECRET"], {access_type: 'online'}
+  config.omniauth :google_oauth2, ENV["GOOGLE_APP_ID"], ENV["GOOGLE_APP_SECRET"]
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 

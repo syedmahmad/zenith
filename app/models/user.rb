@@ -5,30 +5,40 @@ class User < ActiveRecord::Base
   has_many :resumes
 
   def self.from_omniauth(auth)
-   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-     user.provider = auth.provider
-     user.uid = auth.uid
-     user.oauth_token = auth.credentials.token
-     user.first_name = auth.extra.raw_info.first_name
-     user.last_name = auth.extra.raw_info.last_name
+      params = {}
 
-     if auth.provider == "facebook"
-       user.user_name = auth.info.name
-       user.email = auth.extra.raw_info.email
+      params["provider"] = auth.provider
+      params["uid"] = auth.uid
+      params["oauth_token"] = auth.credentials.token
+      params["first_name"] = auth.extra.raw_info.first_name
+      params["last_name"] = auth.extra.raw_info.last_name
+
+      if auth.provider == "facebook"
+        params["user_name"] = auth.info.name
+        if auth.extra.raw_info.email
+          params["email"] = auth.extra.raw_info.email
+        else
+          params["email"] = "#{auth.info.name.gsub(" ","_")}@facebook.com"
+        end
        # Facebook's token doesn't last forever
-       # user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-       user.save
-     elsif auth.provider == "linkedin" || auth.provider == "google_oauth2"
+       # params["oauth_expires_at = Time.at(auth.credentials.expires_at)
+       
+      elsif auth.provider == "linkedin"
        # Google's token doesn't last forever
-       # user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-       user.user_name = auth.info.nickname
-       user.email = auth.info.email
-       user.save
-     elsif auth.provider == "twitter" 
-       user.user_name = auth.extra.raw_info.name
-       user.save
-     end
-   end
+       # params["oauth_expires_at = Time.at(auth.credentials.expires_at)
+        
+        params["user_name"] = auth.info.nickname
+        params["email"] = auth.info.email
+
+      elsif auth.provider == "google_oauth2"
+        params["email"] = auth.info.email
+        params["user_name"] = auth.info.name
+      elsif auth.provider == "twitter" 
+        params["user_name"] = auth.extra.raw_info.name
+        params["email"] = "#{auth.extra.raw_info.name.gsub(" ","_")}@facebook.com"
+      end
+
+      params
   end
 
   def self.new_with_session(params, session)

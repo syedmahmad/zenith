@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
    end
 
+   resources :basic_info, :only => [:new, :edit, :update]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

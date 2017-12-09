@@ -3,6 +3,4 @@
   $.each($("textarea"), function(index, el){
     $(el).height(el.scrollHeight+"px");
   });
-
-  
 });

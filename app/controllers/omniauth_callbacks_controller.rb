@@ -1,16 +1,22 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
   def all
-   user = User.from_omniauth(request.env["omniauth.auth"])
-   if user.persisted?
+   auth = request.env["omniauth.auth"]
+   user = User.where(provider: auth.provider, uid: auth.uid).take 
+   if user.present?
      flash.notice = "Signed in!"
-     sign_in(@user)
-     redirect_to '/'
-     # sign_in_and_redirect user
+     sign_in(user)
+     redirect_to new_user_registration_path
    else
-     session["devise.user_attributes"] = user.attributes
-     redirect_to new_user_registration_url
+      user = User.from_omniauth(auth)
+      if current_user.update_attributes(user)
+        redirect_to new_user_registration_path
+      else
+        # here we need to show error messages or redirect to error page....
+        redirect_to "/"
+      end
    end
+
  end
   
   alias_method :facebook, :all

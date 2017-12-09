@@ -9,7 +9,6 @@ class CvBuilderController < ApplicationController
   }.freeze
 
   def index
-    flash[:success ] = "Welcome to zenithcv"
     if current_user
       @resumes = current_user.resumes
       @resume_ids = @resumes.pluck("id")
@@ -249,7 +248,7 @@ class CvBuilderController < ApplicationController
       # will move this method from the start CV button otherwise it will create always new cv
       unless current_user.present?
         email = "#{SecureRandom.urlsafe_base64(nil, false)}@guest.com"
-        user = User.create(user_name: "guest", email: email, password: "zenithcv.com")
+        user = User.create(user_name: "guest", user_type: "guest", email: email, password: "zenithcv.com")
         user.resumes.create
         sign_in(user)
       end

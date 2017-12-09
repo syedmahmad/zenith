@@ -13,7 +13,6 @@ jQuery(document).ready(function($){
 
   //open modal
   $main_nav.on('click', function(event){
-
     if( $(event.target).is($main_nav) ) {
       // on mobile open the submenu
       $(this).children('ul').toggleClass('is-visible');

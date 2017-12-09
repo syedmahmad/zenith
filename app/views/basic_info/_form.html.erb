@@ -1,0 +1,43 @@
+<%= form_for(@user, url: basic_info_path(@user), class: 'form-horizontal form-label-left input_mask') do |f| %>
+  <div class="row">
+    <div class="col-lg-8 form-group">
+      <%= f.text_field :user_name, autofocus: true, class: 'form-control', placeholder: 'Full Name' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8 form-group">
+      <%= f.text_field :street_address, class: 'form-control', placeholder: 'Street Address' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 form-group">
+      <%= f.text_field :city, class: 'form-control', placeholder: 'City' %>
+    </div>
+
+    <div class="col-lg-4 form-group">
+      <%= f.text_field :postal_code, class: 'form-control', placeholder: 'Postal Code/Zip Code' %>
+    </div>
+
+    <div class="col-lg-4 form-group">
+      <%= f.text_field :country, class: 'form-control', placeholder: 'Country' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 form-group">
+      <%= f.select :profession, options_for_select([['Administration' ,'Administration'], ['Business & Strategy', 'Business & Strategy'], ['Building & Construction' ,'Building & Construction'], ['Customer Service' ,'Customer Service'], ['Civil Servant' ,'Civil Servant'], ['Design' ,'Design'], ['Education' ,'Education'], ['Engineering & Technology' ,'Engineering & Technology'], ['Finance' ,'Finance'], ['Human Resources' ,'Human Resources'], ['Health' ,'Health'], ['Legal' ,'Legal'], ['Marketing & Communications' ,'Marketing & Communications'], ['Operations' ,'Operations'], ['Research' ,'Research'], ['Resturant & Food Service' ,'Resturant & Food Service'], ['Sales' ,'Sales'], ['Other' ,'Other']]), { prompt: 'Choose your profession' }, { class: 'form-control' } %>
+    </div>
+
+    <div class="col-lg-6 form-group">
+      <%= f.select :experience, options_for_select([['Beginner' ,'Beginner'], ['Intermediate', 'Intermediate'], ['Experienced' ,'Experienced'], ['Expert' ,'Expert']]), { prompt: 'Choose your level of experience' }, { class: 'form-control' } %>
+    </div>
+  </div>
+
+  <div class="ln_solid"></div>
+
+  <div class="form-group">
+    <%= f.submit "Save", class: 'btn btn-primary' %>
+  </div>
+<% end %>
