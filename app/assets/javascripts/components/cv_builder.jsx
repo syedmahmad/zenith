@@ -136,6 +136,7 @@ var CvBuilder = React.createClass({
     });
   },
   setupLayout: function(){
+    var elements = null;
     elements = $(".page")
     _this = this;
     $.each(elements, function( index, elem ) {
@@ -148,8 +149,10 @@ var CvBuilder = React.createClass({
           rightCol = $(elem).find(".resume-col-right");
 
           if(leftCol.height() > rightCol.height()){
+            lastElmObj = $(leftCol).find(".section-items").last();
             lastElm = $(leftCol).find(".section-items").last().data("sectionName");
           }else{
+            lastElmObj = $(rightCol).find(".section-items").last();
             elmCol = 1;
             lastElm = $(rightCol).find(".section-items").last().data("sectionName");
           }
@@ -158,10 +161,10 @@ var CvBuilder = React.createClass({
         if(index+1 == pages){
           pages = pages + 1;
         }
-        var lastSection = $(lastElmObj).find(".section-item").last();
-        var sectionId = $(lastSection).data("sectionId");
 
+        var subSectionId = 0;
         if($(lastElmObj).find(".section-item").length == 1){
+          subSectionId = $(lastElmObj).find(".section-item").data("sectionId");
           sectionData = $.grep(_this.state.sectionData, function (a) {
                           if (a.name == lastElm) {
                               a.page = index + 1;
@@ -170,14 +173,28 @@ var CvBuilder = React.createClass({
                       });
 
         }else{
+          subSectionId = $(lastElmObj).find(".section-item").last().data("sectionId");
           sectionData.push({name: lastElm, page: index + 1, column: elmCol});
         }
-   
-        params = {id: _this.props.resume.layout.id,"section_data": sectionData};
-        _this.updateResume({resume: {"pages": pages, layout_attributes: params, [lastElm.toLowerCase()+"_attributes"]: {id: sectionId, page: index + 1}}});
         // $(lastSection).remove();
         var resume = _this.state.resume;
-        resume[lastElm.toLowerCase()][0].page = index + 1;
+        var itemsObj = null;
+
+        itemsObj = $.grep(resume[lastElm.toLowerCase()], function (item) {
+          if(item.id == subSectionId){
+            item.page = index + 1;
+          }
+          return item;
+        });
+
+        if(lastElm.toLowerCase() == "education"){
+          lastElm = "educations";
+        }
+
+        params = {id: _this.props.resume.layout.id,"section_data": sectionData};
+        _this.updateResume({resume: {"pages": pages, layout_attributes: params, [lastElm.toLowerCase()+"_attributes"]: {id: subSectionId, page: index + 1}}});
+
+        resume[lastElm.toLowerCase()] = itemsObj;
         _this.setState({resume: resume, pages: pages, sectionData: sectionData});
       }else{
         if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
