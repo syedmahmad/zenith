@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "Zenith CV" %> </title>
+  <%= render 'layouts/font' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+  <style type="text/css">
+    body {
+      background: #fff;
+    }
+    .center-content {
+      position: absolute;
+      top: 30%;
+    }
+  </style>
+</head>
+
+<body class="nav-md">
+<div class="container body">
+  <%= render "partials/topnav" %>
+  <% flash.each do |key, value| %>
+      <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <div class="main_container">
+
+    <%= yield %>
+  </div>
+
+</body>
+</html>

@@ -27,7 +27,12 @@ Rails.application.routes.draw do
     end
    end
 
-   resources :basic_info, :only => [:new, :edit, :update]
+   resources :basic_info, :only => [:new, :edit, :update] do 
+    member do
+      get :update_password
+    end
+   end
+   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

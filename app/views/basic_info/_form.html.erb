@@ -1,27 +1,27 @@
 <%= form_for(@user, url: basic_info_path(@user), class: 'form-horizontal form-label-left input_mask') do |f| %>
   <div class="row">
     <div class="col-lg-8 form-group">
-      <%= f.text_field :user_name, autofocus: true, class: 'form-control', placeholder: 'Full Name' %>
+      <%= f.text_field :user_name, autofocus: true, class: 'form-control', placeholder: 'Full Name', required: true%>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-8 form-group">
-      <%= f.text_field :street_address, class: 'form-control', placeholder: 'Street Address' %>
+      <%= f.text_field :street_address, class: 'form-control', placeholder: 'Street Address', required: true%>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-4 form-group">
-      <%= f.text_field :city, class: 'form-control', placeholder: 'City' %>
+      <%= f.text_field :city, class: 'form-control', placeholder: 'City', required: true %>
     </div>
 
     <div class="col-lg-4 form-group">
-      <%= f.text_field :postal_code, class: 'form-control', placeholder: 'Postal Code/Zip Code' %>
+      <%= f.text_field :postal_code, class: 'form-control', placeholder: 'Postal Code/Zip Code', required: true %>
     </div>
 
     <div class="col-lg-4 form-group">
-      <%= f.text_field :country, class: 'form-control', placeholder: 'Country' %>
+      <%= f.text_field :country, class: 'form-control', placeholder: 'Country', required: true %>
     </div>
   </div>
 
@@ -39,5 +39,6 @@
 
   <div class="form-group">
     <%= f.submit "Save", class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', root_path, class: 'btn btn-danger' %>
   </div>
 <% end %>

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :twitter, :linkedin, :google_oauth2]
   has_many :resumes
 
+  attr_accessor :current_password, :password_confirmation
+
   def self.from_omniauth(auth)
       params = {}
 

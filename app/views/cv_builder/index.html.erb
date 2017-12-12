@@ -6,6 +6,7 @@ $(function() {
   $(".fa.fa-bars").remove();
   $(".top_nav").css({marginLeft: '0px'});
   $("footer").css({marginLeft: '0px'})
+  $('[data-toggle="tooltip"]').tooltip(); 
 });
 </script>
   <div class="cv-dashboard">
@@ -36,7 +37,7 @@ $(function() {
                     <div class="form-group">
                        <label for="resumeTitle">Title</label>
                        <%if @resume.present? && @resume.header.name%>
-                        <input type="text" class="form-control" readonly id="#" placeholder="User Name resume" value=<%=@resume.header.name%>>
+                        <input type="text" class="form-control" readonly id="#" placeholder="User Name resume" value='<%=@resume.header.name%>'>
                        <% else %>
                         <input type="text" class="form-control" readonly id="#" placeholder="User Name resume" value="">
                        <% end %>
@@ -59,7 +60,7 @@ $(function() {
                           <li>
                             <% if @is_single_resume == true %>
                               <div class="icon-holder">
-                                <a rel="nofollow" data-method="post" href="/resumes/<%=@resume.id%>/destroy_resume"><i class="fa fa-trash-o"></i></a>
+                                <a rel="nofollow" title="delete" href="/resumes/<%=@resume.id%>/destroy_resume"><i class="fa fa-trash-o"></i></a>
                               </div>
                             <% else %>
                               <div class="icon-holder">
@@ -71,24 +72,24 @@ $(function() {
                     </div>
                     <div class="templete-count">
                       <ul>
-                        <li>
+                        <!-- <li>
                           <a href="#" class="active">Templete 1</a>
                         </li>
                         <li>
                           <a href="#">Templete 2</a>
-                        </li>
+                        </li> -->
                       </ul>
                     </div>
                  </div>
                  <div class="btn-area-bottom">
                     <ul>
                        <li>
-                          <a href="#">
+                          <!-- <a href="#">
                              Download
                              <div class="icon-holder">
                                 <i class="fa fa-download"></i>
                              </div>
-                          </a>
+                          </a> -->
                        </li>
                        <li>
                           <a href="#" class="active">
