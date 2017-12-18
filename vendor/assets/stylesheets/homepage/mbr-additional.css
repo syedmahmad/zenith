@@ -1,0 +1,40 @@
+#ext_menu-0 .mbr-brand__name {
+  font-size: 16px;
+}
+#ext_menu-0.mbr-navbar--stuck .mbr-navbar__section {
+  background: #2A3F54;
+}
+#ext_menu-0 .mbr-navbar__hamburger {
+  color: #f7f3c9;
+}
+#header4-18 P {
+  text-align: left;
+  font-size: 20px;
+}
+#header4-18 H1 {
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+}
+#slider-2 H1 {
+  text-align: left;
+}
+#slider-2 P {
+  text-align: left;
+}
+
+#msg-box3-6 .mbr-header .mbr-header__text {
+  text-align: center;
+}
+#msg-box3-6 .mbr-header .mbr-header__subtext {
+  text-align: center;
+}
+#msg-box3-6 .mbr-article P {
+  color: #ffffff;
+}
+
+#header1-1j H1 {
+  color: #ffffff;
+}
+#header1-1j P {
+  color: #ffffff;
+}

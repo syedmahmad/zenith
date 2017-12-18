@@ -12,7 +12,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'cv_builder#index'
+   root 'home#index'
+   get  'terms' => 'home#terms'
+   get  'privacy' => 'home#privacy'
+   # get  'cookies' => 'home#cookies'
+   get  'about' => 'home#about'
+   # root 'cv_builder#index'
    resources :resumes, :controller => 'cv_builder' do
     member do
       post :clone

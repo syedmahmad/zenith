@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'layouts/meta_info' %>
+
+    <!--[if IE]> <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'> <![endif]-->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
+
+    <%= stylesheet_link_tag 'home', media: 'all' %>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+    <script type="text/javascript">
+      window.cookieconsent_options = {"message":" zenithcv.com uses cookies to improve service. By continuing you are agreeing to our use of cookies.","dismiss":"Got it!","learnMore":"More info","link":"cookies","theme":"dark-bottom"};
+    </script>
+    <!-- End Cookie Consent plugin -->
+
+    <%= render 'shared/analytics' %>
+
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render 'shared/login' %>
+    <%= render "homepage/nav_bar" %>
+    <%= yield %>
+    <%= javascript_include_tag 'home' %>
+  </body>
+</html>

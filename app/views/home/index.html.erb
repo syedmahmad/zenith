@@ -1,0 +1,252 @@
+<section class="engine"><a rel="external" href="https://zenithcv.com">Create epic first impressions</a>
+</section>
+
+<section class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--full-height mbr-section--bg-adapted" id="header4-18" data-bg-video="https://www.youtube.com/embed/RmptE-ONEAg?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0">
+  <div class="mbr-box__magnet mbr-box__magnet--sm-padding mbr-box__magnet--center-center mbr-after-navbar">
+    <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(42, 63, 84);"></div>
+    <div class="mbr-box__container mbr-section__container container">
+      <div class="mbr-box mbr-box--stretched"><div class="mbr-box__magnet mbr-box__magnet--center-center">
+        <div class="row"><div class=" col-sm-8 col-sm-offset-2">
+          <div class="mbr-hero animated fadeInUp">
+            <%= render 'shared/flash' %>
+
+            <h1 class="mbr-hero__text">MAKE A WINNING FIRST IMPRESSION</h1>
+            <p class="mbr-hero__subtext">First impressions count in today’s competitive job market. Recruiters spend less than 10 seconds deciding whether your CV cut the mustard.
+              <br><br>ZenithCV ensures you will always make an exquisite first impression with your CV.
+              <br><br>Use ZenithCV to create epic CVs that brings out the best of what you possess and makes you stand out from the crowd. It is free.<br>
+            </p>
+          </div>
+          <div class="mbr-buttons btn-inverse mbr-buttons--center">
+            <% if @user.present? %>
+                <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-success animated fadeInUp delay" href="javascript:void(0)" onclick="javascript:location.href='builder'">Welcome back <%= current_user.user_name%>. Click here to continue</a>
+                <br><span class="text-white"> <a href="/users/sign_out" data-method="delete" style="color: #FFFFFF; text-decoration: none;"> Not <%= current_user.user_name%> of <%=current_user.city%>, <%=current_user.country%>? Sign Out </a> </span>
+                <% else %>
+            <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-danger animated fadeInUp delay" href="builder">Get Started</a> <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-default animated fadeInUp delay" href="javascript:void(0)" onclick="LoginService.openLoginModal();"> Sign Up | Login</a>
+                <% end %>
+          </div>
+        </div></div>
+      </div></div>
+    </div>
+    <div class="mbr-arrow mbr-arrow--floating text-center">
+      <div class="mbr-section__container container">
+        <a class="mbr-arrow__link" href="#slider-2"><i class="glyphicon glyphicon-menu-down"></i></a>
+      </div>
+    </div>
+   <div class="mbr-arrow-spacing"></div>
+  </div>
+</section>
+
+<section class="mbr-slider mbr-section mbr-section--no-padding carousel slide" data-ride="carousel" data-wrap="true" data-interval="3000" id="slider-2" style="background-color: rgb(255, 255, 255);">
+  <div class="mbr-section__container">
+    <div>
+      <ol class="carousel-indicators">
+        <li data-app-prevent-settings="" data-target="#slider-2" data-slide-to="0" class="active"></li>
+        <li data-app-prevent-settings="" data-target="#slider-2" class="" data-slide-to="1"></li>
+        <li data-app-prevent-settings="" data-target="#slider-2" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--bg-adapted item dark center mbr-section--full-height active" style="background-image: url(images/slide1.png);">
+          <div class="mbr-box__magnet mbr-box__magnet--center-right mbr-box__magnet--sm-padding">
+
+            <div class=" container">
+
+              <div class="row">
+                <div class="mbr-slider_margine">
+                <div class="col-md-6 col-md-offset-0">
+                  <div class="mbr-hero">
+                    <h1 class="mbr-hero__text_blue">Aspire</h1>
+                    <p class="mbr-hero__subtext_blue">With Confidence <br> Stand out from the crowd </p>
+                  </div>
+                  <div class="mbr-buttons btn-inverse mbr-buttons--left mbr-buttons--right pull-left">
+                    <a class="mbr-buttons__btn btn btn-lg btn-danger" href="builder">Get Started</a>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--bg-adapted item dark center mbr-section--full-height" style="background-image: url(images/slide2.png);">
+          <div class="mbr-box__magnet mbr-box__magnet--center-right mbr-box__magnet--sm-padding">
+            <div class="mbr-overlay" style="opacity: 0.0;"></div>
+            <div class=" container">
+
+              <div class="row">
+                <div class="mbr-slider_margine">
+
+                <div class=" col-md-6 col-md-offset-0">
+                  <div class="mbr-hero">
+                    <h1 class="mbr-hero__text_blue">Achieve </h1>
+                    <p class="mbr-hero__subtext_blue">Get hired <br> Land that dream job!</p>
+                  </div>
+                  <div class="mbr-buttons btn-inverse mbr-buttons--left mbr-buttons--right pull-left">
+                    <a class="mbr-buttons__btn btn btn-lg btn-danger" href="builder">Get Started</a>
+                  </div>
+                </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mbr-box mbr-section mbr-section--relative mbr-section--fixed-size mbr-section--bg-adapted item dark center mbr-section--full-height" style="background-image: url(images/slide3.png);">
+          <div class="mbr-box__magnet mbr-box__magnet--center-right mbr-box__magnet--sm-padding">
+            <div class="mbr-overlay" style="opacity: 0.0;"></div>
+            <div class=" container">
+
+              <div class="row">
+                <div class="mbr-slider_margine">
+
+                  <div class=" col-md-6 col-md-offset-0">
+
+                    <div class="mbr-hero">
+                      <h1 class="mbr-hero__text_blue">Inspire</h1>
+
+                      <p class="mbr-hero__subtext_blue">Cut the odds<br>Increase your chances of getting an
+                        interview</p>
+                    </div>
+
+                    <div class="mbr-buttons btn-inverse mbr-buttons--left mbr-buttons--right pull-left">
+                      <a class="mbr-buttons__btn btn btn-lg btn-danger" href="builder">Get Started</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <a data-app-prevent-settings="" class="left carousel-control" role="button" data-slide="prev" href="#slider-2">
+        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a data-app-prevent-settings="" class="right carousel-control" role="button" data-slide="next" href="#slider-2">
+        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+    </div>
+</section>
+
+
+
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="features1-3" style="background-color: rgb(239, 247, 255);">
+
+  <div class="mbr-section__container container mbr-section__container--std-top-padding" style="padding-top: 93px;">
+    <div class="container">
+      <div class=" mbr-section__row  row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading">Core Features</h2>
+          <hr class="primary">
+        </div>
+      </div>
+    </div>
+
+    <div class="mbr-section__row row">
+      <div class=" mbr-section__col col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <i class="fa fa-4x fa-plus-square-o text-primary sr-icons"></i>
+          <h3>Expressive Sections</h3>
+          <p class="text-black">
+           We've crafted in seventeen fully customizable sections that aim to bring out the best of what you posses.
+          </p>
+        </div>
+      </div>
+      <div class=" mbr-section__col col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <i class="fa fa-4x fa-text-height text-primary sr-icons"></i>
+          <h3>Font Size</h3>
+          <p class="text-black">
+            We do not believe that one size fits all. Unlike many CV builders in the market, ZenithCV gives you five font size choices.
+          </p>
+        </div>
+      </div>
+      <div class=" mbr-section__col col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <i class="fa fa-4x fa-columns text-primary sr-icons"></i>
+          <h3>Layouts</h3>
+          <p class="text-black">ZenithCV provides two layouts, the double column layout and the single column layout respectively, because your personal preference matters to us. </p>
+        </div>
+      </div>
+
+
+      <div class=" mbr-section__col col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <i class="fa fa-4x fa-font text-primary sr-icons"></i>
+          <h3>Fonts</h3>
+          <p class="text-black">Ten carefully selected fonts to choose from. You also have the flexibility to select different or the same font(s) for the heading and body texts.  </p>
+        </div>
+      </div>
+        </div>
+<!--second row -->
+    <div class="mbr-section__row row">
+
+      <div class="mbr-section__col col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <i class="fa fa-4x fa-eye text-primary sr-icons"></i>
+          <h3>Built with ATS in mind</h3>
+          <p class="text-black">
+            We recommend that you add a lot of the job's requirement keywords in the skills, experience and technologies sections to bump your profile up in Applicant Tracking Systems.
+          </p>
+        </div>
+      </div>
+
+      <div class=" mbr-section__col col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <i class="fa fa-4x fa-file-pdf-o text-primary sr-icons"></i>
+          <h3>PDF</h3>
+          <p class="text-black">
+            We generate and download your CV in PDF format. PDFs are generated on-demand as they are not stored on our servers. 
+          </p>
+        </div>
+      </div>
+
+      <div class=" mbr-section__col col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <i class="fa fa-4x fa-tint text-primary sr-icons"></i>
+          <h3>Colour</h3>
+          <p class="text-black">
+            We have 16 color combinations you can select from. Add some colors to your aspirations today.
+          </p>
+        </div>
+      </div>
+      <div class="mbr-section__col col-lg-3 col-md-6 text-center">
+        <div class="service-box">
+          <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
+          <h3>Made with Love</h3>
+          <p class="text-black">We built ZenithCV with lots of love and passion so much so that we made it available free of charge. The best things in life are truly free. </p>
+        </div>
+      </div>
+    </div>
+      </div>
+</section>
+
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size mbr-parallax-background" id="msg-box3-6" style="background-image: url(images/bg3.png);">
+
+  <div class="mbr-section__container container mbr-section__container--first" style="padding-top: 124px;">
+    <div class="mbr-header mbr-header--wysiwyg row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h3 class="mbr-header__text"> Design It Your Way! </h3>
+      </div>
+    </div>
+  </div>
+  <div class="mbr-section__container container mbr-section__container--middle">
+    <div class="row">
+      <div class="mbr-article mbr-article--wysiwyg col-sm-8 col-sm-offset-3">
+        <p><!-- It's easy, convenient and fun. On your mark get set ready steady... -->
+        <h4> &nbsp;&nbsp; It's free. No credit cards required, no adverts, no lizardshit </h4>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="mbr-section__container container mbr-section__container--last" style="padding-bottom: 62px;">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="mbr-buttons mbr-buttons--center">
+          <a class="mbr-buttons__btn btn btn-lg btn-danger" href="builder">Just Build It</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render "home/footer" %>
