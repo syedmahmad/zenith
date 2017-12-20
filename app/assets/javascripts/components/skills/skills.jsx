@@ -67,15 +67,15 @@ var Skills = React.createClass({
     this.props.removeSubSection(formData, "skills");
   },
   render: function() {
-    var skills = this.state.skills
     var data = []
     var key = "";
     var _this = this;
     var page = _this.props.page;
+    var skills = _this.props.resume.skills;
     skills.forEach(function(skill) {
       if(page == skill.page){
         key = "skill-" + skill.id;
-        data.push(<SkillItem total={_this.state.skills.length} handleShowHideChange={_this.props.handleShowHideChange} skill={skill} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<SkillItem total={skills.length} handleShowHideChange={_this.props.handleShowHideChange} skill={skill} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

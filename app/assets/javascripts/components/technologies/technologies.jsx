@@ -67,13 +67,16 @@ var Technologies = React.createClass({
     this.props.removeSubSection(formData, "technologies");
   },
   render: function() {
-    var technologies = this.state.technologies;
     var data = [];
     var key = "";
     var _this = this;
+    var page = _this.props.page;
+    var technologies = _this.props.resume.technologies;
     technologies.forEach(function(technology) {
-      key = "technology-" + technology.id;
-      data.push(<TechnologyItem total={_this.state.technologies.length} handleShowHideChange={_this.props.handleShowHideChange} technology={technology} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      if(page == strength.page){
+        key = "technology-" + technology.id;
+        data.push(<TechnologyItem total={technologies.length} handleShowHideChange={_this.props.handleShowHideChange} technology={technology} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      }
     });
     
     return (

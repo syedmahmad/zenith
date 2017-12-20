@@ -111,18 +111,18 @@ class CvBuilderController < ApplicationController
   end
 
   def create_sub_record
-    section_names = params[:sub_section_name].constantize
+    section_name = params[:sub_section_name].constantize
     if params[:sub_section_name].eql?("Experience") || params[:sub_section_name].eql?("Project")
-      obj = section_names.create(resume_id: params[:id], :outcomes => [""], item_index: 0, page: params[:page])
+      obj = section_name.create(resume_id: params[:id], :outcomes => [""], item_index: 0, page: params[:page])
     else
-      obj = section_names.create(resume_id: params[:id], item_index: 0, page: params[:page])
+      obj = section_name.create(resume_id: params[:id], item_index: 0, page: params[:page])
     end
     render json: obj
   end
 
   def delete_sub_record
-    section_names = params[:sub_section_name].constantize
-    obj = section_names.find_by_id(params[:section_id]).destroy
+    section_name = params[:sub_section_name].constantize
+    obj = section_name.find_by_id(params[:section_id]).destroy
     render json: obj
   end
 

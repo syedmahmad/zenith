@@ -65,15 +65,15 @@ var Awards = React.createClass({
     this.props.removeSubSection(formData, "awards");  
   },
   render: function() {
-    var awards = this.state.awards
     var data = []
     var key = "";
     var _this = this;
     var page = _this.props.page;
+    var awards = _this.props.resume.awards;
     awards.forEach(function(award) {
       if(page == award.page){
         key = "award-" + award.id;
-        data.push(<AwardItem total={_this.state.awards.length} handleShowHideChange={_this.props.handleShowHideChange} award={award} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<AwardItem total={awards.length} handleShowHideChange={_this.props.handleShowHideChange} award={award} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

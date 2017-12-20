@@ -77,15 +77,15 @@ var Projects = React.createClass({
     this.props.removeSubSection(formData, "projects");
   },
   render: function() {
-    var projects = this.state.projects
     var data = []
     var key = "";
     var _this = this;
     var page = _this.props.page;
+    var projects = _this.props.resume.projects;
     projects.forEach(function(project) {
       if(page == project.page){
         key = "project-" + project.id;
-        data.push(<ProjectItem updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={_this.state.projects.length} handleShowHideChange={_this.props.handleShowHideChange} project={project} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<ProjectItem updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={projects.length} handleShowHideChange={_this.props.handleShowHideChange} project={project} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

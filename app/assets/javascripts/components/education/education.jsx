@@ -67,15 +67,15 @@ var Education = React.createClass({
     this.props.removeSubSection(formData, "education");  
   },
   render: function() {
-    var education = this.state.education
     var data = []
     var key = "";
     var _this = this;
+    var education = _this.props.resume.education;
     var page = _this.props.page;
     education.forEach(function(education_item) {
       if(page == education_item.page){
         key = "education-" + education_item.id;
-        data.push(<EducationItem setupLayout={_this.props.setupLayout} total={_this.state.education.length} handleShowHideChange={_this.props.handleShowHideChange} education_item={education_item} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+        data.push(<EducationItem setupLayout={_this.props.setupLayout} total={education.length} handleShowHideChange={_this.props.handleShowHideChange} education_item={education_item} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
       }
     });
     

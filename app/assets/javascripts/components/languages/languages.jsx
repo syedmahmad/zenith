@@ -66,15 +66,15 @@ var Languages = React.createClass({
     this.props.removeSubSection(formData, "languages");  
   },
   render: function() {
-    var languages = this.state.languages
     var data = []
     var key = "";
     var _this = this;
     var page = _this.props.page;
+    var languages = _this.props.resume.languages;
     languages.forEach(function(language) {
       if(page == language.page){
         key = "language-" + language.id;
-        data.push(<LanguageItem total={_this.state.languages.length} handleShowHideChange={_this.props.handleShowHideChange} language={language} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+        data.push(<LanguageItem total={languages.length} handleShowHideChange={_this.props.handleShowHideChange} language={language} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
       }
     });
     

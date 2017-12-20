@@ -67,15 +67,15 @@ var Quotes = React.createClass({
     this.props.removeSubSection(formData, "quotes");
   },
   render: function() {
-    var quotes = this.state.quotes
     var data = []
     var key = "";
     var _this = this;
     var page = _this.props.page;
+    var quotes = _this.props.resume.quotes;
     quotes.forEach(function(quote) {
       if(page == quote.page){
         key = "quote-" + quote.id;
-        data.push(<QuoteItem total= {_this.state.quotes.length} handleShowHideChange={_this.props.handleShowHideChange} quote={quote} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<QuoteItem total= {quotes.length} handleShowHideChange={_this.props.handleShowHideChange} quote={quote} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

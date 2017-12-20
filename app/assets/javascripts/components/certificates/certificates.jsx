@@ -66,15 +66,15 @@ var Certificates = React.createClass({
     this.props.removeSubSection(formData, "certificates");  
   },
   render: function() {
-    var certificates = this.state.certificates
     var data = []
     var key = "";
     var _this = this;
     var page = _this.props.page;
+    var certificates = _this.props.resume.certificates;
     certificates.forEach(function(certificate) {
       if(page == certificate.page){
         key = "certificate-" + certificate.id;
-        data.push(<CertificateItem total={_this.state.certificates.length} handleShowHideChange={_this.props.handleShowHideChange} certificate={certificate} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<CertificateItem total={certificates.length} handleShowHideChange={_this.props.handleShowHideChange} certificate={certificate} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     
