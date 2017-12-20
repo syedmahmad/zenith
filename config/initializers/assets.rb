@@ -10,6 +10,5 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-Rails.application.config.assets.precompile += %w( footermanifest.js pdf.scss pdf.js custom.js pdf_cv_builder.scss   home.js
-  home.css)
+Rails.application.config.assets.precompile += %w( footermanifest.js home.js home.scss pdf.scss pdf.js custom.js pdf_cv_builder.scss)
 # Rails.application.config.assets.precompile += ['component.js', 'react.js', 'react_ujs.js', 'jquery.js',"modernizr.js"]

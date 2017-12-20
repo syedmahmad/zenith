@@ -24,3 +24,4 @@
 //= require flash
 //http://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.10/cookieconsent.min.js
 //= require homepage/cookieconsent.min
+//= require onboarding.js

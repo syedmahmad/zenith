@@ -21,7 +21,7 @@
                 <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-success animated fadeInUp delay" href="javascript:void(0)" onclick="javascript:location.href='builder'">Welcome back <%= current_user.user_name%>. Click here to continue</a>
                 <br><span class="text-white"> <a href="/users/sign_out" data-method="delete" style="color: #FFFFFF; text-decoration: none;"> Not <%= current_user.user_name%> of <%=current_user.city%>, <%=current_user.country%>? Sign Out </a> </span>
                 <% else %>
-            <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-danger animated fadeInUp delay" href="builder">Get Started</a> <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-default animated fadeInUp delay" href="javascript:void(0)" onclick="LoginService.openLoginModal();"> Sign Up | Login</a>
+            <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-danger animated fadeInUp delay" href="builder">Get Started</a> <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-default animated fadeInUp delay" href="javascript:void(0)" onclick="openLoginModal();"> Sign Up | Login</a>
                 <% end %>
           </div>
         </div></div>
@@ -249,4 +249,14 @@
   </div>
 </section>
 
+
+
 <%= render "home/footer" %>
+
+<script type="text/javascript">
+  
+  function openLoginModal() {
+    debugger;
+    $(".cd-signin").click();
+  }
+</script>
