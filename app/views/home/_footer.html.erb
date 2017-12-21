@@ -84,3 +84,130 @@
 </section>
 
 
+ <div class="cv-builder-login-modal">
+      <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+        <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+          <ul class="cd-switcher">
+            <li><a href="javascript:;">Sign in</a></li>
+            <li><a href="javascript:;">New account</a></li>
+          </ul>
+
+          <div id="cd-login"> <!-- log in form -->
+            <form class="cd-form" action="/users/sign_in" method="post">
+              <p class="fieldset">
+
+                <input name="authenticity_token" type="hidden" 
+                       value="<%= form_authenticity_token %>"/>
+                <label class="image-replace cd-email" for="signin-email">E-mail</label>
+                <input class="full-width has-padding has-border" id="signin-email" type="email" name="email" placeholder="E-mail" required>
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+
+              <p class="fieldset">
+                <label class="image-replace cd-password" for="signin-password">Password</label>
+                <input class="full-width has-padding has-border" id="signin-password" type="text" name="password"  placeholder="Password" minlength="7" required>
+                <a href="javascript:;" class="hide-password">Hide</a>
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+
+              <p class="fieldset">
+                <input type="checkbox" id="remember-me" checked>
+                <label for="remember-me">Remember me</label>
+              </p>
+
+              <p class="fieldset">
+                <input class="full-width" type="submit" value="Login">
+              </p>
+              <hr>
+              <div class="text-center social-area">
+                <p class="blue">Sign in with</p>
+                <p>
+                  <div class="icon-holder">
+                    <a href="/users/auth/facebook">
+                      <i class="fa fa-facebook-f fa-lg"></i>
+                    </a>
+                  </div>
+                  <div class="icon-holder">
+                    <a href="/users/auth/twitter">
+                      <i class="fa fa-twitter fa-lg"></i>
+                    </a>
+                  </div>
+                  <div class="icon-holder">
+                    <a href="/users/auth/linkedin">
+                      <i class="fa fa-linkedin-square"></i>
+                    </a>
+                  </div>
+                  <div class="icon-holder">
+                    <a href="/users/auth/google_oauth2">
+                      <i class="fa fa-envelope"></i>
+                    </a>
+                  </div>
+                  
+                  
+                  
+                </p>
+              </div>
+            </form>
+            
+            <p class="cd-form-bottom-message"><a href="javascript:;">Forgot your password?</a></p>
+            <!-- <a href="javascript:;" class="cd-close-form">Close</a> -->
+          </div> <!-- cd-login -->
+
+          <div id="cd-signup"> <!-- sign up form -->
+            <form class="cd-form" action="/users" method="post">
+              <p class="fieldset">
+                <label class="image-replace cd-username" for="signup-username">Username</label>
+                <input class="full-width has-padding has-border" id="signup-username" type="text" name="user_name" required placeholder="Username">
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+
+              <input name="authenticity_token" type="hidden" 
+                     value="<%= form_authenticity_token %>"/>
+
+              <p class="fieldset">
+                <label class="image-replace cd-email" for="signup-email">E-mail</label>
+                <input class="full-width has-padding has-border" id="signup-email" type="email" name="email" placeholder="E-mail" required>
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+
+              <p class="fieldset">
+                <label class="image-replace cd-password" for="signup-password">Password</label>
+                <input class="full-width has-padding has-border" id="signup-password" type="text" name="password" placeholder="Password" minlength="7" required>
+                <a href="javascript:;" class="hide-password">Hide</a>
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+
+              <p class="fieldset">
+                <input type="checkbox" id="accept-terms">
+                <label for="accept-terms">I agree to the <a href="javascript:;">Terms</a></label>
+              </p>
+
+              <p class="fieldset">
+                <input class="full-width has-padding" type="submit" value="Create account">
+              </p>
+            </form>
+
+            <!-- <a href="javascript:;" class="cd-close-form">Close</a> -->
+          </div> <!-- cd-signup -->
+
+          <div id="cd-reset-password"> <!-- reset password form -->
+            <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+            <form class="cd-form">
+              <p class="fieldset">
+                <label class="image-replace cd-email" for="reset-email">E-mail</label>
+                <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+
+              <p class="fieldset">
+                <input class="full-width has-padding" type="submit" value="Reset password">
+              </p>
+            </form>
+
+            <p class="cd-form-bottom-message"><a href="javascript:;">Back to log-in</a></p>
+          </div> <!-- cd-reset-password -->
+          <a href="javascript:;" class="cd-close-form">Close</a>
+        </div> <!-- cd-user-modal-container -->
+      </div> <!-- cd-user-modal -->
+    </div>

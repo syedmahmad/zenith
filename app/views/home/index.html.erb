@@ -17,11 +17,11 @@
             </p>
           </div>
           <div class="mbr-buttons btn-inverse mbr-buttons--center">
-            <% if @user.present? %>
-                <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-success animated fadeInUp delay" href="javascript:void(0)" onclick="javascript:location.href='builder'">Welcome back <%= current_user.user_name%>. Click here to continue</a>
+            <% if @user.present? && @user.user_type != "guest" %>
+                <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-success animated fadeInUp delay" href="javascript:void(0)" onclick="javascript:location.href='/resumes'">Welcome back <%= current_user.user_name%>. Click here to continue</a>
                 <br><span class="text-white"> <a href="/users/sign_out" data-method="delete" style="color: #FFFFFF; text-decoration: none;"> Not <%= current_user.user_name%> of <%=current_user.city%>, <%=current_user.country%>? Sign Out </a> </span>
                 <% else %>
-            <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-danger animated fadeInUp delay" href="builder">Get Started</a> <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-default animated fadeInUp delay" href="javascript:void(0)" onclick="openLoginModal();"> Sign Up | Login</a>
+            <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-danger animated fadeInUp delay" href="/resumes">Get Started</a> <a class="mbr-buttons__btn btn-responsive btn btn-lg btn-default animated fadeInUp delay" href="javascript:void(0)" onclick="openLoginModal();"> Sign Up | Login</a>
                 <% end %>
           </div>
         </div></div>
@@ -58,7 +58,7 @@
                     <p class="mbr-hero__subtext_blue">With Confidence <br> Stand out from the crowd </p>
                   </div>
                   <div class="mbr-buttons btn-inverse mbr-buttons--left mbr-buttons--right pull-left">
-                    <a class="mbr-buttons__btn btn btn-lg btn-danger" href="builder">Get Started</a>
+                    <a class="mbr-buttons__btn btn btn-lg btn-danger" href="/resumes">Get Started</a>
                   </div>
                 </div>
                 </div>
@@ -80,7 +80,7 @@
                     <p class="mbr-hero__subtext_blue">Get hired <br> Land that dream job!</p>
                   </div>
                   <div class="mbr-buttons btn-inverse mbr-buttons--left mbr-buttons--right pull-left">
-                    <a class="mbr-buttons__btn btn btn-lg btn-danger" href="builder">Get Started</a>
+                    <a class="mbr-buttons__btn btn btn-lg btn-danger" href="/resumes">Get Started</a>
                   </div>
                 </div>
                   </div>
@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="mbr-buttons btn-inverse mbr-buttons--left mbr-buttons--right pull-left">
-                      <a class="mbr-buttons__btn btn btn-lg btn-danger" href="builder">Get Started</a>
+                      <a class="mbr-buttons__btn btn btn-lg btn-danger" href="/resumes">Get Started</a>
                     </div>
                   </div>
                 </div>
@@ -243,7 +243,7 @@
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2">
         <div class="mbr-buttons mbr-buttons--center">
-          <a class="mbr-buttons__btn btn btn-lg btn-danger" href="builder">Just Build It</a></div>
+          <a class="mbr-buttons__btn btn btn-lg btn-danger" href="/resumes">Just Build It</a></div>
       </div>
     </div>
   </div>
@@ -251,8 +251,146 @@
 
 
 
+<div id="sidebar-menu">
+  <div class="menu_section">
+    <ul class="nav side-menu">
+      <li class="main-nav" style="display: none">
+        <a class="cd-signin" href="javascript:;" ><i class="fa fa-sign-in"></i> Sign in</a>
+      </li>
+      <li class="main-nav" style="display: none">
+        <a class="cd-signup" href="javascript:;"><i class="fa fa-sign-in"></i> Sign up</a>
+      </li>
+    </ul>
+  </div>
+</div>
 <%= render "home/footer" %>
+<div class="cv-builder-login-modal">
+  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+      <ul class="cd-switcher">
+        <li><a href="javascript:;">Sign in</a></li>
+        <li><a href="javascript:;">New account</a></li>
+      </ul>
 
+      <div id="cd-login"> <!-- log in form -->
+        <form class="cd-form" action="/users/sign_in" method="post">
+          <p class="fieldset">
+
+            <input name="authenticity_token" type="hidden" 
+                   value="<%= form_authenticity_token %>"/>
+            <label class="image-replace cd-email" for="signin-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="signin-email" type="email" name="email" placeholder="E-mail" required>
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signin-password">Password</label>
+            <input class="full-width has-padding has-border" id="signin-password" type="text" name="password"  placeholder="Password" minlength="7" required>
+            <a href="javascript:;" class="hide-password">Hide</a>
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input type="checkbox" id="remember-me" checked>
+            <label for="remember-me">Remember me</label>
+          </p>
+
+          <p class="fieldset">
+            <input class="full-width" type="submit" value="Login">
+          </p>
+          <hr>
+          <div class="text-center social-area">
+            <p class="blue">Sign in with</p>
+            <p>
+              <div class="icon-holder">
+                <a href="/users/auth/facebook">
+                  <i class="fa fa-facebook-f fa-lg"></i>
+                </a>
+              </div>
+              <div class="icon-holder">
+                <a href="/users/auth/twitter">
+                  <i class="fa fa-twitter fa-lg"></i>
+                </a>
+              </div>
+              <div class="icon-holder">
+                <a href="/users/auth/linkedin">
+                  <i class="fa fa-linkedin-square"></i>
+                </a>
+              </div>
+              <div class="icon-holder">
+                <a href="/users/auth/google_oauth2">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </div>
+              
+              
+              
+            </p>
+          </div>
+        </form>
+        
+        <p class="cd-form-bottom-message"><a href="javascript:;">Forgot your password?</a></p>
+        <!-- <a href="javascript:;" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-login -->
+
+      <div id="cd-signup"> <!-- sign up form -->
+        <form class="cd-form" action="/users" method="post">
+          <p class="fieldset">
+            <label class="image-replace cd-username" for="signup-username">Username</label>
+            <input class="full-width has-padding has-border" id="signup-username" type="text" name="user_name" required placeholder="Username">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <input name="authenticity_token" type="hidden" 
+                 value="<%= form_authenticity_token %>"/>
+
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="signup-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="signup-email" type="email" name="email" placeholder="E-mail" required>
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signup-password">Password</label>
+            <input class="full-width has-padding has-border" id="signup-password" type="text" name="password" placeholder="Password" minlength="7" required>
+            <a href="javascript:;" class="hide-password">Hide</a>
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input type="checkbox" id="accept-terms">
+            <label for="accept-terms">I agree to the <a href="javascript:;">Terms</a></label>
+          </p>
+
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Create account">
+          </p>
+        </form>
+
+        <!-- <a href="javascript:;" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-signup -->
+
+      <div id="cd-reset-password"> <!-- reset password form -->
+        <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+        <form class="cd-form">
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="reset-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Reset password">
+          </p>
+        </form>
+
+        <p class="cd-form-bottom-message"><a href="javascript:;">Back to log-in</a></p>
+      </div> <!-- cd-reset-password -->
+      <a href="javascript:;" class="cd-close-form">Close</a>
+    </div> <!-- cd-user-modal-container -->
+  </div> <!-- cd-user-modal -->
+</div>
 <script type="text/javascript">
   
   function openLoginModal() {
