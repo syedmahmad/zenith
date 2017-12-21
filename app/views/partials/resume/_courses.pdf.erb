@@ -17,28 +17,30 @@
      <div class="section-items-list">
         <ul class="row mrl0">
           <% @resume.courses.each do |course|%>
-            <li class="section-item row mrl0">
-             <div class="input-holder">
-                <div class="form-group mb-0">
-                   <textArea
-                     type="string"
-                     name="title"
-                     class="form-control hide-show-control secondary-color sub-header"
-                     placeholder="Course Title"
-                   ><%= course.title %></textArea>
-                </div>
-                <% if course.show_description %>
-                  <div class="form-group">
-                   <textArea
-                     type="string"
-                     name="description"
-                     class="form-control mb-0"
-                     placeholder="Course Description"
-                   ><%= course.description %></textArea>
+            <% if(page == course.page)%>
+              <li class="section-item row mrl0">
+               <div class="input-holder">
+                  <div class="form-group mb-0">
+                     <textArea
+                       type="string"
+                       name="title"
+                       class="form-control hide-show-control secondary-color sub-header"
+                       placeholder="Course Title"
+                     ><%= course.title %></textArea>
                   </div>
-                <% end %>
-             </div>
-            </li>
+                  <% if course.show_description %>
+                    <div class="form-group">
+                     <textArea
+                       type="string"
+                       name="description"
+                       class="form-control mb-0"
+                       placeholder="Course Description"
+                     ><%= course.description %></textArea>
+                    </div>
+                  <% end %>
+               </div>
+              </li>
+            <% end %>
           <% end %>
         </ul>
      </div>

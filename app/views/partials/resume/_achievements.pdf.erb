@@ -17,33 +17,35 @@
 	  <div class="section-items-list">
 	     <ul class="row mrl0">
 			<% @achievements.each do |achievement| %>
-			  <li class="section-item row mrl0">
-			     <% if achievement.show_icon %>
-			       <div class="icon-holder pull-left"> 
-			        <i class="secondary-color fa <%= achievement.icon %>" aria-hidden="true"></i>
-			       </div>
-			     <% end %>
-			     <div class="input-holder">
-			       <div class="form-group mb-0">
-			           <textArea
-			             type="string"
-			             name="title"
-			             class="form-control hide-show-control sub-header"
-			             placeholder="What are you most proud of?"
-			           ><%= achievement.title %></textArea>
-			        </div>
-			        <% if achievement.show_description %> 
-				        <div class="form-group">
+				<% if(page == achievement.page)%>
+				  <li class="section-item row mrl0">
+				     <% if achievement.show_icon %>
+				       <div class="icon-holder pull-left"> 
+				        <i class="secondary-color fa <%= achievement.icon %>" aria-hidden="true"></i>
+				       </div>
+				     <% end %>
+				     <div class="input-holder">
+				       <div class="form-group mb-0">
 				           <textArea
 				             type="string"
-				             name="description"
-				             class="form-control"
-				             placeholder="A bit about your achievement"
-				           ><%= achievement.description %></textArea>
+				             name="title"
+				             class="form-control hide-show-control sub-header"
+				             placeholder="What are you most proud of?"
+				           ><%= achievement.title %></textArea>
 				        </div>
-				     <% end %>
-			     </div>
-			  </li>
+				        <% if achievement.show_description %> 
+					        <div class="form-group">
+					           <textArea
+					             type="string"
+					             name="description"
+					             class="form-control"
+					             placeholder="A bit about your achievement"
+					           ><%= achievement.description %></textArea>
+					        </div>
+					     <% end %>
+				     </div>
+				  </li>
+				<% end %>
 			<% end %>
 	     </ul>
 	  </div>

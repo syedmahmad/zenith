@@ -17,77 +17,79 @@
      <div class="section-items-list">
         <ul>
           <% @resume.educations.each do |education|%>
-            <li class="section-item col-xs-12">
-              <div class="education-holder row">
-                <div class="heading-section col-xs-8 pl-0">
-                   <div class="title-position">
+            <% if(page == education.page)%>
+              <li class="section-item col-xs-12">
+                <div class="education-holder row">
+                  <div class="heading-section col-xs-8 pl-0">
+                     <div class="title-position">
+                        <div class="form-group mb-0">
+                          <textArea
+                            type="string"
+                            name="degree_name"
+                            class="form-control hide-show-control sub-header"
+                            placeholder="Degree and Field of Study"
+                          ><%= education.degree_name %></textArea>
+                        </div>
+                     </div>
+                     <div class="company">
+                        <div class="form-group mb-0">
+                          <textArea
+                            type="string"
+                            name="university_name"
+                            class="form-control line-height-26 secondary-color sub-color-area"
+                            placeholder="School or University"
+                          ><%= education.university_name %></textArea>
+                        </div>
+                     </div>
+                     <div style="display: 'inline-flex';"> 
+                       <% if education.show_period %> 
+                        <div class="column">
+                          <i class="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                          <span>
+                             <div class="form-group mb-0">
+                              <textArea
+                                type="string"
+                                name="duration"
+                                class="form-control line-height-26"
+                                placeholder="Date period"
+                              ><%= education.duration %></textArea>
+                             </div>
+                          </span>
+                        </div>
+                       <% end %>
+                       <% if education.show_location %>
+                        <div class="column">
+                          <i class="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                          <span>
+                             <div class="form-group mb-0">
+                              <textArea
+                                type="string"
+                                name="location"
+                                class="form-control line-height-26"
+                                placeholder="location"
+                              ><%= education.location %></textArea>
+                             </div>
+                          </span>
+                       </div>
+                      <% end %>
+                     </div>
+                   </div>
+                   <% if education.show_gpa %> 
+                    <div class="column cgpa-section col-xs-4" style="display: 'block';">
                       <div class="form-group mb-0">
+                        <textArea class="form-control cgpa-input">CGPA</textArea> 
                         <textArea
                           type="string"
-                          name="degree_name"
-                          class="form-control hide-show-control sub-header"
-                          placeholder="Degree and Field of Study"
-                        ><%= education.degree_name %></textArea>
-                      </div>
+                          name="cgpa"
+                          class="form-control"
+                        ><%= education.cgpa.present? ? education.cgpa : '3.9/6.0' %></textArea>
+                       </div>
                    </div>
-                   <div class="company">
-                      <div class="form-group mb-0">
-                        <textArea
-                          type="string"
-                          name="university_name"
-                          class="form-control line-height-26 secondary-color sub-color-area"
-                          placeholder="School or University"
-                        ><%= education.university_name %></textArea>
-                      </div>
-                   </div>
-                   <div style="display: 'inline-flex';"> 
-                     <% if education.show_period %> 
-                      <div class="column">
-                        <i class="fa fa-calendar secondary-color" aria-hidden="true"></i>
-                        <span>
-                           <div class="form-group mb-0">
-                            <textArea
-                              type="string"
-                              name="duration"
-                              class="form-control line-height-26"
-                              placeholder="Date period"
-                            ><%= education.duration %></textArea>
-                           </div>
-                        </span>
-                      </div>
-                     <% end %>
-                     <% if education.show_location %>
-                      <div class="column">
-                        <i class="fa fa-map-marker secondary-color" aria-hidden="true"></i>
-                        <span>
-                           <div class="form-group mb-0">
-                            <textArea
-                              type="string"
-                              name="location"
-                              class="form-control line-height-26"
-                              placeholder="location"
-                            ><%= education.location %></textArea>
-                           </div>
-                        </span>
-                     </div>
-                    <% end %>
-                   </div>
-                 </div>
-                 <% if education.show_gpa %> 
-                  <div class="column cgpa-section col-xs-4" style="display: 'block';">
-                    <div class="form-group mb-0">
-                      <textArea class="form-control cgpa-input">CGPA</textArea> 
-                      <textArea
-                        type="string"
-                        name="cgpa"
-                        class="form-control"
-                      ><%= education.cgpa.present? ? education.cgpa : '3.9/6.0' %></textArea>
-                     </div>
-                 </div>
-                <% end %>
-              </div>
+                  <% end %>
+                </div>
 
-            </li>
+              </li>
+            <% end %>
           <% end %>
         </ul>
      </div>

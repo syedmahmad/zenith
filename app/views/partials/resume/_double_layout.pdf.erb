@@ -9,12 +9,12 @@
     <div>
       <div class="resume-col-left">
         <% @left_col_data[page].each do |item| %>
-          <%= render "partials/resume/#{item.downcase}" %>
+          <%= render "partials/resume/#{item.downcase}", page: page %>
         <% end %>
       </div>
       <div class="resume-col-right">
         <% @right_col_data[page].each do |item| %>
-          <%= render "partials/resume/#{item.downcase}" %>
+          <%= render "partials/resume/#{item.downcase}", page: page %>
         <% end %>
       </div>
     </div>

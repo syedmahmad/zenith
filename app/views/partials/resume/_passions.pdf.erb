@@ -17,33 +17,35 @@
      <div class="section-items-list">
         <ul class="row mrl0">
           <% @resume.passions.each do |passion|%>
-            <li class="section-item row mrl0">
-               <% if passion.show_icon %>  
-                 <div class="icon-holder pull-left">
-                    <i class="fa fa-heart secondary-color" aria-hidden="true"></i>
-                 </div>
-               <% end %>
-               <div class="input-holder">
-                  <div class="form-group mb-0">
-                     <textArea
-                       type="string"
-                       name="name"
-                       class="form-control hide-show-control sub-header"
-                       placeholder="Your Passion"
-                     ><%= passion.name %></textArea>
-                  </div>
-                  <% if passion.show_description %> 
+            <% if(page == passion.page)%>
+              <li class="section-item row mrl0">
+                 <% if passion.show_icon %>  
+                   <div class="icon-holder pull-left">
+                      <i class="fa fa-heart secondary-color" aria-hidden="true"></i>
+                   </div>
+                 <% end %>
+                 <div class="input-holder">
                     <div class="form-group mb-0">
                        <textArea
                          type="string"
-                         name="description"
-                         class="form-control"
-                         placeholder="description"
-                       ><%= passion.description %></textArea>
+                         name="name"
+                         class="form-control hide-show-control sub-header"
+                         placeholder="Your Passion"
+                       ><%= passion.name %></textArea>
                     </div>
-                  <% end %>
-               </div>
-            </li>
+                    <% if passion.show_description %> 
+                      <div class="form-group mb-0">
+                         <textArea
+                           type="string"
+                           name="description"
+                           class="form-control"
+                           placeholder="description"
+                         ><%= passion.description %></textArea>
+                      </div>
+                    <% end %>
+                 </div>
+              </li>
+            <% end %>
           <% end %>
         </ul>
      </div>

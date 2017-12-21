@@ -17,31 +17,33 @@
      <div class="section-items-list">
         <ul class="row mrl0">
           <% @resume.skills.each do |skill| %>
-            <li class="section-item row mrl0">
-                <div class="form-group mb-0">
-                   <textArea
-                     type="string"
-                     name="name"
-                     class="form-control hide-show-control sub-header"
-                     placeholder="Skill"
-                   ><%= skill.name %></textArea>
-                </div>
-                <% if skill.show_level %> 
-                  <h6 class="mt-24">
-                     <p class="text-right"><%=@levelHash[skill.level.to_i]%></p>
-                     <div class="form-group">
-                        <input
-                          type="range"
-                          min="0" max="100" step="20"
-                          name="level"
-                          class=" height-5 form-control input-range"
-                          placeholder="Beginner"
-                          value=<%= skill.level %>
-                        />
-                     </div>
-                  </h6>
-                <% end %>
-            </li>
+            <% if(page == skill.page)%>
+              <li class="section-item row mrl0">
+                  <div class="form-group mb-0">
+                     <textArea
+                       type="string"
+                       name="name"
+                       class="form-control hide-show-control sub-header"
+                       placeholder="Skill"
+                     ><%= skill.name %></textArea>
+                  </div>
+                  <% if skill.show_level %> 
+                    <h6 class="mt-24">
+                       <p class="text-right"><%=@levelHash[skill.level.to_i]%></p>
+                       <div class="form-group">
+                          <input
+                            type="range"
+                            min="0" max="100" step="20"
+                            name="level"
+                            class=" height-5 form-control input-range"
+                            placeholder="Beginner"
+                            value=<%= skill.level %>
+                          />
+                       </div>
+                    </h6>
+                  <% end %>
+              </li>
+            <% end %>
           <% end %>
         </ul>
      </div>

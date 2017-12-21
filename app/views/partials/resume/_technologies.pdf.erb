@@ -17,28 +17,30 @@
      <div class="section-items-list">
         <ul class="row mrl0">
           <% @resume.technologies.each do |technology|%>
-            <li class="section-item row mrl0">
-               <div class="input-holder">
-                <% if technology.show_gouup_title %> 
+            <% if(page == technology.page)%>
+              <li class="section-item row mrl0">
+                 <div class="input-holder">
+                  <% if technology.show_gouup_title %> 
+                    <div class="form-group mb-0">
+                       <textArea
+                         type="string"
+                         name="name"
+                         class="form-control secondary-color sub-header"
+                         placeholder="Group Title"
+                       ><%= technology.name %></textArea>
+                    </div>
+                  <% end %>
                   <div class="form-group mb-0">
                      <textArea
                        type="string"
-                       name="name"
-                       class="form-control secondary-color sub-header"
-                       placeholder="Group Title"
-                     ><%= technology.name %></textArea>
+                       name="tec_names"
+                       class="form-control hide-show-control"
+                       placeholder="Tech"
+                     ><%= technology.tec_names %></textArea>
                   </div>
-                <% end %>
-                <div class="form-group mb-0">
-                   <textArea
-                     type="string"
-                     name="tec_names"
-                     class="form-control hide-show-control"
-                     placeholder="Tech"
-                   ><%= technology.tec_names %></textArea>
-                </div>
-               </div>
-            </li>
+                 </div>
+              </li>
+            <% end %>
           <% end %>
         </ul>
      </div>
