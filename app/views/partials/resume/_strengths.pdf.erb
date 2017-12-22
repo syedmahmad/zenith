@@ -17,33 +17,35 @@
      <div class="section-items-list">
         <ul class="row mrl0">
           <% @resume.strengths.each do |strength|%>
-            <li class="section-item row mrl0">
-               <% if strength.show_icon %> 
-                 <div class="icon-holder pull-left">
-                    <i class="fa fa-gavel secondary-color" aria-hidden="true"></i>
-                 </div>
-               <% end %>
-               <div class="input-holder">
-                  <div class="form-group mb-0">
-                     <textArea
-                       type="string"
-                       name="title"
-                       class="form-control hide-show-control sub-header"
-                       placeholder="Your Unique Talent"
-                     ><%= strength.title %></textArea>
-                  </div>
-                <% if strength.show_description %>
-                  <div class="form-group mb-0">
-                     <textArea
-                       type="string"
-                       name="description"
-                       class="form-control"
-                       placeholder="As result of it / how did you acquire it"
-                     ><%= strength.description %></textArea>
-                  </div>
-                <% end %>
-              </div>
-            </li>
+            <% if(page == strength.page)%>
+              <li class="section-item row mrl0">
+                 <% if strength.show_icon %> 
+                   <div class="icon-holder pull-left">
+                      <i class="fa fa-gavel secondary-color" aria-hidden="true"></i>
+                   </div>
+                 <% end %>
+                 <div class="input-holder">
+                    <div class="form-group mb-0">
+                       <textArea
+                         type="string"
+                         name="title"
+                         class="form-control hide-show-control sub-header"
+                         placeholder="Your Unique Talent"
+                       ><%= strength.title %></textArea>
+                    </div>
+                  <% if strength.show_description %>
+                    <div class="form-group mb-0">
+                       <textArea
+                         type="string"
+                         name="description"
+                         class="form-control"
+                         placeholder="As result of it / how did you acquire it"
+                       ><%= strength.description %></textArea>
+                    </div>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
           <% end %>
         </ul>
      </div>

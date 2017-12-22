@@ -17,30 +17,32 @@
     <div class="section-items-list">
        <ul class="row mrl0">
          <% @resume.languages.each do |language|%>
-            <li class="section-item row mrl0">
-                  <div class="form-group mb-0">
-                     <textArea
-                       type="string"
-                       name="name"
-                       class="form-control hide-show-control sub-header"
-                       placeholder="language name"
-                     ><%= language.name %></textArea>
-                  </div>
-               <% if language.show_proficiency %> <h6 class="mt-24">
-                  <p class="text-right"><%=@levelHash[language.level.to_i]%></p>
-                  <div class="form-group">
-                     <input
-                       type="range"
-                       min="0" max="100" step="20"
-                       name="level"
-                       class=" height-5 form-control input-range"
-                       placeholder="Beginner"
-                       value=<%= language.level %>
-                     />
-                  </div>
-               </h6>
-              <% end %>
-            </li>
+            <% if(page == language.page)%>
+              <li class="section-item row mrl0">
+                    <div class="form-group mb-0">
+                       <textArea
+                         type="string"
+                         name="name"
+                         class="form-control hide-show-control sub-header"
+                         placeholder="language name"
+                       ><%= language.name %></textArea>
+                    </div>
+                 <% if language.show_proficiency %> <h6 class="mt-24">
+                    <p class="text-right"><%=@levelHash[language.level.to_i]%></p>
+                    <div class="form-group">
+                       <input
+                         type="range"
+                         min="0" max="100" step="20"
+                         name="level"
+                         class=" height-5 form-control input-range"
+                         placeholder="Beginner"
+                         value=<%= language.level %>
+                       />
+                    </div>
+                 </h6>
+                <% end %>
+              </li>
+            <% end %>
          <% end %>
        </ul>
     </div>

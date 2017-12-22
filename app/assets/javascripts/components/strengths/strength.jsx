@@ -67,13 +67,16 @@ var Strengths = React.createClass({
     this.props.removeSubSection(formData, "strengths");
   },
   render: function() {
-    var strengths = this.state.strengths
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
+    var strengths = _this.props.resume.strengths;
     strengths.forEach(function(strength) {
-      key = "strength-" + strength.id;
-      data.push(<StrengthItem total={_this.state.strengths.length} handleShowHideChange={_this.props.handleShowHideChange} strength={strength} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      if(page == strength.page){
+        key = "strength-" + strength.id;
+        data.push(<StrengthItem total={strengths.length} handleShowHideChange={_this.props.handleShowHideChange} strength={strength} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+      }
     });
     
     return (

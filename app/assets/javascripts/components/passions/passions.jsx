@@ -68,13 +68,16 @@ var Passions = React.createClass({
     this.props.removeSubSection(formData, "passions");  
   },
   render: function() {
-    var passions = this.state.passions
     var data = []
     var key = "";
     var _this = this;
+    var page = _this.props.page;
+    var passions = _this.props.resume.passions;
     passions.forEach(function(passion) {
-      key = "passion-" + passion.id;
-      data.push(<PassionItem total={_this.state.passions.length} handleShowHideChange={_this.props.handleShowHideChange} passion={passion} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      if(page == passion.page){
+        key = "passion-" + passion.id;
+        data.push(<PassionItem total={passions.length} handleShowHideChange={_this.props.handleShowHideChange} passion={passion} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+      }
     });
     
     return (

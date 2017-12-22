@@ -17,33 +17,35 @@
      <div class="section-items-list">
        <ul class="row mrl0">
          <% @resume.awards.each do |award| %>
-           <li class="section-item row mrl0">
-             <% if award.show_icon %> 
-               <div class="icon-holder pull-left">
-                  <i class="fa fa-trophy secondary-color" aria-hidden="true"></i>
-               </div>
-             <% end %>
-             <div class="input-holder">
-               <div class="form-group mb-0">
-                 <textArea
-                   type="string"
-                   name="name"
-                   class="form-control hide-show-control sub-header"
-                   placeholder="Award Name"
-                 ><%= award.name %></textArea>
-               </div>
-               <div class="form-group mb-0">
-                 <% if award.show_icon %> 
+           <% if(page == award.page)%>
+             <li class="section-item row mrl0">
+               <% if award.show_icon %> 
+                 <div class="icon-holder pull-left">
+                    <i class="fa fa-trophy secondary-color" aria-hidden="true"></i>
+                 </div>
+               <% end %>
+               <div class="input-holder">
+                 <div class="form-group mb-0">
                    <textArea
                      type="string"
-                     name="description"
-                     class="form-control"
-                     placeholder="Award Description"
-                   ><%= award.description %></textArea>
-                 <% end %>
+                     name="name"
+                     class="form-control hide-show-control sub-header"
+                     placeholder="Award Name"
+                   ><%= award.name %></textArea>
+                 </div>
+                 <div class="form-group mb-0">
+                   <% if award.show_icon %> 
+                     <textArea
+                       type="string"
+                       name="description"
+                       class="form-control"
+                       placeholder="Award Description"
+                     ><%= award.description %></textArea>
+                   <% end %>
+                 </div>
                </div>
-             </div>
-           </li>
+             </li>
+           <% end %>  
          <% end %>
        </ul>
     </div>

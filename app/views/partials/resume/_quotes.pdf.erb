@@ -17,28 +17,30 @@
     <div class="section-items-list">
         <ul class="row mrl0">
           <% @resume.quotes.each do |quote|%>
-            <li class="section-item row mrl0 col-xs-12">
-              <div class="input-holder">
-                <div class="form-group mb-0">
-                  <textArea
-                    type="string"
-                    name="name"
-                    class="form-control hide-show-control sub-header"
-                    placeholder="Quote"
-                  ><%= quote.name %></textArea>
-                </div>
-                <% if quote.show_author %> 
+            <% if(page == quote.page)%>
+              <li class="section-item row mrl0 col-xs-12">
+                <div class="input-holder">
                   <div class="form-group mb-0">
                     <textArea
                       type="string"
                       name="name"
-                      class="form-control secondary-color"
-                      placeholder="Quote Author"
-                    ><%= quote.author %></textArea>
+                      class="form-control hide-show-control sub-header"
+                      placeholder="Quote"
+                    ><%= quote.name %></textArea>
                   </div>
-                <% end %>
-              </div>
-            </li>
+                  <% if quote.show_author %> 
+                    <div class="form-group mb-0">
+                      <textArea
+                        type="string"
+                        name="name"
+                        class="form-control secondary-color"
+                        placeholder="Quote Author"
+                      ><%= quote.author %></textArea>
+                    </div>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
           <% end %>
         </ul>
      </div>

@@ -10,10 +10,12 @@ var CvBuilder = React.createClass({
     this.updateStyle();
     this.handleSubSectionRearrange();
     this.handleShowHideButtonStyle();
-    params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections, "section_data": this.state.sectionData};
-    if (this.props.current_user) {
-      this.updateResume({resume: {"pages": this.state.pages, layout_attributes: params}});
-    }
+    this.removeEmptySections();
+    this.removeEmptyPages();
+    // params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections, "section_data": this.state.sectionData};
+    // if (this.props.current_user) {
+    //   this.updateResume({resume: {"pages": this.state.pages, layout_attributes: params}});
+    // }
   },
   componentDidMount: function(){
     var _this = this;
@@ -63,6 +65,9 @@ var CvBuilder = React.createClass({
     });
   },
   handleSubItemRearrange: function(section, data){
+    if(section == "education"){
+      section = "educations";
+    }
     params = {resume: {[section+"_attributes"]: data}}
     this.updateResume(params)
   },
@@ -116,7 +121,6 @@ var CvBuilder = React.createClass({
       $(val).addClass(aa);
     });
 
-    
     // apply primary_font.. Here no need font-size
     $(".cv-builder .primary_font").each(function(e,val){ 
       $(val).css('font-family', "'"+_this.state.resumeStyle.primary_font+"'");
@@ -137,18 +141,27 @@ var CvBuilder = React.createClass({
     });
   },
   setupLayout: function(){
+    var elements = null;
     elements = $(".page")
     _this = this;
+    var sectionData1 = [];
+
+    var pageSectionData = [];
     $.each(elements, function( index, elem ) {
       if(elem.scrollHeight > elem.offsetHeight){
-        var lastElm = $(elem).find(".section-items").last().data("sectionName");
+        var lastElmObj = $(elem).find(".section-items").last();
+        var lastElm = $(lastElmObj).data("sectionName");
+        var elmCol = 0;
         if(_this.state.layout_type == "double"){
           leftCol = $(elem).find(".resume-col-left");
           rightCol = $(elem).find(".resume-col-right");
 
           if(leftCol.height() > rightCol.height()){
+            lastElmObj = $(leftCol).find(".section-items").last();
             lastElm = $(leftCol).find(".section-items").last().data("sectionName");
           }else{
+            lastElmObj = $(rightCol).find(".section-items").last();
+            elmCol = 1;
             lastElm = $(rightCol).find(".section-items").last().data("sectionName");
           }
         }
@@ -156,30 +169,102 @@ var CvBuilder = React.createClass({
         if(index+1 == pages){
           pages = pages + 1;
         }
-        sectionData = $.grep(_this.state.sectionData, function (a) {
-                        if (a.name == lastElm) {
-                            a.page = index + 1;
-                        }
-                        return a;
-                    });
-        params = {id: _this.props.resume.layout.id,"section_data": sectionData, "pages": pages};
-        _this.updateResume({resume: {layout_attributes: params}});
-        _this.setState({pages: pages, sectionData: sectionData});
-      }else{
-        if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
-          pageIndex = $(elem).data("pageIndex");
-          sectionData = $.grep(_this.state.sectionData, function (a) {
-            currentPageInex = parseInt(a.page);
-            if ((currentPageInex + 1) > pageIndex) {
-              a.page =  (currentPageInex - 1).toString();
-            }
-            return a;
-          });
-          params = {id: _this.props.resume.layout.id,"section_data": sectionData, "pages": _this.state.pages - 1};
-          _this.updateResume({resume: {layout_attributes: params}});
 
-          _this.setState({pages: _this.state.pages - 1, sectionData: sectionData});
+        var subSectionId = 0;
+        if($(lastElmObj).find(".section-item").length == 1){
+          subSectionId = $(lastElmObj).find(".section-item").data("sectionId");
+          sectionData = $.grep(_this.state.sectionData, function (a) {
+                          if (a.name == lastElm) {
+                              a.page = index + 1;
+                          }
+                          return  a;
+                      });
+
+        }else{
+          subSectionId = $(lastElmObj).find(".section-item").last().data("sectionId");
+          sectionData.push({name: lastElm, page: index + 1, column: elmCol});
         }
+        arr = [];
+        sectionData1 = [];
+
+        $.grep(sectionData, function (a) {
+          if(!arr.includes(a.name+"-"+a.page)){
+            sectionData1.push(a)
+            arr.push(a.name+"-"+a.page)
+          }
+        });
+        sectionData = sectionData1;
+        // $(lastSection).remove();
+        var resume = _this.state.resume;
+        var itemsObj = null;
+
+        itemsObj = $.grep(resume[lastElm.toLowerCase()], function (item) {
+          if(item.id == subSectionId){
+            item.page = index + 1;
+          }
+          return item;
+        });
+
+        if(lastElm.toLowerCase() == "education"){
+          lastElm = "educations";
+        }
+
+        if(sectionData != pageSectionData[index]){
+          pageSectionData[index] = sectionData;
+          params = {id: _this.props.resume.layout.id,"section_data": sectionData};
+          _this.updateResume({resume: {"pages": pages, layout_attributes: params, [lastElm.toLowerCase()+"_attributes"]: {id: subSectionId, page: index + 1}}});
+
+          resume[lastElm.toLowerCase()] = itemsObj;
+          _this.setState({resume: resume, pages: pages, sectionData: sectionData});
+        }
+      }
+      // else{
+        // if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
+        //   pageIndex = $(elem).data("pageIndex");
+        //   sectionData = $.grep(_this.state.sectionData, function (a) {
+        //     currentPageInex = parseInt(a.page);
+        //     if ((currentPageInex + 1) > pageIndex) {
+        //       a.page =  (currentPageInex - 1).toString();
+        //     }
+        //     return a;
+        //   });
+        //   if(sectionData != _this.state.sectionData){
+        //     params = {id: _this.props.resume.layout.id,"section_data": sectionData};
+        //     _this.updateResume({resume: {"pages": _this.state.pages - 1, layout_attributes: params}});
+
+        //     _this.setState({pages: _this.state.pages - 1, sectionData: sectionData});
+        //   }
+        // }
+        // else{
+        //   var sections = $(elem).find(".section-items");
+        //   debugger;
+        //   $.each(sections, function( index, el ) {
+        //     debugger;
+        //     if($(el).find("li.section-item").length == 0 && $(el).closest(".section-items").data("sectionName").toLowerCase() != "summary"){
+        //       sectionName = $(el).closest(".section-items").data("sectionName");
+        //       _this.handleRemoveSection(null, sectionName);
+        //     }
+        //   });
+        // }
+      // }
+    });
+  },
+  removeEmptyPages: function(){
+    var _this = this;
+    $.each($(".page"), function( index, elem ) {
+      if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
+        params = {id: _this.props.resume.layout.id,"pages": pages};
+        _this.updateResume({resume: {"pages": _this.state.pages - 1}});
+        _this.setState({pages: _this.state.pages - 1});
+      }
+    });
+  },
+
+  removeEmptySections: function () {
+    var sections = $(".page .section-items");
+    $.each(sections, function( index, el ) {
+      if($(el).find("li.section-item").length == 0 && $(el).closest(".section-items").data("sectionName").toLowerCase() != "summary"){
+        _this.handleRemoveSection(null, el);
       }
     });
   },
@@ -202,6 +287,9 @@ var CvBuilder = React.createClass({
   },
   createSubSection: function(formData,sectionName){
     var _this = this;
+    var resume = _this.state.resume;
+    subSectionPage = $(".section-items [data-section-name="+sectionName+"]").last().closest(".page-holder").data("pageIndex");
+    formData["page"] = parseInt(subSectionPage) - 1;
     $.ajax({
       url: (_this.props.host+"resumes/"+_this.props.resume.id+"/create_sub_record"),
       dataType: 'json',
@@ -209,8 +297,8 @@ var CvBuilder = React.createClass({
       contentType: 'multipart/form-data',
       data: formData,
       success: function(item) {
-        _this.state.resume[sectionName].unshift(item);
-        _this.setState({resume: this.state.resume});
+        resume[sectionName].unshift(item);
+        _this.setState({resume: resume});
       }.bind(this),
       error: function(response, status, err) {
       }
@@ -219,7 +307,7 @@ var CvBuilder = React.createClass({
   removeSubSection: function(formData,sectionName){
     var _this = this;
     $.ajax({
-      url: (this.props.host+"resumes/"+formData.section_id+"/delete_sub_record"),
+      url: (this.props.host+"resumes/"+_this.state.resume.id+"/delete_sub_record"),
       type: 'DELETE',
       contentType: 'multipart/form-data',
       data: formData,
@@ -227,63 +315,153 @@ var CvBuilder = React.createClass({
         var position = _this.state.resume[sectionName].findIndex(i => i.id === item.id);
         _this.state.resume[sectionName].splice(position, 1);
         _this.setState({resume: this.state.resume});
+        // _this.setupSections($(".section-items"));
       }.bind(this),
       error: function(response, status, err) {
       }
     });
   },
-  handleRearrage: function(prevUiItem){
-    sectionItems = $('.rearrange-section-item')
-    totalSections = sectionItems.length
-    itemIndex = sectionItems.index(prevUiItem)
-    
-    sectionData = this.state.sectionData
-    var section_names = sectionItems.map(function(index, elem) {
-      sectionData = $.grep(sectionData, function (a) {
-        if (a.name == $(elem).data('sectionName')) {
-            a.page = $(elem).closest(".reorder-page").data('page');
-            if($(elem).parents(".rearrange-resume-col-right").length > 0){
-              a.column = 1
-            }else if($(elem).parents(".rearrange-resume-col-left").length > 0){
-              a.column = 0
-            }
+  setupSections: function(sectionItems, rearrange=false, itemName="", itemIndex=0){
+    var _this = this;
+    var sectionData = _this.state.sectionData;
+    var sectionData1 = [];
+    var sectionDataArr = [];
+    var resume = _this.state.resume;
+    var params = {};
+    var section_names;
+    var sectionNameArr = [];
+    var rightClass = ".resume-col-right";
+    var leftClass = ".resume-col-left";
+
+    if(rearrange){
+      rightClass = ".rearrange-resume-col-right";
+      leftClass = ".rearrange-resume-col-left";
+    }
+
+    section_names = sectionItems.map(function(index, elem) {
+      if(!sectionNameArr.includes($(elem).data('sectionName'))){
+        var pageIndex = 0;
+        if(rearrange){
+          pageIndex = $(elem).closest(".reorder-page").data('page');
+        }else{
+          pageIndex = parseInt($(elem).closest(".page").data('pageIndex')) - 1;
         }
-        return a;
-      });
-      return $(elem).data('sectionName');
+
+        sectionNameArr.push($(elem).data('sectionName'));
+        if(index != itemIndex && itemName == $(elem).data('sectionName')){
+        }else{
+          var itemsObj = null;
+          if($(elem).data('sectionName').toLowerCase() != "resumeheader"){
+            itemsObj = $.grep(resume[$(elem).data('sectionName').toLowerCase()], function (item) {
+              item.page = pageIndex;
+              
+              if($(elem).parents(rightClass).length > 0){
+                item.column = 1
+              }else if($(elem).parents(leftClass).length > 0){
+                item.column = 0
+              }
+              return item;
+            });
+
+            if($(elem).data('sectionName').toLowerCase() == "education"){
+              params["educations_attributes"] = itemsObj;
+            }else{
+              params[$(elem).data('sectionName').toLowerCase()+"_attributes"] = itemsObj;
+            }
+            // params[$(elem).data('sectionName').toLowerCase()+"_attributes"] = itemsObj;
+            resume[$(elem).data('sectionName').toLowerCase()] = itemsObj;
+          }
+
+          $.grep(sectionData, function (a) {
+            if(!sectionDataArr.includes(a.name)) {
+              if(itemIndex != index && itemName == a.name){
+              }else{
+                if (a.name == $(elem).data('sectionName')) {
+                    a.page = pageIndex;
+                    if($(elem).parents(rightClass).length > 0){
+                      a.column = 1
+                    }else if($(elem).parents(leftClass).length > 0){
+                      a.column = 0
+                    }
+                }
+                sectionDataArr.push(a.name);
+                sectionData1.push(a);
+              }
+            }
+          });
+          return $(elem).data('sectionName');
+        }
+      }
     }).get();
-    params = {id: this.props.resume.layout.id, "section_names": section_names, "section_data": sectionData, "pages": pages};
-    if (this.props.current_user) {
-      this.updateResume({resume: {layout_attributes: params}});
-    }
+
+    params["layout_attributes"] = {};
+    params["layout_attributes"]["id"] = resume.layout.id;
+    params["layout_attributes"]["section_names"] = section_names;
+    params["layout_attributes"]["section_data"] = sectionData1;
     
-    if(this.state.layout_type == "single"){
-      $(".rearrange-section-modal").sortable("cancel");
-      $(".rearrange-section-modal").sortable("destroy");
-    }else if(this.state.layout_type == "double"){
-      $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("cancel");
-      $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("destroy");
+    if(sectionData1 != _this.state.sectionData){
+      if (_this.props.current_user) {
+        _this.updateResume({resume: params});
+      }
+      
+      if(rearrange){
+        if(_this.state.layout_type == "single"){
+          $(".rearrange-section-modal").sortable("cancel");
+          $(".rearrange-section-modal").sortable("destroy");
+        }else if(_this.state.layout_type == "double"){
+          $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("cancel");
+          $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("destroy");
+        }
+      }
+      
+      _this.setState({resume: resume, layoutSections: section_names, sectionData: sectionData1, pages: pages});
     }
 
-    updatedSectionItems = $('.rearrange-section-item')
-    if(totalSections < updatedSectionItems.length){
-      $(updatedSectionItems[itemIndex]).removeUniqueId();
-      $(updatedSectionItems[itemIndex]).remove();
-    }
-    this.setState({layoutSections: section_names, sectionData: sectionData, pages: pages});
+  },
 
+  handleRearrage: function(prevUiItem){
+    var _this = this;
+    sectionItems = $('.rearrange-section-item')
+    // totalSections = sectionItems.length
+    itemIndex = sectionItems.index(prevUiItem)
+    itemName = $(prevUiItem).data("sectionName")
+
+    _this.setupSections(sectionItems, true, itemName, itemIndex);
+
+    // updatedSectionItems = $('.rearrange-section-item')
+    // if(totalSections < updatedSectionItems.length){
+    //   $(updatedSectionItems[itemIndex]).removeUniqueId();
+    //   $(updatedSectionItems[itemIndex]).remove();
+    // }
   },
   handleAddSection: function(e){
     var newSection = $(e.target).data("sectionName");
+    var resume = this.state.resume;
     sections = this.state.layoutSections
     sectionData = this.state.sectionData
     sections.push(newSection);
-    sectionData.push({name: newSection, page: 0, column: 0});
+
+    var itemsObj = null;
+    var params = {};
+    var sectionPage = parseInt($(".page").last().data("pageIndex")) - 1;
+    itemsObj = $.grep(resume[newSection.toLowerCase()], function (item) {
+      item.page = sectionPage;
+      item.column = 0;
+      return item;
+    });
+    params[newSection.toLowerCase()+"_attributes"] = itemsObj;
+    resume[newSection.toLowerCase()] = itemsObj;
+
+    sectionData.push({name: newSection, page: sectionPage, column: 0});
     if (this.props.current_user) {
-      params = {id: this.props.resume.layout.id, "section_names": sections, "section_data": sectionData};
-      this.updateResume({resume: {layout_attributes: params}});
+      params["layout_attributes"] = {};
+      params["layout_attributes"]["id"] = resume.layout.id;
+      params["layout_attributes"]["section_names"] = sections;
+      params["layout_attributes"]["section_data"] = sectionData;
+      this.updateResume({resume: params});
     }
-    this.setState({layoutSections: sections, sectionData: sectionData});
+
+    this.setState({resume: resume, layoutSections: sections, sectionData: sectionData});
   },
   handleBackground: function(e) {
     var img = $(e.target).data("imageName");
@@ -314,23 +492,41 @@ var CvBuilder = React.createClass({
     this.state.resumeStyle.secondary_color = sec_color;
     this.setState({resumeStyle: this.state.resumeStyle});
   },
-  handleRemoveSection: function(e){
-    var removeSection = $(e.target).data("sectionName");
-    var positionInSections = this.state.layoutSections.indexOf(removeSection);
+  handleRemoveSection: function(e, el=null){
+    var _this = this;
+    var removeSection = null;
+    var pageIndex = -1;
+    if(e){
+      removeSection = $(e.target).data("sectionName");
+    }else{
+      pageIndex = parseInt($(el).closest(".page").data("pageIndex")) - 1;
+      removeSection = $(el).closest(".section-items").data("sectionName");
+    }
+
+    var positionInSections = _this.state.layoutSections.indexOf(removeSection);
     var positionInSectionData = null;
-    this.state.sectionData.forEach(function(item, index) {
+    _this.state.sectionData.forEach(function(item, index) {
       if(item.name == removeSection){
-        positionInSectionData = index;
+        if(pageIndex >= 0){
+          if(item.page == pageIndex){
+            _this.state.sectionData.splice(index, 1);
+          }
+        }else{
+          _this.state.sectionData.splice(index, 1);
+          _this.state.layoutSections.splice(positionInSections, 1);
+        }
         return;
       }      
     });
-    this.state.sectionData.splice(positionInSectionData, 1);
-    this.state.layoutSections.splice(positionInSections, 1);
-    if (this.props.current_user) {
-      params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections, "section_data": this.state.sectionData};
-      this.updateResume({resume: {layout_attributes: params}});
+    if (_this.props.current_user) {
+      if(pageIndex < 0){
+        params = {id: _this.props.resume.layout.id, "section_names": _this.state.layoutSections, "section_data": _this.state.sectionData};
+      }else{
+        params = {id: _this.props.resume.layout.id, "section_data": _this.state.sectionData};
+      }
+      _this.updateResume({resume: {layout_attributes: params}});
     }
-    this.setState({layoutSections: this.state.layoutSections, sectionData: this.state.sectionData});
+    _this.setState({layoutSections: _this.state.layoutSections, sectionData: _this.state.sectionData});
   },
   handleLayoutChange: function(e){
     selectedLayout = $(e.currentTarget).data("layoutType")
@@ -400,7 +596,7 @@ var CvBuilder = React.createClass({
       });
       if(_this.state.layout_type == "double"){
         key = "double-page"+i;
-        data.push(<Double updateStyle={_this.updateStyle} setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+        data.push(<Double page={i} updateStyle={_this.updateStyle} setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
       }else{
         _this.state.layoutSections.forEach(function(section) {
           if($.inArray(section, selectedSections) > -1){

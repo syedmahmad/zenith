@@ -17,100 +17,102 @@
       <div class="section-items-list">
          <ul>
            <% @resume.projects.each do |project|%>
-              <li class="section-item col-xs-12">
-                <div class="project-holder">
-                   <div class="title-position">
-                      <div class="form-group mb-0">
-                        <textArea
-                          id="sub-header"
-                          type="string"
-                          name="name"
-                          class="form-control hide-show-control sub-header"
-                          placeholder="Project/Activity name"
-                        ><%= project.name %></textArea>
-                      </div>
-                   </div>
-                   <div style="display: 'inline-flex';"> 
-                     <% if project.show_period %> 
-                      <div class="column">
-                       <i class="fa fa-calendar secondary-color" aria-hidden="true"></i>
-                       <span>
-                         <div class="form-group mb-0">
-                           <textArea
-                             type="string"
-                             name="duration"
-                             class="form-control line-height-26"
-                             placeholder="Date period"
-                           ><%= project.duration %></textArea>
-                         </div>
-                       </span>
-                      </div>
-                     <% end %>
-                      <% if project.show_location %> 
+              <% if(page == project.page)%>
+                <li class="section-item col-xs-12">
+                  <div class="project-holder">
+                     <div class="title-position">
+                        <div class="form-group mb-0">
+                          <textArea
+                            id="sub-header"
+                            type="string"
+                            name="name"
+                            class="form-control hide-show-control sub-header"
+                            placeholder="Project/Activity name"
+                          ><%= project.name %></textArea>
+                        </div>
+                     </div>
+                     <div style="display: 'inline-flex';"> 
+                       <% if project.show_period %> 
                         <div class="column">
-                         <i class="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                         <i class="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                         <span>
+                           <div class="form-group mb-0">
+                             <textArea
+                               type="string"
+                               name="duration"
+                               class="form-control line-height-26"
+                               placeholder="Date period"
+                             ><%= project.duration %></textArea>
+                           </div>
+                         </span>
+                        </div>
+                       <% end %>
+                        <% if project.show_location %> 
+                          <div class="column">
+                           <i class="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                           <span>
+                              <div class="form-group mb-0">
+                               <textArea
+                                 type="string"
+                                 name="location"
+                                 class="form-control line-height-26"
+                                 placeholder="Location"
+                               ><%= project.location %></textArea>
+                              </div>
+                           </span>
+                         </div>
+                        <% end %>
+                      </div>
+                      <% if project.show_link %>
+                        <div class="column">
+                         <i class="fa fa-link secondary-color" aria-hidden="true"></i>
                          <span>
                             <div class="form-group mb-0">
                              <textArea
                                type="string"
-                               name="location"
+                               name="link"
                                class="form-control line-height-26"
-                               placeholder="Location"
-                             ><%= project.location %></textArea>
+                               placeholder="link"
+                             ><%= project.link %></textArea>
                             </div>
                          </span>
                        </div>
                       <% end %>
-                    </div>
-                    <% if project.show_link %>
+                     <% if project.show_description %> 
                       <div class="column">
-                       <i class="fa fa-link secondary-color" aria-hidden="true"></i>
-                       <span>
-                          <div class="form-group mb-0">
-                           <textArea
-                             type="string"
-                             name="link"
-                             class="form-control line-height-26"
-                             placeholder="link"
-                           ><%= project.link %></textArea>
-                          </div>
-                       </span>
+                       <div class="form-group mb-0">
+                        <textArea
+                          type="string"
+                          name="description"
+                          class="form-control"
+                          placeholder="Short summary of your work"
+                        ><%= project.description %></textArea>
+                       </div>
                      </div>
                     <% end %>
-                   <% if project.show_description %> 
-                    <div class="column">
-                     <div class="form-group mb-0">
-                      <textArea
-                        type="string"
-                        name="description"
-                        class="form-control"
-                        placeholder="Short summary of your work"
-                      ><%= project.description %></textArea>
-                     </div>
-                   </div>
-                  <% end %>
-                   <% if project.show_outcomes %> 
-                      <% project.outcomes.each do |outcome| %>
-                        <div class="column">
-                          <i class="fa fa-circle outcome-icon-6 secondary-color">
-                          </i>
-                           <span>
-                              <div class="form-group mb-0">
-                               <textArea
-                                 id="height-15"
-                                 type="string"
-                                 name="outcomes"
-                                 class="form-control line-height-26"
-                                 placeholder="Outcomes"
-                                 rows="1" 
-                               ><%= outcome %></textArea>
-                              </div>
-                           </span>
-                        </div>
-                      <% end %>
-                   <% end %>
-                </div>
-              </li>
+                     <% if project.show_outcomes %> 
+                        <% project.outcomes.each do |outcome| %>
+                          <div class="column">
+                            <i class="fa fa-circle outcome-icon-6 secondary-color">
+                            </i>
+                             <span>
+                                <div class="form-group mb-0">
+                                 <textArea
+                                   id="height-15"
+                                   type="string"
+                                   name="outcomes"
+                                   class="form-control line-height-26"
+                                   placeholder="Outcomes"
+                                   rows="1" 
+                                 ><%= outcome %></textArea>
+                                </div>
+                             </span>
+                          </div>
+                        <% end %>
+                     <% end %>
+                  </div>
+                </li>
+              <%end%>
            <% end %>
          </ul>
       </div>

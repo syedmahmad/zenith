@@ -44,6 +44,12 @@
               <a><i class="fa fa-star-half-o"></i> Background</a>
             </li>
 
+            <% if current_user.present? && current_user.user_type != "guest" %>
+              <li>
+                <a rel="nofollow" data-method="get" id="download-resume" href="/resumes/download"><i class="fa fa-download"></i> Download</a>
+              </li>
+            <% end %>            
+
             <% if current_user.present? && current_user.user_type == "guest" %>
               <li>
                 <a rel="nofollow" onclick="check_user_type()" href="javascript:;"><i class="fa fa-download"></i> Download</a>

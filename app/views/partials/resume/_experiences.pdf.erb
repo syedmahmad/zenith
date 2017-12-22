@@ -17,97 +17,99 @@
      <div class="section-items-list row m0">
         <ul class="row m0">
           <% @resume.experiences.each do |experience|%>
-            <li class="section-item col-xs-12">
-              <div class="experience_holder">
-                 <div class="title-position">
-                    <div class="form-group mb-0">
-                      <textArea
-                        type="string"
-                        name="title"
-                        class="form-control hide-show-control sub-header"
-                        placeholder="Title/Position"
-                      ><%= experience.title %></textArea>
-                    </div>
-                 </div>
-                 <div class="company">
-                    <div class="form-group mb-0">
-                      <input
-                        type="string"
-                        name="company_name"
-                        class="form-control secondary-color sub-color-area"
-                        placeholder="Company"
-                        value='<%= experience.company_name %>'
-                      />
-                    </div>
-                 </div>
-                 <div style="display: 'inline-flex'">
-                   <% if experience.show_period %> 
-                    <div class="column">
-                      <i class="fa fa-calendar secondary-color" aria-hidden="true"></i>
-                      <span>
-                         <div class="form-group mb-0">
-                          <textArea
-                            type="string"
-                            name="duration"
-                            class="form-control line-height-26"
-                            placeholder="Date period"
-                          ><%= experience.duration %></textArea>
-                         </div>
-                      </span>
-                   </div>
-                  <% end %>
-                   <% if experience.show_location %>
-                    <div class="column">
-                      <i class="fa fa-map-marker secondary-color" aria-hidden="true"></i>
-                      <span>
-                         <div class="form-group mb-0">
-                          <textArea
-                            type="string"
-                            name="location"
-                            class="form-control line-height-26"
-                            placeholder="Location"
-                          ><%= experience.location %></textArea>
-                         </div>
-                      </span>
-                   </div>
-                  <% end %>
-                 </div>
-                 <% if experience.show_description %> 
-                  <div class="column">
-                    <span>
-                       <div class="form-group mb-0">
+            <% if(page == experience.page)%>
+              <li class="section-item col-xs-12">
+                <div class="experience_holder">
+                   <div class="title-position">
+                      <div class="form-group mb-0">
                         <textArea
                           type="string"
-                          name="description"
-                          class="form-control"
-                          placeholder="Company Description"
-                        ><%= experience.description %></textArea>
-                       </div>
-                    </span>
-                 </div>
-                <% end %>
-                <% if experience.show_outcomes %> 
-                  <% experience.outcomes.each do |outcome| %>
+                          name="title"
+                          class="form-control hide-show-control sub-header"
+                          placeholder="Title/Position"
+                        ><%= experience.title %></textArea>
+                      </div>
+                   </div>
+                   <div class="company">
+                      <div class="form-group mb-0">
+                        <input
+                          type="string"
+                          name="company_name"
+                          class="form-control secondary-color sub-color-area"
+                          placeholder="Company"
+                          value='<%= experience.company_name %>'
+                        />
+                      </div>
+                   </div>
+                   <div style="display: 'inline-flex'">
+                     <% if experience.show_period %> 
+                      <div class="column">
+                        <i class="fa fa-calendar secondary-color" aria-hidden="true"></i>
+                        <span>
+                           <div class="form-group mb-0">
+                            <textArea
+                              type="string"
+                              name="duration"
+                              class="form-control line-height-26"
+                              placeholder="Date period"
+                            ><%= experience.duration %></textArea>
+                           </div>
+                        </span>
+                     </div>
+                    <% end %>
+                     <% if experience.show_location %>
+                      <div class="column">
+                        <i class="fa fa-map-marker secondary-color" aria-hidden="true"></i>
+                        <span>
+                           <div class="form-group mb-0">
+                            <textArea
+                              type="string"
+                              name="location"
+                              class="form-control line-height-26"
+                              placeholder="Location"
+                            ><%= experience.location %></textArea>
+                           </div>
+                        </span>
+                     </div>
+                    <% end %>
+                   </div>
+                   <% if experience.show_description %> 
                     <div class="column">
-                      <i class="fa fa-circle outcome-icon-6 secondary-color">
-                      </i>
-                       <span>
-                          <div class="form-group mb-0">
-                           <textArea
-                             id="height-15"
-                             type="string"
-                             name="outcomes"
-                             class="form-control line-height-26"
-                             placeholder="Outcomes"
-                             rows="1" 
-                           ><%= outcome %></textArea>
-                          </div>
-                       </span>
-                    </div>
+                      <span>
+                         <div class="form-group mb-0">
+                          <textArea
+                            type="string"
+                            name="description"
+                            class="form-control"
+                            placeholder="Company Description"
+                          ><%= experience.description %></textArea>
+                         </div>
+                      </span>
+                   </div>
                   <% end %>
-                <% end %>
-              </div>
-            </li>
+                  <% if experience.show_outcomes %> 
+                    <% experience.outcomes.each do |outcome| %>
+                      <div class="column">
+                        <i class="fa fa-circle outcome-icon-6 secondary-color">
+                        </i>
+                         <span>
+                            <div class="form-group mb-0">
+                             <textArea
+                               id="height-15"
+                               type="string"
+                               name="outcomes"
+                               class="form-control line-height-26"
+                               placeholder="Outcomes"
+                               rows="1" 
+                             ><%= outcome %></textArea>
+                            </div>
+                         </span>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
           <% end %>
         </ul>
      </div>

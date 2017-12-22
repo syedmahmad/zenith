@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204194027) do
+ActiveRecord::Schema.define(version: 20171205103956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.boolean  "show_title",       default: true
     t.boolean  "show_description", default: true
     t.integer  "item_index"
+    t.integer  "page",             default: 0
   end
 
   create_table "awards", force: :cascade do |t|
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.boolean  "show_icon",        default: true
     t.boolean  "show_description", default: true
     t.integer  "item_index"
+    t.integer  "page",             default: 0
   end
 
   create_table "certificates", force: :cascade do |t|
@@ -51,6 +53,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.integer  "item_index"
     t.string   "duration",          default: ""
     t.boolean  "show_period",       default: true
+    t.integer  "page",              default: 0
   end
 
   create_table "courses", force: :cascade do |t|
@@ -61,6 +64,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.datetime "updated_at",                      null: false
     t.boolean  "show_description", default: true
     t.integer  "item_index"
+    t.integer  "page",             default: 0
   end
 
   create_table "educations", force: :cascade do |t|
@@ -77,6 +81,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.string   "location"
     t.boolean  "show_gpa",        default: true
     t.integer  "item_index"
+    t.integer  "page",            default: 0
   end
 
   create_table "experiences", force: :cascade do |t|
@@ -95,6 +100,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.boolean  "show_outcomes",    default: true
     t.boolean  "show_description", default: true
     t.integer  "item_index"
+    t.integer  "page",             default: 0
   end
 
   create_table "headers", force: :cascade do |t|
@@ -129,6 +135,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.integer  "resume_id"
     t.boolean  "show_proficiency", default: true
     t.integer  "item_index"
+    t.integer  "page",             default: 0
   end
 
   create_table "layouts", force: :cascade do |t|
@@ -152,6 +159,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.boolean  "show_description", default: true
     t.integer  "item_index"
     t.string   "icon",             default: "fa-heart"
+    t.integer  "page",             default: 0
   end
 
   create_table "projects", force: :cascade do |t|
@@ -171,6 +179,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.boolean  "show_description", default: true
     t.boolean  "show_link",        default: true
     t.integer  "item_index"
+    t.integer  "page",             default: 0
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -181,6 +190,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.string   "author"
     t.boolean  "show_author", default: true
     t.integer  "item_index"
+    t.integer  "page",        default: 0
   end
 
   create_table "resume_styles", force: :cascade do |t|
@@ -227,6 +237,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.integer  "resume_id"
     t.boolean  "show_level", default: true
     t.integer  "item_index"
+    t.integer  "page",       default: 0
   end
 
   create_table "strengths", force: :cascade do |t|
@@ -240,6 +251,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.boolean  "show_description", default: true
     t.integer  "item_index"
     t.string   "icon",             default: "fa-star"
+    t.integer  "page",             default: 0
   end
 
   create_table "summaries", force: :cascade do |t|
@@ -259,6 +271,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.integer  "resume_id"
     t.boolean  "show_gouup_title", default: true
     t.integer  "item_index"
+    t.integer  "page",             default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -306,6 +319,7 @@ ActiveRecord::Schema.define(version: 20171204194027) do
     t.string   "location"
     t.boolean  "show_description",  default: true
     t.integer  "item_index"
+    t.integer  "page",              default: 0
   end
 
 end
