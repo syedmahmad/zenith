@@ -1,7 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   prepend_before_filter :require_no_authentication, :only => []
   def create
-    puts "RegistrationsController ...............\n"*100
     # adding custom create logic...
     if current_user.user_type.eql?("guest")
       current_user.update_attributes(user_name: params[:user_name], email: params[:email], password: params[:password], user_type: "real")
@@ -12,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
       user.resumes.create
       sign_in(user)
     end
-    redirect_to '/'
+    redirect_to '/resumes'
   end
 
   def new
@@ -33,7 +32,7 @@ class RegistrationsController < Devise::RegistrationsController
         redirect_to new_basic_info_path
       else
         bypass_sign_in(current_user)
-        redirect_to '/'
+        redirect_to '/resumes'
       end
     end
 

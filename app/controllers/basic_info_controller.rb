@@ -48,7 +48,6 @@ class BasicInfoController < ApplicationController
 
   def varify_passwords
     @user = current_user
-    byebug
     if params[:user].has_key?(:encrypted_password) || params[:user].has_key?(:current_password) || params[:user].has_key?(:password_confirmation) 
       if !current_user.valid_password?(params[:user][:current_password])
         flash[:error] = 'Current password not correct!'
