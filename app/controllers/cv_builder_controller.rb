@@ -256,3 +256,22 @@ class CvBuilderController < ApplicationController
     end
 end
 
+
+# achievements.attributes.slice("title", "description", "id", "show_description", "icon", "show_icon", "item_index", "page")
+# awards.attributes.slice("name", "description", "id", "show_description", "show_icon", "item_index", "page", "icon")
+# certificates.attributes.slice("name", "institutiion_name", "id", "show_institutiion", "item_index", "page", "duration")
+# courses.attributes.slice("title", "description", "id", "show_description", "item_index", "page")
+# strengths.attributes.slice("title", "description", "id", "show_description", "show_icon", "item_index", "page", "icon")
+# educations.attributes.slice("degree_name", "ongoing", "university_name", "id", "duration", "show_period", "cgpa", "show_gpa", "show_location", "location", "item_index", "page")
+# experiences.attributes.slice("id", "title", "ongoing", "company_name", "location", "duration", "description", "show_location", "show_period", "show_description", "show_outcomes", "item_index", "page", "outcomes")
+# languages.attributes.slice("id", "name", "level", "show_proficiency", "item_index", "page")
+# passions.attributes.slice("id", "name", "description", "show_icon", "show_description", "item_index", "page", "icon")
+# projects.attributes.slice("id", "name", "ongoing", "location", "duration", "description", "show_location", "show_period", "link", "show_description", "show_link", "item_index", "page", "show_outcomes", "outcomes")
+# quotes.attributes.slice("id", "name", "author", "show_author", "item_index", "page")
+# skills.attributes.slice("id", "name", "level", "show_level", "item_index", "page")
+# technologies.attributes.slice("id", "name", "tec_names", "show_icon", "show_description", "item_index", "page")
+# volunteers.attributes.slice("id", "title", "ongoing", "organization_name", "duration", "description", "show_location", "show_period", "location", "show_description", "item_index", "page")
+# layout.attributes.slice("id", "underline", "layout_type", "section_names", "section_data")
+# header.attributes.slice("id","avatar","name","location","job_title","phone","email","website_link", "image_style", "show_avatar","show_name","show_location","show_job_title","show_phone","show_email","show_website_link")
+# summary.attributes.slice("id", "title", "description")
+# resume_style.attributes.slice("id", "background_img", "font_family", "primary_color", "secondary_color", "primary_font", "secondary_font", "font_size")

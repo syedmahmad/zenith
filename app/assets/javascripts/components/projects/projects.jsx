@@ -44,7 +44,7 @@ var Projects = React.createClass({
                 valObj.push($(el).val());
               });
             }
-            _this.submitProject({[valName]: valObj, "id": $(this).data("projectId")});
+            _this.submitProject(valName, valObj,$(this).data("projectId"));
           }
         }
       }
@@ -59,7 +59,9 @@ var Projects = React.createClass({
     }));
 
   },
-  submitProject: function(params){
+  submitProject: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("projects", attribute, value, id);
     this.props.updateResume(
       {resume: {projects_attributes: {"1": params}}}
     );

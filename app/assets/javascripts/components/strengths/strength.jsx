@@ -34,7 +34,7 @@ var Strengths = React.createClass({
           var props_res = _this.props.resume.strengths.find(item => item.id == $(this).data("strengthId"));
           if (props_res && props_res[e.target.name] != e.target.value) {
             //send update call...
-            _this.submitStrengths({[e.target.name]: e.target.value, "id": $(this).data("strengthId")});
+            _this.submitStrengths(e.target.name, e.target.value, $(this).data("strengthId"));
           }
         }
       }
@@ -49,7 +49,9 @@ var Strengths = React.createClass({
     }));
 
   },
-  submitStrengths: function(params){
+  submitStrengths: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("strengths", attribute, value, id);
     this.props.updateResume(
       {resume: {strengths_attributes: {"1": params}}}
     );

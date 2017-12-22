@@ -34,7 +34,7 @@ var Skills = React.createClass({
           var props_res = _this.props.resume.skills.find(item => item.id == $(this).data("skillId"));
           if (props_res && props_res[e.target.name] != e.target.value) {
             //send update call...
-            _this.submitSkills({[e.target.name]: e.target.value, "id": $(this).data("skillId")});
+            _this.submitSkills(e.target.name, e.target.value, $(this).data("skillId"));
           }
         }
       }
@@ -49,7 +49,9 @@ var Skills = React.createClass({
     }));
 
   },
-  submitSkills: function(params){
+  submitSkills: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("skills", attribute, value, id);
     this.props.updateResume(
       {resume: {skills_attributes: {"1": params}}}
     );

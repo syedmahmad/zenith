@@ -34,7 +34,7 @@ var Technologies = React.createClass({
           var props_res = _this.props.resume.technologies.find(item => item.id == $(this).data("technologyId"));
           if (props_res && props_res[e.target.name] != e.target.value) {
             //send update call...
-            _this.submitTechnologies({[e.target.name]: e.target.value, "id": $(this).data("technologyId")});
+            _this.submitTechnologies(e.target.name, e.target.value, $(this).data("technologyId"));
           }
         }
       }
@@ -49,7 +49,9 @@ var Technologies = React.createClass({
     }));
 
   },
-  submitTechnologies: function(params){
+  submitTechnologies: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("technologies", attribute, value, id);
     this.props.updateResume(
       {resume: {technologies_attributes: {"1": params}}}
     );
@@ -73,7 +75,7 @@ var Technologies = React.createClass({
     var page = _this.props.page;
     var technologies = _this.props.resume.technologies;
     technologies.forEach(function(technology) {
-      if(page == strength.page){
+      if(page == technology.page){
         key = "technology-" + technology.id;
         data.push(<TechnologyItem total={technologies.length} handleShowHideChange={_this.props.handleShowHideChange} technology={technology} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }

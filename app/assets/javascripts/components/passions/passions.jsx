@@ -35,7 +35,7 @@ var Passions = React.createClass({
           var props_res = _this.props.resume.passions.find(item => item.id == $(this).data("passionId"));
           if (props_res && props_res[e.target.name] != e.target.value) {
             //send update call...
-            _this.submitPassion({[e.target.name]: e.target.value, "id": $(this).data("passionId")});
+            _this.submitPassion(e.target.name, e.target.value, $(this).data("passionId"));
           }
         }
       }
@@ -50,7 +50,9 @@ var Passions = React.createClass({
     }));
 
   },
-  submitPassion: function(params){
+  submitPassion: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("passions", attribute, value, id);
     this.props.updateResume(
       {resume: {passions_attributes: {"1": params}}}
     );

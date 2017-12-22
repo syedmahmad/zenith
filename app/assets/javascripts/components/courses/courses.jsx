@@ -33,7 +33,7 @@ var Courses = React.createClass({
           var props_res = _this.props.resume.courses.find(item => item.id == $(this).data("courseId"));
           if (props_res && props_res[e.target.name] != e.target.value) {
             //send update call...
-            _this.submitCourses({[e.target.name]: e.target.value, "id": $(this).data("courseId")});
+            _this.submitCourses(e.target.name, e.target.value, $(this).data("courseId"));
           }
         }
       }
@@ -48,7 +48,9 @@ var Courses = React.createClass({
     }));
 
   },
-  submitCourses: function(params){
+  submitCourses: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("courses", attribute, value, id);
     this.props.updateResume(
       {resume: {courses_attributes: {"1": params}}}
     );

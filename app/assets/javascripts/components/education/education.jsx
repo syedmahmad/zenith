@@ -36,7 +36,7 @@ var Education = React.createClass({
           var props_res = _this.props.resume.education.find(item => item.id == $(this).data("educationId"));
           if (props_res && props_res[e.target.name] != e.target.value && e.target.name != "calendar") {
             //send update call...
-            _this.submitEducation({[e.target.name]: e.target.value, "id": $(this).data("educationId")});
+            _this.submitEducation(e.target.name, e.target.value, $(this).data("educationId"));
           }
         }
       }
@@ -49,7 +49,9 @@ var Education = React.createClass({
       this.parentElement.previousElementSibling.classList.add('hide-section');
     }));
   },
-  submitEducation: function(params){
+  submitEducation: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("education", attribute, value, id);
     this.props.updateResume(
       {resume: {educations_attributes: {"1": params}}}
     );

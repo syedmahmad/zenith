@@ -33,7 +33,7 @@ var Languages = React.createClass({
           var props_res = _this.props.resume.languages.find(item => item.id == $(this).data("languageId"));
           if (props_res && props_res[e.target.name] != e.target.value) {
             //send update call...
-            _this.submitLanguage({[e.target.name]: e.target.value, "id": $(this).data("languageId")});
+            _this.submitLanguage(e.target.name, e.target.value, $(this).data("languageId"));
           }
         }
       }
@@ -48,7 +48,9 @@ var Languages = React.createClass({
     }));
 
   },
-  submitLanguage: function(params){
+  submitLanguage: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("languages", attribute, value, id);
     this.props.updateResume(
       {resume: {languages_attributes: {"1": params}}}
     );

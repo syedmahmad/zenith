@@ -34,7 +34,7 @@ var Quotes = React.createClass({
           var props_res = _this.props.resume.quotes.find(item => item.id == $(this).data("quoteId"));
           if (props_res && props_res[e.target.name] != e.target.value) {
             //send update call...
-            _this.submitQuote({[e.target.name]: e.target.value, "id": $(this).data("quoteId")});
+            _this.submitQuote(e.target.name, e.target.value, $(this).data("quoteId"));
           }
         }
       }
@@ -49,7 +49,9 @@ var Quotes = React.createClass({
     }));
 
   },
-  submitQuote: function(params){
+  submitQuote: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("quotes", attribute, value, id);
     this.props.updateResume(
       {resume: {quotes_attributes: {"1": params}}}
     );

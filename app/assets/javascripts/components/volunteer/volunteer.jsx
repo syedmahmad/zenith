@@ -34,7 +34,7 @@ var Volunteers = React.createClass({
           var props_res = _this.props.resume.volunteers.find(item => item.id == $(this).data("volunteerId"));
           if (props_res && props_res[e.target.name] != e.target.value && e.target.name != "calendar") {
             //send update call...
-            _this.submitVolunteers({[e.target.name]: e.target.value, "id": $(this).data("volunteerId")});
+            _this.submitVolunteers(e.target.name, e.target.value, $(this).data("volunteerId"));
           }
         }
       }
@@ -49,7 +49,9 @@ var Volunteers = React.createClass({
     }));
 
   },
-  submitVolunteers: function(params){
+  submitVolunteers: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("volunteers", attribute, value, id);
     this.props.updateResume(
       {resume: {volunteers_attributes: {"1": params}}}
     );
