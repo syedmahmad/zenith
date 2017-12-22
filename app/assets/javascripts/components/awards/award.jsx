@@ -32,7 +32,7 @@ var Awards = React.createClass({
           var props_res = _this.props.resume.awards.find(item => item.id == $(this).data("awardId"));
           if (props_res && props_res[e.target.name] != e.target.value) {
             //send update call...
-            _this.submitAward({[e.target.name]: e.target.value, "id": $(this).data("awardId")});
+            _this.submitAward(e.target.name, e.target.value, $(this).data("awardId"));
           }
         }
       }
@@ -47,7 +47,9 @@ var Awards = React.createClass({
     }));
 
   },
-  submitAward: function(params){
+  submitAward: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("awards", attribute, value, id);
     this.props.updateResume(
       {resume: {awards_attributes: {"1": params}}}
     );

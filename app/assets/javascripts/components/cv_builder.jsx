@@ -6,6 +6,7 @@ var CvBuilder = React.createClass({
     return arr.filter(item => item !== itemToRemove)
   },
   componentDidUpdate: function(prevProps, prevState){
+    // this.setupSections($(".section-items"));
     this.setupLayout();
     this.updateStyle();
     this.handleSubSectionRearrange();
@@ -211,8 +212,8 @@ var CvBuilder = React.createClass({
 
         if(sectionData != pageSectionData[index]){
           pageSectionData[index] = sectionData;
-          params = {id: _this.props.resume.layout.id,"section_data": sectionData};
-          _this.updateResume({resume: {"pages": pages, layout_attributes: params, [lastElm.toLowerCase()+"_attributes"]: {id: subSectionId, page: index + 1}}});
+          // params = {id: _this.props.resume.layout.id,"section_data": sectionData};
+          // _this.updateResume({resume: {"pages": pages, layout_attributes: params, [lastElm.toLowerCase()+"_attributes"]: {id: subSectionId, page: index + 1}}});
 
           resume[lastElm.toLowerCase()] = itemsObj;
           _this.setState({resume: resume, pages: pages, sectionData: sectionData});
@@ -237,9 +238,7 @@ var CvBuilder = React.createClass({
         // }
         // else{
         //   var sections = $(elem).find(".section-items");
-        //   debugger;
         //   $.each(sections, function( index, el ) {
-        //     debugger;
         //     if($(el).find("li.section-item").length == 0 && $(el).closest(".section-items").data("sectionName").toLowerCase() != "summary"){
         //       sectionName = $(el).closest(".section-items").data("sectionName");
         //       _this.handleRemoveSection(null, sectionName);
@@ -254,13 +253,37 @@ var CvBuilder = React.createClass({
     $.each($(".page"), function( index, elem ) {
       if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
         params = {id: _this.props.resume.layout.id,"pages": pages};
-        _this.updateResume({resume: {"pages": _this.state.pages - 1}});
+        // _this.updateResume({resume: {"pages": _this.state.pages - 1}});
         _this.setState({pages: _this.state.pages - 1});
       }
     });
+    resume = _this.state.resume;
+    keys = Object.keys(resume);
+    params = {};
+
+    $.each(keys, function(index, key){
+      if(key == "id" || key == "pages"){
+        params[key] = resume[key];
+      }else{
+        if(key == "education"){
+          params["educations_attributes"] = resume[key];
+        }else{
+          params[key+"_attributes"] = resume[key];
+        }
+      }
+    });
+    params["pages"] = pages;
+
+
+    // params["id"] = _this.state.resume.id;
+    // params["name"] = _this.state.resume.name;
+    // params["pages"] = _this.state.resume.pages;
+
+    _this.updateResume({resume: params});
   },
 
   removeEmptySections: function () {
+    //comment
     var sections = $(".page .section-items");
     $.each(sections, function( index, el ) {
       if($(el).find("li.section-item").length == 0 && $(el).closest(".section-items").data("sectionName").toLowerCase() != "summary"){
@@ -284,6 +307,18 @@ var CvBuilder = React.createClass({
         // onError(response.responseJSON)
       }
     });
+  },
+  updateResumeState: function(section, attribute, value, id){
+    itemsObj = null;
+    resume = this.state.resume;
+    itemsObj = $.grep(resume[section], function (item) {
+      if(item.id == parseInt(id)){
+        item[attribute] = value;
+      }
+      return item;
+    });
+    resume[section] = itemsObj;
+    this.setState({resume: resume});
   },
   createSubSection: function(formData,sectionName){
     var _this = this;
@@ -401,7 +436,7 @@ var CvBuilder = React.createClass({
     
     if(sectionData1 != _this.state.sectionData){
       if (_this.props.current_user) {
-        _this.updateResume({resume: params});
+        // _this.updateResume({resume: params});
       }
       
       if(rearrange){
@@ -529,13 +564,16 @@ var CvBuilder = React.createClass({
     _this.setState({layoutSections: _this.state.layoutSections, sectionData: _this.state.sectionData});
   },
   handleLayoutChange: function(e){
+    var resume = this.state.resume;
     selectedLayout = $(e.currentTarget).data("layoutType")
     if(selectedLayout != this.state.layout_type){
-      if (this.props.current_user) {
-        params = {id: this.props.resume.layout.id, "layout_type": selectedLayout};
-        this.updateResume({resume: {layout_attributes: params}});
-      }
-      this.setState({layout_type: selectedLayout});
+      // if (this.props.current_user) {
+        // params = {id: this.props.resume.layout.id, "layout_type": selectedLayout};
+        // this.updateResume({resume: {layout_attributes: params}});
+      // }
+      // this.setState({layout_type: selectedLayout});
+      resume["layout"]["layout_type"] = selectedLayout;
+      this.setState({resume: resume, layout_type: selectedLayout});
     }
   },
   handleUnderlineChange: function(e){
@@ -596,20 +634,20 @@ var CvBuilder = React.createClass({
       });
       if(_this.state.layout_type == "double"){
         key = "double-page"+i;
-        data.push(<Double page={i} updateStyle={_this.updateStyle} setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+        data.push(<Double page={i} updateStyle={_this.updateStyle} setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} data_right={data_right} data_left={data_left} layoutSections={_this.state.layoutSections} selectedSections={selectedSections} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} updateResumeState={_this.updateResumeState} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
       }else{
         _this.state.layoutSections.forEach(function(section) {
           if($.inArray(section, selectedSections) > -1){
             section = section.substr(0,1).toUpperCase()+section.substr(1);
             MyComponent = window[section];
             key = section + "holder"+i;
-            data.push(<MyComponent updateStyle={_this.updateStyle} setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
+            data.push(<MyComponent page={i} updateStyle={_this.updateStyle} setupLayout={_this.setupLayout} handleShowHideChange={_this.handleShowHideChange} handleRemoveSection={_this.handleRemoveSection} resume={state.resume} key={key} updateResume={_this.updateResume} updateResumeState={_this.updateResumeState} createSubSection={_this.createSubSection}  removeSubSection={_this.removeSubSection}/>);
           }
         });
       }
 
       key = "page-"+i;  
-      data_1.push(<Page handleShowHideChange={_this.handleShowHideChange} key={key} page_index={i+1} header={header} updateResume={_this.updateResume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection} resumeStyle={_this.state.resume.resume_style}/>);
+      data_1.push(<Page handleShowHideChange={_this.handleShowHideChange} key={key} page_index={i+1} header={header} updateResume={_this.updateResume} updateResumeState={_this.updateResumeState} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection} resumeStyle={_this.state.resume.resume_style}/>);
     };
     return (
       <div className="cv-builder-container">

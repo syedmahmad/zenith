@@ -42,7 +42,7 @@ var Experiences = React.createClass({
                 valObj.push($(el).val());
               });
             }
-            _this.submitExperience({[valName]: valObj, "id": $(this).data("experienceId")});
+            _this.submitExperience(valName, valObj, $(this).data("experienceId"));
           }
         }
       }
@@ -57,7 +57,9 @@ var Experiences = React.createClass({
     }));
 
   },
-  submitExperience: function(params){
+  submitExperience: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("experiences", attribute, value, id);
     this.props.updateResume(
       {resume: {experiences_attributes: {"1": params}}}
     );

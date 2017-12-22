@@ -33,7 +33,7 @@ var Certificates = React.createClass({
           var props_res = _this.props.resume.certificates.find(item => item.id == $(this).data("certificateId"));
           if (props_res && props_res[e.target.name] != e.target.value) {
             //send update call...
-            _this.submitCertificate({[e.target.name]: e.target.value, "id": $(this).data("certificateId")});
+            _this.submitCertificate(e.target.name, e.target.value, $(this).data("certificateId"));
           }
         }
       }
@@ -48,7 +48,9 @@ var Certificates = React.createClass({
     }));
 
   },
-  submitCertificate: function(params){
+  submitCertificate: function(attribute, value, id){
+    params = {[attribute]: value, "id": id};
+    this.props.updateResumeState("certificates", attribute, value, id);
     this.props.updateResume(
       {resume: {certificates_attributes: {"1": params}}}
     );
