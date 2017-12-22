@@ -16,7 +16,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to "/"
       end
    end
-
  end
   
   alias_method :facebook, :all
