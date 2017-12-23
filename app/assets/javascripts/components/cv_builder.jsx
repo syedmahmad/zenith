@@ -7,16 +7,37 @@ var CvBuilder = React.createClass({
   },
   componentDidUpdate: function(prevProps, prevState){
     // this.setupSections($(".section-items"));
+    // window.resume1 = this.state.resume;
     this.setupLayout();
     this.updateStyle();
     this.handleSubSectionRearrange();
     this.handleShowHideButtonStyle();
     this.removeEmptySections();
     this.removeEmptyPages();
-    // params = {id: this.props.resume.layout.id, "section_names": this.state.layoutSections, "section_data": this.state.sectionData};
-    // if (this.props.current_user) {
-    //   this.updateResume({resume: {"pages": this.state.pages, layout_attributes: params}});
-    // }
+
+    resume = _this.state.resume;
+    keys = Object.keys(resume);
+    params = {};
+
+    $.each(keys, function(index, key){
+      if(key == "id" || key == "pages"){
+        params[key] = resume[key];
+      }else{
+        if(key == "education"){
+          params["educations_attributes"] = resume[key];
+        }else{
+          params[key+"_attributes"] = resume[key];
+        }
+      }
+    });
+    // params["pages"] = pages;
+    // window.resume2 = params;
+
+    // params["id"] = _this.state.resume.id;
+    // params["name"] = _this.state.resume.name;
+    // params["pages"] = _this.state.resume.pages;
+
+    this.updateResume({resume: params});
   },
   componentDidMount: function(){
     var _this = this;
@@ -146,9 +167,10 @@ var CvBuilder = React.createClass({
     elements = $(".page")
     _this = this;
     var sectionData1 = [];
-
+    // debugger;
     var pageSectionData = [];
     $.each(elements, function( index, elem ) {
+      // debugger;
       if(elem.scrollHeight > elem.offsetHeight){
         var lastElmObj = $(elem).find(".section-items").last();
         var lastElm = $(lastElmObj).data("sectionName");
@@ -170,7 +192,8 @@ var CvBuilder = React.createClass({
         if(index+1 == pages){
           pages = pages + 1;
         }
-
+        _this.state.resume["pages"] = pages;
+        // debugger;
         var subSectionId = 0;
         if($(lastElmObj).find(".section-item").length == 1){
           subSectionId = $(lastElmObj).find(".section-item").data("sectionId");
@@ -216,7 +239,11 @@ var CvBuilder = React.createClass({
           // _this.updateResume({resume: {"pages": pages, layout_attributes: params, [lastElm.toLowerCase()+"_attributes"]: {id: subSectionId, page: index + 1}}});
 
           resume[lastElm.toLowerCase()] = itemsObj;
-          _this.setState({resume: resume, pages: pages, sectionData: sectionData});
+          _this.state.resume["layout"]["section_data"] = sectionData;
+          _this.state.resume["layout"]["section_names"] = resume.layoutSections;
+          // pages = _this.state.pages;
+          window.resume0  = resume;
+          _this.setState({resume: resume, pages: resume.pages, sectionData: sectionData});
         }
       }
       // else{
@@ -249,40 +276,21 @@ var CvBuilder = React.createClass({
     });
   },
   removeEmptyPages: function(){
+    // debugger;
+    window.resume1 = this.state.resume;
     var _this = this;
     $.each($(".page"), function( index, elem ) {
       if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
         params = {id: _this.props.resume.layout.id,"pages": pages};
         // _this.updateResume({resume: {"pages": _this.state.pages - 1}});
+        window.resume2 = _this.state.resume;
         _this.setState({pages: _this.state.pages - 1});
       }
     });
-    resume = _this.state.resume;
-    keys = Object.keys(resume);
-    params = {};
-
-    $.each(keys, function(index, key){
-      if(key == "id" || key == "pages"){
-        params[key] = resume[key];
-      }else{
-        if(key == "education"){
-          params["educations_attributes"] = resume[key];
-        }else{
-          params[key+"_attributes"] = resume[key];
-        }
-      }
-    });
-    params["pages"] = pages;
-
-
-    // params["id"] = _this.state.resume.id;
-    // params["name"] = _this.state.resume.name;
-    // params["pages"] = _this.state.resume.pages;
-
-    _this.updateResume({resume: params});
   },
 
   removeEmptySections: function () {
+    // debugger;
     //comment
     var sections = $(".page .section-items");
     $.each(sections, function( index, el ) {
@@ -318,6 +326,7 @@ var CvBuilder = React.createClass({
       return item;
     });
     resume[section] = itemsObj;
+    // window.resume1 = resume;
     this.setState({resume: resume});
   },
   createSubSection: function(formData,sectionName){
@@ -341,6 +350,7 @@ var CvBuilder = React.createClass({
   },
   removeSubSection: function(formData,sectionName){
     var _this = this;
+    resume = _this.state.resume;
     $.ajax({
       url: (this.props.host+"resumes/"+_this.state.resume.id+"/delete_sub_record"),
       type: 'DELETE',
@@ -348,9 +358,8 @@ var CvBuilder = React.createClass({
       data: formData,
       success: function(item) {
         var position = _this.state.resume[sectionName].findIndex(i => i.id === item.id);
-        _this.state.resume[sectionName].splice(position, 1);
-        _this.setState({resume: this.state.resume});
-        // _this.setupSections($(".section-items"));
+        resume[sectionName].splice(position, 1);
+        _this.setState({resume: resume});
       }.bind(this),
       error: function(response, status, err) {
       }
@@ -398,11 +407,11 @@ var CvBuilder = React.createClass({
               return item;
             });
 
-            if($(elem).data('sectionName').toLowerCase() == "education"){
-              params["educations_attributes"] = itemsObj;
-            }else{
-              params[$(elem).data('sectionName').toLowerCase()+"_attributes"] = itemsObj;
-            }
+            // if($(elem).data('sectionName').toLowerCase() == "education"){
+            //   params["educations_attributes"] = itemsObj;
+            // }else{
+            //   params[$(elem).data('sectionName').toLowerCase()+"_attributes"] = itemsObj;
+            // }
             // params[$(elem).data('sectionName').toLowerCase()+"_attributes"] = itemsObj;
             resume[$(elem).data('sectionName').toLowerCase()] = itemsObj;
           }
@@ -429,10 +438,10 @@ var CvBuilder = React.createClass({
       }
     }).get();
 
-    params["layout_attributes"] = {};
-    params["layout_attributes"]["id"] = resume.layout.id;
-    params["layout_attributes"]["section_names"] = section_names;
-    params["layout_attributes"]["section_data"] = sectionData1;
+    // params["layout_attributes"] = {};
+    // params["layout_attributes"]["id"] = resume.layout.id;
+    // params["layout_attributes"]["section_names"] = section_names;
+    // params["layout_attributes"]["section_data"] = sectionData1;
     
     if(sectionData1 != _this.state.sectionData){
       if (_this.props.current_user) {
@@ -449,7 +458,7 @@ var CvBuilder = React.createClass({
         }
       }
       
-      _this.setState({resume: resume, layoutSections: section_names, sectionData: sectionData1, pages: pages});
+      _this.setState({resume: resume, layoutSections: section_names, sectionData: sectionData1});
     }
 
   },

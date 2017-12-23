@@ -52,9 +52,6 @@ var Skills = React.createClass({
   submitSkills: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("skills", attribute, value, id);
-    this.props.updateResume(
-      {resume: {skills_attributes: {"1": params}}}
-    );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -77,7 +74,7 @@ var Skills = React.createClass({
     skills.forEach(function(skill) {
       if(page == skill.page){
         key = "skill-" + skill.id;
-        data.push(<SkillItem total={skills.length} handleShowHideChange={_this.props.handleShowHideChange} skill={skill} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<SkillItem resume={_this.props.resume} total={skills.length} handleShowHideChange={_this.props.handleShowHideChange} skill={skill} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

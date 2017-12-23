@@ -12,6 +12,18 @@ var PassionItem = React.createClass({
 
   handleChange: function(e){
     e.preventDefault();
+    var resume = this.props.resume;
+    var itemsObj = null;
+    var subSectionId = $(e.target).closest(".section-item").data("sectionId");
+
+    itemsObj = $.grep(resume["passions"], function (item) {
+      if(item.id == subSectionId){
+        item[e.target.name] = e.target.value;
+      }
+      return item;
+    });
+    resume["passions"] = itemsObj;
+    this.props.resume = resume;
     this.setState({[e.target.name]: e.target.value});
   },
 

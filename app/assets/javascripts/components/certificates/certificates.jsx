@@ -51,9 +51,9 @@ var Certificates = React.createClass({
   submitCertificate: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("certificates", attribute, value, id);
-    this.props.updateResume(
-      {resume: {certificates_attributes: {"1": params}}}
-    );
+    // this.props.updateResume(
+    //   {resume: {certificates_attributes: {"1": params}}}
+    // );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -76,7 +76,7 @@ var Certificates = React.createClass({
     certificates.forEach(function(certificate) {
       if(page == certificate.page){
         key = "certificate-" + certificate.id;
-        data.push(<CertificateItem total={certificates.length} handleShowHideChange={_this.props.handleShowHideChange} certificate={certificate} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<CertificateItem resume={_this.props.resume} total={certificates.length} handleShowHideChange={_this.props.handleShowHideChange} certificate={certificate} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

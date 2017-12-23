@@ -103,7 +103,7 @@ var ProfileImageModal = React.createClass({
                   <img id="crop-area" className="image-responsive" src={this.state.imgSrc}/>
                 </div>
                 <div className="profile-buttons-holder" data-header-id={this.props.headerId}>
-                  <button className="btn btn-primary" onClick={this.resultantImage}>Save</button>
+                  <button className="btn btn-primary" onClick={this.resultantImage}>Save Cropped Image</button>
                   <button className="btn btn-primary" onClick={this.handleClick}>Upload Image</button>
                   <button className="btn btn-danger" onClick={this.handleDelete}>Delete Image</button>
                 </div>

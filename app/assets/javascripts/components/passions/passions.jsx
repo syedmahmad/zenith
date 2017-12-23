@@ -53,9 +53,6 @@ var Passions = React.createClass({
   submitPassion: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("passions", attribute, value, id);
-    this.props.updateResume(
-      {resume: {passions_attributes: {"1": params}}}
-    );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -78,7 +75,7 @@ var Passions = React.createClass({
     passions.forEach(function(passion) {
       if(page == passion.page){
         key = "passion-" + passion.id;
-        data.push(<PassionItem total={passions.length} handleShowHideChange={_this.props.handleShowHideChange} passion={passion} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+        data.push(<PassionItem resume={_this.props.resume} total={passions.length} handleShowHideChange={_this.props.handleShowHideChange} passion={passion} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
       }
     });
     

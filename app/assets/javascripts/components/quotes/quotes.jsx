@@ -52,9 +52,6 @@ var Quotes = React.createClass({
   submitQuote: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("quotes", attribute, value, id);
-    this.props.updateResume(
-      {resume: {quotes_attributes: {"1": params}}}
-    );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -77,7 +74,7 @@ var Quotes = React.createClass({
     quotes.forEach(function(quote) {
       if(page == quote.page){
         key = "quote-" + quote.id;
-        data.push(<QuoteItem total= {quotes.length} handleShowHideChange={_this.props.handleShowHideChange} quote={quote} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<QuoteItem resume={_this.props.resume} total= {quotes.length} handleShowHideChange={_this.props.handleShowHideChange} quote={quote} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

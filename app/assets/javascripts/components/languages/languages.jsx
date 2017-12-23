@@ -51,9 +51,9 @@ var Languages = React.createClass({
   submitLanguage: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("languages", attribute, value, id);
-    this.props.updateResume(
-      {resume: {languages_attributes: {"1": params}}}
-    );
+    // this.props.updateResume(
+    //   {resume: {languages_attributes: {"1": params}}}
+    // );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -76,7 +76,7 @@ var Languages = React.createClass({
     languages.forEach(function(language) {
       if(page == language.page){
         key = "language-" + language.id;
-        data.push(<LanguageItem total={languages.length} handleShowHideChange={_this.props.handleShowHideChange} language={language} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+        data.push(<LanguageItem resume={_this.props.resume} total={languages.length} handleShowHideChange={_this.props.handleShowHideChange} language={language} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
       }
     });
     

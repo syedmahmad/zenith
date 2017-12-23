@@ -52,9 +52,6 @@ var Education = React.createClass({
   submitEducation: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("education", attribute, value, id);
-    this.props.updateResume(
-      {resume: {educations_attributes: {"1": params}}}
-    );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -77,7 +74,7 @@ var Education = React.createClass({
     education.forEach(function(education_item) {
       if(page == education_item.page){
         key = "education-" + education_item.id;
-        data.push(<EducationItem setupLayout={_this.props.setupLayout} total={education.length} handleShowHideChange={_this.props.handleShowHideChange} education_item={education_item} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+        data.push(<EducationItem resume={_this.props.resume} setupLayout={_this.props.setupLayout} total={education.length} handleShowHideChange={_this.props.handleShowHideChange} education_item={education_item} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
       }
     });
     

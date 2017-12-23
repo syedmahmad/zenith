@@ -51,9 +51,9 @@ var Achievements = React.createClass({
   submitAchievment: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("achievements", attribute, value, id);
-    this.props.updateResume(
-      {resume: {achievements_attributes: {"1": params}}}
-    );
+    // this.props.updateResume(
+    //   {resume: {achievements_attributes: {"1": params}}}
+    // );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -78,7 +78,7 @@ var Achievements = React.createClass({
     achievements.forEach(function(achievement) {
       if(page == achievement.page){
         key = "achievement-" + achievement.id;
-        data.push(<AchievementItem total = {achievements.length} handleShowHideChange={_this.props.handleShowHideChange} achievement={achievement} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+        data.push(<AchievementItem resume={_this.props.resume} total={achievements.length} handleShowHideChange={_this.props.handleShowHideChange} achievement={achievement} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
       }
     });
     

@@ -52,9 +52,6 @@ var Technologies = React.createClass({
   submitTechnologies: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("technologies", attribute, value, id);
-    this.props.updateResume(
-      {resume: {technologies_attributes: {"1": params}}}
-    );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -77,7 +74,7 @@ var Technologies = React.createClass({
     technologies.forEach(function(technology) {
       if(page == technology.page){
         key = "technology-" + technology.id;
-        data.push(<TechnologyItem total={technologies.length} handleShowHideChange={_this.props.handleShowHideChange} technology={technology} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<TechnologyItem resume={_this.props.resume} total={technologies.length} handleShowHideChange={_this.props.handleShowHideChange} technology={technology} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

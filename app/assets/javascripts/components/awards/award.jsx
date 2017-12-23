@@ -50,9 +50,9 @@ var Awards = React.createClass({
   submitAward: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("awards", attribute, value, id);
-    this.props.updateResume(
-      {resume: {awards_attributes: {"1": params}}}
-    );
+    // this.props.updateResume(
+    //   {resume: {awards_attributes: {"1": params}}}
+    // );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -75,7 +75,7 @@ var Awards = React.createClass({
     awards.forEach(function(award) {
       if(page == award.page){
         key = "award-" + award.id;
-        data.push(<AwardItem total={awards.length} handleShowHideChange={_this.props.handleShowHideChange} award={award} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<AwardItem resume={_this.props.resume} total={awards.length} handleShowHideChange={_this.props.handleShowHideChange} award={award} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

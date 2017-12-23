@@ -52,9 +52,6 @@ var Volunteers = React.createClass({
   submitVolunteers: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("volunteers", attribute, value, id);
-    this.props.updateResume(
-      {resume: {volunteers_attributes: {"1": params}}}
-    );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -78,7 +75,7 @@ var Volunteers = React.createClass({
     volunteers.forEach(function(volunteer) {
       if(page == volunteer.page){
         key = "volunteer-" + volunteer.id;
-        data.push(<VolunteerItem total={volunteers.length} handleShowHideChange={_this.props.handleShowHideChange} volunteer={volunteer} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<VolunteerItem resume={_this.props.resume} total={volunteers.length} handleShowHideChange={_this.props.handleShowHideChange} volunteer={volunteer} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

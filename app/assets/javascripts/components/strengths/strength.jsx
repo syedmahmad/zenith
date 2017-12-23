@@ -52,9 +52,6 @@ var Strengths = React.createClass({
   submitStrengths: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("strengths", attribute, value, id);
-    this.props.updateResume(
-      {resume: {strengths_attributes: {"1": params}}}
-    );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -77,7 +74,7 @@ var Strengths = React.createClass({
     strengths.forEach(function(strength) {
       if(page == strength.page){
         key = "strength-" + strength.id;
-        data.push(<StrengthItem total={strengths.length} handleShowHideChange={_this.props.handleShowHideChange} strength={strength} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<StrengthItem resume={_this.props.resume} total={strengths.length} handleShowHideChange={_this.props.handleShowHideChange} strength={strength} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

@@ -51,9 +51,9 @@ var Courses = React.createClass({
   submitCourses: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("courses", attribute, value, id);
-    this.props.updateResume(
-      {resume: {courses_attributes: {"1": params}}}
-    );
+    // this.props.updateResume(
+    //   {resume: {courses_attributes: {"1": params}}}
+    // );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -76,7 +76,7 @@ var Courses = React.createClass({
     courses.forEach(function(course) {
       if(page == course.page){
         key = "course-" + course.id;
-        data.push(<CourseItem total={courses.length} handleShowHideChange={_this.props.handleShowHideChange} course={course} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<CourseItem resume={_this.props.resume} total={courses.length} handleShowHideChange={_this.props.handleShowHideChange} course={course} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     

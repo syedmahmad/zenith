@@ -60,9 +60,6 @@ var Experiences = React.createClass({
   submitExperience: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("experiences", attribute, value, id);
-    this.props.updateResume(
-      {resume: {experiences_attributes: {"1": params}}}
-    );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -85,7 +82,7 @@ var Experiences = React.createClass({
     experiences.forEach(function(experience) {
       if(page == experience.page){
         key = "experience-" + experience.id;
-        data.push(<ExperienceItem updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={experiences.length} handleShowHideChange={_this.props.handleShowHideChange} experience={experience} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
+        data.push(<ExperienceItem resume={_this.props.resume} updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={experiences.length} handleShowHideChange={_this.props.handleShowHideChange} experience={experience} key={key} removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume} />);
       }
     });
     

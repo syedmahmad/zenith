@@ -62,9 +62,6 @@ var Projects = React.createClass({
   submitProject: function(attribute, value, id){
     params = {[attribute]: value, "id": id};
     this.props.updateResumeState("projects", attribute, value, id);
-    this.props.updateResume(
-      {resume: {projects_attributes: {"1": params}}}
-    );
   },    
   addSubSection: function(e){
     e.preventDefault();
@@ -87,7 +84,7 @@ var Projects = React.createClass({
     projects.forEach(function(project) {
       if(page == project.page){
         key = "project-" + project.id;
-        data.push(<ProjectItem updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={projects.length} handleShowHideChange={_this.props.handleShowHideChange} project={project} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
+        data.push(<ProjectItem resume={_this.props.resume} updateStyle={_this.props.updateStyle} setupLayout={_this.props.setupLayout} total={projects.length} handleShowHideChange={_this.props.handleShowHideChange} project={project} key={key}  removeSubSection={_this.removeSubSection} addSubSection={_this.addSubSection} updateResume={_this.props.updateResume}/>);
       }
     });
     
