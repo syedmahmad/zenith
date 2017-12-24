@@ -32,7 +32,7 @@ var Technologies = React.createClass({
         var state_res = _this.state.technologies.find(item => item.id == $(this).data("technologyId"));
         if (state_res) {
           var props_res = _this.props.resume.technologies.find(item => item.id == $(this).data("technologyId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitTechnologies(e.target.name, e.target.value, $(this).data("technologyId"));
           }

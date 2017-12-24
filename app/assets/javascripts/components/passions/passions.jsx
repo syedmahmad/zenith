@@ -33,7 +33,7 @@ var Passions = React.createClass({
         var state_res = _this.state.passions.find(item => item.id == $(this).data("passionId"));
         if (state_res) {
           var props_res = _this.props.resume.passions.find(item => item.id == $(this).data("passionId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitPassion(e.target.name, e.target.value, $(this).data("passionId"));
           }

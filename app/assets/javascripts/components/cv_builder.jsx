@@ -30,13 +30,6 @@ var CvBuilder = React.createClass({
         }
       }
     });
-    // params["pages"] = pages;
-    // window.resume2 = params;
-
-    // params["id"] = _this.state.resume.id;
-    // params["name"] = _this.state.resume.name;
-    // params["pages"] = _this.state.resume.pages;
-
     this.updateResume({resume: params});
   },
   componentDidMount: function(){
@@ -167,10 +160,8 @@ var CvBuilder = React.createClass({
     elements = $(".page")
     _this = this;
     var sectionData1 = [];
-    // debugger;
     var pageSectionData = [];
     $.each(elements, function( index, elem ) {
-      // debugger;
       if(elem.scrollHeight > elem.offsetHeight){
         var lastElmObj = $(elem).find(".section-items").last();
         var lastElm = $(lastElmObj).data("sectionName");
@@ -193,7 +184,6 @@ var CvBuilder = React.createClass({
           pages = pages + 1;
         }
         _this.state.resume["pages"] = pages;
-        // debugger;
         var subSectionId = 0;
         if($(lastElmObj).find(".section-item").length == 1){
           subSectionId = $(lastElmObj).find(".section-item").data("sectionId");
@@ -246,37 +236,9 @@ var CvBuilder = React.createClass({
           _this.setState({resume: resume, pages: resume.pages, sectionData: sectionData});
         }
       }
-      // else{
-        // if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
-        //   pageIndex = $(elem).data("pageIndex");
-        //   sectionData = $.grep(_this.state.sectionData, function (a) {
-        //     currentPageInex = parseInt(a.page);
-        //     if ((currentPageInex + 1) > pageIndex) {
-        //       a.page =  (currentPageInex - 1).toString();
-        //     }
-        //     return a;
-        //   });
-        //   if(sectionData != _this.state.sectionData){
-        //     params = {id: _this.props.resume.layout.id,"section_data": sectionData};
-        //     _this.updateResume({resume: {"pages": _this.state.pages - 1, layout_attributes: params}});
-
-        //     _this.setState({pages: _this.state.pages - 1, sectionData: sectionData});
-        //   }
-        // }
-        // else{
-        //   var sections = $(elem).find(".section-items");
-        //   $.each(sections, function( index, el ) {
-        //     if($(el).find("li.section-item").length == 0 && $(el).closest(".section-items").data("sectionName").toLowerCase() != "summary"){
-        //       sectionName = $(el).closest(".section-items").data("sectionName");
-        //       _this.handleRemoveSection(null, sectionName);
-        //     }
-        //   });
-        // }
-      // }
     });
   },
   removeEmptyPages: function(){
-    // debugger;
     window.resume1 = this.state.resume;
     var _this = this;
     $.each($(".page"), function( index, elem ) {
@@ -290,7 +252,6 @@ var CvBuilder = React.createClass({
   },
 
   removeEmptySections: function () {
-    // debugger;
     //comment
     var sections = $(".page .section-items");
     $.each(sections, function( index, el ) {
@@ -656,7 +617,7 @@ var CvBuilder = React.createClass({
       }
 
       key = "page-"+i;  
-      data_1.push(<Page handleShowHideChange={_this.handleShowHideChange} key={key} page_index={i+1} header={header} updateResume={_this.updateResume} updateResumeState={_this.updateResumeState} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection} resumeStyle={_this.state.resume.resume_style}/>);
+      data_1.push(<Page handleShowHideChange={_this.handleShowHideChange} key={key} page_index={i+1} header={header} updateResume={_this.updateResume} updateResumeState={_this.updateResumeState} resume={state.resume} page_data={data} createSubSection={_this.createSubSection} removeSubSection={_this.removeSubSection} resumeStyle={_this.state.resume.resume_style}/>);
     };
     return (
       <div className="cv-builder-container">

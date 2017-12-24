@@ -32,7 +32,7 @@ var Achievements = React.createClass({
 
         if (state_res) {
           var props_res = _this.props.resume.achievements.find(item => item.id == $(this).data("achievementId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitAchievment(e.target.name, e.target.value, $(this).data("achievementId"));
           }

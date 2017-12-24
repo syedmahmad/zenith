@@ -10,7 +10,6 @@ var EducationItem = React.createClass({
     var resume = this.props.resume;
     var itemsObj = null;
     var subSectionId = $(e.target).closest(".section-item").data("sectionId");
-
     itemsObj = $.grep(resume["education"], function (item) {
       if(item.id == subSectionId){
         item[e.target.name] = e.target.value;
@@ -80,6 +79,20 @@ var EducationItem = React.createClass({
       duration = duration + " - " + endDate;
     }
 
+
+    var resume = this.props.resume;
+    var itemsObj = null;
+    var subSectionId = $(inst.input).closest(".section-item").data("sectionId");
+    itemsObj = $.grep(resume["education"], function (item) {
+      if(item.id == subSectionId){
+        item["duration"] = duration;
+      }
+      return item;
+    });
+    resume["education"] = itemsObj;
+    this.props.resume = resume;
+
+
     params = {duration: duration, "id": $(inst.input).closest(".section-item").data("educationId")};
     this.props.updateResume(
       {resume: {educations_attributes: params}}
@@ -110,6 +123,22 @@ var EducationItem = React.createClass({
       duration = duration + " - " + endDate;
     }
 
+
+    var resume = this.props.resume;
+    var itemsObj = null;
+    var subSectionId = sectionId
+    itemsObj = $.grep(resume["education"], function (item) {
+      if(item.id == subSectionId){
+        item["duration"] = duration;
+        item["ongoing"] = ongoing;
+      }
+      return item;
+    });
+    resume["education"] = itemsObj;
+    this.props.resume = resume;
+
+    
+   
     params = {ongoing: ongoing, duration: duration, "id": sectionId};
     this.props.updateResume(
       {resume: {educations_attributes: params}}

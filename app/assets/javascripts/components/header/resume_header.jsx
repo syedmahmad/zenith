@@ -9,16 +9,13 @@ var ResumeHeader = React.createClass({
     e.preventDefault();
     var resume = this.props.resume;
     var itemsObj = null;
-    var subSectionId = $(e.target).closest(".section-item").data("sectionId");
+    var subSectionId = $(e.target).closest(".personal-info").data("headerId");
 
-    itemsObj = $.grep(resume["header"], function (item) {
-      if(item.id == subSectionId){
-        item[e.target.name] = e.target.value;
-      }
-      return item;
-    });
+    itemsObj = resume["header"]
+    itemsObj[e.target.name] = e.target.value;
     resume["header"] = itemsObj;
     this.props.resume = resume;
+
     this.setState({[e.target.name]: e.target.value});
   },
 
@@ -53,7 +50,7 @@ var ResumeHeader = React.createClass({
         var __this = this;
         setTimeout(function(){
           __this.firstChild.classList.add('hide-section');
-          if (e.target.value != _this.props.header[e.target.name]) {
+          if (e.target.value != "") {
             _this.submitHeader({[e.target.name]: e.target.value, "id": $(__this).data("headerId")});
           }
 

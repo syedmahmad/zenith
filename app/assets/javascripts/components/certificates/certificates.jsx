@@ -31,7 +31,7 @@ var Certificates = React.createClass({
         var state_res = _this.state.certificates.find(item => item.id == $(this).data("certificateId"));
         if (state_res) {
           var props_res = _this.props.resume.certificates.find(item => item.id == $(this).data("certificateId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitCertificate(e.target.name, e.target.value, $(this).data("certificateId"));
           }

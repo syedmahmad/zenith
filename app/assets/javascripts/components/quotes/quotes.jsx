@@ -32,7 +32,7 @@ var Quotes = React.createClass({
         var state_res = _this.state.quotes.find(item => item.id == $(this).data("quoteId"));
         if (state_res) {
           var props_res = _this.props.resume.quotes.find(item => item.id == $(this).data("quoteId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitQuote(e.target.name, e.target.value, $(this).data("quoteId"));
           }

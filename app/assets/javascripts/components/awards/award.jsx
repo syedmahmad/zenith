@@ -30,7 +30,7 @@ var Awards = React.createClass({
         var state_res = _this.state.awards.find(item => item.id == $(this).data("awardId"));
         if (state_res) {
           var props_res = _this.props.resume.awards.find(item => item.id == $(this).data("awardId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitAward(e.target.name, e.target.value, $(this).data("awardId"));
           }

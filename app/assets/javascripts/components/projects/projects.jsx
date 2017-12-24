@@ -33,7 +33,7 @@ var Projects = React.createClass({
         var state_res = _this.state.projects.find(item => item.id == $(this).data("projectId"));
         if (state_res) {
           var props_res = _this.props.resume.projects.find(item => item.id == $(this).data("projectId"));
-          if (props_res && props_res[e.target.name] != e.target.value && e.target.name != "calendar") {
+          if (props_res && props_res[e.target.name] != "" && e.target.name != "calendar") {
             //send update call...
             var valName = e.target.name;
             var valObj = e.target.value;

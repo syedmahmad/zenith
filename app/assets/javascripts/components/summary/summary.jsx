@@ -7,18 +7,15 @@ var Summary = React.createClass({
 
   handleChange: function(e){
     e.preventDefault();
+
     var resume = this.props.resume;
     var itemsObj = null;
-    var subSectionId = $(e.target).closest(".section-item").data("sectionId");
-
-    itemsObj = $.grep(resume["summary"], function (item) {
-      if(item.id == subSectionId){
-        item[e.target.name] = e.target.value;
-      }
-      return item;
-    });
+    var subSectionId = $(e.target).closest(".summary-holder").data("summaryId");
+    itemsObj = resume["summary"];
+    itemsObj[e.target.name] = e.target.value;
     resume["summary"] = itemsObj;
     this.props.resume = resume;
+
     this.setState({[e.target.name]: e.target.value});
   },
 
@@ -40,7 +37,7 @@ var Summary = React.createClass({
     // hide setting and camera buttons
     $(document).on('focusout', ".summary-holder", (function (e) {
       this.firstChild.classList.add('hide-section');
-      if (e.target.value != _this.props.resume.summary[e.target.name]) {
+      if (e.target.value != "") {
         _this.submitSummary({[e.target.name]: e.target.value, "id": $(this).data("summaryId")});
       }
     }));

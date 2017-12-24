@@ -31,7 +31,7 @@ var Languages = React.createClass({
         var state_res = _this.state.languages.find(item => item.id == $(this).data("languageId"));
         if (state_res) {
           var props_res = _this.props.resume.languages.find(item => item.id == $(this).data("languageId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitLanguage(e.target.name, e.target.value, $(this).data("languageId"));
           }

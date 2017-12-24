@@ -31,7 +31,7 @@ var Courses = React.createClass({
         var state_res = _this.state.courses.find(item => item.id == $(this).data("courseId"));
         if (state_res) {
           var props_res = _this.props.resume.courses.find(item => item.id == $(this).data("courseId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitCourses(e.target.name, e.target.value, $(this).data("courseId"));
           }

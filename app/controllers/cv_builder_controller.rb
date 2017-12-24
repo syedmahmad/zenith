@@ -199,21 +199,21 @@ class CvBuilderController < ApplicationController
       "pages": @resume_data.present? ? @resume_data.pages : 1,
       "header": (@resume_data.present? && @resume_data.header.present? ? header_data : new_header_data),
       "layout": (@resume_data.present? && @resume_data.layout.present? ? @resume_data.layout.get_json : Layout.new(:section_names => ["Experiences", "Education", "Strengths", "Achievements", "Languages", "Projects"], :section_data => [{name: "Experiences", page: 0, column: 0}, {name: "Achievements", page: 0, column: 1}, {name: "Education", page: 0, column: 0}, {name: "Languages", page: 0, column: 1}, {name: "Strengths", page: 0, column: 0}, {name: "Projects", page: 0, column: 1}], layout_type: "double")),
-      "summary": (@resume_data.present? && @resume_data.summary.present? ? @resume_data.summary.attributes : Summary.new.attributes),
-      "achievements": (@resume_data.present? && @resume_data.achievements.present? ? @resume_data.achievements.map {|rec| rec.attributes} : [Achievement.new.attributes]),
-      "awards": (@resume_data.present? && @resume_data.awards.present? ? @resume_data.awards.map {|rec| rec.attributes} : [Award.new.attributes]),
-      "certificates": (@resume_data.present? && @resume_data.certificates.present? ? @resume_data.certificates.map {|rec| rec.attributes} : [Certificate.new.attributes]),
-      "courses": (@resume_data.present? && @resume_data.courses.present? ? @resume_data.courses.map {|rec| rec.attributes} : [Course.new.attributes]),
-      "education": (@resume_data.present? && @resume_data.educations.present? ? @resume_data.educations.map {|rec| rec.attributes} : [Education.new.attributes]),
-      "experiences": (@resume_data.present? && @resume_data.experiences.present? ? @resume_data.experiences.map {|rec| rec.attributes} : [Experience.new.attributes]),
-      "passions": (@resume_data.present? && @resume_data.passions.present? ? @resume_data.passions.map {|rec| rec.attributes} : [Passion.new.attributes]),
-      "projects": (@resume_data.present? && @resume_data.projects.present? ? @resume_data.projects.map {|rec| rec.attributes} : [Project.new.attributes]),
-      "quotes": (@resume_data.present? && @resume_data.quotes.present? ? @resume_data.quotes.map {|rec| rec.attributes} : [Quote.new.attributes]),
-      "volunteers": (@resume_data.present? && @resume_data.volunteers.present? ? @resume_data.volunteers.map {|rec| rec.attributes} : [Volunteer.new.attributes]),
-      "strengths": (@resume_data.present? && @resume_data.strengths.present? ? @resume_data.strengths.map {|rec| rec.attributes} : [Strength.new.attributes]),
-      "languages": (@resume_data.present? && @resume_data.languages.present? ? @resume_data.languages.map {|rec| rec.attributes} : [Language.new.attributes]),
-      "technologies": (@resume_data.present? && @resume_data.technologies.present? ? @resume_data.technologies.map {|rec| rec.attributes} : [Technology.new.attributes]),
-      "skills": (@resume_data.present? && @resume_data.skills.present? ? @resume_data.skills.map {|rec| rec.attributes} : [Skill.new.attributes])
+      "summary": (@resume_data.present? && @resume_data.summary.present? ? @resume_data.summary.attributes.slice("id", "title", "description") : Summary.new.attributes),
+      "achievements": (@resume_data.present? && @resume_data.achievements.present? ? @resume_data.achievements.map {|rec| rec.attributes.slice("title", "description", "id", "show_description", "icon", "show_icon", "item_index", "page")} : [Achievement.new.attributes]),
+      "awards": (@resume_data.present? && @resume_data.awards.present? ? @resume_data.awards.map {|rec| rec.attributes.slice("name", "description", "id", "show_description", "show_icon", "item_index", "page", "icon")} : [Award.new.attributes]),
+      "certificates": (@resume_data.present? && @resume_data.certificates.present? ? @resume_data.certificates.map {|rec| rec.attributes.slice("name", "institutiion_name", "id", "show_institutiion", "item_index", "page", "duration")} : [Certificate.new.attributes]),
+      "courses": (@resume_data.present? && @resume_data.courses.present? ? @resume_data.courses.map {|rec| rec.attributes.slice("title", "description", "id", "show_description", "item_index", "page")} : [Course.new.attributes]),
+      "education": (@resume_data.present? && @resume_data.educations.present? ? @resume_data.educations.map {|rec| rec.attributes.slice("degree_name", "ongoing", "university_name", "id", "duration", "show_period", "cgpa", "show_gpa", "show_location", "location", "item_index", "page")} : [Education.new.attributes]),
+      "experiences": (@resume_data.present? && @resume_data.experiences.present? ? @resume_data.experiences.map {|rec| rec.attributes.slice("id", "title", "ongoing", "company_name", "location", "duration", "description", "show_location", "show_period", "show_description", "show_outcomes", "item_index", "page", "outcomes")} : [Experience.new.attributes]),
+      "passions": (@resume_data.present? && @resume_data.passions.present? ? @resume_data.passions.map {|rec| rec.attributes.slice("id", "name", "description", "show_icon", "show_description", "item_index", "page", "icon")} : [Passion.new.attributes]),
+      "projects": (@resume_data.present? && @resume_data.projects.present? ? @resume_data.projects.map {|rec| rec.attributes.slice("id", "name", "ongoing", "location", "duration", "description", "show_location", "show_period", "link", "show_description", "show_link", "item_index", "page", "show_outcomes", "outcomes")} : [Project.new.attributes]),
+      "quotes": (@resume_data.present? && @resume_data.quotes.present? ? @resume_data.quotes.map {|rec| rec.attributes.slice("id", "name", "author", "show_author", "item_index", "page")} : [Quote.new.attributes]),
+      "volunteers": (@resume_data.present? && @resume_data.volunteers.present? ? @resume_data.volunteers.map {|rec| rec.attributes.slice("id", "title", "ongoing", "organization_name", "duration", "description", "show_location", "show_period", "location", "show_description", "item_index", "page")} : [Volunteer.new.attributes]),
+      "strengths": (@resume_data.present? && @resume_data.strengths.present? ? @resume_data.strengths.map {|rec| rec.attributes.slice("title", "description", "id", "show_description", "show_icon", "item_index", "page", "icon")} : [Strength.new.attributes]),
+      "languages": (@resume_data.present? && @resume_data.languages.present? ? @resume_data.languages.map {|rec| rec.attributes.slice("id", "name", "level", "show_proficiency", "item_index", "page")} : [Language.new.attributes]),
+      "technologies": (@resume_data.present? && @resume_data.technologies.present? ? @resume_data.technologies.map {|rec| rec.attributes.slice("id", "name", "tec_names", "show_icon", "show_description", "item_index", "page")} : [Technology.new.attributes]),
+      "skills": (@resume_data.present? && @resume_data.skills.present? ? @resume_data.skills.map {|rec| rec.attributes.slice("id", "name", "level", "show_level", "item_index", "page")} : [Skill.new.attributes])
     }
   end
 
@@ -236,7 +236,7 @@ class CvBuilderController < ApplicationController
       layout_attributes: [:id, :underline, :layout_type, :section_names => [], :section_data => [:name, :page, :column]],
       header_attributes: [:id,:avatar,:name,:location,:job_title,:phone,:email,:website_link, :image_style, :show_avatar,:show_name,:show_location,:show_job_title,:show_phone,:show_email,:show_website_link],
       summary_attributes: [:id, :title, :description],
-      resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color, :primary_font, :secondary_font, :font_size])
+      resume_style_attributes: [:id, :background_img, :font_family, :primary_color, :secondary_color, :primary_font, :secondary_font, :font_size, :available_background_images, :available_primary_colors, :available_secondary_colors, :available_primary_fonts, :available_secondary_fonts, :available_font_sizes])
   end
 
   private

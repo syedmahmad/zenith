@@ -32,7 +32,7 @@ var Skills = React.createClass({
         var state_res = _this.state.skills.find(item => item.id == $(this).data("skillId"));
         if (state_res) {
           var props_res = _this.props.resume.skills.find(item => item.id == $(this).data("skillId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitSkills(e.target.name, e.target.value, $(this).data("skillId"));
           }

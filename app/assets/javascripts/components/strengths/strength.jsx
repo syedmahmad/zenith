@@ -32,7 +32,7 @@ var Strengths = React.createClass({
         var state_res = _this.state.strengths.find(item => item.id == $(this).data("strengthId"));
         if (state_res) {
           var props_res = _this.props.resume.strengths.find(item => item.id == $(this).data("strengthId"));
-          if (props_res && props_res[e.target.name] != e.target.value) {
+          if (props_res && props_res[e.target.name] != "") {
             //send update call...
             _this.submitStrengths(e.target.name, e.target.value, $(this).data("strengthId"));
           }

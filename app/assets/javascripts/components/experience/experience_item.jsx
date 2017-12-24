@@ -72,6 +72,18 @@ var ExperienceItem = React.createClass({
       duration = duration + " - " + endDate;
     }
 
+    var resume = this.props.resume;
+    var itemsObj = null;
+    var subSectionId = $(inst.input).closest(".section-item").data("sectionId");
+    itemsObj = $.grep(resume["experiences"], function (item) {
+      if(item.id == subSectionId){
+        item["duration"] = duration;
+      }
+      return item;
+    });
+    resume["experiences"] = itemsObj;
+    this.props.resume = resume;
+
     params = {duration: duration, "id": $(inst.input).closest(".section-item").data("experienceId")};
     this.props.updateResume(
       {resume: {experiences_attributes: params}}
@@ -101,6 +113,19 @@ var ExperienceItem = React.createClass({
     if(endDate != "undefined" && typeof(endDate) != "undefined"){
       duration = duration + " - " + endDate;
     }
+
+    var resume = this.props.resume;
+    var itemsObj = null;
+    var subSectionId = sectionId
+    itemsObj = $.grep(resume["experiences"], function (item) {
+      if(item.id == subSectionId){
+        item["duration"] = duration;
+        item["ongoing"] = ongoing;
+      }
+      return item;
+    });
+    resume["experiences"] = itemsObj;
+    this.props.resume = resume;
 
     params = {ongoing: ongoing, duration: duration, "id": sectionId};
     this.props.updateResume(
