@@ -9,9 +9,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
      redirect_to new_user_registration_path
    else
       user = User.from_omniauth(auth)
-      if current_user.update_attributes(user)
+      if current_user.present? && current_user.update_attributes(user)
         redirect_to new_user_registration_path
       else
+        if user["email"].present?
+          user = User.create(user)
+          user.resumes.create
+          sign_in(user)
+        end
         # here we need to show error messages or redirect to error page....
         redirect_to "/"
       end
