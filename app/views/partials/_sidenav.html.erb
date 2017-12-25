@@ -146,11 +146,11 @@
 
           <div id="cd-signup"> <!-- sign up form -->
             <form class="cd-form" action="/users" method="post">
-              <p class="fieldset">
-                <label class="image-replace cd-username" for="signup-username">Username</label>
-                <input class="full-width has-padding has-border" id="signup-username" type="text" name="user_name" required placeholder="Username">
-                <span class="cd-error-message">Error message here!</span>
-              </p>
+            <!--     <p class="fieldset">
+                  <label class="image-replace cd-username" for="signup-username">Username</label>
+                  <input class="full-width has-padding has-border" id="signup-username" type="text" name="user_name" required placeholder="Username">
+                  <span class="cd-error-message">Error message here!</span>
+                </p> -->
 
               <input name="authenticity_token" type="hidden" 
                      value="<%= form_authenticity_token %>"/>
@@ -163,7 +163,14 @@
 
               <p class="fieldset">
                 <label class="image-replace cd-password" for="signup-password">Password</label>
-                <input class="full-width has-padding has-border" id="signup-password" type="text" name="password" placeholder="Password" minlength="7" required>
+                <input id="password" class="full-width has-padding has-border" id="signup-password" type="text" name="password" placeholder="Password" minlength="7" required>
+                <a href="javascript:;" class="hide-password">Hide</a>
+                <span class="cd-error-message">Error message here!</span>
+              </p>
+
+              <p class="fieldset">
+                <label class="image-replace cd-password" for="signup-password">Confirm Password</label>
+                <input id="confirm_password" class="full-width has-padding has-border" id="signup-password" type="text" name="password" placeholder="Confirm Password" minlength="7" required>
                 <a href="javascript:;" class="hide-password">Hide</a>
                 <span class="cd-error-message">Error message here!</span>
               </p>
@@ -176,6 +183,32 @@
               <p class="fieldset">
                 <input class="full-width has-padding" type="submit" value="Create account">
               </p>
+
+              <div class="text-center social-area">
+                <p class="blue">Register With</p>
+                <p>
+                  <div class="icon-holder">
+                    <a href="/users/auth/facebook">
+                      <i class="fa fa-facebook-f fa-lg"></i>
+                    </a>
+                  </div>
+                  <div class="icon-holder">
+                    <a href="/users/auth/twitter">
+                      <i class="fa fa-twitter fa-lg"></i>
+                    </a>
+                  </div>
+                  <div class="icon-holder">
+                    <a href="/users/auth/linkedin">
+                      <i class="fa fa-linkedin-square"></i>
+                    </a>
+                  </div>
+                  <div class="icon-holder">
+                    <a href="/users/auth/google_oauth2">
+                      <i class="fa fa-envelope"></i>
+                    </a>
+                  </div>
+                </p>
+              </div>
             </form>
 
             <!-- <a href="javascript:;" class="cd-close-form">Close</a> -->
@@ -215,24 +248,17 @@
     }
 
   }
-// ToDO: will remove after dowload
-//   $(function(){
+  var password = document.getElementById("password")
+    , confirm_password = document.getElementById("confirm_password");
 
-//     $("#xyz").on("click",function() {
-//       cv_data = $(".build-cv").html();
-//       $.ajax({
-//         url: ("http://localhost:3000/resumes/store_cv"),
-//         dataType: 'json',
-//         type: 'POST',
-//         contentType: 'multipart/form-data',
-//         data: {cv_data: cv_data},
-//         success: function(projects) {
-//           window.location = "http://localhost:3000/resumes/download";
-//         }.bind(this),
-//         error: function(response, status, err) {
-//           // onError(response.responseJSON)
-//         }
-//       });
-//     });
-// });
+  function validatePassword(){
+    if(password.value != confirm_password.value) {
+      confirm_password.setCustomValidity("Passwords Don't Match");
+    } else {
+      confirm_password.setCustomValidity('');
+    }
+  }
+
+  password.onchange = validatePassword;
+  confirm_password.onkeyup = validatePassword;
 </script>
