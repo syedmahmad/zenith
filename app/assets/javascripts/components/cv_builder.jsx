@@ -8,16 +8,18 @@ var CvBuilder = React.createClass({
   componentDidUpdate: function(prevProps, prevState){
     // this.setupSections($(".section-items"));
     // window.resume1 = this.state.resume;
+    this.removeEmptyPages();
     this.setupLayout();
     this.updateStyle();
     this.handleSubSectionRearrange();
     this.handleShowHideButtonStyle();
     this.removeEmptySections();
-    this.removeEmptyPages();
 
     resume = _this.state.resume;
     keys = Object.keys(resume);
     params = {};
+
+    resume["layout"]["section_names"] = _this.state.layoutSections;
 
     $.each(keys, function(index, key){
       if(key == "id" || key == "pages"){
@@ -418,8 +420,17 @@ var CvBuilder = React.createClass({
           $(".rearrange-resume-col-left, .rearrange-resume-col-right").sortable("destroy");
         }
       }
+      var pages = _this.state.pages;
+      $.each($(".page"), function( index, elem ) {
+        if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
+          // params = {id: _this.props.resume.layout.id,"pages": pages};
+          // _this.updateResume({resume: {"pages": _this.state.pages - 1}});
+          pages = _this.state.pages - 1;
+          // _this.setState({pages: _this.state.pages - 1});
+        }
+      });
       
-      _this.setState({resume: resume, layoutSections: section_names, sectionData: sectionData1});
+      _this.setState({resume: resume, pages: pages, layoutSections: section_names, sectionData: sectionData1});
     }
 
   },
