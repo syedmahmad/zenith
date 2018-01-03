@@ -4,6 +4,18 @@ var Outcomes = React.createClass({
   },
   handleChange: function(e){
     e.preventDefault();
+    var resume = this.props.resume;
+    var itemsObj = null;
+    var subSectionId = $(e.target).closest(".section-item").data("sectionId");
+
+    itemsObj = $.grep(resume["experiences"], function (item) {
+      if(item.id == subSectionId){
+        item[e.target.name] = e.target.value;
+      }
+      return item;
+    });
+    resume["experiences"] = itemsObj;
+    this.props.resume = resume;
     this.setState({outcome: e.target.value});
   },
   addOutcome: function(e){
@@ -11,6 +23,7 @@ var Outcomes = React.createClass({
     if (e.which == enterKey){
       e.target.blur();
       this.props.addNewOutcome(e);
+      window.isNew = true;
     } else if(e.which == 8 && !$(e.target).val().replace(/(\r\n|\n|\r)/gm,"")){
       index = $(e.target).data("index");
       this.props.removeOutcome(index);
@@ -19,13 +32,15 @@ var Outcomes = React.createClass({
   componentDidUpdate: function(){
     this.props.adjustTextFields();
     // $(ReactDOM.findDOMNode(this)).find(".form-control").focus()
+    // $(ReactDOM.findDOMNode(this))[0].focus()
     this.props.setupLayout();
   },
   componentDidMount: function(){
     this.props.adjustTextFields();
-    // if (this.props.outcome == "") {
-    //   $(ReactDOM.findDOMNode(this)).find(".form-control").focus();
-    // }
+
+    if (this.props.outcome == "" && window.isNew) {
+      $(ReactDOM.findDOMNode(this)).find(".form-control").focus();
+    }
   },
 
   render: function() {

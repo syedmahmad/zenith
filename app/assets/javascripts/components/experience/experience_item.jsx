@@ -50,6 +50,7 @@ var ExperienceItem = React.createClass({
     });
     $(document).find(datePicker2).datepicker({
       dateFormat: 'mm / yy',
+      maxDate: new Date,
       onSelect: function (dateText, inst) {
          _this.updateEndDate(dateText, inst);
       }
@@ -198,7 +199,7 @@ var ExperienceItem = React.createClass({
     outcomes = this.state.outcomes;
     outcomes.forEach(function(outcome, index) {
       key = "outcome-" + index;
-      outcomeData.push(<Outcomes setupLayout={_this.props.setupLayout} key={key} outcome={outcome} addNewOutcome={_this.addOutcome} removeOutcome={_this.removeOutcome} adjustTextFields={_this.adjustTextFields} index={index}/>);
+      outcomeData.push(<Outcomes resume={_this.props.resume} setupLayout={_this.props.setupLayout} key={key} outcome={outcome} addNewOutcome={_this.addOutcome} removeOutcome={_this.removeOutcome} adjustTextFields={_this.adjustTextFields} index={index}/>);
     });
 
     optionsArr = ["show_location", "show_period", "show_outcomes", "show_description"]

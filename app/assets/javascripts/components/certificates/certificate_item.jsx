@@ -19,6 +19,7 @@ var CertificateItem = React.createClass({
     });
     $(document).find(datePicker2).datepicker({
       dateFormat: 'mm / yy',
+      maxDate: new Date,
       onSelect: function (dateText, inst) {
          _this.updateEndDate(dateText, inst);
       }

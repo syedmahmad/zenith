@@ -31,6 +31,16 @@ var ResumeHeader = React.createClass({
   componentDidMount: function(){
     var _this = this;
     var show_hide_section_clicked = false;
+
+    $(document).on('focusout', ".email-input", (function (e) {
+      email = e.currentTarget.value;
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!re.test(email.toLowerCase())) {
+        $(e.target).addClass("invalid");
+      } else {
+        $(e.target).removeClass("invalid");
+      }
+    }));
     
     $(document).on('focusin', ".personal-info", (function (e) {
       this.firstChild.classList.remove('hide-section');
@@ -171,9 +181,9 @@ var ResumeHeader = React.createClass({
                           <span>
                              <div className="form-group">
                                 <input
-                                  type="string"
+                                  type="email"
                                   name="email"
-                                  className="form-control height-20"
+                                  className="form-control height-20 email-input"
                                   placeholder="guest_150523877422@example.com"
                                   value={this.state.email}
                                   onChange={ this.handleChange}
