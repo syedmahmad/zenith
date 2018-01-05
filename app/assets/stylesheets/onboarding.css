@@ -59,6 +59,10 @@ input::-ms-clear, textarea::-ms-clear {
   content: "";
   display: table;
 }
+.cv-builder-login-modal .cd-user-modal-container ul.cd-switcher  {
+  padding: 0;
+  list-style: none;
+}
 .cv-builder-login-modal .cd-user-modal-container .cd-switcher li {
   width: 50%;
   float: left;
@@ -66,6 +70,7 @@ input::-ms-clear, textarea::-ms-clear {
 }
 .cv-builder-login-modal .cd-user-modal-container .cd-switcher li:first-child a {
   border-radius: .25em 0 0 0;
+  border-right: 1px solid #eef3f3;
 }
 .cv-builder-login-modal .cd-user-modal-container .cd-switcher li:last-child a {
   border-radius: 0 .25em 0 0;

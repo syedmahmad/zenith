@@ -34,6 +34,7 @@ var CvBuilder = React.createClass({
     });
 
     this.updateResume({resume: params});
+    this.setupRearrangeModal();
   },
   componentDidMount: function(){
     var _this = this;
@@ -58,6 +59,12 @@ var CvBuilder = React.createClass({
     });
     this.handleSubSectionRearrange();
     this.handleShowHideButtonStyle();
+    this.setupRearrangeModal();
+  },
+  setupRearrangeModal: function(){
+    if(this.state.pages > 3){
+      $("#rearrangeModal .modal-dialog").css({width: this.state.pages * 200});
+    }
   },
   handleSubSectionRearrange: function(){
     var _this = this;
@@ -414,7 +421,6 @@ var CvBuilder = React.createClass({
     sectionItems = $('.rearrange-section-item')
     itemIndex = sectionItems.index(prevUiItem)
     itemName = $(prevUiItem).data("sectionName")
-    debugger;
     _this.setupSections(sectionItems, true, itemName, itemIndex);
   },
   handleAddSection: function(e){
