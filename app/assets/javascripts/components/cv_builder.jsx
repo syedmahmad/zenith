@@ -170,8 +170,13 @@ var CvBuilder = React.createClass({
     _this = this;
     var sectionData1 = [];
     var pageSectionData = [];
+    var resume = _this.state.resume;
+    var sectionData = _this.state.sectionData;
+    var updateResumeFlag = false;
+
     $.each(elements, function( index, elem ) {
-      if(elem.scrollHeight > elem.offsetHeight){
+      while(elem.scrollHeight > elem.offsetHeight){
+        updateResumeFlag = true;
         var lastElmObj = $(elem).find(".section-items").last();
         var lastElm = $(lastElmObj).data("sectionName");
         var elmCol = 0;
@@ -192,10 +197,11 @@ var CvBuilder = React.createClass({
         if(index+1 == pages){
           pages = pages + 1;
         }
-        _this.state.resume["pages"] = pages;
+        resume["pages"] = pages;
         var subSectionId = 0;
         if($(lastElmObj).find(".section-item").length == 1){
           subSectionId = $(lastElmObj).find(".section-item").data("sectionId");
+          $(lastElmObj).remove();
           sectionData = $.grep(_this.state.sectionData, function (a) {
                           if (a.name == lastElm) {
                               a.page = index + 1;
@@ -205,19 +211,10 @@ var CvBuilder = React.createClass({
 
         }else{
           subSectionId = $(lastElmObj).find(".section-item").last().data("sectionId");
+          $(lastElmObj).find(".section-item").last().remove();
           sectionData.push({name: lastElm, page: index + 1, column: elmCol});
         }
-        arr = [];
-        sectionData1 = [];
-
-        $.grep(sectionData, function (a) {
-          if(!arr.includes(a.name+"-"+a.page)){
-            sectionData1.push(a)
-            arr.push(a.name+"-"+a.page)
-          }
-        });
-        sectionData = sectionData1;
-        var resume = _this.state.resume;
+        
         var itemsObj = null;
 
         itemsObj = $.grep(resume[lastElm.toLowerCase()], function (item) {
@@ -234,10 +231,12 @@ var CvBuilder = React.createClass({
         if(sectionData != pageSectionData[index]){
           pageSectionData[index] = sectionData;
           resume[lastElm.toLowerCase()] = itemsObj;
-          _this.state.resume["layout"]["section_data"] = sectionData;
-          _this.state.resume["layout"]["section_names"] = resume.layoutSections;
-          _this.setState({resume: resume, pages: resume.pages, sectionData: sectionData});
+          resume["layout"]["section_data"] = sectionData;
+          resume["layout"]["section_names"] = resume.layoutSections;
         }
+      }
+      if(updateResumeFlag){
+        _this.setState({resume: resume, pages: resume.pages, sectionData: sectionData});
       }
     });
   },
