@@ -68,6 +68,10 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+ gem 'rails_12factor'
+end
+
 # login-with-multiple-providers-devise-via-omniauth
 gem 'devise'
 gem 'omniauth-facebook', '1.4.0'
