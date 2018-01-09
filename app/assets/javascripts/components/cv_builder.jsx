@@ -169,9 +169,13 @@ var CvBuilder = React.createClass({
     elements = $(".page")
     _this = this;
     var sectionData1 = [];
-    var pageSectionData = [];
+    var resume = _this.state.resume;
+    var sectionData = _this.state.sectionData;
+    var updateResumeFlag = false;
+
     $.each(elements, function( index, elem ) {
-      if(elem.scrollHeight > elem.offsetHeight){
+      while(elem.scrollHeight > elem.offsetHeight){
+        updateResumeFlag = true;
         var lastElmObj = $(elem).find(".section-items").last();
         var lastElm = $(lastElmObj).data("sectionName");
         var elmCol = 0;
@@ -188,36 +192,38 @@ var CvBuilder = React.createClass({
             lastElm = $(rightCol).find(".section-items").last().data("sectionName");
           }
         }
-        pages = _this.state.pages;
+        pages = resume.pages;
         if(index+1 == pages){
           pages = pages + 1;
         }
-        _this.state.resume["pages"] = pages;
+        resume.pages = pages;
         var subSectionId = 0;
-        if($(lastElmObj).find(".section-item").length == 1){
-          subSectionId = $(lastElmObj).find(".section-item").data("sectionId");
-          sectionData = $.grep(_this.state.sectionData, function (a) {
-                          if (a.name == lastElm) {
-                              a.page = index + 1;
-                          }
-                          return  a;
-                      });
+        if($(lastElmObj).find(".section-item .show_hide_section").length == 1){
+          subSectionId = $(lastElmObj).find(".section-item .show_hide_section").closest(".section-item").data("sectionId");
+          if(subSectionId){
+            $(lastElmObj).html("");
+            sectionData = $.grep(_this.state.sectionData, function (a) {
+                            if (a.name == lastElm) {
+                                a.page = index + 1;
+                            }
+                            return  a;
+                        });
+          }else{
+            _this.setState({resume: resume, pages: resume.pages, sectionData: sectionData});
+            return false;
+          }
 
         }else{
-          subSectionId = $(lastElmObj).find(".section-item").last().data("sectionId");
-          sectionData.push({name: lastElm, page: index + 1, column: elmCol});
-        }
-        arr = [];
-        sectionData1 = [];
-
-        $.grep(sectionData, function (a) {
-          if(!arr.includes(a.name+"-"+a.page)){
-            sectionData1.push(a)
-            arr.push(a.name+"-"+a.page)
+          subSectionId = $(lastElmObj).find(".section-item .show_hide_section").last().closest(".section-item").data("sectionId");
+          if(subSectionId){
+            $(lastElmObj).find(".section-item .show_hide_section").last().closest(".section-item").html("");
+            sectionData.push({name: lastElm, page: index + 1, column: elmCol});
+          }else{
+            _this.setState({resume: resume, pages: resume.pages, sectionData: sectionData});
+            return false;
           }
-        });
-        sectionData = sectionData1;
-        var resume = _this.state.resume;
+        }
+        
         var itemsObj = null;
 
         itemsObj = $.grep(resume[lastElm.toLowerCase()], function (item) {
@@ -231,13 +237,12 @@ var CvBuilder = React.createClass({
           lastElm = "educations";
         }
 
-        if(sectionData != pageSectionData[index]){
-          pageSectionData[index] = sectionData;
-          resume[lastElm.toLowerCase()] = itemsObj;
-          _this.state.resume["layout"]["section_data"] = sectionData;
-          _this.state.resume["layout"]["section_names"] = resume.layoutSections;
-          _this.setState({resume: resume, pages: resume.pages, sectionData: sectionData});
-        }
+        resume[lastElm.toLowerCase()] = itemsObj;
+        resume["layout"]["section_data"] = sectionData;
+        resume["layout"]["section_names"] = resume.layoutSections;
+      }
+      if(updateResumeFlag){
+        _this.setState({resume: resume, pages: resume.pages, sectionData: sectionData});
       }
     });
   },
@@ -404,7 +409,7 @@ var CvBuilder = React.createClass({
         }
       }
       
-      var pages = _this.state.pages;
+      var pages = resume.pages;
       $.each($(".reorder-page"), function( index, elem ) {
         if($(elem).find(".rearrange-section-item").length == 0 && $(elem).find(".rearrange-header").length == 0){
           pages = _this.state.pages - 1;
