@@ -249,12 +249,18 @@ var CvBuilder = React.createClass({
   removeEmptyPages: function(){
     window.resume1 = this.state.resume;
     var _this = this;
+    var pages = 0;
     $.each($(".page"), function( index, elem ) {
       if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
-        params = {id: _this.props.resume.layout.id,"pages": pages};
-        // _this.updateResume({resume: {"pages": _this.state.pages - 1}});
-        window.resume2 = _this.state.resume;
-        _this.setState({pages: _this.state.pages - 1});
+        _this.state.sectionData.forEach(function(item){
+          if(item.page > pages){
+            pages = item.page;
+          }
+        })
+        // params = {id: _this.props.resume.layout.id,"pages": pages};
+        // // _this.updateResume({resume: {"pages": _this.state.pages - 1}});
+        // window.resume2 = _this.state.resume;
+        _this.setState({pages: pages + 1});
       }
     });
   },
