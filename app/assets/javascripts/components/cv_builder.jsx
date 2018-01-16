@@ -178,7 +178,9 @@ var CvBuilder = React.createClass({
         updateResumeFlag = true;
         var lastElmObj = $(elem).find(".section-items").last();
         var lastElm = $(lastElmObj).data("sectionName");
+        var subSectionId = 0;
         var elmCol = 0;
+        
         if(_this.state.layout_type == "double"){
           leftCol = $(elem).find(".resume-col-left");
           rightCol = $(elem).find(".resume-col-right");
@@ -197,10 +199,10 @@ var CvBuilder = React.createClass({
           pages = pages + 1;
         }
         resume.pages = pages;
-        var subSectionId = 0;
-        if($(lastElmObj).find(".section-item .show_hide_section").length == 1){
+
+        if(lastElm.toLowerCase() == "summary" || $(lastElmObj).find(".section-item .show_hide_section").length == 1){
           subSectionId = $(lastElmObj).find(".section-item .show_hide_section").closest(".section-item").data("sectionId");
-          if(subSectionId){
+          if(lastElm.toLowerCase() == "summary" || subSectionId){
             $(lastElmObj).html("");
             sectionData = $.grep(_this.state.sectionData, function (a) {
                             if (a.name == lastElm) {
@@ -208,10 +210,14 @@ var CvBuilder = React.createClass({
                             }
                             return  a;
                         });
+            if(lastElm.toLowerCase() == "summary"){
+              $(lastElmObj).removeClass("section-items");
+            }
           }else{
             _this.setState({resume: resume, pages: resume.pages, sectionData: sectionData});
             return false;
           }
+
 
         }else{
           subSectionId = $(lastElmObj).find(".section-item .show_hide_section").last().closest(".section-item").data("sectionId");

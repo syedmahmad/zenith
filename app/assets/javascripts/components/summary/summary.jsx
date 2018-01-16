@@ -2,7 +2,7 @@ var Summary = React.createClass({
 
   getInitialState: function(){
     var summary = this.props.resume.summary;
-    return {title: summary.title, description: summary.description};
+    return {id: summary.id, title: summary.title, description: summary.description};
   },
 
   handleChange: function(e){
@@ -59,7 +59,7 @@ var Summary = React.createClass({
   render: function() {
     return (
       <div className="section-items col-md-12 p0" data-section-name="Summary">
-        <section className="summary-holder" data-summary-id={this.props.resume.summary.id}>
+        <section className="summary-holder" data-summary-id={this.state.id}>
            <div id="edit_able" className="hide-section">
               <a href="javaScript:void(0);" title="Remove section">
               <i aria-hidden="true" className="fa fa-trash" onMouseDown={this.handleRemoveSection} data-section-name="Summary"></i>
