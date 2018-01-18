@@ -259,21 +259,16 @@ var CvBuilder = React.createClass({
   },
 
   removeEmptyPages: function(){
-    window.resume1 = this.state.resume;
     var _this = this;
     var pages = 0;
-    var sectionData1 = [];
+    var sectionData1 = _this.state.sectionData;
     var resume = _this.state.resume;
     var page = 0;
     var itemsObj = null;
     $.each($(".page"), function( index, elem ) {
       if($(elem).find(".section-items").length == 0 && $(elem).find(".personal-info").length == 0){
-        // _this.state.sectionData.forEach(function(item){
-        //   if(item.page > pages){
-        //     pages = item.page;
-        //   }
-        // })
         if((index + 1) < $(".page").length){
+          sectionData1 = [];
           $.grep(sectionData, function (a) {
             page = parseInt(a.page)
             if(page > index) {
@@ -295,9 +290,6 @@ var CvBuilder = React.createClass({
         }
 
         pages = _this.calculatePages();
-        // params = {id: _this.props.resume.layout.id,"pages": pages};
-        // // _this.updateResume({resume: {"pages": _this.state.pages - 1}});
-        // window.resume2 = _this.state.resume;
         _this.setState({resume: resume, sectionData: sectionData1, pages: pages});
       }
     });
@@ -459,7 +451,7 @@ var CvBuilder = React.createClass({
           pages = _this.state.pages - 1;
         }
       });
-      
+
       _this.setState({resume: resume, pages: pages, layoutSections: section_names, sectionData: sectionData1});
     }
 
