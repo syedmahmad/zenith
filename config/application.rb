@@ -24,7 +24,7 @@ module GentelellaOnRails
     config.active_record.raise_in_transactional_callbacks = true
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components', 'gentelella', 'production')
-    
-    config.assets.precompile << %w( *.gif *.png )
+
+    config.assets.precompile << %w( *.gif *.png *.css *.js )
   end
 end
