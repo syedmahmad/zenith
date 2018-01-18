@@ -10,7 +10,7 @@ development:
   host: localhost
   database: zenith_cv_dev
 
-development:
+production:
   adapter: postgresql
   encoding: unicode
   pool: 5
