@@ -25,6 +25,6 @@ module GentelellaOnRails
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components', 'gentelella', 'production')
 
-    config.assets.precompile << %w( *.gif *.png *.css *.js )
+    # config.assets.precompile << %w( *.gif *.png *.css *.js )
   end
 end
