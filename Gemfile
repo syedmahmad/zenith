@@ -67,7 +67,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-gem 'rails_12factor'
+group :production do
+  gem 'rails_12factor', '0.0.2'
+end
 # login-with-multiple-providers-devise-via-omniauth
 gem 'devise'
 gem 'omniauth-facebook', '1.4.0'
