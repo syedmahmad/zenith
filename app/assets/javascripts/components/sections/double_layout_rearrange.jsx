@@ -14,18 +14,18 @@ var DoubleLayoutRearrange = React.createClass({
       if($.inArray(section, right_col_data) > -1){
         section = section.substr(0,1).toUpperCase()+section.substr(1);
         key = "rearrange" + section + "holder" + page;
-        data_right.push(<div className="rearrange-section-item" data-toggle="tooltip" title={section} key={key} data-section-name={section}>{section}</div>);
+        data_right.push(<div className="rearrange-section-item" title={section} key={key} data-section-name={section}>{section}</div>);
       }
       else if($.inArray(section, left_col_data) > -1){
         section = section.substr(0,1).toUpperCase()+section.substr(1);
         key = "rearrange" + section + "holder" + page;
-        data_left.push(<div className="rearrange-section-item" data-toggle="tooltip" title={section} key={key} data-section-name={section}>{section}</div>);
+        data_left.push(<div className="rearrange-section-item" title={section} key={key} data-section-name={section}>{section}</div>);
       }
     });
 
     return (
       <div>
-        {this.props.page == 0 && <div className=" rearrange-header rearrange-section-item" data-toggle="tooltip" title="Header" data-section-name="ResumeHeader">Header</div>}
+        {this.props.page == 0 && <div className="rearrange-header rearrange-section-item" data-toggle="tooltip" title="Header" data-section-name="ResumeHeader">Header</div>}
         <div className="double-column-rearrange">
           <div className="rearrange-resume-col-left connectedSortable">
             {data_left}
