@@ -29,5 +29,6 @@ module Zeinth
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components', 'gentelella', 'production')
 
     config.assets.precompile << %w( *.css *.js )
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
   end
 end
