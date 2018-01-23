@@ -12,3 +12,5 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( footermanifest.js home.js home.scss pdf.scss pdf.js custom.js pdf_cv_builder.scss onboarding.js onboarding.css homepage/*.css homepage/*.js)
 # Rails.application.config.assets.precompile += ['component.js', 'react.js', 'react_ujs.js', 'jquery.js',"modernizr.js"]
+Rails.application.config.assets.precompile += [/.*\.js/,/.*\.scss/]
+
