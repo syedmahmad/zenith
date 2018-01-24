@@ -26,7 +26,7 @@ module Zeinth
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'components', 'zenith', 'production')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components', 'zenith', 'production', 'fonts')
 
     config.assets.precompile << %w( *.css *.js )
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
